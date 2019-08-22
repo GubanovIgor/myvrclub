@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 
 // SASS
-import styles from '../style.module.scss'
+import styles from '../style.module.scss';
 
 class Navbar extends Component {
   render() {
@@ -18,7 +18,7 @@ class Navbar extends Component {
           <a className={styles.test}>Clubs</a>
         </Link>
       </div>
-    )
+    );
   }
 }
 
