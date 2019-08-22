@@ -1,0 +1,32 @@
+const express = require('express');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+// Routes import
+const indexRouter = require('./routes/index');
+
+const port = 3100;
+let app = express();
+
+mongoose.connect('mongodb://localhost:27017/myvrclub', { useNewUrlParser: true, useCreateIndex: true });
+
+app.use(morgan('dev'));
+
+const corsMiddleware = (req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+	next();
+}
+
+app.use(corsMiddleware);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+
+//Routes use
+app.use('/', indexRouter);
+
+app.listen(port, function () {
+  console.log(`Backend on port ${port}!`);
+});
