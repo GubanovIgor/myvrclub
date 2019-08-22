@@ -5,6 +5,6 @@ const Clubs = () => (
   <div>
     <Navbar />
   </div>
-)
+);
 
-export default Clubs
+export default Clubs;

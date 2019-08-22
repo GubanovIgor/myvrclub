@@ -1,0 +1,636 @@
+body {
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1f1f22;
+
+  background-repeat: no-repeat;
+}
+
+body a {
+  text-decoration: none;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.main-navigation {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+
+  display: flex;
+  align-items: flex-end;
+
+  height: 65px;
+
+  box-shadow: inset 0 -1px 0 0 #eaebee;
+}
+
+.main-header-logo {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.site-navigation a,
+.user-navigation a {
+  display: block;
+  color: #1f1f22;
+  text-decoration: none;
+  margin-left: 25px;
+  padding: 0 3px 19px 3px;
+}
+
+.site-navigation a:visited,
+.user-navigation a:visited {
+  color: #1f1f22;
+}
+
+.site-navigation li .site-navigation-active {
+  color: #3071eb;
+  border-bottom: 2px solid #3071eb;
+}
+
+.site-navigation a:hover,
+.user-navigation a:hover {
+  color: #3071eb;
+}
+
+.site-navigation,
+.user-navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-navigation {
+  display: flex;
+
+  width: 500px;
+}
+
+.user-navigation {
+  margin-right: 25px;
+  margin-left: auto;
+}
+
+h1 {
+  font-size: 46px;
+  font-weight: 300;
+  line-height: 68px;
+
+  text-align: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.main-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 115px;
+  margin-bottom: 115px;
+}
+
+.filter {
+  display: flex;
+  height: 44px;
+
+  margin: 40px 0;
+
+  box-shadow: 0 2px 20px -8px #757576;
+}
+
+.filter fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-form {
+  height: 44px;
+  border: 1px solid #e8eaed;
+  padding-left: 10px;
+}
+
+.filter-form-style {
+  border-right: none;
+  cursor: pointer;
+  select-color: red;
+}
+
+.button {
+  color: #ffffff;
+
+  border: 1px solid #5e98fb;
+  background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+  width: 156px;
+  height: 36px;
+
+  cursor: pointer;
+}
+
+.button:hover {
+  background: linear-gradient(to top, #5e98fb, #81affe);
+}
+
+.button:active {
+  background: linear-gradient(to top, #5e98fb, #75a5f8);
+}
+
+.best-games,
+.best-clubs,
+.blog {
+  margin-bottom: 60px;
+}
+
+.gameList {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 0 15px 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.profileName {
+  color: #1f1f22;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.profileRow {
+  color: #aeb1b6;
+  font-size: 14px;
+}
+
+.club-rating::after {
+  content: url(/static/img/rating.png);
+  position: relative;
+  left: 10px;
+  top: 1px;
+}
+
+.club-list {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 0 15px 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.club-info {
+  padding: 20px;
+
+  height: 110px;
+
+  border-left: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
+}
+
+.club-info a:hover {
+  text-decoration: none;
+}
+
+.club-title {
+  color: #1f1f22;
+  font-size: 16px;
+
+  text-decoration: none;
+}
+
+.club-address {
+  color: #aeb1b6;
+  text-decoration: none;
+}
+
+.reserve-mini {
+  color: #c1c1c1;
+  background-color: #fff;
+
+  border: 1px solid #EBEBEB;
+  border-radius: 0 0 5px 5px;
+
+  height: 40px;
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.reserve-mini:hover {
+  color: #fff;
+  border: 1px solid #5e98fb;
+  background: linear-gradient(to top, #5e98fb, #81affe);
+}
+
+.reserve-mini:active {
+  background: linear-gradient(to top, #5e98fb, #75a5f8);
+}
+
+.all-tags {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tags a:hover {
+  text-decoration: none;
+}
+
+.tags {
+  display: flex;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.popular-tags a {
+  margin-right: 15px;
+}
+
+.tags a {
+  color: #3071eb;
+  text-decoration: underline;
+}
+
+.news {
+  width: 848px;
+  height: 150px;
+
+  margin-bottom: 15px;
+}
+
+.news a {
+  display: flex;
+  color: #1f1f22;
+}
+
+.news:hover .news-title {
+  color: #3071eb;
+}
+
+.news-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 585px;
+  padding: 20px;
+
+  border-top: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.news-title {
+  font-size: 18px;
+}
+
+.news-bait {
+  color: #808080;
+}
+
+.news-date {
+  display: flex;
+  justify-content: space-between;
+
+  font-weight: 300;
+  color: #808080;
+}
+
+.news-views::before {
+  content: url(/static/img/views.png);
+  position: relative;
+
+  right: 7px;
+  top: 1px;
+}
+
+.main-footer {
+  background-color: #f7f8f9;
+}
+
+.main-footer ul {
+  list-style: none;
+}
+
+.main-footer a {
+  color: #1f1f22;
+}
+
+.social-list {
+  display: flex;
+
+  margin: 0;
+  padding: 30px 0 20px 0;
+}
+
+.social-list li:not(:first-child):hover {
+  cursor: pointer;
+}
+
+.reference,
+.main-footer-info {
+  display: flex;
+
+  margin: 0;
+  padding: 30px 0;
+}
+
+.social-list :first-child {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.social-list li {
+  margin-right: 15px;
+}
+
+.info-list {
+  margin: 0 100px 0 0;
+  padding: 0;
+}
+
+.info-list :first-child {
+  font-size: 18px;
+}
+
+.info-list :not(:first-child) a {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.info-list li {
+  margin-bottom: 10px;
+}
+
+.reference li {
+  display: flex;
+  margin-right: 15px;
+}
+
+.footer-line {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  color: #d6d8dc;
+  background-color: #d6d8dc;
+  height: 1px;
+  width: 1140px;
+}
+
+.profile-game {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.profile-game-title p {
+  font-weight: 300;
+  color: #aeb1b6;
+
+  margin: 0;
+  padding: 0;
+}
+
+.profile-game-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.screenshots-switch {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-game-informations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 360px;
+}
+
+.profile-game-informations p span {
+  font-weight: 700;
+}
+
+.profile-game-tags {
+  flex-wrap: wrap;
+}
+
+.profile-game-tags a {
+  margin-right: 10px;
+  font-weight: 300;
+}
+
+.menu-profile-game ul {
+  display: flex;
+
+  list-style: none;
+
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.menu-profile-game a {
+  color: #1f1f22;
+  font-size: 16px;
+
+  margin-right: 30px;
+}
+
+.profile-game-filter {
+  margin-bottom: 10px;
+}
+
+.profile-game-filter fieldset {
+  border: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.filter-membrane {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.search {
+  width: 265px;
+}
+
+.search-and-helmet {
+  display: flex;
+}
+
+.search::-webkit-input-placeholder {
+  color: #c1c1c1;
+}
+
+.reviews-section {
+  margin-bottom: 60px;
+}
+
+.reviews-title h3,
+.reviews-title p {
+  margin: 0;
+  padding: 0;
+}
+
+.reviews-title h3 {
+  margin-bottom: 15px;
+}
+
+.reviews-title p {
+  margin-right: 15px;
+}
+
+.game-mark-wrapper {
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 15px;
+}
+
+.game-mark {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 48px;
+}
+
+.game-mark-amount {
+  font-size: 16px;
+}
+
+.reviews ul {
+  width: 848px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.reviews li {
+  margin-bottom: 15px;
+}
+
+.reviews p {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.reviews-name {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reviews-date {
+  color: #c1c1c1;
+}
+
+.reviews-content {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.club-button {
+  width: 100%;
+}
+
+.profileNew {
+  width: 261px;
+  height: 340px;
+  position: relative;
+
+  background-color: #fff;
+}
+
+.profileNew:hover {
+  transform: scale(1.007);
+
+  box-shadow: 0 2px 20px -8px #757576;
+}
+
+.profileCover {
+  width: 100%;
+  height: 150px;
+  background-repeaet: no-repeat;
+  background-size: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.gameTop {
+  position: absolute;
+  top: 105px;
+}
+
+.club-top {
+  position: absolute;
+  top: 125px;
+  right: 0;
+}
+
+.gameInfo {
+  font-size: 14px;
+  text-decoration: none;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  border-right: 1px solid #EBEBEB;
+  border-left: 1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
+  border-radius: 0 0 5px 5px;
+  box-sizing: border-box;
+}
+
+.gamePlatform ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gamePlatform ul li {
+  margin-right: 10px;
+}
