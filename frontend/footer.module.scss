@@ -1,0 +1,91 @@
+.mainFooter {
+  background-color: #f7f8f9;
+}
+
+.mainFooter ul {
+  list-style: none;
+}
+
+.mainFooter a {
+  color: #1f1f22;
+}
+
+//.reference,
+//.mainFooterInfo {
+//  display: flex;
+//
+//  margin: 0;
+//  padding: 30px 0;
+//}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.visuallyHidden {
+  display: none;
+}
+
+.socialList {
+  display: flex;
+
+  margin: 0;
+  padding: 30px 0 20px 0;
+}
+
+.socialList li:not(:first-child):hover {
+  cursor: pointer;
+}
+
+.socialList :first-child {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.socialList li {
+  margin-right: 15px;
+}
+
+.footerLine {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  color: #d6d8dc;
+  background-color: #d6d8dc;
+  height: 1px;
+  width: 1140px;
+}
+
+.reference,
+.mainFooterInfo {
+  display: flex;
+
+  margin: 0;
+  padding: 30px 0;
+}
+
+.reference li {
+  display: flex;
+  margin-right: 15px;
+}
+
+.infoList {
+  margin: 0 100px 0 0;
+  padding: 0;
+}
+
+.infoList :first-child {
+  font-size: 18px;
+}
+
+.infoList :not(:first-child) a {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.infoList li {
+  margin-bottom: 10px;
+}
