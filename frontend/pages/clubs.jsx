@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
 
 const Clubs = () => (
   <div>
-    <Navbar />
+    <Header />
     <ClubCard />
   </div>
 );

@@ -1,10 +1,11 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
 import GameCard from '../components/GameCard';
 
 const Games = () => (
   <div>
-    <Navbar />
+
+    <Header />
     <GameCard />,
   </div>
 );

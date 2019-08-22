@@ -22,7 +22,7 @@ body a {
   display: none;
 }
 
-.main-navigation {
+.mainNavigation {
   font-size: 16px;
   font-weight: 300;
   line-height: 20px;
@@ -35,13 +35,13 @@ body a {
   box-shadow: inset 0 -1px 0 0 #eaebee;
 }
 
-.main-header-logo {
+.mainHeaderLogo {
   margin-left: 10px;
   cursor: pointer;
 }
 
-.site-navigation a,
-.user-navigation a {
+.siteNavigation a,
+.userNavigation a {
   display: block;
   color: #1f1f22;
   text-decoration: none;
@@ -49,35 +49,35 @@ body a {
   padding: 0 3px 19px 3px;
 }
 
-.site-navigation a:visited,
-.user-navigation a:visited {
+.siteNavigation a:visited,
+.userNavigation a:visited {
   color: #1f1f22;
 }
 
-.site-navigation li .site-navigation-active {
+.siteNavigation li .siteNavigationActive {
   color: #3071eb;
   border-bottom: 2px solid #3071eb;
 }
 
-.site-navigation a:hover,
-.user-navigation a:hover {
+.siteNavigation a:hover,
+.userNavigation a:hover {
   color: #3071eb;
 }
 
-.site-navigation,
-.user-navigation {
+.siteNavigation,
+.userNavigation {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.site-navigation {
+.siteNavigation {
   display: flex;
 
   width: 500px;
 }
 
-.user-navigation {
+.userNavigation {
   margin-right: 25px;
   margin-left: auto;
 }
