@@ -190,14 +190,14 @@ h3 {
   font-size: 14px;
 }
 
-.club-rating::after {
-  content: url(/static/img/rating.png);
-  position: relative;
-  left: 10px;
-  top: 1px;
-}
+//.clubRating::after {
+//  content: url(/static/img/rating.png);
+//  position: relative;
+//  left: 10px;
+//  top: 1px;
+//}
 
-.club-list {
+.clubList {
   display: flex;
   justify-content: space-between;
 
@@ -207,7 +207,7 @@ h3 {
   list-style: none;
 }
 
-.club-info {
+.clubInfo {
   padding: 20px;
 
   height: 110px;
@@ -216,7 +216,7 @@ h3 {
   border-right: 1px solid #EBEBEB;
 }
 
-.club-info a:hover {
+.clubInfo a:hover {
   text-decoration: none;
 }
 
@@ -232,7 +232,7 @@ h3 {
   text-decoration: none;
 }
 
-.reserve-mini {
+.reserveMini {
   color: #c1c1c1;
   background-color: #fff;
 
@@ -245,13 +245,13 @@ h3 {
   cursor: pointer;
 }
 
-.reserve-mini:hover {
+.reserveMini:hover {
   color: #fff;
   border: 1px solid #5e98fb;
   background: linear-gradient(to top, #5e98fb, #81affe);
 }
 
-.reserve-mini:active {
+.reserveMini:active {
   background: linear-gradient(to top, #5e98fb, #75a5f8);
 }
 
@@ -600,7 +600,7 @@ h3 {
   top: 105px;
 }
 
-.club-top {
+.clubTop {
   position: absolute;
   top: 125px;
   right: 0;

@@ -1,0 +1,11 @@
+.profileRow {
+  color: #aeb1b6;
+  font-size: 14px;
+
+  &:after {
+    content: url(/static/img/rating.png);
+    position: relative;
+    left: 10px;
+    top: 1px;
+  }
+}
