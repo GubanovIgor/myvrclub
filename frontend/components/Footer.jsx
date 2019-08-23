@@ -12,11 +12,11 @@ class Footer extends Component {
           <h2 className={styles.visuallyHidden}>Общая информация</h2>
           <ul className={styles.socialList}>
             <li>Мы в социальных сетях:</li>
-            <li><a><img src="img/vk.png" title="Вконтакте" alt=""/></a></li>
-            <li><a><img src="img/facebook.png" title="Facebook" alt=""/></a></li>
-            <li><a><img src="img/twitter.png" title="Twitter" alt=""/></a></li>
-            <li><a><img src="img/ok.png" title="Одноклассники" alt=""/></a></li>
-            <li><a><img src="img/google.png" title="Google+" alt=""/></a></li>
+            <li><a><img src="/static/img/vk.png" title="Вконтакте" alt=""/></a></li>
+            <li><a><img src="/static/img/facebook.png" title="Facebook" alt=""/></a></li>
+            <li><a><img src="/static/img/twitter.png" title="Twitter" alt=""/></a></li>
+            <li><a><img src="/static/img/ok.png" title="Одноклассники" alt=""/></a></li>
+            <li><a><img src="/static/img/google.png" title="Google+" alt=""/></a></li>
           </ul>
           <hr className={styles.footerLine}/>
             <div className={styles.mainFooterInfo}>
