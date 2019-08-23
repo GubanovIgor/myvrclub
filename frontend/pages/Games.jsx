@@ -1,10 +1,15 @@
-import React from 'react'
-import Navbar from '../components/Navbar';
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import GameCard from '../components/GameCard';
 
 const Games = () => (
   <div>
-    <Navbar />
-  </div>
-)
 
-export default Games
+    <Header />
+    <GameCard />
+    <Footer />
+  </div>
+);
+
+export default Games;
