@@ -2,7 +2,6 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-//const Game = require('../models/games.js');
 const Club = require('../models/clubs.js');
 const dbName = 'mongodb://localhost/myvrclub';
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
