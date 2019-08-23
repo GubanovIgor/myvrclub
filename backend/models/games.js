@@ -26,4 +26,4 @@ gameSchema.statics.addGame = async function (event) {
   await event.save();
 };
 
-module.exports = mongoose.model('Club', gameSchema);
+module.exports = mongoose.model('Game', gameSchema);
