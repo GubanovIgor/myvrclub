@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Page from './Page';
+import Head from 'next/head';
 
 class Home extends Component {
   static getInitialProps({ store, isServer, pathname, query }) {
@@ -12,7 +13,11 @@ class Home extends Component {
 
   render () {
     // console.log(this.props)
-    return (<div>
+    return (
+    <div>
+      <Head>
+        <title>Мир виртуальной реальности!</title>
+      </Head>
       <Header />
       <Page />
       <Footer />

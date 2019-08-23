@@ -9,14 +9,20 @@ const initialState = {
   arr: [1, 2, 3],
   false: false,
   true: true,
+  modalCheck: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TASK':
+    case ADD_TASK:
       return {
         ...state,
         arr: [...state.arr, action.value],
+      };
+    case SHOW_MODAL:
+      return {
+        ...state,
+        modalCheck: true,
       };
     default:
       return state;
@@ -47,6 +53,7 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
+
     // console.log(store.getState());
     return (
       <Container>
@@ -62,11 +69,18 @@ export default withRedux(makeStore)(MyApp);
 
 //Types
 export const ADD_TASK = 'ADD_TASK';
+export const SHOW_MODAL = 'SHOW_MODAL';
 
 //Actions
 export const addTaskAC = (value) => {
-    return {
-      type: ADD_TASK,
-      value,
-    };
+  return {
+    type: ADD_TASK,
+    value,
+  };
+};
+
+export const showModalAC = () => {
+  return {
+    type: SHOW_MODAL,
+  };
 };
