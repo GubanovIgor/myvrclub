@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import GameCard from '../components/GameCard';
+import ClubCard from '../components/ClubCard';
 
-const Games = () => (
+const Clubs = () => (
   <div>
     <Header />
-    <GameCard />
+    <ClubCard />
     <Footer />
   </div>
 );
 
-export default Games;
+export default Clubs;
