@@ -33,7 +33,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       socialLinks: { vk: arraySLinks[0], instagram: arraySLinks[1], fb: arraySLinks[2] },
     });
     console.log(clubs);
-    //await clubs.save();
+    await clubs.save();
   }
   db.close();
 });
