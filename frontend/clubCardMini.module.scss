@@ -55,110 +55,176 @@
 //  margin-bottom: 15px;
 //}
 //
-.profileRow {
-  color: #aeb1b6;
-  font-size: 14px;
-}
-
+//.profileRow {
+//  color: #aeb1b6;
+//  font-size: 14px;
+//}
 //
-
+////
 //
-.profileRating {
-  color: #aeb1b6;
-  font-size: 14px;
+////
+//.profileRating {
+//  color: #aeb1b6;
+//  font-size: 14px;
+//
+//  &:after {
+//    content: url(/static/img/rating.png);
+//    position: relative;
+//    left: 10px;
+//    top: 1px;
+//  }
+//}
+//
+//// New design
+//
+//.cardWrapper {
+//  width: 180px;
+//  cursor: pointer;
+//  position: relative;
+//}
+//
+//.cover {
+//  width: 180px;
+//  border-radius: 10px;
+//
+//  :hover > & {
+//    transform: scale(1.007);
+//    box-shadow: 0 2px 20px -8px #757576;
+//  }
+//
+//  margin: 0;
+//}
+//
+//.title {
+//  text-align: center;
+//
+//  :hover > & {
+//    color: #3071eb;
+//  }
+//
+//  margin: 0;
+//  padding: 5px;
+//}
+//
+//// DarkTheme
+//
+//.descriptionWrapper {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//
+//  width: 180px;
+//  height: 290px;
+//
+//  background-color: black;
+//  opacity: 0;
+//
+//  border-radius: 10px;
+//
+//  color: white;
+//
+//  :hover > & {
+//    transform: scale(1.007);
+//    opacity: 0.7;
+//  }
+//}
+//
+//.reserveMini {
+//  visibility: hidden;
+//  position: absolute;
+//  top: 251px;
+//  left: 0;
+//
+//  color: #c1c1c1;
+//  background-color: #fff;
+//
+//  border: 1px solid #EBEBEB;
+//  border-radius: 0 0 10px 10px;
+//
+//  height: 40px;
+//  width: 100%;
+//
+//  cursor: pointer;
+//
+//  :hover > & {
+//    visibility: visible;
+//    color: #fff;
+//    border: 1px solid #5e98fb;
+//    background: linear-gradient(to top, #5e98fb, #81affe);
+//    transform: scale(1.007);
+//  }
+//
+//  &:hover {
+//    background: linear-gradient(to top, #5e98fb, #75a5f8);
+//  }
+//
+//  &:active {
+//    background: linear-gradient(to top, #5e98fb, #75a5f8);
+//  }
+//}
 
-  &:after {
-    content: url(/static/img/rating.png);
-    position: relative;
-    left: 10px;
-    top: 1px;
-  }
-}
-
-// New design
-
-.cardWrapper {
-  width: 180px;
-  cursor: pointer;
+.container {
   position: relative;
+
+  cursor: pointer;
+
+  width: 290px;
+  height: 290px;
+
+  &:hover {
+    transform: scale(1.009);
+    box-shadow: 0 4px 20px -8px #000000;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
 }
 
 .cover {
-  width: 180px;
+  width: 290px;
+  height: 290px;
+
   border-radius: 10px;
-
-  :hover > & {
-    transform: scale(1.007);
-    box-shadow: 0 2px 20px -8px #757576;
-  }
-
-  margin: 0;
 }
 
-.title {
-  text-align: center;
+.darkWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
-  :hover > & {
-    color: #3071eb;
-  }
-
-  margin: 0;
-  padding: 5px;
-}
-
-// DarkTheme
-
-.descriptionWrapper {
   position: absolute;
   top: 0;
   left: 0;
 
-  width: 180px;
-  height: 290px;
-
-  background-color: black;
-  opacity: 0;
-
   border-radius: 10px;
 
-  color: white;
+  width: 290px;
+  height: 290px;
 
-  :hover > & {
-    transform: scale(1.007);
-    opacity: 0.7;
-  }
+  background: linear-gradient(to top, black, transparent);
 }
 
-.reserveMini {
-  visibility: hidden;
+.description {
+  color: white;
+  margin: 0 0 15px 15px;
+}
+
+// Icon rating
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: absolute;
-  top: 251px;
-  left: 0;
+  top: 15px;
+  left: 10px;
 
-  color: #c1c1c1;
-  background-color: #fff;
+  width: 30px;
+  height: 30px;
 
-  border: 1px solid #EBEBEB;
-  border-radius: 0 0 10px 10px;
+  border-radius: 3px;
 
-  height: 40px;
-  width: 100%;
-
-  cursor: pointer;
-
-  :hover > & {
-    visibility: visible;
-    color: #fff;
-    border: 1px solid #5e98fb;
-    background: linear-gradient(to top, #5e98fb, #81affe);
-    transform: scale(1.007);
-  }
-
-  &:hover {
-    background: linear-gradient(to top, #5e98fb, #75a5f8);
-  }
-
-  &:active {
-    background: linear-gradient(to top, #5e98fb, #75a5f8);
-  }
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
 }
