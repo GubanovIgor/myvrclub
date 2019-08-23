@@ -5,7 +5,6 @@ import GameCard from '../components/GameCard';
 
 const Games = () => (
   <div>
-
     <Header />
     <GameCard />
     <Footer />
