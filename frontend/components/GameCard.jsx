@@ -9,7 +9,7 @@ class GameCard extends Component {
     return (
       <div>
         <Link href='clubs/myClub'>
-          <div className={styles.cardWrapper}>
+          <div className={styles.container}>
             <img className={styles.cover} src="/static/img/anvio-mini.png"/>
             <p className={styles.title}>Anvio</p>
             <div className={styles.darkWrapper}></div>
