@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1140px;
+  margin: 115px auto;
+  padding: 0;
+}
+
+.filter {
+  display: flex;
+  height: 44px;
+
+  margin: 40px 0;
+
+  border: 1px solid #e8eaed;
+  box-shadow: 0 2px 20px -8px #757576;
+}
+
+.formSearch {
+  height: 44px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border: none;
+  cursor: text;
+  select-color: red;
+
+  width: 365px;
+}
+
+// Button
+.button {
+  color: #ffffff;
+
+  border: 1px solid #5e98fb;
+  background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+  width: 106px;
+  height: 44px;
+
+  margin-left: 10px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 20px -8px #757576;
+}
+
+.button:hover {
+  background: linear-gradient(to top, #5e98fb, #81affe);
+}
+
+.button:active {
+  background: linear-gradient(to top, #5e98fb, #75a5f8);
+}
