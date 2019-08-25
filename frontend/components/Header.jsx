@@ -11,7 +11,6 @@ import styles from '../header.module.scss';
 
 class Header extends Component {
   render() {
-    console.log(this.props);
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}

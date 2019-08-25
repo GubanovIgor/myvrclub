@@ -10,6 +10,12 @@ const initialState = {
   false: false,
   true: true,
   modalCheck: false,
+  authenticated: false,
+  user: {
+    email: '',
+    name: '',
+    password: '',
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +29,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         modalCheck: true,
+      };
+    case REG_USER:
+      return {
+        ...state,
+        user: {
+          email: action.user.email,
+          name: action.user.name,
+          password: action.user.password,
+        },
       };
     default:
       return state;
@@ -70,6 +85,7 @@ export default withRedux(makeStore)(MyApp);
 //Types
 export const ADD_TASK = 'ADD_TASK';
 export const SHOW_MODAL = 'SHOW_MODAL';
+export const REG_USER = 'REG_USER';
 
 //Actions
 export const addTaskAC = (value) => {
@@ -84,3 +100,12 @@ export const showModalAC = () => {
     type: SHOW_MODAL,
   };
 };
+
+export const regUserAC = (name, email, password) => ({
+  type: REG_USER,
+  user: {
+    name,
+    email,
+    password,
+  },
+});
