@@ -1,0 +1,91 @@
+.container {
+  width: 180px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cover {
+  width: 180px;
+  border-radius: 10px;
+
+  :hover > & {
+    transform: scale(1.009);
+    box-shadow: 0 4px 20px -8px #000000;
+    transition: 0.5s;
+  }
+
+  margin: 0;
+  transition: 0.5s;
+}
+
+.title {
+  text-align: center;
+
+  :hover > & {
+    color: #3071eb;
+  }
+
+  margin: 0;
+  padding: 5px;
+}
+
+// DarkTheme
+.darkWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 180px;
+  height: 290px;
+
+  background: linear-gradient(to bottom, black, rgba(255,0,0,0));
+  opacity: 0;
+
+  border-radius: 10px;
+
+  color: white;
+
+  :hover > & {
+    transform: scale(1.007);
+    opacity: 0.6;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+}
+
+// Icon new
+.new {
+  position: absolute;
+  top: 19px;
+  left: 137px;
+
+  width: 50px;
+  height: 20px;
+
+  border-radius: 3px;
+
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
+}
+
+// Icon rating
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 15px;
+  left: 10px;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 3px;
+
+  background-color: #3071eb;
+  color: white;
+  text-align: center;
+}

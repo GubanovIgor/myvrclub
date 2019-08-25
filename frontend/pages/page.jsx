@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { incrementCount, addNumAC, startClock } from '../redux/store';
-
+import { addTaskAC } from './_app';
 
 class Page extends Component {
 
   render() {
-    // console.log('this.props', this.props);
-    // console.log('state.numbers', this.props.count);
+    console.log(this.props);
     return (
       <div>
-        <button onClick={() => this.props.addNum(1)}>add - 1</button>
+        <div>Prop from Redux {this.props.foo}</div>
+        <div>Prop from getInitialProps {this.props.custom}</div>
+        <button onClick={() => this.props.addTaskAsync(1)}>Кнопка</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => { //записываем в стейт
+const mapStateToProps = (store) => {
   return {
-    addNum: (num) => dispatch(addNumAC(num)),
-  }
+    arr: store.arr,
+    true: store.true,
+    false: store.false,
+  };
 };
 
-const mapStateToProps = (state) => { //прилетают из стейта
+const mapDispatchToProps = (dispatch) => {
   return {
-    count: state.data
-  }
-};
+    addTaskAsync: (value) => dispatch(addTaskAC(value)),
+
+    // showTaskAsync: (data) => dispatch(showTaskAC(data)),
+    // showTaskAsync: function () {
+    //   const action = showTaskAC();
+    //   dispatch( action )
+    // },
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);
 
-//export default connect()(Page);
+// export default connect(store => store)(Page);

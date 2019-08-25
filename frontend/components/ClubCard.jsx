@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 // SASS
-import styles from '../main.module.scss';
-import clubCardStyles from '../ClubCard.module.scss';
+import styles from '../clubCardMini.module.scss';
 
 class ClubCard extends Component {
   render() {
-    let backgroundImage = {
-      backgroundImage: 'url(' + '/static/img/unreal-place.png' + ')',
-    };
     return (
-      <div className={styles.clubList}>
-        <div className={styles.profileNew}>
-          <a href="#">
-            <div className={styles.profileCover} style={backgroundImage}>
+      <div>
+        <Link href='clubs/myClub'>
+          <div className={styles.container}>
+            <img className={styles.cover} src="/static/img/anvio-mini.png"/>
+            <div className={styles.darkWrapper}>
+              <h2 className={styles.description}>Anvio</h2>
+              <p className={styles.description}>Дм. Ульянова 43к1</p>
+              <p></p>
             </div>
-            <div className={styles.clubTop}>
-              <img src="/static/img/price.jpg" title="Минимальная стоимость 1-го часа игры" alt=""/>
-            </div>
-            <div className={styles.clubInfo}>
-              <div className={styles.profileName}>Нереальное место</div>
-              <div className={styles.profileRow}>м. Курская</div>
-              <div className={clubCardStyles.profileRow}>Рейтинг:</div>
-            </div>
-          </a>
-          <button className={styles.reserveMini}>ЗАБРОНИРОВАТЬ</button>
-        </div>
+            <div className={styles.rating}>7.6</div>
+          </div>
+        </Link>
       </div>
     );
   }
