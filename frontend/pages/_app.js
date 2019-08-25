@@ -39,6 +39,14 @@ const reducer = (state = initialState, action) => {
           password: action.user.password,
         },
       };
+    case SIGN_IN:
+      return {
+        ...state,
+        user: {
+          email: action.user.email,
+          password: action.user.password,
+        },
+      };
     default:
       return state;
   }
@@ -86,6 +94,7 @@ export default withRedux(makeStore)(MyApp);
 export const ADD_TASK = 'ADD_TASK';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const REG_USER = 'REG_USER';
+export const SIGN_IN = 'SIGN_IN';
 
 //Actions
 export const addTaskAC = (value) => {
@@ -105,6 +114,14 @@ export const regUserAC = (name, email, password) => ({
   type: REG_USER,
   user: {
     name,
+    email,
+    password,
+  },
+});
+
+export const signInAC = (email, password) => ({
+  type: SIGN_IN,
+  user: {
     email,
     password,
   },

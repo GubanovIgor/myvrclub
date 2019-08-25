@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import fetch from 'node-fetch';
 
 // ACTIONS
 import { regUserAC } from '../pages/_app';
 
 // SASS
 import styles from '../signup.module.scss';
+import { SignIn } from './SignIn';
 
 export class SignUp extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: '',
       name: '',
@@ -84,8 +85,6 @@ export class SignUp extends Component {
               <span className={styles.checkmark}></span>
             </label>
           </div>
-          {this.props.userName}
-          {this.props.userEmail}
         </div>
       </div>
     );

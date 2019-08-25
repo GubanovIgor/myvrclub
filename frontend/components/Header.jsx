@@ -35,6 +35,7 @@ class Header extends Component {
           </ul>
           <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>
+              <button onClick={this.props.showModal}>Регистрация</button>
               <button onClick={this.props.showModal}>Вход</button>
             </li>
           </ul>
@@ -50,6 +51,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  showModal: () => dispatch(showModalAC()),
   showModal: () => dispatch(showModalAC()),
 });
 
