@@ -9,6 +9,8 @@ const initialState = {
   arr: [1, 2, 3],
   false: false,
   true: true,
+  clubs: [],
+  games: [],
 };
 
 const reducer = (state = initialState, action) => {

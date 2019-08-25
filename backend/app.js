@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 // Routes import
 const indexRouter = require('./routes/index');
+const clubRouter = require('./routes/club');
 
 const port = 3100;
 let app = express();
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: false}));
 
 //Routes use
 app.use('/', indexRouter);
+app.use('/club', clubRouter);
 
 app.listen(port, function () {
   console.log(`Backend on port ${port}!`);
