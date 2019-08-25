@@ -5,8 +5,7 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 // Action Creators
-import showModalSignUpAC from '../pages/_app';
-import showModalSignInAC from '../pages/_app';
+import { showModalSignUpAC, showModalSignInAC } from '../pages/_app';
 
 // SASS
 import styles from '../header.module.scss';

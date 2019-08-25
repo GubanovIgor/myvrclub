@@ -42,7 +42,6 @@ export class SignIn extends Component {
   };
 
   render() {
-    console.log()
     return (
       <div>
         <div className={styles.popUp}></div>
