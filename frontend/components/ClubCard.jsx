@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../clubCardMini.module.scss';
+import styles from '../clubCard.module.scss';
 
 class ClubCard extends Component {
   render() {

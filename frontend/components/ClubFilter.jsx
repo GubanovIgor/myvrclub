@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../gameFilter.module.scss';
+import styles from '../clubFilter.module.scss';
 
-class GameFilter extends Component {
+class ClubFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
         <div>
-          <h3>Жанр</h3>
-          <input type='checkbox' id='1'/><label for='1'>Экшен</label><br></br>
-          <input type='checkbox' id='2'/><label for='2'>Гонки</label><br></br>
-          <input type='checkbox' id='3'/><label for='3'>Симулятор</label><br></br>
-          <input type='checkbox' id='4'/><label for='4'>Стратегия</label><br></br>
-          <input type='checkbox' id='5'/><label for='5'>Фентези</label><br></br>
-          <input type='checkbox' id='6'/><label for='6'>Файтинг</label><br></br>
-          <input type='checkbox' id='7'/><label for='7'>Платформер</label><br></br>
+          <h3>Метро</h3>
+          <input className={styles.metroInput} type='text' id='1'/><br></br>
         </div>
         <hr className={styles.breakLine}></hr>
 
         <div>
-          <h3>Платформа</h3>
+          <h3>Оборудование</h3>
           <input type='checkbox' id='8'/><label for='8'>PS VR</label><br></br>
           <input type='checkbox' id='9'/><label for='9'>Oculus Rift</label><br></br>
           <input type='checkbox' id='10'/><label for='10'>HTC Vive</label><br></br>
@@ -65,4 +59,4 @@ class GameFilter extends Component {
   }
 }
 
-export default GameFilter;
+export default ClubFilter;
