@@ -9,7 +9,8 @@ const initialState = {
   arr: [1, 2, 3],
   false: false,
   true: true,
-  modalCheck: false,
+  modalCheckSignUp: false,
+  modalCheckSignIn: false,
   authenticated: false,
   user: {
     email: '',
@@ -25,12 +26,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         arr: [...state.arr, action.value],
       };
-    case SHOW_MODAL:
+    case SHOW_MODAL_SIGN_UP:
       return {
         ...state,
-        modalCheck: true,
+        modalCheckSignUp: true,
       };
-    case REG_USER:
+    case SHOW_MODAL_SIGN_IN:
+      return {
+        ...state,
+        modalCheckSignIn: true,
+      };
+    case SIGN_UP:
       return {
         ...state,
         user: {
@@ -92,26 +98,27 @@ export default withRedux(makeStore)(MyApp);
 
 //Types
 export const ADD_TASK = 'ADD_TASK';
-export const SHOW_MODAL = 'SHOW_MODAL';
-export const REG_USER = 'REG_USER';
+export const SHOW_MODAL_SIGN_UP = 'SHOW_MODAL_SIGN_UP';
+export const SHOW_MODAL_SIGN_IN = 'SHOW_MODAL_SIGN_IN';
+export const SIGN_UP = 'SIGN_UP';
 export const SIGN_IN = 'SIGN_IN';
 
 //Actions
-export const addTaskAC = (value) => {
-  return {
-    type: ADD_TASK,
-    value,
-  };
-};
+export const addTaskAC = (value) => ({
+  type: ADD_TASK,
+  value,
+});
 
-export const showModalAC = () => {
-  return {
-    type: SHOW_MODAL,
-  };
-};
+export const showModalSignUpAC = () => ({
+  type: SHOW_MODAL_SIGN_UP,
+});
 
-export const regUserAC = (name, email, password) => ({
-  type: REG_USER,
+export const showModalSignInAC = () => ({
+  type: SHOW_MODAL_SIGN_IN,
+});
+
+export const signUpAC = (name, email, password) => ({
+  type: SIGN_UP,
   user: {
     name,
     email,

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-import { regUserAC } from '../pages/_app';
+import { signUpAC } from '../pages/_app';
 
 // SASS
 import styles from '../signup.module.scss';
-import { SignIn } from './SignIn';
+
 
 export class SignUp extends Component {
   constructor(props) {
@@ -96,7 +96,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  regUser: (email, name, password) => dispatch(regUserAC(email, name, password)),
+  signUp: (email, name, password) => dispatch(signUpAC(email, name, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

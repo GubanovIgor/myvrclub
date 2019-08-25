@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 // Action Creators
-import { showModalAC } from '../pages/_app';
+import showModalSignUpAC from '../pages/_app';
+import showModalSignInAC from '../pages/_app';
 
 // SASS
 import styles from '../header.module.scss';
 
 class Header extends Component {
   render() {
+    console.log(this.props);
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}
@@ -35,24 +38,26 @@ class Header extends Component {
           </ul>
           <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>
-              <button onClick={this.props.showModal}>Регистрация</button>
-              <button onClick={this.props.showModal}>Вход</button>
+              <button onClick={this.props.showModalSignUp}>Регистрация</button>
+              <button onClick={this.props.showModalSignIn}>Вход</button>
             </li>
           </ul>
         </nav>
-        {(this.props.modalCheck) ? <SignUp /> : <p>Пока нет модального окна, нажми вход</p>}
+        {(this.props.modalCheckSignUp) ? <SignUp /> : <p>Чекер модального окна регистрации</p>}
+        {(this.props.modalCheckSignIn) ? <SignIn /> : <p>Чекер модального окна входа</p>}
       </header>
     );
   }
 }
 
 const mapStateToProps = (store) => ({
-  modalCheck: store.modalCheck,
+  modalCheckSignUp: store.modalCheckSignUp,
+  modalCheckSignIn: store.modalCheckSignIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  showModal: () => dispatch(showModalAC()),
-  showModal: () => dispatch(showModalAC()),
+  showModalSignUp: () => dispatch(showModalSignUpAC()),
+  showModalSignIn: () => dispatch(showModalSignInAC()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
