@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+
+  padding: 20px;
+}
+
+.gameContainer {
+  display: flex;
+  justify-content: space-between;
+
+  align-content: flex-start;
+
+  flex-wrap: wrap;
+
+  width: 100%;
+}
