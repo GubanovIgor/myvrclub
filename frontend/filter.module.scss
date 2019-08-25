@@ -10,13 +10,6 @@
   margin-right: 30px;
   padding: 0 10px;
 
-  div input {
-    margin-right: 10px;
-    margin-bottom: 10px;
-
-    cursor: pointer;
-  }
-
   div label {
     cursor: pointer;
   }
@@ -30,4 +23,13 @@
 
 .metroInput {
   cursor: text;
+  height: 25px;
+  padding-left: 10px;
+}
+
+.filterCheckbox {
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
 }
