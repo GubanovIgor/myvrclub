@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../indexSearch.modules.scss';
+import styles from '../indexSearch.module.scss';
 
 class IndexSearch extends Component {
   render() {
