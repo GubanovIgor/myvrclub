@@ -1,45 +1,57 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
 import { reducer } from './reducers';
 
 const InitState = {
   num: NaN,
   clubs: [],
   games: [],
-  filter: {
-    equipment: {
-      ps: false,
-      oculus: false,
-      htc: false,
-      fullbody: false,
+  filter: [
+    {
+      title: 'Оборудование',
+      value: [
+        'PS VR',
+        'Oculus Rift',
+        'HTC Vive',
+        'Full Body VR',
+      ],
     },
-    date: {
-      2019: false,
-      2018: false,
-      2017: false,
-      2016: false,
-      2015: false,
-      2014: false,
-      2013: false,
+    {
+      title: 'Год выхода',
+      value: [
+        '2019',
+        '2018',
+        '2017',
+        '2016',
+        '2015',
+        '2014',
+        '2013',
+      ],
     },
-    age: {
-      0: false,
-      3: false,
-      7: false,
-      12: false,
-      16: false,
-      18: false,
+    {
+      title: 'Возраст',
+      value: [
+        '0+',
+        '3+',
+        '7+',
+        '12+',
+        '16+',
+        '18+',
+      ],
     },
-    tags: {
-      zombie: false,
-      kids: false,
-      music: false,
-      blood: false,
-      magic: false,
-      adult: false,
+    {
+      title: 'Теги',
+      value: [
+        'Зомби',
+        'Для детей',
+        'Музыка',
+        'Много крови',
+        'Магия',
+        'Для взрослых',
+      ],
     },
-  },
+  ],
 };
 
 export function initializeStore(initialState = InitState) {

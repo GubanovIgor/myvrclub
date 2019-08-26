@@ -6,15 +6,19 @@ import styles from '../stylesheets/filterSection.module.scss';
 // import components
 import FilterItem from '../components/FilterItem';
 
-class GameCard extends Component {
+class FilterSection extends Component {
   render() {
+    const { el } = this.props;
     return (
       <div>
-        <h3>Оборудование</h3>
-        <FilterItem />
+        <hr className={styles.breakLine}></hr>
+        <h3>{el.title}</h3>
+        {el.value.map((el, index) =>
+          <FilterItem key={index} item={el}/>
+          )}
       </div>
     );
   }
 }
 
-export default GameCard;
+export default FilterSection;
