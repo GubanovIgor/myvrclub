@@ -8,14 +8,15 @@ import FilterItem from '../components/FilterItem';
 
 class FilterSection extends Component {
   render() {
-    const { el } = this.props;
+    const { section } = this.props;
+    console.log(section);
     return (
       <div>
         <hr className={styles.breakLine}></hr>
-        <h3>{el.title}</h3>
-        {el.value.map((el, index) =>
-          <FilterItem key={index} item={el}/>
-          )}
+        <h3>{section.title}</h3>
+        {section.value.map((item, index) =>
+          <FilterItem key={index} item={item} category={section.title}/>
+        )}
       </div>
     );
   }

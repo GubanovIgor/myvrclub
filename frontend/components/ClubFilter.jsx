@@ -20,7 +20,7 @@ class ClubFilter extends Component {
           /><br></br>
         </div>
         {this.props.filter.map((el, index) =>
-          <FilterSection key={index} el={el}/>
+          <FilterSection key={index} section={el}/>
         )}
       </div>
     );

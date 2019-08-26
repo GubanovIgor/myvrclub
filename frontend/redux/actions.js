@@ -28,13 +28,13 @@ export const getGamesAC = () => (
 );
 
 // Фильтр клубов
-export const requestFilterClubs = (data) => (
-  { type: actionTypes.REQUEST_FILTER_CLUBS, filterClubs: data }
+export const requestFilterToggle = (item, category) => (
+  { type: actionTypes.REQUEST_FILTER_TOGGLE, item, category }
 );
 
-export const filterClubsAC = () => (
+export const filterToggleAC = (item, category) => (
   async (dispatch) => {
-
+    dispatch(requestFilterToggle(item, category));
   }
 );
 
@@ -55,6 +55,6 @@ export const filterClubsAC = () => (
 export const addNumAC = (num) => {
   return {
     type: actionTypes.ADDNUM,
-    data: num
-  }
+    data: num,
+  };
 };

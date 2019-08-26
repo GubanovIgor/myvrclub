@@ -1,7 +1,8 @@
 // REDUCERS
 import { actionTypes } from './types';
+import {filterToggleAC} from "./actions";
 
-export const reducer = (state = exampleInitialState, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     // case actionTypes.TICK:
     //   return Object.assign({}, state, {
@@ -23,7 +24,24 @@ export const reducer = (state = exampleInitialState, action) => {
         ...state,
         games: action.games,
       });
+    case actionTypes.REQUEST_FILTER_TOGGLE:
+      console.log('toggle', action.item);
+      console.log('toggle', action.category);
+      console.log('toggle', state.filterToggle[action.category][action.item]);
+      return ({
+        ...state,
+        games: [12, 2],
+
+        // filterToggle: {
+        //   ...filterToggle,
+        //   'Оборудование': {
+        //     ...'Оборудование',
+        //     'PS VR': true,
+        //   },
+        // },
+      });
+
     default:
-      return state
+      return state;
   }
 };
