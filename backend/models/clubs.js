@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const clubSchema = new mongoose.Schema({
   name: String,
+  urlName: String,
   address: String,
   tel: [],
   description: String,

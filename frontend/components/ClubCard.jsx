@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
+import Link from 'next/link'
 
 // SASS
 import styles from '../stylesheets/clubCard.module.scss';
@@ -7,9 +7,12 @@ import styles from '../stylesheets/clubCard.module.scss';
 class ClubCard extends Component {
 
   render() {
+    const { data } = this.props;
+    console.log('data.name', data.urlName);
     return (
       <div>
-        <Link href='clubs/myClub'>
+        <Link href='/clubs/[urlname]' as={`clubs/${data.urlName}`}>
+          <a>
           <div className={styles.container}>
             <img className={styles.cover} src={`/static/clubCover/${this.props.cover}`}/>
             <div className={styles.darkWrapper}>
@@ -19,6 +22,7 @@ class ClubCard extends Component {
             </div>
             <div className={styles.rating}>7.6</div>
           </div>
+          </a>
         </Link>
       </div>
     );

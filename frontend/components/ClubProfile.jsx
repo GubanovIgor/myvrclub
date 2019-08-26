@@ -6,7 +6,7 @@ import styles from '../stylesheets/clubProfile.module.scss';
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';
 
-const ClubProfile = () => (
+const ClubProfile = (props) => (
   <section className={styles.container}>
     <div className={styles.profileTitle}>
       <h2>Нереальное место</h2>
@@ -18,7 +18,7 @@ const ClubProfile = () => (
           src="/static/img/unreal-place-cover.png" width="360" height="202" alt="Batman: Arkham VR"
         />
         <p>
-          <span>Адрес:</span>Нижний Сусальный переулок 5, стр 5А<br></br>
+          <span>Адрес:</span>{props.address}<br></br>
           <span>Метро:</span>Курская<br></br>
           <span>Телефон:</span>+7 495 129 49 19<br></br>
           <span>Время работы:</span>сегодня 10.00 - 22.00<br></br>
