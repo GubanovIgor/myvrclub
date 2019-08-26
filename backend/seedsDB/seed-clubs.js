@@ -29,6 +29,8 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       name: Name,
       address: Address,
       tel: [Telephone],
+      cover: '',
+      screenShot: [],
       metro: Metro,
       domain: Site,
       workTime: { weekdays: WorkTime, weekend: WorkTime },
@@ -36,7 +38,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       games: games,
     });
     console.log(clubs);
-    await clubs.save();
+    //await clubs.save();
   }
   db.close();
 });

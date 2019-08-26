@@ -45,7 +45,8 @@ fs.writeFile("./files/games-temp.csv", data, async function (error) {
       name,
       description,
       clubs,
-      pictures,
+      screenShot: pictures,
+      cover: '',
       videos,
       genre,
       playersNum,
@@ -58,7 +59,7 @@ fs.writeFile("./files/games-temp.csv", data, async function (error) {
       tags
     });
     console.log(games);
-    await games.save();
+    //await games.save();
   }
 
   db.close();
