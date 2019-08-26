@@ -10,8 +10,8 @@ class GameCard extends Component {
       <div>
         <Link href='clubs/myClub'>
           <div className={styles.container}>
-            <img className={styles.cover} src="/static/img/anvio-mini.png"/>
-            <p className={styles.title}>Anvio</p>
+            <img className={styles.cover} src={this.props.cover}/>
+            <p className={styles.title}>{this.props.title}</p>
             <div className={styles.darkWrapper}></div>
             <div className={styles.new}>new</div>
             <div className={styles.rating}>7.6</div>
