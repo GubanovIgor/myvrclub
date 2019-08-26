@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IndexSearch from '../components/IndexSearch';
 import Page from './page';
+import Example from '../components/examplesThunk/examples';
+import { serverRenderClock, startClock } from '../redux/store';
+
 
 class Index extends Component {
-  static getInitialProps({ store, isServer, pathname, query }) {
-    store.dispatch({ type: 'FOO', payload: 'myValue' }); // component will be able to read from store's state when rendered
-    return { custom: 'custom' }; // you can pass some custom props to component from here
+  static getInitialProps ({ reduxStore, req }) {
+    const isServer = !!req;
+    console.log('isServer', isServer);
+    reduxStore.dispatch(serverRenderClock(isServer))
+    return {}
+  }
+
+  componentDidMount () {
+    this.timer = startClock(this.props.dispatch)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.timer)
   }
 
   render () {
     return (<div>
       <Header />
       <IndexSearch />
+        <Example/>
       <Page />
       <Footer />
     </div>
@@ -21,4 +36,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default connect()(Index)

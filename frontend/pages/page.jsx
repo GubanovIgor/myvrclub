@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTaskAC } from './_app';
+import { addNumAC } from '../redux/store';
 
 class Page extends Component {
 
   render() {
-    console.log(this.props);
+    console.log('this.props', this.props);
     return (
       <div>
-        <div>Prop from Redux {this.props.foo}</div>
-        <div>Prop from getInitialProps {this.props.custom}</div>
-        <button onClick={() => this.props.addTaskAsync(1)}>Кнопка</button>
+        {/*<div>Prop from Redux {this.props}</div>*/}
+        {/*<div>Prop from getInitialProps {this.props.custom}</div>*/}
+        <div>Value -  {this.props.num}</div>
+        <button onClick={() => this.props.addNum(1)}>add - 1</button>
       </div>
     );
   }
@@ -18,15 +19,13 @@ class Page extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    arr: store.arr,
-    true: store.true,
-    false: store.false,
+    num: store.num
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTaskAsync: (value) => dispatch(addTaskAC(value)),
+    addNum: (value) => dispatch(addNumAC(value)),
 
     // showTaskAsync: (data) => dispatch(showTaskAC(data)),
     // showTaskAsync: function () {
@@ -37,5 +36,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);
-
-// export default connect(store => store)(Page);

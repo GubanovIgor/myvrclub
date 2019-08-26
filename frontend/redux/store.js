@@ -5,7 +5,10 @@ import thunkMiddleware from 'redux-thunk'
 const exampleInitialState = {
   lastUpdate: 0,
   light: false,
-  count: 0
+  count: 0,
+  value: '',
+  num: NaN,
+  num2: 444
 }
 
 export const actionTypes = {
@@ -13,7 +16,8 @@ export const actionTypes = {
   INCREMENT: 'INCREMENT',
   DECREMENT: 'DECREMENT',
   RESET: 'RESET',
-  ADDNUM: 'ADDNUM'
+  ADDNUM: 'ADDNUM',
+  ADD_TASK: 'ADD_TASK',
 }
 
 // REDUCERS
@@ -47,7 +51,11 @@ export const reducer = (state = exampleInitialState, action) => {
 
 // ACTIONS
 export const serverRenderClock = isServer => dispatch => {
-  return dispatch({ type: actionTypes.TICK, light: !isServer, ts: Date.now() })
+  return dispatch({
+    type: actionTypes.TICK,
+    light: !isServer,
+    ts: Date.now()
+  })
 }
 
 export const startClock = (dispatch) => {
@@ -73,7 +81,7 @@ export const addNumAC = (num) => {
     type: actionTypes.ADDNUM,
     data: num
   }
-}
+};
 
 export function initializeStore(initialState = exampleInitialState) {
   return createStore(
