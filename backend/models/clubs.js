@@ -27,10 +27,10 @@ const clubSchema = new mongoose.Schema({
       morning: String,
       day: String,
       evening: String,
-    }
+    },
   },
   rent: Boolean,
-  discounts: [String]
+  discounts: [String],
 });
 
 clubSchema.statics.getClubs = async function () {
