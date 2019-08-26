@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../clubProfile.module.scss';
+import styles from '../stylesheets/clubProfile.module.scss';
 
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';
@@ -15,7 +15,7 @@ const ClubProfile = () => (
       <ImageProfileBlock />
       <div className={styles.profileInformations}>
         <img
-          src="img/unreal-place-cover.png" width="360" height="202" alt="Batman: Arkham VR"
+          src="/static/img/unreal-place-cover.png" width="360" height="202" alt="Batman: Arkham VR"
         />
         <p>
           <span>Адрес:</span>Нижний Сусальный переулок 5, стр 5А<br></br>

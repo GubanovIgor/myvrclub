@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../filter.module.scss';
+import styles from '../stylesheets/filter.module.scss';
 
 class ClubFilter extends Component {
   render() {

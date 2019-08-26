@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 // SASS
-// import styles from '../clubPage.module.scss';
-import styles from '../cardsWrapper.module.scss';
+import styles from '../stylesheets/clubPage.module.scss';
+import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import GameCard from '../components/GameCard';
@@ -17,24 +17,24 @@ class ClubPage extends Component {
       <main>
         <ClubProfile />
 
-        <section className="container">
-          <ul>
-            <li><a href="#">Игры клуба</a></li>
-            <li><a href="#">Цены</a></li>
-            <li><a href="#">Отзывы</a></li>
-            <li><a href="#">Оборудование</a></li>
-            <li><a href="#">Контакты</a></li>
-          </ul>
-          <hr className="footer-line"/>
+        <section>
+          <div className={styles.container}>
+            <p className={styles.profileMenu}>Игры клуба</p>
+            <p className={styles.profileMenu}>Цены</p>
+            <p className={styles.profileMenu}>Отзывы</p>
+            <p className={styles.profileMenu}>Оборудование</p>
+            <p className={styles.profileMenu}>Контакты</p>
+          </div>
+          <hr className={styles.breakLine}/>
         </section>
 
-        <div className={styles.container}>
+        <div className={cardsWrapper.container}>
           <GameFilter />
-          <div className={styles.cardsWrapper}>
+          <div className={cardsWrapper.cardsWrapper}>
             <GameCard />
           </div>
         </div>
-
+        <hr className={styles.breakLine}/>
         <Reviews />
 
       </main>

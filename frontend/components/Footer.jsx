@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../footer.module.scss';
+import styles from '../stylesheets/footer.module.scss';
 
 class Footer extends Component {
   render() {

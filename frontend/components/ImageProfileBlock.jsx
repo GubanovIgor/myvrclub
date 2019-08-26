@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../imageProfileBlock.module.scss';
+import styles from '../stylesheets/imageProfileBlock.module.scss';
 
 // import components
 

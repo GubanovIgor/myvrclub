@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../style.module.scss';
+import styles from '../stylesheets/style.module.scss';
 
 class Navbar extends Component {
   render() {

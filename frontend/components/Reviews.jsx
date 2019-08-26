@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../reviews.module.scss';
+import styles from '../stylesheets/reviews.module.scss';
 
 // import components
 
@@ -9,7 +9,7 @@ const Reviews = () => (
   <div>
     <section className={styles.container}>
       <div className={styles.reviewsTitle}>
-        <h3>Отзывы на <span>Нереальное место</span></h3>
+        <h2>Отзывы на <span>Нереальное место</span></h2>
         <div className={styles.gameMarkWrapper}>
           <p className={styles.gameMark}>7.4</p>
           <p className={styles.gameMarkAmount}>всего: 14</p>

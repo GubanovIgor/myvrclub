@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../reviews.module.scss';
+import styles from '../stylesheets/reviews.module.scss';
 
 // import components
 
