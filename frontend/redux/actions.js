@@ -1,6 +1,7 @@
-// ACTIONS
+// import types
 import { actionTypes } from './types';
 
+// Получение всех клубов при первой загрузке
 export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
@@ -13,15 +14,27 @@ export const getClubsAC = () => (
   }
 );
 
-export const requestGetGames = (data) => {
-  return { type: actionTypes.REQUESTED_GAMES, games: data };
-};
+// Получение всех игр при первой загрузке
+export const requestGetGames = (data) => (
+  { type: actionTypes.REQUESTED_GAMES, games: data }
+);
 
 export const getGamesAC = () => (
   async (dispatch) => {
     const resp = await fetch(`http://localhost:3100/game`);
     const data = await resp.json();
     dispatch(requestGetGames(data));
+  }
+);
+
+// Фильтр клубов
+export const requestFilterClubs = (data) => (
+  { type: actionTypes.REQUEST_FILTER_CLUBS, filterClubs: data }
+);
+
+export const filterClubsAC = () => (
+  async (dispatch) => {
+
   }
 );
 
