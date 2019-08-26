@@ -9,7 +9,6 @@ const db = mongoose.connection;
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
 
-
 let data = fs.readFileSync('./files/clubs.csv').toString();
 data = data.replace(/"/g, "");
 fs.writeFile("./files/club-temp.csv", data, async function (error) {
@@ -18,18 +17,26 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
   const json = csvToJson.getJsonFromCsv('./files/club-temp.csv');
 
   for (let i = 0; i < json.length; i++) {
-    const { Name, Address, Telephone, Site, WorkTime, Metro, Sociallinks } = json[i];
-    let arraySLinks = Sociallinks.split(" "); //здесь невидимый символ! c MAC OS
-    let arrayMetro = Metro.split(','); //здесь запятая с MAC
+    let { Name, Address, Telephone, Site, WorkTime, Metro, Sociallinks, games, Pictures } = json[i];
+    if (Sociallinks !== undefined) Sociallinks = Sociallinks.split(" ") //здесь невидимый символ! c MAC OS
+    else Sociallinks = [];
+    if (Metro !== undefined) Metro = Metro.split(',') //здесь запятая с MAC
+    else Metro = [];
+    if (games !== undefined) games = games.split(',')
+    else games = [];
 
     let clubs = new Club({
       name: Name,
       address: Address,
       tel: [Telephone],
-      metro: [arrayMetro[0], arrayMetro[1], arrayMetro[2]],
+      cover: '',
+      screenShot: [],
+      metro: Metro,
       domain: Site,
       workTime: { weekdays: WorkTime, weekend: WorkTime },
-      socialLinks: { vk: arraySLinks[0], instagram: arraySLinks[1], fb: arraySLinks[2] },
+      socialLinks: { vk: Sociallinks[0] && Sociallinks[0], instagram: Sociallinks[1] && Sociallinks[1], fb: Sociallinks[2] && Sociallinks[2] },
+      games: games,
+      pictures: { cover: 'test' }
     });
     console.log(clubs);
     await clubs.save();

@@ -5,7 +5,8 @@ const gameSchema = new mongoose.Schema({
   name: String,
   description: String,
   clubs: [String], //список клубов [id`s from Clubs]
-  pictures: [String],
+  cover: String,
+  screenShot: [String],
   videos: [String],
   genre: [], //жанр
   playersNum: String,

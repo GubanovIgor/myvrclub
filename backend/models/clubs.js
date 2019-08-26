@@ -8,7 +8,8 @@ const clubSchema = new mongoose.Schema({
   description: String,
   workTime: { weekdays: String, weekend: String },
   games: [String], //список игр [id`s from Games]
-  pictures: {cover: String, screenShot: String},
+  cover: String,
+  screenShot: [String],
   videos: [String],
   rating: Number,
   metro: [],
@@ -26,10 +27,10 @@ const clubSchema = new mongoose.Schema({
       morning: String,
       day: String,
       evening: String,
-    }
+    },
   },
   rent: Boolean,
-  discounts: [String]
+  discounts: [String],
 });
 
 clubSchema.statics.getClubs = async function () {
