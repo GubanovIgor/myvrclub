@@ -15,11 +15,11 @@ mongoose.connect('mongodb://localhost:27017/myvrclub', { useNewUrlParser: true, 
 app.use(morgan('dev'));
 
 const corsMiddleware = (req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-	next();
-}
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+};
 
 app.use(corsMiddleware);
 

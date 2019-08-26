@@ -1,29 +1,29 @@
 // ACTIONS
 import { actionTypes } from './types';
 
-export const requestGetClubs = (data) => {
-  return { type: actionTypes.REQUESTED_CLUBS, clubs: data }
-};
+export const requestGetClubs = (data) => (
+  { type: actionTypes.REQUESTED_CLUBS, clubs: data }
+);
 
-export const getClubsAC = () => {
-  return async (dispatch) => {
+export const getClubsAC = () => (
+  async (dispatch) => {
     const resp = await fetch(`http://localhost:3100/club`);
     const data = await resp.json();
-    dispatch(requestGetClubs(data))
+    dispatch(requestGetClubs(data));
   }
-}
+);
 
 export const requestGetGames = (data) => {
-  return { type: actionTypes.REQUESTED_GAMES, games: data }
+  return { type: actionTypes.REQUESTED_GAMES, games: data };
 };
 
-export const getGamesAC = () => {
-  return async (dispatch) => {
+export const getGamesAC = () => (
+  async (dispatch) => {
     const resp = await fetch(`http://localhost:3100/game`);
     const data = await resp.json();
-    dispatch(requestGetGames(data))
+    dispatch(requestGetGames(data));
   }
-}
+);
 
 // export const serverRenderClock = isServer => dispatch => {
 //   return dispatch({
