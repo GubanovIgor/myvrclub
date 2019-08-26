@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
+import Link from './ActiveLink';
 
 // SASS
 import styles from '../stylesheets/header.module.scss';
@@ -17,16 +18,16 @@ class Header extends Component {
           </a>
           <ul className={styles.siteNavigation}>
             <li>
-              <Link href='/'><a className={styles.siteNavigationActive} href="#">Главная</a></Link>
+              <Link activeClassName={styles.siteNavigationActive} href='/'><a>Главная</a></Link>
             </li>
             <li>
-              <Link href='/games'><a>Игры</a></Link>
+              <Link activeClassName={styles.siteNavigationActive} href='/games'><a>Игры</a></Link>
             </li>
             <li>
-              <Link href='/clubs'><a>Клубы</a></Link>
+              <Link activeClassName={styles.siteNavigationActive} href='/clubs'><a>Клубы</a></Link>
             </li>
             <li>
-              <Link href='/about'><a>О нас</a></Link>
+              <Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>
             </li>
           </ul>
           <ul className={styles.userNavigation}>
