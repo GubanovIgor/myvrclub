@@ -42,6 +42,7 @@ export class SignIn extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className={styles.popUp}></div>
@@ -49,10 +50,17 @@ export class SignIn extends Component {
           <h3>Войти</h3>
           <form >
             <div>
-              <input onChange={this.onChangeEmail} value={this.state.email} type="text" placeholder="Ваш e-mail" />
+              <input
+              onChange={this.onChangeEmail}
+              value={this.state.email}
+              type="text"
+              placeholder="Ваш e-mail" />
             </div>
             <div>
-              <input onChange={this.onChangePassword} value={this.state.password} type="password" placeholder="Пароль" />
+              <input onChange={this.onChangePassword}
+              value={this.state.password}
+              type="password"
+              placeholder="Пароль" />
             </div>
             <button onClick={this.onClick}>SignIn</button>
           </form>

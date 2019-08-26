@@ -17,6 +17,10 @@ const initialState = {
     name: '',
     password: '',
   },
+  userSignIn: {
+    email: '',
+    password: '',
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -128,7 +132,7 @@ export const signUpAC = (name, email, password) => ({
 
 export const signInAC = (email, password) => ({
   type: SIGN_IN,
-  user: {
+  userSignIn: {
     email,
     password,
   },

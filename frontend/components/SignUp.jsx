@@ -7,7 +7,6 @@ import { signUpAC } from '../pages/_app';
 // SASS
 import styles from '../signup.module.scss';
 
-
 export class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -66,16 +65,28 @@ export class SignUp extends Component {
           <h3>Заполните анкету</h3>
           <form >
             <div>
-              <input onChange={this.onChangeEmail} value={this.state.email} type="text" placeholder="Ваш e-mail" />
+              <input onChange={this.onChangeEmail}
+              value={this.state.email}
+              type="text"
+              placeholder="Ваш e-mail" />
             </div>
             <div>
-              <input onChange={this.onChangeName} value={this.state.name} type="text" placeholder="Имя на сайте" />
+              <input onChange={this.onChangeName}
+              value={this.state.name}
+              type="text"
+              placeholder="Имя на сайте" />
             </div>
             <div>
-              <input onChange={this.onChangePassword} value={this.state.password} type="password" placeholder="Пароль" />
+              <input onChange={this.onChangePassword}
+              value={this.state.password}
+              type="password"
+              placeholder="Пароль" />
             </div>
             <div>
-              <input onChange={this.onChangePassword2} value={this.state.password2} type="password" placeholder="Пароль еще раз" />
+              <input onChange={this.onChangePassword2}
+              value={this.state.password2}
+              type="password"
+              placeholder="Пароль еще раз" />
             </div>
             <button onClick={this.onClick}>Registration</button>
           </form>
