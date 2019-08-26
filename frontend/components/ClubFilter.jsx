@@ -18,7 +18,7 @@ class ClubFilter extends Component {
         <div>
           <h3>Оборудование</h3>
           <input className={styles.filterCheckbox} type='checkbox' id='8'/>
-          <label for='8'>PS VR</label><br></br>
+          <label htmlfor='8'>PS VR</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='9'/>
           <label for='9'>Oculus Rift</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='10'/>

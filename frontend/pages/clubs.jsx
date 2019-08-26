@@ -25,7 +25,7 @@ class Clubs extends Component {
   };
 
   render() {
-    console.log(this.state.clubs)
+    console.log(this.state.clubs);
     return (
       <div>
         <Header />
