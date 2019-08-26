@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../header.module.scss';
-import '../body.module.scss';
+import styles from '../stylesheets/header.module.scss';
+import '../stylesheets/body.module.scss';
 
 class Header extends Component {
   render() {

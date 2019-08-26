@@ -1,0 +1,96 @@
+.container {
+  width: 1140px;
+  margin: 0 auto 60px;
+  padding: 0;
+}
+
+.reviewsTitle h3,
+.reviewsTitle p {
+  margin: 0;
+  padding: 0;
+}
+
+.reviewsTitle h3 {
+  margin-bottom: 15px;
+}
+
+.reviewsTitle p {
+  margin-right: 15px;
+}
+
+.gameMarkWrapper {
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 15px;
+}
+
+.gameMark {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 48px;
+}
+
+.gameMarkAmount {
+  font-size: 16px;
+}
+
+.reviews ul {
+  width: 848px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.reviews li {
+  margin-bottom: 15px;
+}
+
+.reviews p {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.reviewsName {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reviewsDate {
+  color: #c1c1c1;
+}
+
+.reviewsContent {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.allTags {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tags a:hover {
+  text-decoration: none;
+}
+
+.tags {
+  display: flex;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.popularTags a {
+  margin-right: 15px;
+}
+
+.tags a {
+  color: #3071eb;
+  text-decoration: underline;
+}

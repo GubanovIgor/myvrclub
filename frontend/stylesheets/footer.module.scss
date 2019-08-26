@@ -8,6 +8,10 @@
 
 .mainFooter a {
   color: #1f1f22;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 //.reference,
