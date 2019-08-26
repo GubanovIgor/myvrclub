@@ -9,32 +9,29 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
+import { getGamesAC } from '../redux/actions';
 
 class Games extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      games: [],
-    };
-  }
 
   componentDidMount = async () => {
-    const resp = await fetch(`http://localhost:3100/game`);
-    const data = await resp.json();
-    console.log(data);
-    this.setState({ games: data });
+    console.log('componentDidMount GAMES');
+    this.props.getGames();
+  };
+
+  componentDidUpdate = async () => {
+    console.log('componentDidUpdate GAMES');
   };
 
   render() {
-    console.log(this.state.games);
+    console.log('this.props.games', this.props.games);
     return (
       <div>
         <Header />
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
-            {this.state.games.map((e, index) => {
-              return <GameCard key={ index } cover={ e.pictures[0] } title= { e.name } />;
+            {this.props.games.map((e, index) => {
+              return <GameCard key={ index } cover={ e.cover } title= { e.name } />;
             })}
           </div>
         </div>
@@ -42,10 +39,18 @@ class Games extends Component {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (store) => {
-  games: store.games;
+  return {
+    games: store.games,
+  };
 };
 
-export default connect(mapStateToProps)(Games);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getGames: () => dispatch(getGamesAC()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Games);

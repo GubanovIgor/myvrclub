@@ -8,18 +8,7 @@ export const reducer = (state = exampleInitialState, action) => {
     //     lastUpdate: action.ts,
     //     light: !!action.light
     //   });
-    // case actionTypes.INCREMENT:
-    //   return Object.assign({}, state, {
-    //     count: state.count + 1
-    //   });
-    // case actionTypes.DECREMENT:
-    //   return Object.assign({}, state, {
-    //     count: state.count - 1
-    //   });
-    // case actionTypes.RESET:
-    //   return Object.assign({}, state, {
-    //     count: exampleInitialState.count
-    //   });
+
     case actionTypes.ADDNUM:
       return Object.assign({}, state, {
         num: action.data,
@@ -28,9 +17,13 @@ export const reducer = (state = exampleInitialState, action) => {
       return ({
           ...state,
           clubs: action.clubs,
-        }
-    )
+        });
+    case actionTypes.REQUESTED_GAMES:
+      return ({
+        ...state,
+        games: action.games,
+      });
     default:
       return state
   }
-}
+};

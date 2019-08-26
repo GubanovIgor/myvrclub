@@ -11,9 +11,9 @@ import { serverRenderClock, startClock } from '../redux/actions';
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
-    console.log('isServer', isServer);
-    //reduxStore.dispatch(serverRenderClock(isServer))
-    return {}
+    console.log('getInitialProps - isServer', isServer);
+    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
+    return {custom: 'custom props'}
   }
 
   componentDidMount () {
@@ -25,10 +25,11 @@ class Index extends Component {
   }
 
   render () {
+    console.log('this.props index.js', this.props);
     return (<div>
       <Header />
       <IndexSearch />
-      <Page />
+      {/*<Page />*/}
       <Footer />
     </div>
     );

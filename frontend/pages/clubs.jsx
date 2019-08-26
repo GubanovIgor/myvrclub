@@ -12,39 +12,36 @@ import ClubFilter from '../components/ClubFilter';
 import { getClubsAC } from '../redux/actions';
 
 class Clubs extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     clubs: [],
-  //   };
-  // }
 
   componentDidMount = async () => {
+    console.log('componentDidMount CLUBS');
     this.props.getClubs();
   };
 
   render() {
-    // console.log(this.props.clubs);
+    //console.log('this.props clubs.js', this.props);
     return (
       <div>
         <Header />
         <div className={styles.container}>
           <ClubFilter />
-          {/*<div className={styles.cardsWrapper}>*/}
-            {/*{this.state.clubs.map((e, index) => {*/}
-              {/*return <ClubCard key={ index } cover={ e.pictures.cover } title={ e.name } address={ e.address }/>;*/}
-            {/*})}*/}
-          {/*</div>*/}
+          <div className={styles.cardsWrapper}>
+            {this.props.clubs.map((e, index) => {
+              return <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address }/>;
+            })}
+          </div>
         </div>
         <Footer />
       </div>
     );
   }
-};
+}
 
-// const mapStateToProps = (store) => {
-//   clubs: store.clubs;
-// };
+const mapStateToProps = (store) => {
+  return {
+    clubs: store.clubs,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -52,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(Clubs);
+export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

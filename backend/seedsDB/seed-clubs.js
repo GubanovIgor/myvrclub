@@ -39,7 +39,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       pictures: { cover: 'test' }
     });
     console.log(clubs);
-    //await clubs.save();
+    await clubs.save();
   }
   db.close();
 });

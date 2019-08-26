@@ -6,6 +6,7 @@ import { reducer } from './reducers';
 const InitState = {
   num: NaN,
   clubs: [],
+  games: [],
 }
 
 export function initializeStore(initialState = InitState) {

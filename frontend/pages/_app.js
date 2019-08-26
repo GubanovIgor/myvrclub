@@ -2,9 +2,11 @@ import App from 'next/app'
 import React from 'react'
 import withReduxStore from '../redux/lib/with-redux-store'
 import { Provider } from 'react-redux'
+import Header from '../components/Header';
 
 class ReduxApp extends App {
   render () {
+  console.log('Always', this.props);
     const { Component, pageProps, reduxStore } = this.props;
     return (
       <Provider store={reduxStore}>
