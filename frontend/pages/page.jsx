@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addNumAC } from '../redux/store';
+import { addNumAC } from '../redux/actions';
 
 class Page extends Component {
 
