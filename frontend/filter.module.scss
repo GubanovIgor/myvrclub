@@ -9,15 +9,27 @@
 
   margin-right: 30px;
   padding: 0 10px;
-}
 
-.container div input {
-  margin-right: 10px;
-  margin-bottom: 10px;
+  div label {
+    cursor: pointer;
+  }
 }
 
 .breakLine {
   border: 1px solid #e8eaed;
   border-bottom: none;
   width: 160px;
+}
+
+.metroInput {
+  cursor: text;
+  height: 25px;
+  padding-left: 10px;
+}
+
+.filterCheckbox {
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
 }

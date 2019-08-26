@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../games.module.scss';
+import styles from '../cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
@@ -14,7 +14,7 @@ const Games = () => (
     <Header />
     <div className={styles.container}>
       <GameFilter />
-      <div className={styles.gameContainer}>
+      <div className={styles.cardsWrapper}>
         <GameCard />
       </div>
     </div>
