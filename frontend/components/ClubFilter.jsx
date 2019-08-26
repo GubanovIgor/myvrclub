@@ -3,47 +3,28 @@ import React, { Component } from 'react';
 // SASS
 import styles from '../filter.module.scss';
 
-class GameFilter extends Component {
+class ClubFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
         <div>
-          <h3>Жанр</h3>
-          <input className={styles.filterCheckbox} type='checkbox' id='Головоломка'/>
-          <label for='Головоломка'>Головоломка</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Гонки'/>
-          <label for='Гонки'>Гонки</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Инди'/>
-          <label for='Инди'>Инди</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Казуальная игра'/>
-          <label for='Казуальная игра'>Казуальная игра</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Приключение'/>
-          <label for='Приключение'>Приключение</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Ролевая игра'/>
-          <label for='Ролевая игра'>Ролевая игра</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Симулятор'/>
-          <label for='Симулятор'>Симулятор</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Спортивная игра'/>
-          <label htmlFor='Спортивная игра'>Спортивная игра</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Стратегия'/>
-          <label htmlFor='Стратегия'>Стратегия</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Экшен'/>
-          <label htmlFor='Экшен'>Экшен</label><br></br>
+          <h3>Метро</h3>
+          <input
+            className={styles.metroInput} placeholder='охотный ряд' type='text' id='1'
+          /><br></br>
         </div>
         <hr className={styles.breakLine}></hr>
 
         <div>
-          <h3>Платформа</h3>
-          <input className={styles.filterCheckbox} type='checkbox' id='PS VR'/>
-          <label for='PS VR'>PS VR</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Oculus Rift'/>
-          <label for='Oculus Rift'>Oculus Rift</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='HTC Vive'/>
-          <label for='HTC Vive'>HTC Vive</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='Valve Index'/>
-          <label htmlFor='Valve Index'>Valve Index</label><br></br>
-          <input className={styles.filterCheckbox} type='checkbox' id='FullBody VR'/>
-          <label for='FullBody VR'>FullBody VR</label><br></br>
+          <h3>Оборудование</h3>
+          <input className={styles.filterCheckbox} type='checkbox' id='8'/>
+          <label htmlfor='8'>PS VR</label><br></br>
+          <input className={styles.filterCheckbox} type='checkbox' id='9'/>
+          <label for='9'>Oculus Rift</label><br></br>
+          <input className={styles.filterCheckbox} type='checkbox' id='10'/>
+          <label for='10'>HTC Vive</label><br></br>
+          <input className={styles.filterCheckbox} type='checkbox' id='11'/>
+          <label for='11'>FullBody VR</label><br></br>
         </div>
         <hr className={styles.breakLine}></hr>
 
@@ -86,11 +67,11 @@ class GameFilter extends Component {
         <div>
           <h3>Теги</h3>
           <input className={styles.filterCheckbox} type='checkbox' id='25'/>
-          <label for='25'>День рождения</label><br></br>
+          <label for='25'>Зомби</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='26'/>
-          <label for='26'>Для компании</label><br></br>
+          <label for='26'>Дети</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='27'/>
-          <label for='27'></label><br></br>
+          <label for='27'>Музыка</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='28'/>
           <label for='28'>Много крови</label><br></br>
           <input className={styles.filterCheckbox} type='checkbox' id='29'/>
@@ -103,4 +84,4 @@ class GameFilter extends Component {
   }
 }
 
-export default GameFilter;
+export default ClubFilter;
