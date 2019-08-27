@@ -6,9 +6,15 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
-export const getClubsAC = () => (
+export const getClubsAC = (filterToggleData) => (
   async (dispatch) => {
-    const resp = await fetch(`http://localhost:3100/club`);
+    const resp = await fetch('http://localhost:3100/club', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(filterToggleData), // Саша, так можно?
+    });
     const data = await resp.json();
     dispatch(requestGetClubs(data));
   }

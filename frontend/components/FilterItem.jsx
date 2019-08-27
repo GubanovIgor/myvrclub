@@ -9,16 +9,16 @@ import { filterToggleAC, getClubsAC } from '../redux/actions';
 
 class FilterItem extends Component {
 
-  onChange = (e) => {
+  onChangeCheckbox = (e) => {
     this.props.toggle(e.target.id, this.props.category);
-    conso
+    this.props.getClubs(this.props.filterToggle);
   };
 
   render() {
     const { item, category } = this.props;
     return (
       <div>
-        <input onChange={this.onChange} className={styles.filterCheckbox} type='checkbox' id={item}/>
+        <input onChange={this.onChangeCheckbox} className={styles.filterCheckbox} type='checkbox' id={item}/>
         <label htmlFor={item}>{item}</label><br></br>
       </div>
     );
@@ -27,14 +27,14 @@ class FilterItem extends Component {
 
 function mapStateToProps(store) { // Сделать получение галочек из стора
   return {
-    filterToggles: store.filterToggles,
+    filterToggle: store.filterToggle,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleAC(item, category)),
-    getClubs: () => dispatch(getClubsAC()),
+    getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
   };
 }
 
