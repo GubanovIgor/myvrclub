@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Club = require('../models/clubs.js');
 const dbName = 'mongodb://localhost/myvrclub';
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
@@ -27,6 +28,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
 
     let clubs = new Club({
       name: Name,
+      urlName: transliterate(Name), //https://www.npmjs.com/package/cyrillic-to-translit-js
       address: Address,
       tel: [Telephone],
       cover: '',
