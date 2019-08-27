@@ -27,7 +27,7 @@ class FilterItem extends Component {
 
 function mapStateToProps(store) { // Сделать получение галочек из стора
   return {
-    filterToggle: store.filterToggle,
+    filterToggle: store.clubsFilterToggle,
   }
 }
 

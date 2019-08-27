@@ -8,9 +8,16 @@ const Club = require('../models/clubs');
 // });
 
 router.post('/', async (req, res) => {
-  const clubs = await Club.find();
-  console.log(req.body);
-  res.json(clubs);
+  console.log(req.body.checkedToggle)
+  if (!req.body.checkedToggle.length) {
+    const clubs = await Club.find();
+    res.json(clubs);
+  } else {
+    const arr = [];
+    const club = await Club.findOne();
+    arr.push(club)
+    res.json(arr);
+  }
 });
 
 module.exports = router;

@@ -9,7 +9,6 @@ import FilterItem from '../components/FilterItem';
 class FilterSection extends Component {
   render() {
     const { section } = this.props;
-    console.log(section);
     return (
       <div>
         <hr className={styles.breakLine}></hr>

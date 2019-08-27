@@ -26,7 +26,7 @@ export const reducer = (state, action) => {
       });
     case actionTypes.REQUEST_FILTER_TOGGLE:
       const stateCopy = { ...state };
-      stateCopy.filterToggle[action.category][action.item] = !stateCopy.filterToggle[action.category][action.item];
+      stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
       return stateCopy;
 
     default:
