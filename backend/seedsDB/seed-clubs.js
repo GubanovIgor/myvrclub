@@ -18,30 +18,35 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
   const json = csvToJson.getJsonFromCsv('./files/club-temp.csv');
 
   for (let i = 0; i < json.length; i++) {
-    let { Name, Address, Telephone, Site, WorkTime, Metro, Sociallinks, games, Pictures } = json[i];
+    let { name, address, Telephone, Site, WorkTime, metro, Sociallinks, games, cover, price, equipment } = json[i];
     if (Sociallinks !== undefined) Sociallinks = Sociallinks.split(" ") //здесь невидимый символ! c MAC OS
     else Sociallinks = [];
-    if (Metro !== undefined) Metro = Metro.split(',') //здесь запятая с MAC
-    else Metro = [];
+    if (metro !== undefined) metro = metro.split(',') //здесь запятая с MAC
+    else metro = [];
     if (games !== undefined) games = games.split(',')
     else games = [];
+    if (equipment !== undefined) equipment = equipment.split(',')
+    else equipment = [];
+    if (price !== undefined) price = price.split(',')
+    else price = [];
 
     let clubs = new Club({
-      name: Name,
-      urlName: transliterate(Name), //https://www.npmjs.com/package/cyrillic-to-translit-js
-      address: Address,
+      name,
+      urlName: transliterate(name), //https://www.npmjs.com/package/cyrillic-to-translit-js
+      address,
       tel: [Telephone],
+      domain: Site,
       cover: '',
       screenShot: [],
-      metro: Metro,
-      domain: Site,
+      metro,
       workTime: { weekdays: WorkTime, weekend: WorkTime },
       socialLinks: { vk: Sociallinks[0] && Sociallinks[0], instagram: Sociallinks[1] && Sociallinks[1], fb: Sociallinks[2] && Sociallinks[2] },
-      games: games,
-      pictures: { cover: 'test' }
+      games,
+      equipment,
+      price,
     });
     console.log(clubs);
-    await clubs.save();
+    //await clubs.save();
   }
   db.close();
 });
