@@ -14,12 +14,7 @@ import { getGamesAC } from '../redux/actions';
 class Games extends Component {
 
   componentDidMount = async () => {
-    console.log('componentDidMount GAMES');
-    this.props.getGames();
-  };
-
-  componentDidUpdate = async () => {
-    console.log('componentDidUpdate GAMES');
+    if (this.props.games.length === 0) this.props.getGames();
   };
 
   render() {

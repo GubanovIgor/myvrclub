@@ -16,7 +16,7 @@ import { getClubsAC } from '../redux/actions';
 class Clubs extends Component {
 
   componentDidMount = async () => {
-    this.props.getClubs();
+    if (this.props.clubs.length === 0) this.props.getClubs();
   };
 
   render() {
@@ -27,9 +27,9 @@ class Clubs extends Component {
         <div className={styles.container}>
           <ClubFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.clubs.map((e, index) => (
-              <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address }/>
-            ))}
+            {this.props.clubs.map((e, index) => {
+              return <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address } data={e}/>;
+            })}
           </div>
         </div>
         <Footer />
