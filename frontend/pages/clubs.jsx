@@ -9,12 +9,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
+
+// import AC
 import { getClubsAC } from '../redux/actions';
 
 class Clubs extends Component {
 
   componentDidMount = async () => {
-    console.log('componentDidMount CLUBS');
     this.props.getClubs();
   };
 
@@ -26,9 +27,9 @@ class Clubs extends Component {
         <div className={styles.container}>
           <ClubFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.clubs.map((e, index) => {
-              return <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address }/>;
-            })}
+            {this.props.clubs.map((e, index) => (
+              <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address }/>
+            ))}
           </div>
         </div>
         <Footer />
@@ -37,16 +38,12 @@ class Clubs extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    clubs: store.clubs,
-  };
-};
+const mapStateToProps = (store) => ({
+  clubs: store.clubs,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getClubs: () => dispatch(getClubsAC()),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  getClubs: () => dispatch(getClubsAC()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

@@ -1,29 +1,42 @@
-// ACTIONS
+// import types
 import { actionTypes } from './types';
 
-export const requestGetClubs = (data) => {
-  return { type: actionTypes.REQUESTED_CLUBS, clubs: data }
-};
+// Получение клубов
+export const requestGetClubs = (data) => (
+  { type: actionTypes.REQUESTED_CLUBS, clubs: data }
+);
 
-export const getClubsAC = () => {
-  return async (dispatch) => {
+export const getClubsAC = () => (
+  async (dispatch) => {
     const resp = await fetch(`http://localhost:3100/club`);
     const data = await resp.json();
-    dispatch(requestGetClubs(data))
+    dispatch(requestGetClubs(data));
   }
-}
+);
 
-export const requestGetGames = (data) => {
-  return { type: actionTypes.REQUESTED_GAMES, games: data }
-};
+// Получение всех игр при первой загрузке
+export const requestGetGames = (data) => (
+  { type: actionTypes.REQUESTED_GAMES, games: data }
+);
 
-export const getGamesAC = () => {
-  return async (dispatch) => {
+export const getGamesAC = () => (
+  async (dispatch) => {
     const resp = await fetch(`http://localhost:3100/game`);
     const data = await resp.json();
-    dispatch(requestGetGames(data))
+    dispatch(requestGetGames(data));
   }
-}
+);
+
+// Фильтр клубов
+export const requestFilterToggle = (item, category) => (
+  { type: actionTypes.REQUEST_FILTER_TOGGLE, item, category }
+);
+
+export const filterToggleAC = (item, category) => (
+  async (dispatch) => {
+    dispatch(requestFilterToggle(item, category));
+  }
+);
 
 // export const serverRenderClock = isServer => dispatch => {
 //   return dispatch({
@@ -42,6 +55,6 @@ export const getGamesAC = () => {
 export const addNumAC = (num) => {
   return {
     type: actionTypes.ADDNUM,
-    data: num
-  }
+    data: num,
+  };
 };
