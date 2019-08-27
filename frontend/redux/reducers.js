@@ -1,7 +1,8 @@
 // REDUCERS
 import { actionTypes } from './types';
+import {filterToggleAC} from "./actions";
 
-export const reducer = (state = exampleInitialState, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     // case actionTypes.TICK:
     //   return Object.assign({}, state, {
@@ -23,7 +24,12 @@ export const reducer = (state = exampleInitialState, action) => {
         ...state,
         games: action.games,
       });
+    case actionTypes.REQUEST_FILTER_TOGGLE:
+      const stateCopy = { ...state };
+      stateCopy.filterToggle[action.category][action.item] = !stateCopy.filterToggle[action.category][action.item];
+      return stateCopy;
+
     default:
-      return state
+      return state;
   }
 };

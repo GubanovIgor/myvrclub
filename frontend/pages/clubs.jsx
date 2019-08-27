@@ -9,6 +9,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
+
+// import AC
 import { getClubsAC } from '../redux/actions';
 
 class Clubs extends Component {
@@ -36,16 +38,12 @@ class Clubs extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    clubs: store.clubs,
-  };
-};
+const mapStateToProps = (store) => ({
+  clubs: store.clubs,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getClubs: () => dispatch(getClubsAC()),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  getClubs: () => dispatch(getClubsAC()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);
