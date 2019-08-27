@@ -18,8 +18,8 @@ const Clubs = (props) => {
   return (
     <>
         <Header />
-      {/*<h1>Club: {club.urlName}</h1>*/}
-        {/*<ClubPage club={club}/>*/}
+      <h1>Club: {club.urlName}</h1>
+        <ClubPage club={club}/>
         <Footer />
     </>
   )

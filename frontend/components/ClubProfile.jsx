@@ -19,7 +19,7 @@ const ClubProfile = (props) => (
         />
         <p>
           <span>Адрес:</span>{props.address}<br></br>
-          <span>Метро:</span>Курская<br></br>
+          <span>Метро:</span>{props.metro}<br></br>
           <span>Телефон:</span>+7 495 129 49 19<br></br>
           <span>Время работы:</span>сегодня 10.00 - 22.00<br></br>
           <span>Количество шлемов:</span>6 шт.<br></br>
