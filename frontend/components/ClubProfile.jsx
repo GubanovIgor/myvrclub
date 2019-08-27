@@ -5,6 +5,7 @@ import styles from '../stylesheets/clubProfile.module.scss';
 
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';
+import { IMG_URL_PREFIX } from '../services/consts/consts';
 
 const ClubProfile = (props) => (
 
@@ -18,7 +19,7 @@ const ClubProfile = (props) => (
       <ImageProfileBlock club={props.club}/>
       <div className={styles.profileInformations}>
         <img
-          src="/static/img/unreal-place-cover.png" width="360" height="202" alt="Batman: Arkham VR"
+          src={IMG_URL_PREFIX+props.club.cover} width="360" height="202" alt="Batman: Arkham VR"
         />
         <p>
           <span>Адрес: </span>{props.club.address}<br></br>
