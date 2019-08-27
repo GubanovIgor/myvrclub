@@ -14,18 +14,24 @@ class FilterItem extends Component {
     this.props.getClubs(this.props.filterToggle);
   };
 
+  componentDidMount = () => {
+    const { item, category } = this.props;
+  }
+
   render() {
     const { item, category } = this.props;
     return (
       <div>
-        <input onChange={this.onChangeCheckbox} className={styles.filterCheckbox} type='checkbox' id={item}/>
+        {(this.props.filterToggle[category][item]) ?
+        <input onChange={this.onChangeCheckbox} className={styles.filterCheckbox} checked type='checkbox' id={item}/> :
+        <input onChange={this.onChangeCheckbox} className={styles.filterCheckbox} type='checkbox' id={item}/>}
         <label htmlFor={item}>{item}</label><br></br>
       </div>
     );
   }
 }
 
-function mapStateToProps(store) { // Сделать получение галочек из стора
+function mapStateToProps(store) { // Галочки не убираются после перехода на другую страгицу
   return {
     filterToggle: store.clubsFilterToggle,
   }
