@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 // import types
 import { actionTypes } from './types';
 
@@ -6,8 +8,13 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
+export const request = () => (
+  { type: actionTypes.REQUEST }
+);
+
 export const getClubsAC = () => (
   async (dispatch) => {
+    dispatch(request());
     const resp = await fetch(`http://localhost:3100/club`);
     const data = await resp.json();
     dispatch(requestGetClubs(data));

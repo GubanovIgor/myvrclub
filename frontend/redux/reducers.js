@@ -14,11 +14,14 @@ export const reducer = (state, action) => {
       return Object.assign({}, state, {
         num: action.data,
       });
-    case actionTypes.REQUESTED_CLUBS:
+
+
+    case actionTypes.REQUEST:
       return ({
-          ...state,
-          clubs: action.clubs,
-        });
+        ...state, loading: true, error: false,
+      });
+    case actionTypes.REQUESTED_CLUBS:
+      return ({ ...state, clubs: action.clubs, loading: false, error: false });
     case actionTypes.REQUESTED_GAMES:
       return ({
         ...state,

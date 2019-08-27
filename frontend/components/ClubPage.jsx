@@ -13,10 +13,10 @@ import GameFilter from '../components/GameFilter';
 class ClubPage extends Component {
 
   render() {
-    const { club } = this.props;
+    console.log('club Club Page Component', this.props.club);
     return (
       <main>
-        <ClubProfile club={club}/>
+        <ClubProfile club={this.props.club}/>
 
         <section>
           <div className={styles.container}>
