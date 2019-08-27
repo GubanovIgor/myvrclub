@@ -18,7 +18,7 @@ const clubSchema = new mongoose.Schema({
   socialLinks: { instagram: String, vk: String, fb: String },
   domain: String,
   equipment: [String],
-  price: [String],
+  price: [Number],
   rent: Boolean,
   discounts: [String],
 });

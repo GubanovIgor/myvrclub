@@ -27,7 +27,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
     else games = [];
     if (equipment !== undefined) equipment = equipment.split(',')
     else equipment = [];
-    if (price !== undefined) price = price.split(',')
+    if (price !== undefined) price = price.split(',').map(Number);
     else price = [];
 
     let clubs = new Club({
