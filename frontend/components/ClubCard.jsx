@@ -8,7 +8,6 @@ class ClubCard extends Component {
 
   render() {
     const { data } = this.props;
-    console.log('data.name', data.urlName);
     return (
       <div>
         <Link href='/clubs/[urlname]' as={`clubs/${data.urlName}`}>

@@ -11,7 +11,6 @@ class FilterItem extends Component {
 
   onChange = (e) => {
     this.props.toggle(e.target.id, this.props.category);
-    conso
   };
 
   render() {
