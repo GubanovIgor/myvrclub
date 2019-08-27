@@ -1,7 +1,7 @@
 // import types
 import { actionTypes } from './types';
 
-// Получение всех клубов при первой загрузке
+// Получение клубов
 export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );

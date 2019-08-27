@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import styles from '../stylesheets/filterItem.module.scss';
 
 // import components
-import { filterToggleAC } from '../redux/actions';
+import { filterToggleAC, getClubsAC } from '../redux/actions';
 
 class FilterItem extends Component {
 
   onChange = (e) => {
     this.props.toggle(e.target.id, this.props.category);
+    conso
   };
 
   render() {
@@ -24,10 +25,17 @@ class FilterItem extends Component {
   }
 }
 
+function mapStateToProps(store) { // Сделать получение галочек из стора
+  return {
+    filterToggles: store.filterToggles,
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleAC(item, category)),
+    getClubs: () => dispatch(getClubsAC()),
   };
 }
 
-export default connect(null, mapDispatchToProps)(FilterItem);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterItem);

@@ -25,21 +25,9 @@ export const reducer = (state, action) => {
         games: action.games,
       });
     case actionTypes.REQUEST_FILTER_TOGGLE:
-      console.log('toggle', action.item);
-      console.log('toggle', action.category);
-      console.log('toggle', state.filterToggle[action.category][action.item]);
-      return ({
-        ...state,
-        games: [12, 2],
-
-        // filterToggle: {
-        //   ...filterToggle,
-        //   'Оборудование': {
-        //     ...'Оборудование',
-        //     'PS VR': true,
-        //   },
-        // },
-      });
+      const stateCopy = { ...state };
+      stateCopy.filterToggle[action.category][action.item] = !stateCopy.filterToggle[action.category][action.item];
+      return stateCopy;
 
     default:
       return state;
