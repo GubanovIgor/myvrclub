@@ -7,8 +7,10 @@ import styles from '../stylesheets/filterSection.module.scss';
 import FilterItem from '../components/FilterItem';
 
 class FilterSection extends Component {
+
   render() {
     const { section } = this.props;
+    console.log(this.props.checked);
     return (
       <div>
         <hr className={styles.breakLine}/>
@@ -18,6 +20,7 @@ class FilterSection extends Component {
             key={index}
             item={item}
             category={section.title}
+            checked={this.props.checked[index]}
             onChangeCheckbox={this.props.onChangeCheckbox}
           />
         )}

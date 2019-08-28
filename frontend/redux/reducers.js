@@ -24,10 +24,12 @@ export const reducer = (state, action) => {
         ...state,
         games: action.games,
       });
-    case actionTypes.REQUEST_FILTER_TOGGLE:
+    case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
       return stateCopy;
+    case actionTypes.REQUEST_FILTER_TOGGLE_GAMES:
+      return state;
 
     default:
       return state;

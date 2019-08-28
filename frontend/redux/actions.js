@@ -48,6 +48,21 @@ export const requestGetGames = (data) => (
 
 export const getGamesAC = () => (
   async (dispatch) => {
+    // let checkedToggle = [[], []];
+    // if(filterToggleData) {
+    //   const keys = Object.keys(filterToggleData);
+    //   for (let i = 0; i < keys.length; i++) {
+    //     const categoryKeys = Object.keys(filterToggleData[keys[i]]);
+    //     categoryKeys.forEach((key) => {
+    //       if (filterToggleData[keys[i]][key]) {
+    //         checkedToggle[i].push(key)
+    //       }
+    //     })
+    //   }
+    // }
+
+    console.log(checkedToggle)
+
     const resp = await fetch(`http://localhost:3100/game`);
     const data = await resp.json();
     dispatch(requestGetGames(data));
@@ -55,13 +70,24 @@ export const getGamesAC = () => (
 );
 
 // Фильтр клубов
-export const requestFilterToggle = (item, category) => (
-  { type: actionTypes.REQUEST_FILTER_TOGGLE, item, category }
+export const requestFilterToggleClubs = (item, category) => (
+  { type: actionTypes.REQUEST_FILTER_TOGGLE_CLUBS, item, category }
 );
 
-export const filterToggleAC = (item, category) => (
+export const filterToggleClubsAC = (item, category) => (
   async (dispatch) => {
-    dispatch(requestFilterToggle(item, category));
+    dispatch(requestFilterToggleClubs(item, category));
+  }
+);
+
+// Фильтр игр
+export const requestFilterToggleGames= (item, category) => (
+  { type: actionTypes.REQUEST_FILTER_TOGGLE_GAMES, item, category }
+);
+
+export const filterToggleGamesAC = (item, category) => (
+  async (dispatch) => {
+    dispatch(requestFilterToggleGames(item, category));
   }
 );
 

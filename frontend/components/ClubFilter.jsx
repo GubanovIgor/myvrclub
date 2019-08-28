@@ -10,9 +10,11 @@ import styles from '../stylesheets/filter.module.scss';
 
 // import components
 import FilterSection from '../components/FilterSection';
-import { filterToggleAC, getClubsAC } from "../redux/actions";
+import { filterToggleClubsAC, getClubsAC } from "../redux/actions";
 
 class ClubFilter extends Component {
+
+  // Заготовка для поиска по метро
   // constructor(props) {
   //   super(props);
   //
@@ -44,6 +46,7 @@ class ClubFilter extends Component {
             key={index}
             section={el}
             onChangeCheckbox={this.onChangeCheckbox}
+            checked={this.props.filterToggle[el.title]}
           />
         )}
       </div>
@@ -58,7 +61,7 @@ const mapStateToProps = (store) => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    toggle: (item, category) => dispatch(filterToggleAC(item, category)),
+    toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
     getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
   };
 }
