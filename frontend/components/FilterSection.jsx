@@ -11,7 +11,7 @@ class FilterSection extends Component {
     const { section } = this.props;
     return (
       <div>
-        <hr className={styles.breakLine}></hr>
+        <hr className={styles.breakLine}/>
         <h3>{section.title}</h3>
         {section.value.map((item, index) =>
           <FilterItem key={index} item={item} category={section.title}/>
