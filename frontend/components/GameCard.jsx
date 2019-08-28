@@ -6,7 +6,6 @@ import styles from '../stylesheets/gameCard.module.scss';
 
 class GameCard extends Component {
   render() {
-    console.log('GameCard props', this.props)
     const {gameName} = this.props;
     return (
       <Link href='clubs/myGame'>

@@ -14,7 +14,7 @@ import { getGamesAC } from '../redux/actions';
 class Games extends Component {
 
   componentDidMount = async () => {
-    if (this.props.games.length === 0) this.props.getGames();
+    if (this.props.games.length === 0) this.props.getGames(this.props.filterToggle);
   };
 
   render() {
@@ -38,12 +38,13 @@ class Games extends Component {
 const mapStateToProps = (store) => {
   return {
     games: store.games,
+    filterToggle: store.gamesFilterToggle,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGames: () => dispatch(getGamesAC()),
+    getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
   }
 };
 
