@@ -27,8 +27,8 @@ class Clubs extends Component {
         <div className={styles.container}>
           <ClubFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.clubs.map((e, index) => {
-              return <ClubCard key={ index } cover={ e.cover } title={ e.name } address={ e.address } data={e}/>;
+            {this.props.clubs.map((club, index) => {
+              return <ClubCard key={ index } club={club}/>;
             })}
           </div>
         </div>
