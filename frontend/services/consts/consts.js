@@ -1,1 +1,1 @@
-export const IMG_URL_PREFIX = '/static/img/';
+export const IMG_URL_PREFIX = '/static/images/clubs/';

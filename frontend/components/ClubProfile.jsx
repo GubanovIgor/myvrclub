@@ -8,9 +8,7 @@ import ImageProfileBlock from '../components/ImageProfileBlock';
 import { IMG_URL_PREFIX } from '../services/consts/consts';
 
 const ClubProfile = (props) => (
-
   <section className={styles.container}>
-
     {console.log('props ClubProfile JSX', props)}
     <div className={styles.profileTitle}>
       <h2>{props.club.name}</h2>
@@ -19,7 +17,7 @@ const ClubProfile = (props) => (
       <ImageProfileBlock club={props.club}/>
       <div className={styles.profileInformations}>
         <img
-          src={IMG_URL_PREFIX+props.club.cover} width="360" height="202" alt="Batman: Arkham VR"
+          src={IMG_URL_PREFIX + props.club.cover} width="360" height="202" alt="Batman: Arkham VR"
         />
         <p>
           <span>Адрес: </span>{props.club.address}<br></br>

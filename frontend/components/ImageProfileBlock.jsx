@@ -15,7 +15,7 @@ const ImageProfileBlock = (props) => {
       <img key={uuidv1()} src={IMG_URL_PREFIX+props.club.screenShot[0]} width="750" height="421" alt={props.club.name}/>
       <div className={styles.screenshotsSwitch}>
         {props.club.screenShot.map((imgLink, index) => {
-          //if (index === 0) return;
+          if (index === 0) return;
           return <img key={uuidv1()} src={IMG_URL_PREFIX+imgLink} width="144" height="81" alt={props.club.name} />
         })}
       </div>
