@@ -27,10 +27,15 @@ export const reducer = (state, action) => {
         ...state,
         games: action.games,
       });
-    case actionTypes.REQUEST_FILTER_TOGGLE:
+    case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
-      stateCopy.filterToggle[action.category][action.item] = !stateCopy.filterToggle[action.category][action.item];
+      stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
       return stateCopy;
+
+    case actionTypes.REQUEST_FILTER_TOGGLE_GAMES:
+      const stateCopy1 = { ...state }; // ВОПРОС
+      stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
+      return stateCopy1;
 
     default:
       return state;
