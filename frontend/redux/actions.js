@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-unfetch'
-
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
