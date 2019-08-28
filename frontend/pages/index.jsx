@@ -4,21 +4,25 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IndexSearch from '../components/IndexSearch';
 import ClubCollections from '../components/ClubCollections';
+import GameCollections from '../components/GameCollections';
 import Page from './page';
 import Example from '../components/examplesThunk/examples';
 import { serverRenderClock, startClock } from '../redux/actions';
 
+// import AC
+import { getClubsAC, getGamesAC } from '../redux/actions';
 
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
     console.log('getInitialProps - isServer', isServer);
     //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
-    return { custom: 'custom props' }
+    return { custom: 'custom props' };
   }
 
-  componentDidMount () {
-    //this.timer = startClock(this.props.dispatch)
+  componentDidMount = async () => {
+    this.props.getGames();
+    this.props.getClubs();
   };
 
   componentWillUnmount () {
@@ -30,7 +34,8 @@ class Index extends Component {
     return (<div>
       <Header />
       <IndexSearch />
-      <ClubCollections />
+      {(this.props.games.length) && <GameCollections />}
+      {(this.props.clubs.length) && <ClubCollections />}
       {/*<Page />*/}
       <Footer />
     </div>
@@ -38,4 +43,14 @@ class Index extends Component {
   }
 }
 
-export default connect()(Index);
+const mapStateToProps = (store) => ({
+  clubs: store.clubs,
+  games: store.games,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getClubs: () => dispatch(getClubsAC()),
+  getGames: () => dispatch(getGamesAC()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
