@@ -21,8 +21,8 @@ class Index extends Component {
   }
 
   componentDidMount = async () => {
-    this.props.getGames();
-    this.props.getClubs();
+    this.props.getGames(this.props.filterToggleGames);
+    this.props.getClubs(this.props.filterToggleClubs);
   };
 
   componentWillUnmount () {
@@ -46,11 +46,13 @@ class Index extends Component {
 const mapStateToProps = (store) => ({
   clubs: store.clubs,
   games: store.games,
+  filterToggleClubs: store.clubsFilterToggle,
+  filterToggleGames: store.gamesFilterToggle,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getClubs: () => dispatch(getClubsAC()),
-  getGames: () => dispatch(getGamesAC()),
+  getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
+  getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
