@@ -10,18 +10,29 @@ router.post('/', async (req, res) => {
 
   const categories = Object.keys(req.body.checkedToggle);
 
-  console.log(req.body.checkedToggle[categories[0]].length)
+  console.log(req.body.checkedToggle[categories[0]])
 
   // Оборудование
   if (req.body.checkedToggle[categories[0]].length) {
-    conditions.push({ equipment: { $all: req.body.checkedToggle[categories[0]] }})
+    conditions.push({ genre: { $all: req.body.checkedToggle[categories[0]] }})
   }
 
-  // // Год выхода
-  // if (req.body.checkedToggle[categories[1]].length) {
-  //   conditions.push({})
-  // }
-  //
+  // Год выхода
+  if (req.body.checkedToggle[categories[2]].length) {
+    console.log(req.body.checkedToggle[categories[2]])
+    let years = [];
+    req.body.checkedToggle[categories[2]].forEach(el => {
+      const reg  = new RegExp(`/.*${el}.*/`);
+      years.push({ year: reg })
+    })
+
+    const test = [ { year: /.*2018.*/ }, { year: /.*2017.*/ } ]
+    console.log(test);
+    console.log(years);
+
+    conditions.push( { $or: test})
+  }
+
   // // Возраст
   // if (req.body.checkedToggle[categories[2]].length) {
   //   conditions.push({})
@@ -31,6 +42,7 @@ router.post('/', async (req, res) => {
   // if (req.body.checkedToggle[categories[3]].length) {
   //   conditions.push({})
   // }
+  console.log(conditions);
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}

@@ -18,14 +18,15 @@ class Games extends Component {
   };
 
   render() {
+    console.log(this.props.games)
     return (
       <div>
         <Header />
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.games.map((e, index) => {
-              return <GameCard key={ index } cover={ e.cover } title= { e.name } />;
+            {this.props.games.map((el, index) => {
+              return <GameCard key={ index } cover={ el.cover } title= { el.name } />;
             })}
           </div>
         </div>
