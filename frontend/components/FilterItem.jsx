@@ -22,10 +22,4 @@ class FilterItem extends Component {
   }
 }
 
-function mapStateToProps(store, props) {
-  return {
-    //checked: store.clubsFilterToggle[props.category][props.item],
-  }
-}
-
-export default connect(mapStateToProps)(FilterItem);
+export default FilterItem;

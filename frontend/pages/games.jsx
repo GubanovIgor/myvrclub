@@ -18,7 +18,6 @@ class Games extends Component {
   };
 
   render() {
-    console.log('this.props.games', this.props.games);
     return (
       <div>
         <Header />

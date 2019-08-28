@@ -46,22 +46,28 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = () => (
+export const getGamesAC = (filterToggleData) => (
   async (dispatch) => {
-    // let checkedToggle = [[], []];
-    // if(filterToggleData) {
-    //   const keys = Object.keys(filterToggleData);
-    //   for (let i = 0; i < keys.length; i++) {
-    //     const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-    //     categoryKeys.forEach((key) => {
-    //       if (filterToggleData[keys[i]][key]) {
-    //         checkedToggle[i].push(key)
-    //       }
-    //     })
-    //   }
-    // }
+    console.log(filterToggleData);
+    let category = {};
 
-    console.log(checkedToggle)
+    if (filterToggleData) {
+      Object.keys(filterToggleData).forEach( el => {
+        category[el] = [];
+      });
+
+      Object.keys(filterToggleData).forEach( el => {
+        Object.keys(filterToggleData[el]).forEach( elInner => {
+          console.log(filterToggleData[el][elInner]);
+          if (filterToggleData[el][elInner]) {
+            console.log('im here');
+            category[el].push(elInner)
+          }
+        });
+      });
+    }
+
+    console.log(category);
 
     const resp = await fetch(`http://localhost:3100/game`);
     const data = await resp.json();
