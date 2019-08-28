@@ -7,7 +7,7 @@ const InitState = {
   num: NaN,
   clubs: [],
   games: [],
-  filter: [
+  gamesFilter: [
     {
       title: 'Оборудование',
       value: [
@@ -52,7 +52,7 @@ const InitState = {
       ],
     },
   ],
-  filterToggle: {
+  gamesFilterToggle: {
     'Оборудование': {
       'PS VR': false,
       'Oculus Rift': false,
@@ -83,6 +83,38 @@ const InitState = {
       'Много крови': false,
       'Магия': false,
       'Для взрослых': false,
+    },
+  },
+  clubsFilter: [
+    {
+      title: 'Оборудование',
+      value: [
+        'PS VR',
+        'Oculus Rift',
+        'HTC Vive',
+        'Full Body VR',
+      ],
+    },
+    {
+      title: 'Стоимость часа игры',
+      value: [
+        'до 500',
+        'до 1000',
+        'до 5000',
+      ],
+    },
+  ],
+  clubsFilterToggle: {
+    'Оборудование': {
+      'PS VR': false,
+      'Oculus Rift': false,
+      'HTC Vive': false,
+      'Full Body VR': false,
+    },
+    'Стоимость часа игры': {
+      'до 500': false,
+      'до 1000': false,
+      'до 5000': false,
     },
   },
 };
