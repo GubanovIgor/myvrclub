@@ -10,6 +10,7 @@ import styles from '../stylesheets/filter.module.scss';
 
 // import components
 import FilterSection from '../components/FilterSection';
+import { filterToggleAC, getClubsAC } from "../redux/actions";
 
 class ClubFilter extends Component {
   // constructor(props) {
@@ -22,6 +23,12 @@ class ClubFilter extends Component {
   //   //this.setState({ options: SOME_NEW_OPTION_ARRAY });
   // }
 
+  // Метод для передачи изменений чекбоксов фильтра в стор
+  onChangeCheckbox = (item, category) => {
+    this.props.toggle(item, category);
+    this.props.getClubs(this.props.filterToggle);
+  };
+
   render() {
     return (
       <div className={styles.container}>
@@ -33,7 +40,11 @@ class ClubFilter extends Component {
           /><br></br>
         </div>
         {this.props.clubsFilter.map((el, index) =>
-          <FilterSection key={index} section={el}/>
+          <FilterSection
+            key={index}
+            section={el}
+            onChangeCheckbox={this.onChangeCheckbox}
+          />
         )}
       </div>
     );
@@ -42,6 +53,14 @@ class ClubFilter extends Component {
 
 const mapStateToProps = (store) => ({
   clubsFilter: store.clubsFilter,
+  filterToggle: store.clubsFilterToggle,
 });
 
-export default connect(mapStateToProps)(ClubFilter);
+function mapDispatchToProps(dispatch) {
+  return {
+    toggle: (item, category) => dispatch(filterToggleAC(item, category)),
+    getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClubFilter);

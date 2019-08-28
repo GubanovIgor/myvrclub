@@ -14,7 +14,12 @@ class FilterSection extends Component {
         <hr className={styles.breakLine}/>
         <h3>{section.title}</h3>
         {section.value.map((item, index) =>
-          <FilterItem key={index} item={item} category={section.title}/>
+          <FilterItem
+            key={index}
+            item={item}
+            category={section.title}
+            onChangeCheckbox={this.props.onChangeCheckbox}
+          />
         )}
       </div>
     );

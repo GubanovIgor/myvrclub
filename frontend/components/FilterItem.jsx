@@ -4,22 +4,13 @@ import { connect } from 'react-redux';
 // SASS
 import styles from '../stylesheets/filterItem.module.scss';
 
-// import components
-import { filterToggleAC, getClubsAC } from '../redux/actions';
-
 class FilterItem extends Component {
-
-  onChangeCheckbox = (e) => {
-    this.props.toggle(e.target.id, this.props.category);
-    this.props.getClubs(this.props.filterToggle);
-  };
-
   render() {
-    const { item, checked } = this.props;
+    const { item, checked, category } = this.props;
     return (
       <div>
         <input
-          onChange={this.onChangeCheckbox}
+          onChange={() => this.props.onChangeCheckbox(item, category)}
           className={styles.filterCheckbox}
           checked={checked}
           type='checkbox'
@@ -31,18 +22,10 @@ class FilterItem extends Component {
   }
 }
 
-function mapStateToProps(store, props) { // Галочки не убираются после перехода на другую страгицу
+function mapStateToProps(store, props) {
   return {
-    filterToggle: store.clubsFilterToggle,
-    checked: store.clubsFilterToggle[props.category][props.item]
+    checked: store.clubsFilterToggle[props.category][props.item],
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    toggle: (item, category) => dispatch(filterToggleAC(item, category)),
-    getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterItem);
+export default connect(mapStateToProps)(FilterItem);

@@ -65,20 +65,6 @@ export const filterToggleAC = (item, category) => (
   }
 );
 
-// export const serverRenderClock = isServer => dispatch => {
-//   return dispatch({
-//     type: actionTypes.TICK,
-//     light: !isServer,
-//     ts: Date.now()
-//   })
-// }
-//
-// export const startClock = (dispatch) => {
-//   return setInterval(() => {
-//     dispatch({ type: actionTypes.TICK, light: true, ts: Date.now() })
-//   }, 1000)
-// };
-
 export const addNumAC = (num) => {
   return {
     type: actionTypes.ADDNUM,
