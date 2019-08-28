@@ -1,5 +1,5 @@
-var needle = require('needle');
-var cheerio = require('cheerio');
+// var needle = require('needle');
+// var cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const Game = require('../models/games.js');
@@ -8,33 +8,33 @@ const fs = require('fs');
 
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 
-let getGames = async () => {
-  let data = [];
-  for (let i = 1; i <= 148; i++) {
-    const url = `https://store.steampowered.com/search/?vrsupport=401&page=${i}`;
-    needle.get(url, function (err, res) {
-      let $ = cheerio.load(res.body);
-      const games = $('.search_result_row');
-
-      games.each((index) => {
-        const id = $(games[index]).data('ds-appid');
-        if (id) {
-          data.push(id);
-        }
-
-        console.log(data);
-        fs.writeFileSync('VrGameList.txt', data, 'utf8');
-      });
-    });
-  };
-
-  return data;
-};
+// let getGames = async () => {
+//   let data = [];
+//   for (let i = 1; i <= 148; i++) {
+//     const url = `https://store.steampowered.com/search/?vrsupport=401&page=${i}`;
+//     needle.get(url, function (err, res) {
+//       let $ = cheerio.load(res.body);
+//       const games = $('.search_result_row');
+//
+//       games.each((index) => {
+//         const id = $(games[index]).data('ds-appid');
+//         if (id) {
+//           data.push(id);
+//         }
+//
+//         console.log(data);
+//         fs.writeFileSync('VrGameList.txt', data, 'utf8');
+//       });
+//     });
+//   };
+//
+//   return data;
+// };
 
 let addGames = async () => {
   let gameIds = fs.readFileSync('VrGameList.txt', 'utf8').split(',');
   let data = null;
-  for (let i = 3538; i < gameIds.length; i++) {
+  for (let i = 3500; i < gameIds.length; i++) {
     while (true) {
       if (data && data[gameIds[i]]) {
         break;
