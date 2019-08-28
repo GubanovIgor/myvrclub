@@ -7,6 +7,8 @@ const InitState = {
   num: NaN,
   clubs: [],
   games: [],
+  loading: false,
+  error: false,
   gamesFilter: [
     {
       title: 'Оборудование',

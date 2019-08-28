@@ -18,7 +18,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
   const json = csvToJson.getJsonFromCsv('./files/club-temp.csv');
 
   for (let i = 0; i < json.length; i++) {
-    let { name, address, Telephone, Site, WorkTime, metro, Sociallinks, games, cover, price, equipment } = json[i];
+    let { name, address, Telephone, Site, WorkTime, metro, Sociallinks, games, cover, price, equipment, screenShot } = json[i];
     if (Sociallinks !== undefined) Sociallinks = Sociallinks.split(" ") //здесь невидимый символ! c MAC OS
     else Sociallinks = [];
     if (metro !== undefined) metro = metro.split(',') //здесь запятая с MAC
@@ -29,6 +29,9 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
     else equipment = [];
     if (price !== undefined) price = price.split(',').map(Number);
     else price = [];
+    if (screenShot !== undefined) screenShot = screenShot.split(',');
+    else screenShot = [];
+    //console.log(screenShot);
 
     let clubs = new Club({
       name,
@@ -36,8 +39,8 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       address,
       tel: [Telephone],
       domain: Site,
-      cover: '',
-      screenShot: [],
+      cover,
+      screenShot,
       metro,
       workTime: { weekdays: WorkTime, weekend: WorkTime },
       socialLinks: { vk: Sociallinks[0] && Sociallinks[0], instagram: Sociallinks[1] && Sociallinks[1], fb: Sociallinks[2] && Sociallinks[2] },
