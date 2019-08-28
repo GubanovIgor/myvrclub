@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 
 // SASS
 import styles from '../stylesheets/clubCard.module.scss';
