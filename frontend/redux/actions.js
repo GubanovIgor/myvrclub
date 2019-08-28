@@ -106,9 +106,9 @@ export const filterToggleGamesAC = (item, category) => (
   }
 );
 
-export const addNumAC = (num) => {
-  return {
-    type: actionTypes.ADDNUM,
-    data: num,
-  };
-};
+// export const addNumAC = (num) => {
+//   return {
+//     type: actionTypes.ADDNUM,
+//     data: num,
+//   };
+// };

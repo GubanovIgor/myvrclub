@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const gameSchema = new mongoose.Schema({
   steam_appid: Number,
   name: String,
+  urlName: String,
   description: String,
   short_description: String,
   clubs: [String], //список клубов [id`s from Clubs]

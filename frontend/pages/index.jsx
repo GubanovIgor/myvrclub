@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import IndexSearch from '../components/IndexSearch';
 import ClubCollections from '../components/ClubCollections';
 import GameCollections from '../components/GameCollections';
-import Page from './page';
 import Example from '../components/examplesThunk/examples';
 import { serverRenderClock, startClock } from '../redux/actions';
 
@@ -26,7 +25,6 @@ class Index extends Component {
   };
 
   componentWillUnmount () {
-    //clearInterval(this.timer)
   };
 
   render () {

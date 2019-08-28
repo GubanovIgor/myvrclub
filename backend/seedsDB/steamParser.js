@@ -1,5 +1,6 @@
 // var needle = require('needle');
 // var cheerio = require('cheerio');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const Game = require('../models/games.js');
@@ -63,6 +64,7 @@ let addGames = async () => {
     let newGame = new Game({
       steam_appid: data[gameIds[i]].data.steam_appid,
       name: data[gameIds[i]].data.name,
+      urlName: transliterate(data[gameIds[i]].data.name),
       detailed_description: data[gameIds[i]].data.detailed_description,
       short_description: data[gameIds[i]].data.short_description,
       ageLimit: data[gameIds[i]].data.required_age,

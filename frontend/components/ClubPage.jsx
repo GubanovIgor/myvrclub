@@ -34,7 +34,7 @@ class ClubPage extends Component {
           <GameFilter/>
           <div className={cardsWrapper.cardsWrapper}>
             {club.games.map((gameName, index) => {
-              return <GameCard key={ index } gameName={gameName} />;
+              return <GameCard key={ index } gameName={gameName} game={{}}/>;
             })}
           </div>
         </div>
@@ -47,19 +47,3 @@ class ClubPage extends Component {
 }
 
 export default ClubPage;
-
-{/*<div>*/}
-  {/*{this.props.clubGames.map((game, index) => {*/}
-    {/*return (*/}
-      {/*<Link href='clubs/myGame'>*/}
-        {/*<div className={styles.container}>*/}
-          {/*<img className={styles.cover} src={'/static/img_old/anvio-mini.png'}/>*/}
-          {/*<p className={styles.title}>{game}</p>*/}
-          {/*<div className={styles.darkWrapper}/>*/}
-          {/*<div className={styles.new}>new</div>*/}
-          {/*<div className={styles.rating}>7.6</div>*/}
-        {/*</div>*/}
-      {/*</Link>*/}
-    {/*)*/}
-  {/*})}*/}
-{/*</div>*/}
