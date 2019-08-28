@@ -1,22 +1,26 @@
 const mongoose = require('mongoose');
 
-
 const gameSchema = new mongoose.Schema({
+  steam_appid: Number,
   name: String,
   description: String,
+  short_description: String,
   clubs: [String], //список клубов [id`s from Clubs]
   cover: String,
   screenShot: [String],
-  videos: [String],
+  videos: [Object],
   genre: [], //жанр
   playersNum: String,
   platform: [],
-  language: {dubbing: String, interfc: String},
-  year: Number,
-  developer: String,
+  os: [],
+  language: String,
+  year: String,
+  developer: [String],
+  publisher: [String],
   ageLimit: Number,
   rating: Number,
   tags: [],
+  website: String,
 });
 
 gameSchema.statics.getGames = async function () {
