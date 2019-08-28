@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IndexSearch from '../components/IndexSearch';
-import Page from './page';
 import Example from '../components/examplesThunk/examples';
 import { serverRenderClock, startClock } from '../redux/actions';
 
@@ -29,7 +28,6 @@ class Index extends Component {
     return (<div>
       <Header />
       <IndexSearch />
-      {/*<Page />*/}
       <Footer />
     </div>
     );

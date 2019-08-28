@@ -20,16 +20,16 @@ class Games extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header/>
         <div className={styles.container}>
-          <GameFilter />
+          <GameFilter/>
           <div className={styles.cardsWrapper}>
-            {this.props.games.map((e, index) => {
-              return <GameCard key={ index } cover={ e.cover } title= { e.name } />;
+            {this.props.games.map((game, index) => {
+              return <GameCard key={index} game={game}/>;
             })}
           </div>
         </div>
-        <Footer />
+        <Footer/>
       </div>
     );
   }

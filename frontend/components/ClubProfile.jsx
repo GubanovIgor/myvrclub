@@ -14,7 +14,7 @@ const ClubProfile = (props) => (
       <h2>{props.club.name}</h2>
     </div>
     <div className={styles.profileContent}>
-      <ImageProfileBlock club={props.club}/>
+      <ImageProfileBlock club={props.club} isClub={true} isGame={false}/>
       <div className={styles.profileInformations}>
         <img
           src={IMG_URL_PREFIX + props.club.cover} width="360" height="202" alt="Batman: Arkham VR"

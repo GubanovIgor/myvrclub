@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import { reducer } from './reducers';
 
 const InitState = {
-  num: NaN,
+  // num: NaN,
   clubs: [],
   games: [],
   loading: false,

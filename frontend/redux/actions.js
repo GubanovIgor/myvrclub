@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 // import types
 import { actionTypes } from './types';
 
@@ -99,9 +101,9 @@ export const filterToggleGamesAC = (item, category) => (
   }
 );
 
-export const addNumAC = (num) => {
-  return {
-    type: actionTypes.ADDNUM,
-    data: num,
-  };
-};
+// export const addNumAC = (num) => {
+//   return {
+//     type: actionTypes.ADDNUM,
+//     data: num,
+//   };
+// };

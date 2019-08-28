@@ -16,6 +16,7 @@ import { getClubsAC } from '../redux/actions';
 class Clubs extends Component {
 
   componentDidMount = async () => {
+    console.log('componentDidMount clubs');
     if (this.props.clubs.length === 0) this.props.getClubs();
   };
 

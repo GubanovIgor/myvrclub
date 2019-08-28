@@ -1,40 +1,42 @@
-var needle = require('needle');
-var cheerio = require('cheerio');
+// var needle = require('needle');
+// var cheerio = require('cheerio');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const Game = require('../models/games.js');
 const dbName = 'mongodb://localhost/myvrclub';
 const fs = require('fs');
 
+
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 
-let getGames = async () => {
-  let data = [];
-  for (let i = 1; i <= 148; i++) {
-    const url = `https://store.steampowered.com/search/?vrsupport=401&page=${i}`;
-    needle.get(url, function (err, res) {
-      let $ = cheerio.load(res.body);
-      const games = $('.search_result_row');
+// let getGames = async () => {
+//   let data = [];
+//   for (let i = 1; i <= 148; i++) {
+//     const url = `https://store.steampowered.com/search/?vrsupport=401&page=${i}`;
+//     needle.get(url, function (err, res) {
+//       let $ = cheerio.load(res.body);
+//       const games = $('.search_result_row');
+//
+//       games.each((index) => {
+//         const id = $(games[index]).data('ds-appid');
+//         if (id) {
+//           data.push(id);
+//         }
+//
+//         console.log(data);
+//         fs.writeFileSync('VrGameList.txt', data, 'utf8');
+//       });
+//     });
+//   };
 
-      games.each((index) => {
-        const id = $(games[index]).data('ds-appid');
-        if (id) {
-          data.push(id);
-        }
-
-        console.log(data);
-        fs.writeFileSync('VrGameList.txt', data, 'utf8');
-      });
-    });
-  };
-
-  return data;
-};
+//   return data;
+// };
 
 let addGames = async () => {
   let gameIds = fs.readFileSync('VrGameList.txt', 'utf8').split(',');
   let data = null;
-  for (let i = 3538; i < gameIds.length; i++) {
+  for (let i = 3500; i < gameIds.length; i++) {
     while (true) {
       if (data && data[gameIds[i]]) {
         break;
@@ -63,6 +65,7 @@ let addGames = async () => {
     let newGame = new Game({
       steam_appid: data[gameIds[i]].data.steam_appid,
       name: data[gameIds[i]].data.name,
+      urlName: transliterate(data[gameIds[i]].data.name),
       detailed_description: data[gameIds[i]].data.detailed_description,
       short_description: data[gameIds[i]].data.short_description,
       ageLimit: data[gameIds[i]].data.required_age,

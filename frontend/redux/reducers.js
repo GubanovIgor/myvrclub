@@ -10,10 +10,10 @@ export const reducer = (state, action) => {
     //     light: !!action.light
     //   });
 
-    case actionTypes.ADDNUM:
-      return Object.assign({}, state, {
-        num: action.data,
-      });
+    // case actionTypes.ADDNUM:
+    //   return Object.assign({}, state, {
+    //     num: action.data,
+    //   });
 
 
     case actionTypes.REQUEST:

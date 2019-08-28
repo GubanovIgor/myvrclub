@@ -34,7 +34,7 @@ class ClubPage extends Component {
           <GameFilter/>
           <div className={cardsWrapper.cardsWrapper}>
             {club.games.map((gameName, index) => {
-              return <GameCard key={ index } gameName={gameName} />;
+              return <GameCard key={ index } gameName={gameName} game={{}}/>;
             })}
           </div>
         </div>
