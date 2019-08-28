@@ -7,7 +7,6 @@ const Game = require('../models/games.js');
 const dbName = 'mongodb://localhost/myvrclub';
 const fs = require('fs');
 
-
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 
 // let getGames = async () => {
@@ -29,7 +28,7 @@ mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 //       });
 //     });
 //   };
-
+//
 //   return data;
 // };
 

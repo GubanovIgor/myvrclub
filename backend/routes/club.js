@@ -12,13 +12,13 @@ router.post('/', async (req, res) => {
   const conditions =[];
 
   if (req.body.checkedToggle[0].length) {
-    conditions.push({ equipment: { $all: req.body.checkedToggle[0] }})
+    console.log(req.body.checkedToggle[0])
+    conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
   }
 
   if (req.body.checkedToggle[1].length) {
     const length = req.body.checkedToggle[1].length;
     const num = req.body.checkedToggle[1][length-1].split(' ')[1];
-    console.log(num);
     conditions.push({price: { $lt: num } })
   }
 

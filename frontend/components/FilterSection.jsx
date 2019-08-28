@@ -13,7 +13,6 @@ class FilterSection extends Component {
     console.log(this.props.checked);
     return (
       <div>
-        <hr className={styles.breakLine}/>
         <h3>{section.title}</h3>
         {section.value.map((item, index) =>
           <FilterItem
@@ -24,6 +23,7 @@ class FilterSection extends Component {
             onChangeCheckbox={this.props.onChangeCheckbox}
           />
         )}
+        <hr className={styles.breakLine}/>
       </div>
     );
   }

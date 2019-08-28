@@ -2,6 +2,7 @@ import fetch from 'isomorphic-unfetch'
 
 // import types
 import { actionTypes } from './types';
+import fetch from 'isomorphic-unfetch';
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -50,28 +51,34 @@ export const requestGetGames = (data) => (
 
 export const getGamesAC = (filterToggleData) => (
   async (dispatch) => {
-    console.log(filterToggleData);
-    let category = {};
+    let checkedToggle = {};
 
-    if (filterToggleData) {
+    // if (filterToggleData) {
       Object.keys(filterToggleData).forEach( el => {
-        category[el] = [];
+        checkedToggle[el] = [];
       });
 
       Object.keys(filterToggleData).forEach( el => {
         Object.keys(filterToggleData[el]).forEach( elInner => {
-          console.log(filterToggleData[el][elInner]);
           if (filterToggleData[el][elInner]) {
-            console.log('im here');
-            category[el].push(elInner)
+            checkedToggle[el].push(elInner)
           }
         });
       });
+    // }
+
+    console.log(checkedToggle);
+    const filterData = {
+      checkedToggle,
     }
 
-    console.log(category);
-
-    const resp = await fetch(`http://localhost:3100/game`);
+    const resp = await fetch('http://localhost:3100/game', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(filterData),
+    });
     const data = await resp.json();
     dispatch(requestGetGames(data));
   }

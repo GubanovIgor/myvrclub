@@ -11,12 +11,17 @@ const InitState = {
   error: false,
   gamesFilter: [
     {
-      title: 'Оборудование',
+      title: 'Жанр',
       value: [
-        'PS VR',
-        'Oculus Rift',
-        'HTC Vive',
-        'Full Body VR',
+        'Action',
+        'Casual',
+        'Indie',
+        'Adventure',
+        'RPG',
+        'Gore',
+        'Violent',
+        'Simulation',
+        'Racing',
       ],
     },
     {
@@ -53,8 +58,28 @@ const InitState = {
         'Для взрослых',
       ],
     },
+    {
+      title: 'Оборудование',
+      value: [
+        'PS VR',
+        'Oculus Rift',
+        'HTC Vive',
+        'Full Body VR',
+      ],
+    },
   ],
   gamesFilterToggle: {
+    'Жанр': {
+      'Action': false,
+      'Casual': false,
+      'Indie': false,
+      'Adventure': false,
+      'RPG': false,
+      'Gore': false,
+      'Violent': false,
+      'Simulation': false,
+      'Racing': false,
+    },
     'Оборудование': {
       'PS VR': false,
       'Oculus Rift': false,
