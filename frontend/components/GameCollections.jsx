@@ -16,7 +16,6 @@ export class GameCollections extends Component {
             <GameCard game={this.props.games[12]} />
             <GameCard game={this.props.games[5]} />
             <GameCard game={this.props.games[7]} />
-            <GameCard game={this.props.games[7]} />
           </div>
           <div className={styles.allTags}>
               <ul className={styles.popularTags}>

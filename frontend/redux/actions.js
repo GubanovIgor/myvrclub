@@ -1,7 +1,7 @@
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
-import { InitState } from './store';
+import { InitState} from "./store";
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -16,7 +16,7 @@ export const requestGames = () => (
   { type: actionTypes.REQUEST_GAMES }
 );
 
-export const getClubsAC = (filterToggleData = InitState.gamesFilterToggle) => (
+export const getClubsAC = (filterToggleData) => (
   async (dispatch) => {
     console.log('InitState', InitState);
     dispatch(request());
@@ -57,7 +57,7 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle) => (
+export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagination = 1) => (
   async (dispatch) => {
 
     dispatch(requestGames());
@@ -76,10 +76,11 @@ export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle) => (
         });
       });
     // }
-    console.log('InitState', InitState);
+
     console.log(checkedToggle);
     const filterData = {
       checkedToggle,
+      pagination,
     }
 
     const resp = await fetch('http://localhost:3100/game', {
@@ -105,13 +106,27 @@ export const filterToggleClubsAC = (item, category) => (
   }
 );
 
+
 // Фильтр игр
-export const requestFilterToggleGames= (item, category) => (
+export const requestFilterToggleGames = (item, category) => (
   { type: actionTypes.REQUEST_FILTER_TOGGLE_GAMES, item, category }
 );
 
 export const filterToggleGamesAC = (item, category) => (
   async (dispatch) => {
     dispatch(requestFilterToggleGames(item, category));
+  }
+);
+
+// Пагинация
+export const requestSwitchPaginationValue = (value) => (
+  { type: actionTypes.SWITCH_PAGINATION_VALUE, value }
+);
+
+export const switchPaginationValueAC = (value, filterToggleData) => (
+  async (dispatch) => {
+    dispatch(requestSwitchPaginationValue(value));
+    console.log(filterToggleData);
+    dispatch(getGamesAC(filterToggleData, value));
   }
 );

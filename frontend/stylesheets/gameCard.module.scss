@@ -1,11 +1,19 @@
+$card-width: 282px;
+$card-height: 141px;
+
 .container {
-  width: 180px;
+  width: $card-width;
+  height: $card-height;
+
   cursor: pointer;
   position: relative;
+
+  margin-bottom: 80px;
 }
 
 .cover {
-  width: 180px;
+  width: $card-width;
+  height: $card-height;
   border-radius: 10px;
 
   :hover > & {
@@ -35,8 +43,8 @@
   top: 0;
   left: 0;
 
-  width: 180px;
-  height: 90px;
+  width: $card-width;
+  height: $card-height;
 
   background: linear-gradient(to bottom, black, rgba(255,0,0,0));
   opacity: 0;
@@ -56,9 +64,13 @@
 
 // Icon new
 .new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: absolute;
-  top: 19px;
-  left: 137px;
+  top: -7px;
+  left: 220px;
 
   width: 50px;
   height: 20px;
@@ -77,7 +89,7 @@
   align-items: center;
 
   position: absolute;
-  top: 15px;
+  top: -7px;
   left: 10px;
 
   width: 30px;

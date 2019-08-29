@@ -11,6 +11,7 @@ export const InitState = {
   error: false,
   loadingGame: false,
   errorGame: false,
+  paginationValue: 1,
   gamesFilter: [
     {
       title: 'Жанр',
