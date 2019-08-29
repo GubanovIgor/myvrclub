@@ -9,6 +9,8 @@ export const InitState = {
   games: [],
   loading: false,
   error: false,
+  loadingGame: false,
+  errorGame: false,
   paginationValue: 1,
   gamesFilter: [
     {
