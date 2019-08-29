@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   const conditions =[];
 
   if (req.body.checkedToggle[0].length) {
-    console.log(req.body.checkedToggle[0])
+    console.log(req.body.checkedToggle[0]);
     conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
   }
 
@@ -22,9 +22,11 @@ router.post('/', async (req, res) => {
     conditions.push({price: { $lt: num } })
   }
 
+  const skipItems = (req.body.pagination - 1) * 9;
+
   const clubs = await Club.find(
     conditions.length ? { $and: conditions } : {}
-  );
+  ).skip(skipItems).limit(9);
 
   res.json(clubs);
 });

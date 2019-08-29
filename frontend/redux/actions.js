@@ -8,7 +8,7 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
-export const getClubsAC = (filterToggleData) => (
+export const getClubsAC = (filterToggleData, pagination = 1) => (
   async (dispatch) => {
 
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
@@ -25,10 +25,9 @@ export const getClubsAC = (filterToggleData) => (
       }
     }
 
-    console.log(checkedToggle)
-
     const filterData = {
       checkedToggle,
+      pagination,
     }
 
     const resp = await fetch('http://localhost:3100/club', {
@@ -109,10 +108,15 @@ export const requestSwitchPaginationValue = (value) => (
   { type: actionTypes.SWITCH_PAGINATION_VALUE, value }
 );
 
-export const switchPaginationValueAC = (value, filterToggleData) => (
+export const switchPaginationValueAC = (value, filterToggleData, type) => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
     console.log(filterToggleData);
-    dispatch(getGamesAC(filterToggleData, value));
+    if (type === 'game') {
+      dispatch(getGamesAC(filterToggleData, value));
+    }
+    if (type === 'club') {
+      dispatch(getClubsAC(filterToggleData, value));
+    }
   }
 );
