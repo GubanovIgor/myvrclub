@@ -14,6 +14,10 @@ import { connect } from 'react-redux';
 
 class GamePage extends Component {
 
+  componentDidMount() {
+    this.props.getClubs(undefined, undefined, this.props.game._id);
+  }
+
   render() {
     const { game = [], clubs, loading, error} = this.props;
     return (

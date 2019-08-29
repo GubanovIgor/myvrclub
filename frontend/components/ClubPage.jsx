@@ -20,13 +20,13 @@ class ClubPage extends Component {
 
   render() {
     const { club, games, loadingGame, errorGame } = this.props;
-    let clubGames = [];
-    if (!loadingGame) {
-      club.gamesIds.map((gameIds, index) => {
-        console.log('games', games.find(x => x._id === gameIds))
-        clubGames.push(games.find(x => x._id === gameIds))
-      })
-    }
+    // let clubGames = [];
+    // if (!loadingGame) {
+    //   club.gamesIds.map((gameIds, index) => {
+    //     console.log('games', games.find(x => x._id === gameIds))
+    //     clubGames.push(games.find(x => x._id === gameIds))
+    //   })
+    // }
     return (
       <main>
         <ClubProfile club={club}/>
