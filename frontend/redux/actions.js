@@ -52,7 +52,6 @@ export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagin
   async (dispatch) => {
     let checkedToggle = {};
 
-    // if (filterToggleData) {
       Object.keys(filterToggleData).forEach( el => {
         checkedToggle[el] = [];
       });
@@ -64,7 +63,6 @@ export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagin
           }
         });
       });
-    // }
 
     console.log(pagination);
     const filterData = {

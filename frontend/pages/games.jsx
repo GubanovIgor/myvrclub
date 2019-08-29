@@ -17,10 +17,9 @@ import { getGamesAC, switchPaginationValueAC } from '../redux/actions';
 class Games extends Component {
   handlePageChange = async (pageNumber) => {
     await this.props.pagination(pageNumber, this.props.filterToggle);
-  }
+  };
 
   componentDidMount = async () => {
-    // console.log('this.props.paginationValue', this.props.paginationValue);
     if (this.props.games.length === 0) {
       this.props.getGames(this.props.filterToggle);
     }
