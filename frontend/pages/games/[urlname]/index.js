@@ -14,13 +14,13 @@ const Games = (props) => {
   if (props.games.length === 0) props.getGames();
   const { urlname } = router.query;
   //let index = props.games.map(el => el.urlName).indexOf(urlname);
-  if (!props.loading) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
+  if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
       <Header/>
-      {props.loading
+      {props.loadingGame
         ? <div>Загрузка...</div>
-        : props.error
+        : props.errorGame
           ? <div>Ошибка, попробуйте ещё раз</div>
           : game && <GamePage game={game}/>
       }
@@ -32,8 +32,8 @@ const Games = (props) => {
 const mapStateToProps = (store) => {
   return {
     games: store.games,
-    loading: store.loading,
-    error: store.error,
+    loadingGame: store.loadingGame,
+    errorGame: store.errorGame,
   };
 };
 

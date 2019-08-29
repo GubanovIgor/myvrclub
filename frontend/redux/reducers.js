@@ -10,23 +10,19 @@ export const reducer = (state, action) => {
     //     light: !!action.light
     //   });
 
-    // case actionTypes.ADDNUM:
-    //   return Object.assign({}, state, {
-    //     num: action.data,
-    //   });
-
-
     case actionTypes.REQUEST:
       return ({
         ...state, loading: true, error: false,
       });
+    case actionTypes.REQUEST_GAMES:
+      return ({
+        ...state, loadingGame: true, errorGame: false,
+      });
+
     case actionTypes.REQUESTED_CLUBS:
       return ({ ...state, clubs: action.clubs, loading: false, error: false });
     case actionTypes.REQUESTED_GAMES:
-      return ({
-        ...state,
-        games: action.games,
-      });
+      return ({ ...state, games: action.games, loadingGame: false, errorGame: false});
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];

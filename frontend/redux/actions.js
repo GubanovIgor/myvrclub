@@ -8,9 +8,18 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
+export const request = () => (
+  { type: actionTypes.REQUEST }
+);
+
+export const requestGames = () => (
+  { type: actionTypes.REQUEST_GAMES }
+);
+
 export const getClubsAC = (filterToggleData, pagination = 1) => (
   async (dispatch) => {
-
+    console.log('InitState', InitState);
+    dispatch(request());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
     if(filterToggleData) {
@@ -47,8 +56,14 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagination = 1) => (
+export const getGamesAC = (
+  filterToggleData = InitState.gamesFilterToggle,
+  pagination = 1,
+  clubId = '',
+) => (
   async (dispatch) => {
+
+    dispatch(requestGames());
     let checkedToggle = {};
 
       Object.keys(filterToggleData).forEach( el => {
@@ -63,11 +78,12 @@ export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagin
         });
       });
 
-    console.log(pagination);
     const filterData = {
       checkedToggle,
       pagination,
-    }
+      clubId,
+    };
+    console.log(filterData);
 
     const resp = await fetch('http://localhost:3100/game', {
       method: 'POST',
@@ -91,6 +107,7 @@ export const filterToggleClubsAC = (item, category) => (
     dispatch(requestFilterToggleClubs(item, category));
   }
 );
+
 
 // Фильтр игр
 export const requestFilterToggleGames = (item, category) => (

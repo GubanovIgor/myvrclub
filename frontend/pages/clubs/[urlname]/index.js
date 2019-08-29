@@ -33,6 +33,7 @@ const mapStateToProps = (store) => {
     clubs: store.clubs,
     loading: store.loading,
     error: store.error,
+
   };
 };
 
