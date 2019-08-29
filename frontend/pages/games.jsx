@@ -30,7 +30,9 @@ class Games extends Component {
     return (
       <div>
         <Header/>
-        <Pagination handlePageChange={this.handlePageChange}/>
+        <div className={styles.titleWrapper}>
+          <h1 className={styles.title}>Список VR игр</h1>
+        </div>
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
@@ -39,6 +41,7 @@ class Games extends Component {
             })}
           </div>
         </div>
+        <Pagination handlePageChange={this.handlePageChange}/>
         <Footer />
       </div>
     );

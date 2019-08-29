@@ -44,11 +44,11 @@ router.post('/', async (req, res) => {
   // }
   // console.log('conditions', conditions);
 
-  const skipItems = (req.body.pagination - 1) * 10;
+  const skipItems = (req.body.pagination - 1) * 18;
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
-  ).skip(skipItems).limit(10);
+  ).skip(skipItems).limit(18);
 
   res.json(games);
 });

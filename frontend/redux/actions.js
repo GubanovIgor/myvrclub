@@ -117,4 +117,4 @@ export const switchPaginationValueAC = (value, filterToggleData) => (
     console.log(filterToggleData);
     dispatch(getGamesAC(filterToggleData, value));
   }
-)
+);
