@@ -12,5 +12,15 @@
 
   flex-wrap: wrap;
 
-  width: 100%;
+  min-width: 947px;
+  max-width: 947px;
+}
+
+.titleWrapper {
+  width: 1200px;
+  margin: 40px auto;
+}
+
+.title {
+  padding-left: 233px;
 }

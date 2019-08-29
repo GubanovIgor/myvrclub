@@ -9,18 +9,30 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
-import { getGamesAC } from '../redux/actions';
+import Pagination from '../components/Pagination';
+
+// action creators
+import { getGamesAC, switchPaginationValueAC } from '../redux/actions';
 
 class Games extends Component {
+  handlePageChange = async (pageNumber) => {
+    await this.props.pagination(pageNumber, this.props.filterToggle);
+  }
 
   componentDidMount = async () => {
-    if (this.props.games.length === 0) this.props.getGames(this.props.filterToggle);
+    // console.log('this.props.paginationValue', this.props.paginationValue);
+    if (this.props.games.length === 0) {
+      this.props.getGames(this.props.filterToggle);
+    }
   };
 
   render() {
     return (
       <div>
         <Header/>
+        <div className={styles.titleWrapper}>
+          <h1 className={styles.title}>Список VR игр</h1>
+        </div>
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
@@ -29,6 +41,7 @@ class Games extends Component {
             })}
           </div>
         </div>
+        <Pagination handlePageChange={this.handlePageChange}/>
         <Footer />
       </div>
     );
@@ -45,6 +58,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
+    pagination: (value, filterToggleData) => dispatch(switchPaginationValueAC(value, filterToggleData)),
   }
 };
 

@@ -3,12 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import { reducer } from './reducers';
 
-const InitState = {
+export const InitState = {
   // num: NaN,
   clubs: [],
   games: [],
   loading: false,
   error: false,
+  paginationValue: 1,
   gamesFilter: [
     {
       title: 'Жанр',
