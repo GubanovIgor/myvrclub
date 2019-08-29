@@ -48,7 +48,7 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = (filterToggleData, pagination = 1) => (
+export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagination = 1) => (
   async (dispatch) => {
     let checkedToggle = {};
 
