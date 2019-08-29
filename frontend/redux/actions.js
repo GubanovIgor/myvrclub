@@ -1,15 +1,25 @@
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
+import { InitState } from './store';
 
 // Получение клубов
 export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
-export const getClubsAC = (filterToggleData) => (
-  async (dispatch) => {
+export const request = () => (
+  { type: actionTypes.REQUEST }
+);
 
+export const requestGames = () => (
+  { type: actionTypes.REQUEST_GAMES }
+);
+
+export const getClubsAC = (filterToggleData = InitState.gamesFilterToggle) => (
+  async (dispatch) => {
+    console.log('InitState', InitState);
+    dispatch(request());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
     if(filterToggleData) {
@@ -47,8 +57,10 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = (filterToggleData) => (
+export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle) => (
   async (dispatch) => {
+
+    dispatch(requestGames());
     let checkedToggle = {};
 
     // if (filterToggleData) {
@@ -64,7 +76,7 @@ export const getGamesAC = (filterToggleData) => (
         });
       });
     // }
-
+    console.log('InitState', InitState);
     console.log(checkedToggle);
     const filterData = {
       checkedToggle,
@@ -94,8 +106,6 @@ export const filterToggleClubsAC = (item, category) => (
 );
 
 // Фильтр игр
-
-// Фильтр игр
 export const requestFilterToggleGames= (item, category) => (
   { type: actionTypes.REQUEST_FILTER_TOGGLE_GAMES, item, category }
 );
@@ -105,10 +115,3 @@ export const filterToggleGamesAC = (item, category) => (
     dispatch(requestFilterToggleGames(item, category));
   }
 );
-
-// export const addNumAC = (num) => {
-//   return {
-//     type: actionTypes.ADDNUM,
-//     data: num,
-//   };
-// };

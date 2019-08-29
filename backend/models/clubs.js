@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const clubSchema = new mongoose.Schema({
   name: String,
@@ -9,6 +9,7 @@ const clubSchema = new mongoose.Schema({
   description: String,
   workTime: { weekdays: String, weekend: String },
   games: [String], //список игр [id`s from Games]
+  gamesIds: [ObjectId],
   cover: String,
   screenShot: [String],
   videos: [String],

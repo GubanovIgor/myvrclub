@@ -45,6 +45,7 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
       workTime: { weekdays: WorkTime, weekend: WorkTime },
       socialLinks: { vk: Sociallinks[0] && Sociallinks[0], instagram: Sociallinks[1] && Sociallinks[1], fb: Sociallinks[2] && Sociallinks[2] },
       games,
+      gamesIds: [],
       equipment,
       price,
     });
