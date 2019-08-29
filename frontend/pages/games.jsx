@@ -16,13 +16,12 @@ import { getGamesAC, switchPaginationValueAC } from '../redux/actions';
 
 class Games extends Component {
   handlePageChange = async (pageNumber) => {
-    await this.props.pagination(pageNumber, this.props.filterToggle);
-  }
+    await this.props.pagination(pageNumber, this.props.filterToggle, 'game');
+  };
 
   componentDidMount = async () => {
-    // console.log('this.props.paginationValue', this.props.paginationValue);
     if (this.props.games.length === 0) {
-      this.props.getGames(this.props.filterToggle);
+      this.props.getGames();
     }
   };
 
@@ -57,8 +56,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
-    pagination: (value, filterToggleData) => dispatch(switchPaginationValueAC(value, filterToggleData)),
+    getGames: () => dispatch(getGamesAC()),
+    pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
   }
 };
 

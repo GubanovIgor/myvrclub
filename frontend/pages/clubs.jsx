@@ -9,11 +9,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
+import Pagination from '../components/Pagination';
 
 // import AC
-import { getClubsAC } from '../redux/actions';
+import { getClubsAC, switchPaginationValueAC } from '../redux/actions';
 
 class Clubs extends Component {
+  handlePageChange = async (pageNumber) => {
+    await this.props.pagination(pageNumber, this.props.filterToggle, 'club');
+  };
 
   componentDidMount = async () => {
     console.log('componentDidMount clubs');
@@ -25,6 +29,9 @@ class Clubs extends Component {
     return (
       <div>
         <Header />
+        <div className={styles.titleWrapper}>
+          <h1 className={styles.title}>Список VR клубов</h1>
+        </div>
         <div className={styles.container}>
           <ClubFilter />
           <div className={styles.cardsWrapper}>
@@ -33,6 +40,7 @@ class Clubs extends Component {
             })}
           </div>
         </div>
+        <Pagination handlePageChange={this.handlePageChange}/>
         <Footer />
       </div>
     );
@@ -41,10 +49,12 @@ class Clubs extends Component {
 
 const mapStateToProps = (store) => ({
   clubs: store.clubs,
+  filterToggle: store.gamesFilterToggle,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getClubs: () => dispatch(getClubsAC()),
+  pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);
