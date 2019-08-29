@@ -12,11 +12,11 @@ export class ClubCollections extends Component {
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие клубы</h3>
           <div className={styles.clubList}>
-
-              {/*<ClubCard club={this.props.clubs[0]} />*/}
-              {/*<ClubCard club={this.props.clubs[0]} />*/}
-              {/*<ClubCard club={this.props.clubs[0]} />*/}
-              {/*<ClubCard club={this.props.clubs[0]} />*/}
+            {console.log('>>>>>>>>>>>>>>>',this.props.clubs[0])}
+              <ClubCard club={this.props.clubs[5]} />
+              <ClubCard club={this.props.clubs[7]} />
+              <ClubCard club={this.props.clubs[3]} />
+              <ClubCard club={this.props.clubs[1]} />
           </div>
           <div className={styles.allTags}>
 					<ul className={styles.popularTags}>
@@ -39,8 +39,5 @@ const mapStateToProps = (state) => ({
   clubs: state.clubs,
 });
 
-const mapDispatchToProps = {
 
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ClubCollections);
+export default connect(mapStateToProps)(ClubCollections);

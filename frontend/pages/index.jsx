@@ -20,21 +20,19 @@ class Index extends Component {
   }
 
   componentDidMount = async () => {
-    this.props.getGames(this.props.filterToggleGames);
-    this.props.getClubs(this.props.filterToggleClubs);
+    this.props.getGames();
+    this.props.getClubs();
   };
 
   componentWillUnmount () {
   };
 
   render () {
-    console.log('this.props index.js', this.props);
     return (<div>
       <Header />
       <IndexSearch />
       {(this.props.games.length) && <GameCollections />}
       {(this.props.clubs.length) && <ClubCollections />}
-      {/*<Page />*/}
       <Footer />
     </div>
     );
@@ -44,13 +42,11 @@ class Index extends Component {
 const mapStateToProps = (store) => ({
   clubs: store.clubs,
   games: store.games,
-  filterToggleClubs: store.clubsFilterToggle,
-  filterToggleGames: store.gamesFilterToggle,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
-  getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
+  getClubs: () => dispatch(getClubsAC()),
+  getGames: () => dispatch(getGamesAC()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

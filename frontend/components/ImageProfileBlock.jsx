@@ -9,9 +9,8 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 // import components
 
 const ImageProfileBlock = (props) => {
-  const { club, game, isClub, isGame } = props;
-  if (isClub)
-    return (
+  const { club = [], game = [], isClub, isGame } = props;
+  if (isClub) return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
         <img key={uuidv1()} src={IMG_URL_PREFIX + club.screenShot[0]} width="750" height="421"
@@ -25,6 +24,7 @@ const ImageProfileBlock = (props) => {
         </div>
       </div>
     );
+
   if (isGame) return (
     <div>
       {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
