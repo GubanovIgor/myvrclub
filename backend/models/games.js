@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const gameSchema = new mongoose.Schema({
   steam_appid: Number,
@@ -7,6 +8,7 @@ const gameSchema = new mongoose.Schema({
   description: String,
   short_description: String,
   clubs: [String],
+  clubsIds: [ObjectId],
   cover: String,
   screenShot: [String],
   videos: [Object],

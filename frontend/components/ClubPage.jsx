@@ -45,13 +45,6 @@ class ClubPage extends Component {
           <GameFilter/>
           <div className={cardsWrapper.cardsWrapper}>
 
-            {/*{loadingGame*/}
-            {/*? <div>Загрузка...</div>*/}
-            {/*: errorGame*/}
-            {/*? <div>Ошибка, попробуйте ещё раз</div>*/}
-            {/*: games && <div>{console.log('>>>>>>>>>>>>', games)}</div>}*/}
-
-
             {loadingGame
               ? <div>Загрузка...</div>
               : errorGame
