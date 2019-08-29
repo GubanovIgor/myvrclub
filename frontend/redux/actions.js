@@ -16,7 +16,7 @@ export const requestGames = () => (
   { type: actionTypes.REQUEST_GAMES }
 );
 
-export const getClubsAC = (filterToggleData) => (
+export const getClubsAC = (filterToggleData, pagination = 1) => (
   async (dispatch) => {
     console.log('InitState', InitState);
     dispatch(request());
@@ -34,10 +34,9 @@ export const getClubsAC = (filterToggleData) => (
       }
     }
 
-    console.log(checkedToggle)
-
     const filterData = {
       checkedToggle,
+      pagination,
     }
 
     const resp = await fetch('http://localhost:3100/club', {
@@ -67,7 +66,6 @@ export const getGamesAC = (
     dispatch(requestGames());
     let checkedToggle = {};
 
-    // if (filterToggleData) {
       Object.keys(filterToggleData).forEach( el => {
         checkedToggle[el] = [];
       });
@@ -79,7 +77,6 @@ export const getGamesAC = (
           }
         });
       });
-    // }
 
     const filterData = {
       checkedToggle,
@@ -128,10 +125,15 @@ export const requestSwitchPaginationValue = (value) => (
   { type: actionTypes.SWITCH_PAGINATION_VALUE, value }
 );
 
-export const switchPaginationValueAC = (value, filterToggleData) => (
+export const switchPaginationValueAC = (value, filterToggleData, type) => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
     console.log(filterToggleData);
-    dispatch(getGamesAC(filterToggleData, value));
+    if (type === 'game') {
+      dispatch(getGamesAC(filterToggleData, value));
+    }
+    if (type === 'club') {
+      dispatch(getClubsAC(filterToggleData, value));
+    }
   }
 );

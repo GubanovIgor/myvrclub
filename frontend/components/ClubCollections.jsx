@@ -13,10 +13,10 @@ export class ClubCollections extends Component {
           <h3 className={styles.title}>Лучшие клубы</h3>
           <div className={styles.clubList}>
 
-              <ClubCard club={this.props.clubs[13]} />
-              <ClubCard club={this.props.clubs[12]} />
-              <ClubCard club={this.props.clubs[5]} />
-              <ClubCard club={this.props.clubs[7]} />
+              {/*<ClubCard club={this.props.clubs[0]} />*/}
+              {/*<ClubCard club={this.props.clubs[0]} />*/}
+              {/*<ClubCard club={this.props.clubs[0]} />*/}
+              {/*<ClubCard club={this.props.clubs[0]} />*/}
           </div>
           <div className={styles.allTags}>
 					<ul className={styles.popularTags}>
