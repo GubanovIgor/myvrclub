@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  color: white;
+
+  border-radius: 5px;
+  background-color: #3071eb;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #5e98fb;
+  }
+
+  margin-right: 10px;
+}

@@ -6,11 +6,11 @@ router.post('/', async (req, res) => {
 
   const conditions =[];
 
-  console.log(req.body)
+  console.log(req.body);
 
   const categories = Object.keys(req.body.checkedToggle);
 
-  console.log(req.body.checkedToggle[categories[0]])
+  console.log(req.body.checkedToggle[categories[0]]);
 
   // Оборудование
   if (req.body.checkedToggle[categories[0]].length) {
@@ -19,18 +19,18 @@ router.post('/', async (req, res) => {
 
   // Год выхода
   if (req.body.checkedToggle[categories[2]].length) {
-    console.log(req.body.checkedToggle[categories[2]])
+    console.log(req.body.checkedToggle[categories[2]]);
     let years = [];
     req.body.checkedToggle[categories[2]].forEach(el => {
-      const reg  = new RegExp(`/.*${el}.*/`);
+      const reg  = new RegExp(`\.*${el}`);
       years.push({ year: reg })
-    })
+    });
 
-    const test = [ { year: /.*2018.*/ }, { year: /.*2017.*/ } ]
+    const test = [ { year: /.*2018.*/ }, { year: /.*2017.*/ } ];
     console.log(test);
     console.log(years);
 
-    conditions.push( { $or: test})
+    conditions.push( { $or: years})
   }
 
   // // Возраст
@@ -42,11 +42,13 @@ router.post('/', async (req, res) => {
   // if (req.body.checkedToggle[categories[3]].length) {
   //   conditions.push({})
   // }
-  console.log(conditions);
+  // console.log('conditions', conditions);
+
+  const skipItems = (req.body.pagination - 1) * 10;
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
-  );
+  ).skip(skipItems).limit(10);
 
   res.json(games);
 });
