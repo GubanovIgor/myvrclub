@@ -7,8 +7,9 @@ import styles from '../stylesheets/gameCard.module.scss';
 class GameCard extends Component {
   render() {
     const {game, gameName} = this.props;
+    console.log('game.urlName', game.urlName);
     return (
-      <Link href='/games/[urlname]' as={`games/${game.urlName}`}>
+        <Link href='/games/[urlname]' as={`/games/${game.urlName}`}>
         <div className={styles.container}>
           {
           <img className={styles.cover} src={game.cover}/>}

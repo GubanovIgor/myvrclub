@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 class ClubPage extends Component {
 
   componentDidMount() {
-    this.props.getGames();
+    this.props.getGames(undefined, undefined, this.props.club._id);
   }
 
   render() {
@@ -56,7 +56,8 @@ class ClubPage extends Component {
               ? <div>Загрузка...</div>
               : errorGame
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : games && (clubGames.map((game, index) => {
+                : games && (games.map((game, index) => {
+                // return <GameCard key={index} game={game}/>;
                 return <GameCard key={index} game={game}/>;
               }))}
 
@@ -80,7 +81,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGames: () => dispatch(getGamesAC()),
+    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }
 };
 

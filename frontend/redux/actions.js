@@ -57,7 +57,11 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
-export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagination = 1) => (
+export const getGamesAC = (
+  filterToggleData = InitState.gamesFilterToggle,
+  pagination = 1,
+  clubId = '',
+) => (
   async (dispatch) => {
 
     dispatch(requestGames());
@@ -77,11 +81,12 @@ export const getGamesAC = (filterToggleData = InitState.gamesFilterToggle, pagin
       });
     // }
 
-    console.log(checkedToggle);
     const filterData = {
       checkedToggle,
       pagination,
-    }
+      clubId,
+    };
+    console.log(filterData);
 
     const resp = await fetch('http://localhost:3100/game', {
       method: 'POST',
