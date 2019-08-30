@@ -5,8 +5,17 @@ import styles from '../stylesheets/map.module.scss';
 import {connect} from "react-redux";
 
 class Map extends Component {
+
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.props.clubs);
+
+    let baloons = [];
+    this.props.clubs.forEach(el => {
+      baloons.push(el.baloon);
+    });
+
+    console.log(baloons);
+
     ymaps.ready(init);
     let myMap;
 
@@ -15,8 +24,9 @@ class Map extends Component {
         center: [55.76, 37.64],
         zoom: 9,
       });
-      for (let i = 0; i < 1; i += 1) {
-        const newPlacemark = new ymaps.Placemark([55.708939, 37.592956], {
+
+      for (let i = 0; i < baloons.length; i += 1) {
+        const newPlacemark = new ymaps.Placemark(baloons[i], {
           content: 'Москва!',
           // balloonContent: `<p><strong>Название:</strong> ${data[i].title}</p>
           // <p><strong>Адрес:</strong> ${data[i].address}</p>
@@ -27,6 +37,7 @@ class Map extends Component {
 
         myMap.geoObjects.add(newPlacemark);
       }
+
     }
   }
 

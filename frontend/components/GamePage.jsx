@@ -49,6 +49,8 @@ class GamePage extends Component {
           <hr className={styles.breakLine}/>
         </section>
 
+        {(this.props.map) ? <Map /> : <p>qweqr</p>}
+
         {/*{(this.props.map) ? <Map /> :*/}
           {/*<div className={cardsWrapper.container}>*/}
             {/*<ClubFilter gameId={this.props.game._id}/>*/}
@@ -78,7 +80,6 @@ class GamePage extends Component {
         </div>
         <hr className={styles.breakLine}/>
         <Reviews />
-        <Map />
       </main>
     );
   }

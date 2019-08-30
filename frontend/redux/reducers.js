@@ -35,7 +35,17 @@ export const reducer = (state, action) => {
       return ({
         ...state,
         paginationValue: action.value,
-      })
+      });
+    case actionTypes.CHANGE_MAP:
+      return ({
+        ...state,
+        map: true,
+      });
+    case actionTypes.OFF_CHANGE_MAP:
+      return ({
+        ...state,
+        map: false,
+      });
 
     default:
       return state;
