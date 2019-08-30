@@ -8,6 +8,7 @@ export const InitState = {
   clubs: [],
   games: [],
   currentId: '',
+  map: false,
   loading: false,
   error: false,
   loadingGame: false,
