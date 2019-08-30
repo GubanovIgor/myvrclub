@@ -1,5 +1,5 @@
 .container {
-  width: 1140px;
+  max-width: 1140px;
   margin: 0 auto 60px;
   padding: 0;
 }
@@ -53,4 +53,18 @@
 
 .tags a:hover {
   text-decoration: none;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .gameList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    margin: 0 0 15px 0;
+    padding: 0;
+
+    list-style: none;
+  }
 }
