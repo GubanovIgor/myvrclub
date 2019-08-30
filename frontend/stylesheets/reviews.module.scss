@@ -1,5 +1,5 @@
 .container {
-  width: 1140px;
+  max-width: 1140px;
   margin: 0 auto 60px;
   padding: 0;
 }
@@ -36,7 +36,7 @@
 }
 
 .reviews ul {
-  width: 848px;
+  max-width: 848px;
 
   list-style: none;
 
@@ -93,4 +93,29 @@
 .tags a {
   color: #3071eb;
   text-decoration: underline;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .gameMark {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .gameMarkAmount {
+    font-size: 10px;
+  }
+
+  .reviewsName {
+    font-size: 10px;
+  }
+
+  .reviewsContent {
+    font-size: 10px;
+  }
+
+  .container {
+    margin: 0 10px 10px 20px;
+    padding: 0;
+  }
 }

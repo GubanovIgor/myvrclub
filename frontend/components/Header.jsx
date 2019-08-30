@@ -26,9 +26,9 @@ class Header extends Component {
             <li>
               <Link activeClassName={styles.siteNavigationActive} href='/clubs'><a>Клубы</a></Link>
             </li>
-            <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>
-            </li>
+            {/*<li>*/}
+              {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
+            {/*</li>*/}
           </ul>
           <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>

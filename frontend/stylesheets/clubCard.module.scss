@@ -1,3 +1,6 @@
+$mobile-card-width: 140px;
+$mobile-card-height: 140px;
+
 .container {
   position: relative;
 
@@ -17,6 +20,11 @@
   }
 
   transition: 0.5s;
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 .cover {
@@ -24,6 +32,11 @@
   height: 280px;
 
   border-radius: 10px;
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 .darkWrapper {
@@ -41,6 +54,11 @@
   height: 280px;
 
   background: linear-gradient(to top, black, transparent);
+
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 .description {
@@ -68,3 +86,14 @@
   text-align: center;
 }
 
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .titleWrapper {
+    margin: 10px auto;
+  }
+
+  .title {
+    padding-left: 20px;
+    font-size: 15px;
+  }
+}

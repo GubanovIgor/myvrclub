@@ -1,5 +1,5 @@
 .container {
-  width: 1140px;
+  max-width: 1140px;
   margin: 50px auto 25px;
   padding: 0;
 }
@@ -70,4 +70,26 @@
 
   margin-right: 10px;
   font-weight: 300;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .profileContent {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 20px auto 25px;
+    padding: 0;
+  }
+
+  .profileInformations {
+    max-width: 375px;
+    margin-top: 20px;
+  }
 }

@@ -1,5 +1,5 @@
 .container {
-  width: 1140px;
+  max-width: 1140px;
   margin: 50px auto 25px;
   padding: 0;
 }
@@ -47,4 +47,26 @@
 
 .button:active {
   background: linear-gradient(to top, #5e98fb, #75a5f8);
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .profileContent {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 20px auto 25px;
+    padding: 0;
+  }
+
+  .profileInformations {
+    max-width: 375px;
+    margin-top: 20px;
+  }
 }

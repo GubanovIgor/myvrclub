@@ -1,6 +1,9 @@
 $card-width: 282px;
 $card-height: 141px;
 
+$mobile-card-width: 141px;
+$mobile-card-height: 70px;
+
 .container {
   width: $card-width;
   height: $card-height;
@@ -9,6 +12,12 @@ $card-height: 141px;
   position: relative;
 
   margin-bottom: 80px;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 .cover {
@@ -24,6 +33,12 @@ $card-height: 141px;
 
   margin: 0;
   transition: 0.5s;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 .title {
@@ -60,6 +75,12 @@ $card-height: 141px;
   }
 
   transition: 0.5s;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: $mobile-card-width;
+    height: $mobile-card-height;
+  }
 }
 
 // Icon new
@@ -100,4 +121,10 @@ $card-height: 141px;
   background-color: #3071eb;
   color: white;
   text-align: center;
+
+  // Mobile
+  @media screen and (max-device-width: 375px) {
+    width: 15px;
+    height: 15px;
+  }
 }

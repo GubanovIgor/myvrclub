@@ -2,3 +2,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .img {
+    max-width: 375px;
+    max-height: 210px;
+  }
+
+  .screen {
+    width: 72px;
+    height: 40px;
+  }
+}
