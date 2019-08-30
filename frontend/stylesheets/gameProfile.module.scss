@@ -77,10 +77,19 @@
   .profileContent {
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 20px auto 25px;
+    padding: 0;
   }
 
   .profileInformations {
     max-width: 375px;
-    margin
+    margin-top: 20px;
   }
 }
