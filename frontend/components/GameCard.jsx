@@ -16,7 +16,7 @@ class GameCard extends Component {
           <p className={styles.title}>{game.name}</p>
           <p className={styles.title}>{gameName}</p>
           <div className={styles.darkWrapper}/>
-          <div className={styles.new}>new</div>
+          {/*<div className={styles.new}>new</div>*/}
           <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
         </div>
       </Link>

@@ -23,7 +23,7 @@
 //}
 
 .container {
-  width: 1140px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
 }
@@ -92,4 +92,40 @@
 
 .infoList li {
   margin-bottom: 10px;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .socialList :first-child {
+    font-size: 12px;
+  }
+
+  .infoList :first-child {
+    font-size: 12px;
+  }
+
+  .infoList :not(:first-child) a {
+    font-size: 10px;
+  }
+
+  .reference li {
+    margin-right: 5px;
+  }
+
+  .socialList li {
+    margin-right: 5px;
+  }
+
+  .infoList {
+    margin: 0 10px 0 0;
+    padding: 0;
+  }
+
+  .reference,
+  .mainFooterInfo {
+    display: flex;
+
+    margin: 0;
+    padding: 30px 0 30px 30px;
+  }
 }

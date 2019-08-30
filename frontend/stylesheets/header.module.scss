@@ -69,5 +69,12 @@
     margin-left: auto;
 }
 
+// Mobile
+@media screen and (max-device-width: 375px) {
+    .mainNavigation {
+        font-size: 12px;
+    }
+}
+
 
 

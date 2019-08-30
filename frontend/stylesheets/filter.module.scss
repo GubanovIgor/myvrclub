@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
 
-  //border-left: 1px solid #e8eaed;
   border-right: 1px solid #e8eaed;
 
   width: 170px;
@@ -37,4 +36,14 @@
   margin-bottom: 10px;
 
   cursor: pointer;
+}
+
+@media screen and (max-device-width: 375px) {
+  .container {
+    width: 90px;
+  }
+
+  .breakLine {
+    width: 80px;
+  }
 }
