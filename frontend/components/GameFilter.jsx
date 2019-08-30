@@ -11,7 +11,7 @@ import { filterToggleGamesAC, getGamesAC } from '../redux/actions';
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
-    this.props.getGames(this.props.filterToggle);
+    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
   };
 
   render() {
@@ -38,7 +38,7 @@ const mapStateToProps = (store) => ({
 function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleGamesAC(item, category)),
-    getGames: (filterToggleData) => dispatch(getGamesAC(filterToggleData)),
+    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   };
 }
 

@@ -18,6 +18,10 @@ class ClubPage extends Component {
     this.props.getGames(undefined, undefined, this.props.club._id);
   }
 
+  componentWillUnmount() {
+
+  }
+
   render() {
     const { club, games, loadingGame, errorGame } = this.props;
     // let clubGames = [];
@@ -42,7 +46,7 @@ class ClubPage extends Component {
         </section>
 
         <div className={cardsWrapper.container}>
-          <GameFilter/>
+          <GameFilter clubId={this.props.club._id}/>
           <div className={cardsWrapper.cardsWrapper}>
 
             {loadingGame

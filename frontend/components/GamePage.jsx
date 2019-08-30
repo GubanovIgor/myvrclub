@@ -16,6 +16,7 @@ class GamePage extends Component {
 
   componentDidMount() {
     this.props.getClubs(undefined, undefined, this.props.game._id);
+    console.log('this.props.game._id', this.props.game._id);
   }
 
   render() {
@@ -36,7 +37,7 @@ class GamePage extends Component {
         </section>
 
         <div className={cardsWrapper.container}>
-          <ClubFilter />
+          <ClubFilter gameId={this.props.game._id}/>
           <div className={cardsWrapper.cardsWrapper}>
             {loading
               ? <div>Загрузка...</div>
@@ -65,7 +66,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getClubs: (filterToggleData, pagination, clubId) => dispatch(getClubsAC(filterToggleData, pagination, clubId)),
+    getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
   }
 };
 

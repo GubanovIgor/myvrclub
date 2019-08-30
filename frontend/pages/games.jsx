@@ -20,9 +20,7 @@ class Games extends Component {
   };
 
   componentDidMount = async () => {
-    if (this.props.games.length === 0) {
       this.props.getGames();
-    }
   };
 
   render() {

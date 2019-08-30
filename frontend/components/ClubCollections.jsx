@@ -15,7 +15,7 @@ export class ClubCollections extends Component {
             {console.log('>>>>>>>>>>>>>>>',this.props.clubs[0])}
               <ClubCard club={this.props.clubs[5]} />
               <ClubCard club={this.props.clubs[7]} />
-              <ClubCard club={this.props.clubs[3]} />
+              <ClubCard club={this.props.clubs[4]} />
               <ClubCard club={this.props.clubs[1]} />
           </div>
           <div className={styles.allTags}>
