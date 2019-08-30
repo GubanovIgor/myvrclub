@@ -49,7 +49,7 @@ class GamePage extends Component {
           <hr className={styles.breakLine}/>
         </section>
 
-        {(this.props.map) ? <Map /> : <p>qweqr</p>}
+        {/*{(this.props.map) ? <Map /> : <p>qweqr</p>}*/}
 
         {/*{(this.props.map) ? <Map /> :*/}
           {/*<div className={cardsWrapper.container}>*/}
@@ -66,6 +66,19 @@ class GamePage extends Component {
           {/*</div>*/}
         {/*}*/}
 
+        {/*<div className={cardsWrapper.container}>*/}
+          {/*<ClubFilter gameId={this.props.game._id}/>*/}
+          {/*<div className={cardsWrapper.cardsWrapper}>*/}
+            {/*{loading*/}
+              {/*? <div>Загрузка...</div>*/}
+              {/*: error*/}
+                {/*? <div>Ошибка, попробуйте ещё раз</div>*/}
+                {/*: clubs && (clubs.map((club, index) => {*/}
+                {/*return <ClubCard key={index} club={club}/>;*/}
+              {/*}))}*/}
+          {/*</div>*/}
+        {/*</div>*/}
+
         <div className={cardsWrapper.container}>
           <ClubFilter gameId={this.props.game._id}/>
           <div className={cardsWrapper.cardsWrapper}>
@@ -73,7 +86,7 @@ class GamePage extends Component {
               ? <div>Загрузка...</div>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : clubs && (clubs.map((club, index) => {
+                : clubs && (this.props.map) ? <Map/> : (clubs.map((club, index) => {
                 return <ClubCard key={index} club={club}/>;
               }))}
           </div>

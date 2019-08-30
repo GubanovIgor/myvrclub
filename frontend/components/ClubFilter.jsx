@@ -51,7 +51,7 @@ class ClubFilter extends Component {
           {/*/><br></br>*/}
           <div>
             <input onClick={this.offChangeMap} type="radio" id="huey" name="drone" value="huey"
-                   checked/>
+                   />
               <label htmlFor="huey">По рейтингу</label>
           </div>
 
