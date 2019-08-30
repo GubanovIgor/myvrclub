@@ -10,9 +10,9 @@ const gameRouter = require('./routes/game');
 const port = 3100;
 let app = express();
 
-mongoose.connect('mongodb://localhost:27017/myvrclub', { useNewUrlParser: true, useCreateIndex: true });
-//mongoose.connect(`mongodb+srv://rom:<passw>cluster0-woi64.mongodb.net/myvrclub`, { useNewUrlParser: true, useCreateIndex: true });
-//mongoose.connect('mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true });
+//mongoose.connect('mongodb://localhost:27017/myvrclub', { useNewUrlParser: true, useCreateIndex: true });
+//mongoose.connect(`mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect('mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true });
 
 app.use(morgan('dev'));
 
