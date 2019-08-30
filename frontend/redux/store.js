@@ -8,6 +8,7 @@ export const InitState = {
   clubs: [],
   games: [],
   currentId: '',
+  map: false,
   loading: false,
   error: false,
   loadingGame: false,
@@ -40,37 +41,37 @@ export const InitState = {
         '2013',
       ],
     },
-    {
-      title: 'Возраст',
-      value: [
-        '0+',
-        '3+',
-        '7+',
-        '12+',
-        '16+',
-        '18+',
-      ],
-    },
-    {
-      title: 'Теги',
-      value: [
-        'Зомби',
-        'Для детей',
-        'Музыка',
-        'Много крови',
-        'Магия',
-        'Для взрослых',
-      ],
-    },
-    {
-      title: 'Оборудование',
-      value: [
-        'PS VR',
-        'Oculus Rift',
-        'HTC Vive',
-        'Full Body VR',
-      ],
-    },
+    // {
+    //   title: 'Возраст',
+    //   value: [
+    //     '0+',
+    //     '3+',
+    //     '7+',
+    //     '12+',
+    //     '16+',
+    //     '18+',
+    //   ],
+    // },
+    // {
+    //   title: 'Теги',
+    //   value: [
+    //     'Зомби',
+    //     'Для детей',
+    //     'Музыка',
+    //     'Много крови',
+    //     'Магия',
+    //     'Для взрослых',
+    //   ],
+    // },
+    // {
+    //   title: 'Оборудование',
+    //   value: [
+    //     'PS VR',
+    //     'Oculus Rift',
+    //     'HTC Vive',
+    //     'Full Body VR',
+    //   ],
+    // },
   ],
   gamesFilterToggle: {
     'Жанр': {

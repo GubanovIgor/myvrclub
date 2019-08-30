@@ -1,0 +1,18 @@
+.title {
+  text-align: center;
+  margin: 60px auto;
+  font-size: 23px;
+  font-weight: lighter;
+  line-height: 60px;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .title {
+    text-align: center;
+    margin: 30px auto;
+    font-size: 12px;
+    font-weight: lighter;
+    line-height: 30px;
+  }
+}

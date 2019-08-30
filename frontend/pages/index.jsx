@@ -11,6 +11,9 @@ import { serverRenderClock, startClock } from '../redux/actions';
 // import AC
 import { getClubsAC, getGamesAC } from '../redux/actions';
 
+// SASS
+import styles from '../stylesheets/index.module.scss'
+
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
@@ -30,7 +33,11 @@ class Index extends Component {
   render () {
     return (<div>
       <Header />
-      <IndexSearch />
+      {/*<IndexSearch />*/}
+      <div className={styles.title}>
+        <h1>myvrclub.ru</h1>
+        <h1>Агрегатор клубов виртуальной реальности</h1>
+      </div>
       {(this.props.games.length) && <GameCollections />}
       {(this.props.clubs.length) && <ClubCollections />}
       <Footer />
