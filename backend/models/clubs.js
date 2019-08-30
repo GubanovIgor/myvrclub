@@ -22,6 +22,7 @@ const clubSchema = new mongoose.Schema({
   price: [Number],
   rent: Boolean,
   discounts: [String],
+  baloon: [String]
 });
 
 clubSchema.statics.getClubs = async function () {
