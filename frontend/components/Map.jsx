@@ -14,7 +14,12 @@ class Map extends Component {
       baloons.push(el.baloon);
     });
 
-    console.log(baloons);
+    let domains = [];
+    this.props.clubs.forEach(el => {
+      domains.push(el.domain);
+    });
+
+    console.log(domains);
 
     ymaps.ready(init);
     let myMap;
@@ -28,7 +33,7 @@ class Map extends Component {
       for (let i = 0; i < baloons.length; i += 1) {
         const newPlacemark = new ymaps.Placemark(baloons[i], {
           content: 'Москва!',
-          // balloonContent: `<p><strong>Название:</strong> ${data[i].title}</p>
+          balloonContent: `<p><strong>сайт:</strong>${domains[i]}</p>`
           // <p><strong>Адрес:</strong> ${data[i].address}</p>
           // <p><strong>Стоимость:</strong> ${data[i].price} ₽/30мин</p>
           // <a href="${data[i].site}" alt="">веб-сайт</a>
