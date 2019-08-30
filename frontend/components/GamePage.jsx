@@ -78,6 +78,7 @@ class GamePage extends Component {
         </div>
         <hr className={styles.breakLine}/>
         <Reviews />
+        <Map />
       </main>
     );
   }
