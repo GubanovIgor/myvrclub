@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import styles from '../stylesheets/filter.module.scss';
 
 //import AC
+import { changeMapAC, offChangeMapAC } from '../redux/actions';
 
 // import components
 import FilterSection from '../components/FilterSection';
-import { filterToggleClubsAC, getClubsAC } from "../redux/actions";
+import {filterToggleClubsAC, getClubsAC} from "../redux/actions";
 
 class ClubFilter extends Component {
 
@@ -31,15 +32,33 @@ class ClubFilter extends Component {
     this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId);
   };
 
+  onChangeMap = () => {
+    this.props.changeMap();
+  };
+
+  offChangeMap = () => {
+    this.props.offChangeMap();
+  }
+
   render() {
     return (
       <div className={styles.container}>
         <div>
-          <h3>Метро</h3>
-          {/*<TextInput onRequestOptions={this.handleRequestOptions} options={this.state.options}/>*/}
-          <input
-            className={styles.metroInput} placeholder='охотный ряд' type='text' id='1'
-          /><br></br>
+          <h3>Показывать</h3>
+          {/*/!*<TextInput onRequestOptions={this.handleRequestOptions} options={this.state.options}/>*!/*/}
+          {/*<input*/}
+            {/*className={styles.metroInput} placeholder='охотный ряд' type='text' id='1'*/}
+          {/*/><br></br>*/}
+          <div>
+            <input onClick={this.offChangeMap} type="radio" id="huey" name="drone" value="huey"
+                   />
+              <label htmlFor="huey">По рейтингу</label>
+          </div>
+
+          <div>
+            <input onClick={this.onChangeMap} type="radio" id="dewey" name="drone" value="dewey"/>
+              <label htmlFor="dewey">На карте</label>
+          </div>
         </div>
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
@@ -63,6 +82,8 @@ function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
+    changeMap: () => dispatch(changeMapAC()),
+    offChangeMap: () => dispatch(offChangeMapAC()),
   };
 }
 
