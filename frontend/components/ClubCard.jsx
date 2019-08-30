@@ -8,10 +8,11 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 class ClubCard extends Component {
 
   render() {
-    const { club } = this.props;
+    const { club = {} } = this.props;
+    //console.log('club>>>>>>>>>>>>.', club);
     return (
       <div>
-        <Link href='/clubs/[urlname]' as={`clubs/${club.urlName}`}>
+        <Link href='/clubs/[urlname]' as={`/clubs/${club.urlName}`}>
           <a>
           <div className={styles.container}>
             <img className={styles.cover} src={IMG_URL_PREFIX+club.cover}/>

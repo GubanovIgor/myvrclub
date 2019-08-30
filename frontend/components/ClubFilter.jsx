@@ -28,7 +28,7 @@ class ClubFilter extends Component {
   // Метод для передачи изменений чекбоксов фильтра в стор
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
-    this.props.getClubs(this.props.filterToggle);
+    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId);
   };
 
   render() {
@@ -62,7 +62,7 @@ const mapStateToProps = (store) => ({
 function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
-    getClubs: (filterToggleData) => dispatch(getClubsAC(filterToggleData)),
+    getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
   };
 }
 

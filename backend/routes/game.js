@@ -48,12 +48,12 @@ router.post('/', async (req, res) => {
 
   const skipItems = (req.body.pagination - 1) * 18;
 
-  // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!', conditions);
+  console.log('conditions >>>>', conditions);
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
   ).skip(skipItems).limit(18);
-
+  console.log('games >>>>', games.length);
   res.json(games);
 });
 

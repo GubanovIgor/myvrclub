@@ -20,8 +20,7 @@ class Clubs extends Component {
   };
 
   componentDidMount = async () => {
-    console.log('componentDidMount clubs');
-    if (this.props.clubs.length === 0) this.props.getClubs();
+    this.props.getClubs();
   };
 
   render() {

@@ -18,15 +18,19 @@ class ClubPage extends Component {
     this.props.getGames(undefined, undefined, this.props.club._id);
   }
 
+  componentWillUnmount() {
+
+  }
+
   render() {
     const { club, games, loadingGame, errorGame } = this.props;
-    let clubGames = [];
-    if (!loadingGame) {
-      club.gamesIds.map((gameIds, index) => {
-        console.log('games', games.find(x => x._id === gameIds))
-        clubGames.push(games.find(x => x._id === gameIds))
-      })
-    }
+    // let clubGames = [];
+    // if (!loadingGame) {
+    //   club.gamesIds.map((gameIds, index) => {
+    //     console.log('games', games.find(x => x._id === gameIds))
+    //     clubGames.push(games.find(x => x._id === gameIds))
+    //   })
+    // }
     return (
       <main>
         <ClubProfile club={club}/>
@@ -42,15 +46,8 @@ class ClubPage extends Component {
         </section>
 
         <div className={cardsWrapper.container}>
-          <GameFilter/>
+          <GameFilter clubId={this.props.club._id}/>
           <div className={cardsWrapper.cardsWrapper}>
-
-            {/*{loadingGame*/}
-            {/*? <div>Загрузка...</div>*/}
-            {/*: errorGame*/}
-            {/*? <div>Ошибка, попробуйте ещё раз</div>*/}
-            {/*: games && <div>{console.log('>>>>>>>>>>>>', games)}</div>}*/}
-
 
             {loadingGame
               ? <div>Загрузка...</div>

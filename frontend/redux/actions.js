@@ -1,7 +1,7 @@
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
-import { InitState} from "./store";
+import { InitState } from "./store";
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -16,13 +16,16 @@ export const requestGames = () => (
   { type: actionTypes.REQUEST_GAMES }
 );
 
-export const getClubsAC = (filterToggleData, pagination = 1) => (
+export const getClubsAC = (
+  filterToggleData,
+  pagination = 1,
+  gameId = '') => (
   async (dispatch) => {
     console.log('InitState', InitState);
     dispatch(request());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
-    if(filterToggleData) {
+    if (filterToggleData) {
       const keys = Object.keys(filterToggleData);
       for (let i = 0; i < keys.length; i++) {
         const categoryKeys = Object.keys(filterToggleData[keys[i]]);
@@ -37,7 +40,8 @@ export const getClubsAC = (filterToggleData, pagination = 1) => (
     const filterData = {
       checkedToggle,
       pagination,
-    }
+      gameId
+    };
 
     const resp = await fetch('http://localhost:3100/club', {
       method: 'POST',
@@ -66,17 +70,17 @@ export const getGamesAC = (
     dispatch(requestGames());
     let checkedToggle = {};
 
-      Object.keys(filterToggleData).forEach( el => {
-        checkedToggle[el] = [];
-      });
+    Object.keys(filterToggleData).forEach(el => {
+      checkedToggle[el] = [];
+    });
 
-      Object.keys(filterToggleData).forEach( el => {
-        Object.keys(filterToggleData[el]).forEach( elInner => {
-          if (filterToggleData[el][elInner]) {
-            checkedToggle[el].push(elInner)
-          }
-        });
+    Object.keys(filterToggleData).forEach(el => {
+      Object.keys(filterToggleData[el]).forEach(elInner => {
+        if (filterToggleData[el][elInner]) {
+          checkedToggle[el].push(elInner)
+        }
       });
+    });
 
     const filterData = {
       checkedToggle,

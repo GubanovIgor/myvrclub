@@ -9,11 +9,18 @@ import ClubCard from '../components/ClubCard';
 import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
+import { getClubsAC } from '../redux/actions';
+import { connect } from 'react-redux';
 
 class GamePage extends Component {
 
+  componentDidMount() {
+    this.props.getClubs(undefined, undefined, this.props.game._id);
+    console.log('this.props.game._id', this.props.game._id);
+  }
+
   render() {
-    const { game } = this.props;
+    const { game = [], clubs, loading, error} = this.props;
     return (
       <main>
         <GameProfile game={game}/>
@@ -30,8 +37,15 @@ class GamePage extends Component {
         </section>
 
         <div className={cardsWrapper.container}>
-          <ClubFilter />
+          <ClubFilter gameId={this.props.game._id}/>
           <div className={cardsWrapper.cardsWrapper}>
+            {loading
+              ? <div>Загрузка...</div>
+              : error
+                ? <div>Ошибка, попробуйте ещё раз</div>
+                : clubs && (clubs.map((club, index) => {
+                return <ClubCard key={index} club={club}/>;
+              }))}
           </div>
         </div>
         <hr className={styles.breakLine}/>
@@ -42,4 +56,18 @@ class GamePage extends Component {
   }
 }
 
-export default GamePage;
+const mapStateToProps = (store) => {
+  return {
+    clubs: store.clubs,
+    loading: store.loading,
+    error: store.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

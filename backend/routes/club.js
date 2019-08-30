@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Club = require('../models/clubs');
-
+const Game = require('../models/games');
 // router.get('/', async (req, res) => {
 //   const clubs = await Club.find();
 //   res.json(clubs);
@@ -10,6 +10,13 @@ const Club = require('../models/clubs');
 router.post('/', async (req, res) => {
 
   const conditions =[];
+
+  // Для конкретной игры в клубе
+  if (req.body.gameId.length) {
+     const game = await Game.findById(req.body.gameId);
+    console.log('games in club id>>>>>>>', game.clubsIds);
+    conditions.push({ _id: { $in: game.clubsIds } })
+  }
 
   if (req.body.checkedToggle[0].length) {
     console.log(req.body.checkedToggle[0]);
@@ -27,7 +34,7 @@ router.post('/', async (req, res) => {
   const clubs = await Club.find(
     conditions.length ? { $and: conditions } : {}
   ).skip(skipItems).limit(9);
-
+  console.log('clubs.length>>>>>', clubs.length);
   res.json(clubs);
 });
 
