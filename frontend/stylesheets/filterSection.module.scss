@@ -33,3 +33,9 @@
 
   cursor: pointer;
 }
+
+@media screen and (max-device-width: 375px) {
+  .breakLine {
+    width: 80px;
+  }
+}

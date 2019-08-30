@@ -12,15 +12,26 @@
 
   flex-wrap: wrap;
 
-  min-width: 947px;
-  max-width: 947px;
+  //min-width: 947px;
+  //max-width: 947px;
 }
 
 .titleWrapper {
-  width: 1200px;
   margin: 40px auto;
 }
 
 .title {
   padding-left: 233px;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  .titleWrapper {
+    margin: 10px auto;
+  }
+
+  .title {
+    padding-left: 20px;
+    font-size: 15px;
+  }
 }

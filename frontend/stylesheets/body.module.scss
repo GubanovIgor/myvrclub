@@ -10,8 +10,15 @@
 
   background-repeat: no-repeat;
 }
-hdgdhs
 
 :global body a {
   text-decoration: none;
+}
+
+// Mobile
+@media screen and (max-device-width: 375px) {
+  :global body {
+    font-size: 10px;
+    line-height: 19px;
+  }
 }

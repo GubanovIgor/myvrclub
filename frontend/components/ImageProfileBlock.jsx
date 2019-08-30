@@ -14,12 +14,12 @@ const ImageProfileBlock = (props) => {
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-        <img key={uuidv1()} src={IMG_URL_PREFIX + club.screenShot[0]} width="750" height="421"
+        <img className={styles.img} key={uuidv1()} src={IMG_URL_PREFIX + club.screenShot[0]} width="750" height="421"
              alt={props.club.name}/>
         <div className={styles.screenshotsSwitch}>
           {club.screenShot.map((imgLink, index) => {
             if (index === 0) return;
-            return <img key={uuidv1()} src={IMG_URL_PREFIX + imgLink} width="144" height="81"
+            return <img className={styles.screen} key={uuidv1()} src={IMG_URL_PREFIX + imgLink} width="144" height="81"
                         alt={props.club.name}/>
           })}
         </div>
@@ -28,12 +28,12 @@ const ImageProfileBlock = (props) => {
   if (isGame) return (
     <div>
       {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-      <img key={uuidv1()} src={game.screenShot[0]} width="750" height="421"
+      <img className={styles.img} key={uuidv1()} src={game.screenShot[0]} width="750" height="421"
            alt={props.game.name}/>
       <div className={styles.screenshotsSwitch}>
         {game.screenShot.map((imgLink, index) => {
           if (index === 0 || index > 5) return;
-          return <img key={uuidv1()} src={imgLink} width="144" height="81"
+          return <img className={styles.screen} key={uuidv1()} src={imgLink} width="144" height="81"
                       alt={props.game.name}/>
         })}
       </div>
