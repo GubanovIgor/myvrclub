@@ -1,4 +1,4 @@
-# [myvrclub.ru](https://myvrclub.ru)
+# [myvrclub.ru](https://myvrclub.herokuapp.com)
 
 ## Описание
 Агрегатор клубов виртуалной реальности
