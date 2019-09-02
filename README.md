@@ -43,4 +43,5 @@ npm run start
 - [Губанов Игорь](https://github.com/GubanovIgor)
 
 ## Контакты
-applecake@inbox.ru
+- applecake@inbox.ru
+- i.e.gubanov@gmail.com
