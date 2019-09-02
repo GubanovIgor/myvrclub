@@ -1,3 +1,8 @@
+# Агрегатор клубов виртуальной реальности
 # [myvrclub.ru](https://myvrclub.ru)
-## Агрегатор клубов виртуальной реальности
+
+## Создатели:
+- [Адам Балкоев](https://github.com/balkoev)
+- [Роман Парамзин](https://github.com/filpoyma)
+- [Губанов Игорь](https://github.com/GubanovIgor)
 
