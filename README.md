@@ -41,3 +41,6 @@ npm run start
 - [Адам Балкоев](https://github.com/balkoev)
 - [Роман Парамзин](https://github.com/filpoyma)
 - [Губанов Игорь](https://github.com/GubanovIgor)
+
+## Контакты
+applecake@inbox.ru
