@@ -18,6 +18,7 @@
     "needle": "^2.4.0",
     "node-fetch": "^2.6.0",
     "package": "^1.0.1",
-    "transliterate-cyrillic-text-to-latin-url": "^1.1.1"
+    "transliterate-cyrillic-text-to-latin-url": "^1.1.1",
+    "js-yaml": ">=3.13.1"
   }
 }
