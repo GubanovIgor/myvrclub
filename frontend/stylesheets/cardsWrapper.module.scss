@@ -31,15 +31,19 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 375px) {
+@media screen and (max-device-width: 425px) {
+  .container {
+    flex-direction: column;
+  }
+
   .titleWrapper {
+    justify-content: space-around;
     margin: 10px auto;
   }
 
   .title {
-    padding-left: 20px;
+    padding-left: 0;
     font-size: 15px;
-    width: 200px;
   }
 
   .filterButton {
@@ -49,10 +53,7 @@
     border: 1px solid #5e98fb;
     background: linear-gradient(to top, #5e98fb, #69a1ff);
 
-    //width: 20%;
     height: 25px;
-
-    //padding: auto;
 
     cursor: pointer;
   }

@@ -12,7 +12,7 @@ import ClubFilter from '../components/ClubFilter';
 import Pagination from '../components/Pagination';
 
 // import AC
-import { getClubsAC, switchPaginationValueAC } from '../redux/actions';
+import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Clubs extends Component {
   handlePageChange = async (pageNumber) => {
@@ -23,16 +23,25 @@ class Clubs extends Component {
     this.props.getClubs();
   };
 
+  showFilter = () => {
+    this.props.showFilterToggle();
+  }
+
   render() {
+
+    const divStyle = {
+      display: 'white',
+    };
+
     return (
       <div>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов</h1>
-          <button className={styles.filterButton}>Показать фильтр</button>
+          <button onClick={this.showFilter} className={styles.filterButton}>Фильтры</button>
         </div>
         <div className={styles.container}>
-          <ClubFilter />
+          {(this.props.showFilter) && <ClubFilter />}
           <div className={styles.cardsWrapper}>
             {this.props.clubs.map((club, index) => {
               return <ClubCard key={ index } club={club}/>;
@@ -47,11 +56,13 @@ class Clubs extends Component {
 }
 
 const mapStateToProps = (store) => ({
+  showFilter: store.showFilter,
   clubs: store.clubs,
   filterToggle: store.gamesFilterToggle,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  showFilterToggle: () => dispatch(showFilterToggleAC()),
   getClubs: () => dispatch(getClubsAC()),
   pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
 });

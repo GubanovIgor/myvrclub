@@ -155,3 +155,10 @@ export const offChangeMapAC = () => {
     type: actionTypes.OFF_CHANGE_MAP,
   }
 };
+
+// Показать мобильный фильтр
+export const showFilterToggleAC = () => {
+  return {
+    type: actionTypes.SHOW_FILTER_TOGGLE,
+  }
+};

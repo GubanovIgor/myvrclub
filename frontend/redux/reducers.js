@@ -46,6 +46,11 @@ export const reducer = (state, action) => {
         ...state,
         map: false,
       });
+    case actionTypes.SHOW_FILTER_TOGGLE:
+      return ({
+        ...state,
+        showFilter: !state.showFilter,
+      })
 
     default:
       return state;
