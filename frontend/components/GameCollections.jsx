@@ -17,17 +17,17 @@ export class GameCollections extends Component {
             <GameCard game={this.props.games[5]} />
             <GameCard game={this.props.games[7]} />
           </div>
-          <div className={styles.allTags}>
-              <ul className={styles.popularTags}>
-                <li><a href="#">Гонки</a></li>
-                <li><a href="#">Зомби</a></li>
-                <li><a href="#">Экшен</a></li>
-                <li><a href="#">Мультиплеер</a></li>
-              </ul>
-              <ul className={styles.tags}>
-                <li><a href="#">Все игры</a></li>
-              </ul>
-            </div>
+          {/* <div className={styles.allTags}>
+            <ul className={styles.popularTags}>
+              <li><a href="#">Гонки</a></li>
+              <li><a href="#">Зомби</a></li>
+              <li><a href="#">Экшен</a></li>
+              <li><a href="#">Мультиплеер</a></li>
+            </ul>
+            <ul className={styles.tags}>
+              <li><a href="#">Все игры</a></li>
+            </ul>
+          </div> */}
         </section>
       </div>
     );

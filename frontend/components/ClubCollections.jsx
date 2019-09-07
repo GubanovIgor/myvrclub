@@ -18,7 +18,7 @@ export class ClubCollections extends Component {
               <ClubCard club={this.props.clubs[4]} />
               <ClubCard club={this.props.clubs[1]} />
           </div>
-          <div className={styles.allTags}>
+          {/* <div className={styles.allTags}>
 					<ul className={styles.popularTags}>
 						<li><a href="#">Full Body VR</a></li>
 						<li><a href="#">Клубы рядом</a></li>
@@ -28,7 +28,7 @@ export class ClubCollections extends Component {
 					<ul className={styles.tags}>
 						<li><a href="#">Все клубы</a></li>
 					</ul>
-				</div>
+				</div> */}
         </section>
       </div>
     );
