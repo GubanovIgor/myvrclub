@@ -16,7 +16,7 @@ let idGame = async () => {
     let IDTmp = [];
     let j = Math.floor(Math.random() * 10) + 5;
     for (let i = 0; i <= j; i++) {
-      let rndIndex = Math.floor(Math.random() * 20) +1; //кол во клубов
+      let rndIndex = Math.floor(Math.random() * 20) +1;
        gameclubsTmp.push(clubs[rndIndex].name);
        IDTmp.push(clubs[rndIndex].id)
     }

@@ -35,7 +35,8 @@ mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 let addGames = async () => {
   let gameIds = fs.readFileSync('VrGameList.txt', 'utf8').split(',');
   let data = null;
-  for (let i = 3500; i < gameIds.length; i++) {
+  for (let i = 0; i < gameIds.length; i++) {
+    let fetch_i=0;
     while (true) {
       if (data && data[gameIds[i]]) {
         break;
@@ -43,50 +44,59 @@ let addGames = async () => {
         let url = `https://store.steampowered.com/api/appdetails?appids=${gameIds[i]}`;
         let response = await fetch(url);
         data = await response.json();
-        console.log(gameIds.length);
-      };
-    };
+        console.log(fetch_i++, gameIds.length, );
+      }
+    }
 
     let screenShot;
     let genre;
-    if (data[gameIds[i]].data.screenshots) {
-      screenShot = data[gameIds[i]].data.screenshots.map(item => item = item.path_full);
-    } else {
-      screenShot = '';
-    };
+    let errLogs = [];
+    try {
+      if (typeof data[gameIds[i]].data.screenshots !== 'undefined') {
+        screenShot = data[gameIds[i]].data.screenshots.map(item => item.path_full);
+      }
+    } catch (e) {
+      console.log('catched error - ', e);
+      errLogs.push(e);
+      screenShot = [];
+    }
 
-    if (data[gameIds[i]].data.genres) {
-      genre = data[gameIds[i]].data.genres.map(item => item = item.description);
-    } else {
-      genre = '';
-    };
-
-    let newGame = new Game({
-      steam_appid: data[gameIds[i]].data.steam_appid,
-      name: data[gameIds[i]].data.name,
-      urlName: transliterate(data[gameIds[i]].data.name),
-      detailed_description: data[gameIds[i]].data.detailed_description,
-      short_description: data[gameIds[i]].data.short_description,
-      ageLimit: data[gameIds[i]].data.required_age,
-      language: data[gameIds[i]].data.supported_languages,
-      cover: data[gameIds[i]].data.header_image,
-      screenShot: screenShot,
-      videos: data[gameIds[i]].data.movies,
-      genre: genre,
-      os: data[gameIds[i]].data.platforms,
-      year: data[gameIds[i]].data.release_date.date,
-      developer: data[gameIds[i]].data.developers,
-      publisher: data[gameIds[i]].data.publishers,
-      website: data[gameIds[i]].data.website,
-    });
-    await newGame.save();
-    console.log(`Итерация ${i}`);
-
-    // console.log(`Игра ${data[gameIds[i]].data.name} добавлена в БД!`);
-  };
-
+    try {
+      if (typeof data[gameIds[i]].data.genres !== 'undefined') {
+        genre = data[gameIds[i]].data.genres.map(item => item.description);
+      }
+    } catch (e) {
+      console.log('catched error - ', e);
+      errLogs.push(e);
+      genre = [];
+    }
+try {
+  let newGame = new Game({
+    steam_appid: data[gameIds[i]].data.steam_appid,
+    name: data[gameIds[i]].data.name,
+    urlName: transliterate(data[gameIds[i]].data.name),
+    detailed_description: data[gameIds[i]].data.detailed_description,
+    short_description: data[gameIds[i]].data.short_description,
+    ageLimit: data[gameIds[i]].data.required_age,
+    language: data[gameIds[i]].data.supported_languages,
+    cover: data[gameIds[i]].data.header_image,
+    screenShot: screenShot,
+    videos: data[gameIds[i]].data.movies,
+    genre: genre,
+    os: data[gameIds[i]].data.platforms,
+    year: data[gameIds[i]].data.release_date.date,
+    developer: data[gameIds[i]].data.developers,
+    publisher: data[gameIds[i]].data.publishers,
+    website: data[gameIds[i]].data.website,
+  });
+    //await newGame.save();
+} catch (e) {
+  console.log('catched error in NewGame - ', e);
+  errLogs.push(e);
+}
+    console.log(`Игра номер ${i} добавленна`);
+  }
   mongoose.connection.close();
-
 };
 
 const mainFunction = async () => {
