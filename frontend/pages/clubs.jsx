@@ -24,12 +24,12 @@ class Clubs extends Component {
   };
 
   render() {
-    //console.log('this.props clubs.js', this.props);
     return (
       <div>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов</h1>
+          <button className={styles.filterButton}>Показать фильтр</button>
         </div>
         <div className={styles.container}>
           <ClubFilter />

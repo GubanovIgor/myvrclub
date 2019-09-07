@@ -1,6 +1,5 @@
 .container {
   display: flex;
-
   padding: 20px;
 }
 
@@ -17,11 +16,18 @@
 }
 
 .titleWrapper {
+  display: flex;
+  align-items: center;
+
   margin: 40px auto;
 }
 
 .title {
   padding-left: 233px;
+}
+
+.filterButton {
+  display: none;
 }
 
 // Mobile
@@ -33,5 +39,29 @@
   .title {
     padding-left: 20px;
     font-size: 15px;
+    width: 200px;
+  }
+
+  .filterButton {
+    display: block;
+    color: #ffffff;
+
+    border: 1px solid #5e98fb;
+    background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+    //width: 20%;
+    height: 25px;
+
+    //padding: auto;
+
+    cursor: pointer;
+  }
+
+  .filterButton:hover {
+    background: linear-gradient(to top, #5e98fb, #81affe);
+  }
+
+  .filterButton:active {
+    background: linear-gradient(to top, #5e98fb, #75a5f8);
   }
 }

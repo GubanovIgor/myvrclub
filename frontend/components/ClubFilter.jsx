@@ -40,6 +40,10 @@ class ClubFilter extends Component {
     this.props.offChangeMap();
   }
 
+  componentDidMount() {
+    console.log(window.innerWidth);
+  }
+
   render() {
     return (
       <div className={styles.container}>

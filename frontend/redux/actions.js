@@ -43,7 +43,7 @@ export const getClubsAC = (
       gameId
     };
 
-    const resp = await fetch('http://localhost:3100/club', {
+    const resp = await fetch('https://myvrclubbackend.herokuapp.com/club', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export const getGamesAC = (
     };
     console.log(filterData);
 
-    const resp = await fetch('http://localhost:3100/game', {
+    const resp = await fetch('https://myvrclubbackend.herokuapp.com/game', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
