@@ -19,7 +19,6 @@ class ClubCard extends Component {
             <div className={styles.darkWrapper}>
               <h2 className={styles.description}>{club.name}</h2>
               <p className={styles.description}>{club.address}</p>
-              <p></p>
             </div>
             <div className={styles.rating}>7.6</div>
           </div>

@@ -46,13 +46,16 @@
   .container {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 100%;
-    border: none;
+    justify-content: space-around;
 
-    > div {
-      margin-right: 20%;
-    }
+    margin: 0 auto 20px;
+    padding: 0;
+
+    width: 100%;
+
+    // > div {
+    //   margin-right: 20%;
+    // }
   }
 
   .filterButton {
