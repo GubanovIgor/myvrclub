@@ -12,12 +12,13 @@ import { serverRenderClock, startClock } from '../redux/actions';
 import { getClubsAC, getGamesAC } from '../redux/actions';
 
 // SASS
-import styles from '../stylesheets/index.module.scss'
+import styles from '../stylesheets/index.module.scss';
 
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
     console.log('getInitialProps - isServer', isServer);
+
     //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
     return { custom: 'custom props' };
   }
@@ -25,9 +26,6 @@ class Index extends Component {
   componentDidMount = async () => {
     this.props.getGames();
     this.props.getClubs();
-  };
-
-  componentWillUnmount () {
   };
 
   render () {

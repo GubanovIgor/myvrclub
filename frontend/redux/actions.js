@@ -1,7 +1,7 @@
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
-import { InitState } from "./store";
+import { InitState } from './store';
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -23,6 +23,7 @@ export const getClubsAC = (
   async (dispatch) => {
     console.log('InitState', InitState);
     dispatch(request());
+
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
     if (filterToggleData) {
@@ -31,19 +32,19 @@ export const getClubsAC = (
         const categoryKeys = Object.keys(filterToggleData[keys[i]]);
         categoryKeys.forEach((key) => {
           if (filterToggleData[keys[i]][key]) {
-            checkedToggle[i].push(key)
+            checkedToggle[i].push(key);
           }
-        })
+        });
       }
     }
 
     const filterData = {
       checkedToggle,
       pagination,
-      gameId
+      gameId,
     };
 
-    const resp = await fetch('http://localhost:3100/club', {
+    const resp = await fetch(`${process.env.API_URL}/club`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ export const getGamesAC = (
     Object.keys(filterToggleData).forEach(el => {
       Object.keys(filterToggleData[el]).forEach(elInner => {
         if (filterToggleData[el][elInner]) {
-          checkedToggle[el].push(elInner)
+          checkedToggle[el].push(elInner);
         }
       });
     });
@@ -89,13 +90,14 @@ export const getGamesAC = (
     };
     console.log(filterData);
 
-    const resp = await fetch('http://localhost:3100/game', {
+    const resp = await fetch(`${process.env.API_URL}/game`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(filterData),
     });
+    console.log(process);
     const data = await resp.json();
     dispatch(requestGetGames(data));
   }
@@ -111,7 +113,6 @@ export const filterToggleClubsAC = (item, category) => (
     dispatch(requestFilterToggleClubs(item, category));
   }
 );
-
 
 // Фильтр игр
 export const requestFilterToggleGames = (item, category) => (
@@ -136,6 +137,7 @@ export const switchPaginationValueAC = (value, filterToggleData, type) => (
     if (type === 'game') {
       dispatch(getGamesAC(filterToggleData, value));
     }
+
     if (type === 'club') {
       dispatch(getClubsAC(filterToggleData, value));
     }
@@ -146,12 +148,12 @@ export const switchPaginationValueAC = (value, filterToggleData, type) => (
 export const changeMapAC = () => {
   return {
     type: actionTypes.CHANGE_MAP,
-  }
+  };
 };
 
 // скрыть карту
 export const offChangeMapAC = () => {
   return {
     type: actionTypes.OFF_CHANGE_MAP,
-  }
+  };
 };
