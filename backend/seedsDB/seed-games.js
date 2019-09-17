@@ -3,12 +3,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Game = require('../models/games.js');
+
 const dbName = 'mongodb://localhost/myvrclub';
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
+
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
-
 
 let data = fs.readFileSync('./files/games.csv').toString();
 data = data.replace(/"/g, "");

@@ -5,7 +5,7 @@ import styles from '../stylesheets/clubProfile.module.scss';
 
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';
-import { IMG_URL_PREFIX } from '../services/consts/consts';
+import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
 
 class ClubProfile extends Component {
 
@@ -15,7 +15,8 @@ class ClubProfile extends Component {
 
   showTel = async (id) => {
     this.setState({showTel: true});
-    const resp = await fetch('http://localhost:3100/club/statistics', {
+    console.log('API_PREFIX', API_PREFIX);
+    const resp = await fetch(`${API_PREFIX}/club/statistics`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

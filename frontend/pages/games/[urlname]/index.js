@@ -13,7 +13,6 @@ const Games = (props) => {
   let game = null;
   if (props.games.length === 0) props.getGames();
   const { urlname } = router.query;
-  //let index = props.games.map(el => el.urlName).indexOf(urlname);
   if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>

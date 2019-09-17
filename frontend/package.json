@@ -11,6 +11,7 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "cloudinary-react": "^1.1.4",
+    "formik": "^1.5.8",
     "isomorphic-unfetch": "^3.0.0",
     "jscs": "^3.0.7",
     "next": "9.0.5",
@@ -25,6 +26,7 @@
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^1.0.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "yup": "^0.27.0"
   }
 }

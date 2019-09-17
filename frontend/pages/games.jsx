@@ -24,6 +24,7 @@ class Games extends Component {
   };
 
   render() {
+    const {games} = this.props
     return (
       <div>
         <Header/>
@@ -33,9 +34,8 @@ class Games extends Component {
         <div className={styles.container}>
           <GameFilter />
           <div className={styles.cardsWrapper}>
-            {this.props.games.map((game, index) => {
-              return <GameCard key={index} game={game}/>;
-            })}
+            {(games.length !== 0) ? (games.map((game, index) => {
+              return <GameCard key={index} game={game}/>;})) : (<div>Загрузка...</div>)}
           </div>
         </div>
         <Pagination handlePageChange={this.handlePageChange}/>

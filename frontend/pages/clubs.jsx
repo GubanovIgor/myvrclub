@@ -19,28 +19,30 @@ class Clubs extends Component {
     await this.props.pagination(pageNumber, this.props.filterToggle, 'club');
   };
 
-  componentDidMount = async () => {
+  componentDidMount() {
     this.props.getClubs();
   };
 
   render() {
+    const { clubs } = this.props;
     //console.log('this.props clubs.js', this.props);
     return (
       <div>
-        <Header />
+        <Header/>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов</h1>
         </div>
         <div className={styles.container}>
-          <ClubFilter />
+          <ClubFilter/>
           <div className={styles.cardsWrapper}>
-            {this.props.clubs.map((club, index) => {
-              return <ClubCard key={ index } club={club}/>;
-            })}
+            {console.log(!!clubs)}
+            {(clubs.length !== 0) ? (clubs.map((club, index) => {
+              return <ClubCard key={index} club={club}/>;
+            })) : (<div>Загрузка...</div>)}
           </div>
         </div>
         <Pagination handlePageChange={this.handlePageChange}/>
-        <Footer />
+        <Footer/>
       </div>
     );
   }

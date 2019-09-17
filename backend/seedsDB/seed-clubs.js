@@ -5,19 +5,21 @@ const mongoose = require('mongoose');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Club = require('../models/clubs.js');
 const Game = require('../models/games.js');
+require('dotenv').config();
+
 const dbName = 'mongodb://localhost/myvrclub';
-// mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connect('mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/myvrclub?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useCreateIndex: true
-});
+//const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
+//const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/myvrclub?retryWrites=true&w=majority';
+mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
+
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
 let data = fs.readFileSync('./files/clubs.csv').toString();
 data = data.replace(/"/g, ""); //удаляем кавычки
 fs.writeFile("./files/club-temp.csv", data, async function (error) {
 const gamesDB = await Game.find();
+  console.log('gamesDB');
   if (error) throw error;
   console.log("запись файла завершена.");
   const json = csvToJson.getJsonFromCsv('./files/club-temp.csv');

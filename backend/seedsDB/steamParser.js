@@ -4,10 +4,12 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const Game = require('../models/games.js');
+
 const dbName = 'mongodb://localhost/myvrclub';
+mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
+
 const fs = require('fs');
 
-mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 
 // let getGames = async () => {
 //   let data = [];

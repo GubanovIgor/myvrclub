@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const ClubGameId = require('../models/club-game-ids.js');
 const Game = require('../models/games.js');
 const Club = require('../models/clubs.js');
+
 const dbName = 'mongodb://localhost/myvrclub';
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
+
 let clubsIds = [];
 let idGame = async () => {
   const clubs = await Club.find();
