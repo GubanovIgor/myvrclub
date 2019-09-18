@@ -31,6 +31,14 @@ class Clubs extends Component {
     this.props.showFilterToggle();
   };
 
+  prevPage = () => {
+    this.handlePageChange(this.props.paginationValue - 1);
+  }
+
+  nextPage = () => {
+    this.handlePageChange(this.props.paginationValue + 1);
+  }
+
   render() {
     return (
       <div>
@@ -47,7 +55,11 @@ class Clubs extends Component {
             })}
           </div>
         </div>
-        <Pagination handlePageChange={this.handlePageChange}/>
+        <Pagination
+          handlePageChange={this.handlePageChange}
+          prevPage={this.prevPage}
+          nextPage={this.nextPage}
+        />
         <Footer />
       </div>
     );
@@ -58,6 +70,7 @@ const mapStateToProps = (store) => ({
   showFilter: store.showFilter,
   clubs: store.clubs,
   filterToggle: store.gamesFilterToggle,
+  paginationValue: store.paginationValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({

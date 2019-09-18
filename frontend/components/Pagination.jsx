@@ -12,12 +12,12 @@ class Pagination extends Component {
   render() {
     return(
       <div className={styles.container}>
-        <PaginationPrev/>
+        <PaginationPrev prevPage={this.props.prevPage}/>
         <PaginationItem value={1} handlePageChange={this.props.handlePageChange}/>
         <PaginationItem value={2} handlePageChange={this.props.handlePageChange}/>
         <PaginationItem value={3} handlePageChange={this.props.handlePageChange}/>
         <PaginationItem value={4} handlePageChange={this.props.handlePageChange}/>
-        <PaginationNext/>
+        <PaginationNext nextPage={this.props.nextPage}/>
       </div>
     )
   }

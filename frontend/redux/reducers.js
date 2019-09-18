@@ -51,6 +51,11 @@ export const reducer = (state, action) => {
         ...state,
         showFilter: !state.showFilter,
       })
+    case actionTypes.CURRENT_PAGE:
+      return ({
+        ...state,
+        currentPage: action.pageNumber,
+      })
 
     default:
       return state;

@@ -6,7 +6,7 @@ import styles from '../stylesheets/paginationItem.module.scss'
 class PaginationNext extends Component {
 	render() {
 		return (
-			<div className={styles.container}>
+			<div className={styles.container} onClick={this.props.nextPage}>
 					<svg width="12px" height="12px" viewBox="0 0 46.02 46.02">
 							<g className={styles.paginationArrow}>
 								<path
