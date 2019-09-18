@@ -25,15 +25,10 @@ class Clubs extends Component {
 
   componentDidMount = async () => {
     this.props.getClubs();
-    console.log(this.state);
   };
 
   showFilter = () => {
     this.props.showFilterToggle();
-  };
-
-  componentDidUpdate() {
-    // this.setState({ screenWidth: window.innerWidth });
   };
 
   render() {
