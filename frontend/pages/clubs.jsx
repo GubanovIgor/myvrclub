@@ -15,24 +15,28 @@ import Pagination from '../components/Pagination';
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Clubs extends Component {
+  state = {
+    screenWidth: 0,
+  };
+
   handlePageChange = async (pageNumber) => {
     await this.props.pagination(pageNumber, this.props.filterToggle, 'club');
   };
 
   componentDidMount = async () => {
     this.props.getClubs();
+    console.log(this.state);
   };
 
   showFilter = () => {
     this.props.showFilterToggle();
-  }
+  };
+
+  componentDidUpdate() {
+    // this.setState({ screenWidth: window.innerWidth });
+  };
 
   render() {
-
-    const divStyle = {
-      display: 'white',
-    };
-
     return (
       <div>
         <Header />
