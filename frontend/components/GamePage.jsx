@@ -93,7 +93,7 @@ class GamePage extends Component {
               }))}
           </div>
         </div>
-        <hr className={styles.breakLine}/>
+        {/* <hr className={styles.breakLine}/> */}
         {/* <Reviews /> */}
       </main>
     );
