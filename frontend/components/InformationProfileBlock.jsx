@@ -15,14 +15,14 @@ const InformationProfileBlock = (props) => {
 			/>
 			<div className="profile-game-informations">
 				<p>
-					<span>{props.name}</span> - {props.description}<br/>
-					<span>Жанр:</span> Приключения, Action<br/>
-					<span>Платформа:</span> PS VR, HTC Vive<br/>
-					<span>Язык интерфейса:</span> русский<br/>
-					<span>Язык озвучки:</span> английский<br/>
+					<span>{props.name}</span> - {props.description}<br />
+					<span>Жанр:</span> Приключения, Action<br />
+					<span>Платформа:</span> PS VR, HTC Vive<br />
+					<span>Язык интерфейса:</span> русский<br />
+					<span>Язык озвучки:</span> английский<br />
 					1 игрок
-      </p>
-				<ul className={styles.tags}>
+      	</p>
+				{/* <ul className={styles.tags}>
 					<li><a href="#">Action</a></li>
 					<li><a href="#">Научная фантастика</a></li>
 					<li><a href="#">Для одного игрока</a></li>
@@ -30,7 +30,7 @@ const InformationProfileBlock = (props) => {
 					<li><a href="#">Черный юмор</a></li>
 					<li><a href="#">Приключения</a></li>
 					<li><a href="#">Еще</a></li>
-				</ul>
+				</ul> */}
 			</div>
 		</div>
 	)

@@ -62,9 +62,11 @@
     color: #ffffff;
 
     border: 1px solid #5e98fb;
+    border-radius: 2px;
     background: linear-gradient(to top, #5e98fb, #69a1ff);
 
-    height: 25px;
+    height: 30px;
+    width: 30px;
 
     cursor: pointer;
   }
@@ -75,5 +77,9 @@
 
   .filterButton:active {
     background: linear-gradient(to top, #5e98fb, #75a5f8);
+  }
+
+  .filterIcon {
+    fill: white;
   }
 }
