@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 // SASS
 import styles from '../stylesheets/filterItem.module.scss';

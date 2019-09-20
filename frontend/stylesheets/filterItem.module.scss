@@ -11,11 +11,15 @@
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 15px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  @media screen and (max-device-width: 425px) {
+    padding-left: 20px;
+    margin-bottom: 6px;
+  }
 }
 
 /* Hide the browser's default checkbox */
@@ -35,6 +39,11 @@
   height: 25px;
   width: 25px;
   background-color: #eee;
+
+  @media screen and (max-device-width: 425px) {
+    height: 15px;
+    width: 15px;
+  }
 }
 
 /* On mouse-over, add a grey background color */
@@ -70,4 +79,12 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+
+  @media screen and (max-device-width: 425px) {
+    border-width: 0 2px 2px 0;
+    left: 5px;
+    top: 3px;
+    height: 5px;
+    width: 3px;
+  }
 }
