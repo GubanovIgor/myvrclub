@@ -7,6 +7,7 @@ import Footer from '../../../components/Footer';
 import { connect } from 'react-redux';
 import { getGamesAC } from '../../../redux/actions';
 import GamePage from '../../../components/GamePage';
+import Loading from '../../../components/Loading';
 
 const Games = (props) => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Games = (props) => {
     <>
       <Header/>
       {props.loadingGame
-        ? <div>Загрузка...</div>
+        ? <Loading/>
         : props.errorGame
           ? <div>Ошибка, попробуйте ещё раз</div>
           : game && <GamePage game={game}/>

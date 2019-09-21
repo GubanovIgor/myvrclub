@@ -13,6 +13,7 @@ import { getClubsAC, getGamesAC } from '../redux/actions';
 
 // SASS
 import styles from '../stylesheets/index.module.scss'
+import Loading from '../components/Loading';
 
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
@@ -31,6 +32,7 @@ class Index extends Component {
   };
 
   render () {
+    const {games, clubs} = this.props;
     return (<div>
       <Header />
       {/*<IndexSearch />*/}
@@ -38,8 +40,8 @@ class Index extends Component {
         <h1>myvrclub.ru</h1>
         <h1>Агрегатор клубов виртуальной реальности</h1>
       </div>
-      {(this.props.games.length) && <GameCollections />}
-      {(this.props.clubs.length) && <ClubCollections />}
+      {(games.length !== 0) ? (<GameCollections />) : (<Loading/>)}
+      {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading/>)}
       <Footer />
     </div>
     );

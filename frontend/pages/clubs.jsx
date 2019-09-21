@@ -13,6 +13,7 @@ import Pagination from '../components/Pagination';
 
 // import AC
 import { getClubsAC, switchPaginationValueAC } from '../redux/actions';
+import Loading from '../components/Loading';
 
 class Clubs extends Component {
   handlePageChange = async (pageNumber) => {
@@ -26,6 +27,7 @@ class Clubs extends Component {
   render() {
     const { clubs } = this.props;
     //console.log('this.props clubs.js', this.props);
+    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
     return (
       <div>
         <Header/>
@@ -36,9 +38,7 @@ class Clubs extends Component {
           <ClubFilter/>
           <div className={styles.cardsWrapper}>
             {console.log(!!clubs)}
-            {(clubs.length !== 0) ? (clubs.map((club, index) => {
-              return <ClubCard key={index} club={club}/>;
-            })) : (<div>Загрузка...</div>)}
+            {(clubs.length !== 0) ? (itemsClub) : (<Loading/>)}
           </div>
         </div>
         <Pagination handlePageChange={this.handlePageChange}/>
