@@ -56,6 +56,11 @@ export const reducer = (state, action) => {
         ...state,
         currentPage: action.pageNumber,
       })
+    case actionTypes.SWITCH_CARUSEL_INDEX:
+      return ({
+        ...state,
+        caruselIndex: action.caruselIndex,
+      })
 
     default:
       return state;

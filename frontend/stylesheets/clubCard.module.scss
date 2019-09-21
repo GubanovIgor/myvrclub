@@ -9,7 +9,7 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-bottom: 20px;
   margin-right: 20px;
@@ -31,7 +31,7 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   @media screen and (max-device-width: 425px) {
     // width: $mobile-card-width;
@@ -48,7 +48,7 @@ $mobile-card-height: 140px;
   top: 0;
   left: 0;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   width: 280px;
   height: 280px;

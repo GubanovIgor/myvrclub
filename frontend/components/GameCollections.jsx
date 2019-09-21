@@ -4,11 +4,12 @@ import GameCard from '../components/GameCard';
 
 // SASS
 import styles from '../stylesheets/gameCollections.module.scss';
+import sectionStyles from '../stylesheets/section.module.scss';
 
 export class GameCollections extends Component {
   render() {
     return (
-      <div>
+      <div className={sectionStyles.section}>
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие игры</h3>
           <div className={styles.gameList}>

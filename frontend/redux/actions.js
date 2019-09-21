@@ -162,3 +162,11 @@ export const showFilterToggleAC = () => {
     type: actionTypes.SHOW_FILTER_TOGGLE,
   }
 };
+
+// Двигаем карусель на главной
+export const switchCaruselIndexAC = (caruselIndex) => {
+  return {
+    type: actionTypes.SWITCH_CARUSEL_INDEX,
+    caruselIndex,
+  }
+}

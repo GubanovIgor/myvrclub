@@ -25,7 +25,7 @@ $mobile-card-height: 141px;
 .cover {
   width: $card-width;
   height: $card-height;
-  border-radius: 10px;
+  border-radius: 5px;
 
   :hover > & {
     transform: scale(1.009);
@@ -70,7 +70,7 @@ $mobile-card-height: 141px;
   background: linear-gradient(to bottom, black, rgba(255,0,0,0));
   opacity: 0;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   color: white;
 
