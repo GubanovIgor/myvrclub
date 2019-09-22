@@ -8,10 +8,14 @@ class InformationProfileBlock extends Component {
 
   state = {
     showTel: false,
+    disabled: false,
   };
 
   showTel = async (id) => {
-    this.setState({ showTel: true });
+    this.setState({
+      showTel: true,
+      disabled: true
+    });
     const resp = await fetch(`${API_PREFIX}/club/statistics`, {
       method: 'POST',
       headers: {
@@ -43,6 +47,7 @@ class InformationProfileBlock extends Component {
             </p>
             <input className={styles.button}
                    type="button"
+                   disabled={this.state.disabled}
                    onClick={() => this.showTel(club._id)}
                    value="Показать телефон"/>
           </div>
@@ -52,7 +57,10 @@ class InformationProfileBlock extends Component {
     if (!!game) {
       return (
         <div className={styles.profileInformations}>
-          <img src={game.cover} width="360" height="202" alt={game.name}/>
+          <img src={game.cover}
+               width="360"
+               height="202"
+               alt={game.name}/>
           <div className="profile-game-informations">
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
