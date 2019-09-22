@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+//import windowSize from 'react-window-size';
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
