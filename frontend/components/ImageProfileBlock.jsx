@@ -13,8 +13,14 @@ const ImageProfileBlock = (props) => {
   if (isClub) return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-        <img className={styles.img} key={uuidv1()} src={IMG_URL_PREFIX + club.screenShot[0]} width="750" height="421"
-             alt={props.club.name}/>
+        <img
+          className={styles.img}
+          key={uuidv1()}
+          src={IMG_URL_PREFIX + club.screenShot[0]}
+          width="750"
+          height="421"
+          alt={props.club.name}
+        />
         <div className={styles.screenshotsSwitch}>
           {club.screenShot.map((imgLink, index) => {
             if (index === 0) return;
@@ -28,8 +34,14 @@ const ImageProfileBlock = (props) => {
   if (isGame) return (
     <div>
       {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-      <img className={styles.img} key={uuidv1()} src={game.screenShot[0]} width="750" height="421"
-           alt={props.game.name}/>
+      <img
+        className={styles.img}
+        key={uuidv1()}
+        src={game.screenShot[0]}
+        width="750"
+        height="421"
+        alt={props.game.name}
+      />
       <div className={styles.screenshotsSwitch}>
         {game.screenShot.map((imgLink, index) => {
           if (index === 0 || index > 5) return;

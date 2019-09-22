@@ -4,11 +4,12 @@ import ClubCard from '../components/ClubCard';
 
 // SASS
 import styles from '../stylesheets/clubCollections.module.scss';
+import sectionStyles from '../stylesheets/section.module.scss';
 
 export class ClubCollections extends Component {
   render() {
     return (
-      <div>
+      <div className={sectionStyles.section}>
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие клубы</h3>
           <div className={styles.clubList}>

@@ -1,0 +1,31 @@
+.filterButton {
+	display: none;
+}
+
+@media screen and (max-device-width: 425px) {
+	.filterButton {
+		display: block;
+		color: #ffffff;
+
+		border: 1px solid #5e98fb;
+		border-radius: 2px;
+		background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+		height: 30px;
+		width: 30px;
+
+		cursor: pointer;
+	}
+	
+	.filterButton:hover {
+		background: linear-gradient(to top, #5e98fb, #81affe);
+	}
+
+	.filterButton:active {
+		background: linear-gradient(to top, #5e98fb, #75a5f8);
+	}
+
+	.filterIcon {
+		fill: white;
+	}
+}

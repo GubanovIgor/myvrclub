@@ -43,7 +43,7 @@ export const getClubsAC = (
       gameId
     };
 
-    const resp = await fetch('http://localhost:3100/club', {
+    const resp = await fetch('https://myvrclubbackend.herokuapp.com/club', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export const getGamesAC = (
     };
     console.log(filterData);
 
-    const resp = await fetch('http://localhost:3100/game', {
+    const resp = await fetch('https://myvrclubbackend.herokuapp.com/game', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -155,3 +155,18 @@ export const offChangeMapAC = () => {
     type: actionTypes.OFF_CHANGE_MAP,
   }
 };
+
+// Показать мобильный фильтр
+export const showFilterToggleAC = () => {
+  return {
+    type: actionTypes.SHOW_FILTER_TOGGLE,
+  }
+};
+
+// Двигаем карусель на главной
+export const switchCaruselIndexAC = (caruselIndex) => {
+  return {
+    type: actionTypes.SWITCH_CARUSEL_INDEX,
+    caruselIndex,
+  }
+}

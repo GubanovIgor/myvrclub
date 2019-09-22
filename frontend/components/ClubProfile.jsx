@@ -1,11 +1,12 @@
 import React from 'react';
+import { IMG_URL_PREFIX } from '../services/consts/consts';
 
 //SASS
 import styles from '../stylesheets/clubProfile.module.scss';
 
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';
-import { IMG_URL_PREFIX } from '../services/consts/consts';
+import InformationProfileBlock from '../components/InformationProfileBlock';
 
 const ClubProfile = (props) => (
   <section className={styles.container}>
@@ -15,20 +16,7 @@ const ClubProfile = (props) => (
     </div>
     <div className={styles.profileContent}>
       <ImageProfileBlock club={props.club} isClub={true} isGame={false}/>
-      <div className={styles.profileInformations}>
-        <img
-          src={IMG_URL_PREFIX + props.club.cover} width="360" height="202" alt="Batman: Arkham VR"
-        />
-        <p>
-          <span>Адрес: </span>{props.club.address}<br></br>
-          <span>Метро: </span>{props.club.metro[0]}<br></br>
-          <span>Телефон: </span>{props.club.tel}<br></br>
-          <span>Время работы будни/вых: </span>{props.club.workTime.weekdays}/{props.club.workTime.weekend}<br></br>
-          {/*<span>Количество шлемов: </span>6 шт.<br></br>*/}
-          <span>Стоимость 30 мин: </span>от {props.club.price[0]} ₽<br></br>
-        </p>
-        <input className={styles.button} type="submit" value="ЗАБРОНИРОВАТЬ"/>
-      </div>
+      <InformationProfileBlock cover={props.club.cover} name={props.club.name} description={props.club.short_description}/>
     </div>
   </section>
 );

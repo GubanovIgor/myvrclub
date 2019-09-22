@@ -1,8 +1,8 @@
 $card-width: 282px;
 $card-height: 141px;
 
-$mobile-card-width: 141px;
-$mobile-card-height: 70px;
+$mobile-card-width: 282px;
+$mobile-card-height: 141px;
 
 .container {
   width: $card-width;
@@ -15,16 +15,17 @@ $mobile-card-height: 70px;
   margin-right: 30px;
 
   // Mobile
-  @media screen and (max-device-width: 375px) {
+  @media screen and (max-device-width: 425px) {
     width: $mobile-card-width;
     height: $mobile-card-height;
+    margin: 0 auto 80px;
   }
 }
 
 .cover {
   width: $card-width;
   height: $card-height;
-  border-radius: 10px;
+  border-radius: 5px;
 
   :hover > & {
     transform: scale(1.009);
@@ -36,7 +37,7 @@ $mobile-card-height: 70px;
   transition: 0.5s;
 
   // Mobile
-  @media screen and (max-device-width: 375px) {
+  @media screen and (max-device-width: 425px) {
     width: $mobile-card-width;
     height: $mobile-card-height;
   }
@@ -51,6 +52,10 @@ $mobile-card-height: 70px;
 
   margin: 0;
   padding: 5px;
+
+  @media screen and (max-device-width: 425px) {
+    font-size: 12px;
+  }
 }
 
 // DarkTheme
@@ -65,7 +70,7 @@ $mobile-card-height: 70px;
   background: linear-gradient(to bottom, black, rgba(255,0,0,0));
   opacity: 0;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   color: white;
 
@@ -78,7 +83,7 @@ $mobile-card-height: 70px;
   transition: 0.5s;
 
   // Mobile
-  @media screen and (max-device-width: 375px) {
+  @media screen and (max-device-width: 425px) {
     width: $mobile-card-width;
     height: $mobile-card-height;
   }
@@ -124,7 +129,7 @@ $mobile-card-height: 70px;
   text-align: center;
 
   // Mobile
-  @media screen and (max-device-width: 375px) {
+  @media screen and (max-device-width: 425px) {
     width: 15px;
     height: 15px;
   }

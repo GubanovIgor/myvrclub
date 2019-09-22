@@ -10,7 +10,6 @@ class FilterSection extends Component {
 
   render() {
     const { section } = this.props;
-    console.log(this.props.checked);
     return (
       <div>
         <h3>{section.title}</h3>

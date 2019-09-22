@@ -46,6 +46,21 @@ export const reducer = (state, action) => {
         ...state,
         map: false,
       });
+    case actionTypes.SHOW_FILTER_TOGGLE:
+      return ({
+        ...state,
+        showFilter: !state.showFilter,
+      })
+    case actionTypes.CURRENT_PAGE:
+      return ({
+        ...state,
+        currentPage: action.pageNumber,
+      })
+    case actionTypes.SWITCH_CARUSEL_INDEX:
+      return ({
+        ...state,
+        caruselIndex: action.caruselIndex,
+      })
 
     default:
       return state;
