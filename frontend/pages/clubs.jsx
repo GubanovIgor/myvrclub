@@ -11,6 +11,7 @@ import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
 import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
+import Loading from '../components/Loading';
 
 // import AC
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
@@ -41,6 +42,8 @@ class Clubs extends Component {
   }
 
   render() {
+    const { clubs } = this.props;
+    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
     return (
       <div>
         <Header />
@@ -60,9 +63,7 @@ class Clubs extends Component {
       <div className={styles.container}>
         {(this.props.showFilter) && <ClubFilter />}
         <div className={styles.cardsWrapper}>
-          {this.props.clubs.map((club, index) => {
-            return <ClubCard key={index} club={club} />;
-          })}
+          {(clubs.length !== 0) ? (itemsClub) : (<Loading/>)}
         </div>
       </div>
       <Pagination

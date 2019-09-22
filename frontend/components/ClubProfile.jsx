@@ -1,5 +1,4 @@
-import React from 'react';
-import { IMG_URL_PREFIX } from '../services/consts/consts';
+import React, { Component } from 'react';
 
 //SASS
 import styles from '../stylesheets/clubProfile.module.scss';
@@ -8,17 +7,22 @@ import styles from '../stylesheets/clubProfile.module.scss';
 import ImageProfileBlock from '../components/ImageProfileBlock';
 import InformationProfileBlock from '../components/InformationProfileBlock';
 
-const ClubProfile = (props) => (
+class ClubProfile extends Component {
+
+  render() {
+    const {club} = this.props;
+    return (
   <section className={styles.container}>
-    {console.log('props ClubProfile JSX', props)}
     <div className={styles.profileTitle}>
-      <h2>{props.club.name}</h2>
+      <h2>{club.name}</h2>
     </div>
     <div className={styles.profileContent}>
-      <ImageProfileBlock club={props.club} isClub={true} isGame={false}/>
-      <InformationProfileBlock cover={props.club.cover} name={props.club.name} description={props.club.short_description}/>
+      <ImageProfileBlock club={club} isClub={true} isGame={false}/>
+      <InformationProfileBlock club={club} isClub={true} isGame={false}/>
     </div>
   </section>
-);
+    )
+  }
+}
 
 export default ClubProfile;

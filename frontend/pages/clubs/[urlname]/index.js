@@ -6,6 +6,7 @@ import ClubPage from '../../../components/ClubPage';
 import Footer from '../../../components/Footer';
 import { connect } from 'react-redux';
 import { getClubsAC } from '../../../redux/actions';
+import Loading from '../../../components/Loading';
 
 const Clubs = (props) => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Clubs = (props) => {
     <>
       <Header/>
       {props.loading
-        ? <div>Загрузка...</div>
+        ? <Loading/>
         : props.error
           ? <div>Ошибка, попробуйте ещё раз</div>
           : club && <ClubPage club={club}/>

@@ -20,7 +20,7 @@ class ClubCard extends Component {
               <h2 className={styles.description}>{club.name}</h2>
               <p className={styles.description}>{club.address}</p>
             </div>
-            <div className={styles.rating}>7.6</div>
+            <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
           </div>
           </a>
         </Link>

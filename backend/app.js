@@ -1,18 +1,18 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 // Routes import
 const indexRouter = require('./routes/index');
 const clubRouter = require('./routes/club');
 const gameRouter = require('./routes/game');
 
-const port = 3100;
+const port = process.env.PORT || 3100;
 let app = express();
-
-mongoose.connect('mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true });
-
-// mongoose.connect('mongodb://localhost:27017/myvrclub', { useNewUrlParser: true, useCreateIndex: true });
+//const dbName = 'mongodb://localhost/myvrclub';
+//const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority';
+const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
+mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 
 app.use(morgan('dev'));
 

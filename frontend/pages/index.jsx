@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { serverRenderClock, startClock } from '../redux/actions';
-
-// Components
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IndexSearch from '../components/IndexSearch';
@@ -16,6 +13,7 @@ import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
 
 // SASS
 import styles from '../stylesheets/index.module.scss'
+import Loading from '../components/Loading';
 
 class Index extends Component {
   static getInitialProps ({ reduxStore, req }) {
@@ -35,19 +33,20 @@ class Index extends Component {
   };
 
   render () {
+    const {games, clubs} = this.props;
     return (<div>
       <Header />
-      {/*<IndexSearch />*/}
-      {/* <div className={styles.title}>
-        <h1>myvrclub.ru</h1>
-        <h1>Агрегатор клубов виртуальной реальности</h1>
-      </div> */}
-      <Carusel
-        caruselIndex={this.props.caruselIndex}
-        switchCarusel={this.switchCarusel}
-      />
-      {(this.props.games.length) && <GameCollections />}
-      {(this.props.clubs.length) && <ClubCollections />}
+      {/*/!*<IndexSearch />*!/*/}
+      {/*<div className={styles.title}>*/}
+        {/*<h1>myvrclub.ru</h1>*/}
+        {/*<h1>Агрегатор клубов виртуальной реальности</h1>*/}
+      {/*</div>*/}
+        <Carusel
+          caruselIndex={this.props.caruselIndex}
+          switchCarusel={this.switchCarusel}
+        />
+      {(games.length !== 0) ? (<GameCollections />) : (<Loading/>)}
+      {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading/>)}
       <Footer />
     </div>
     );

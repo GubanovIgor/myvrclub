@@ -2,6 +2,7 @@
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
 import { InitState } from "./store";
+import { API_PREFIX } from '../services/consts/consts';
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -43,7 +44,7 @@ export const getClubsAC = (
       gameId
     };
 
-    const resp = await fetch('https://myvrclubbackend.herokuapp.com/club', {
+    const resp = await fetch(`${API_PREFIX}/club`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +90,7 @@ export const getGamesAC = (
     };
     console.log(filterData);
 
-    const resp = await fetch('https://myvrclubbackend.herokuapp.com/game', {
+    const resp = await fetch(`${API_PREFIX}/game`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
