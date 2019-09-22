@@ -18,7 +18,7 @@ class ClubProfile extends Component {
     </div>
     <div className={styles.profileContent}>
       <ImageProfileBlock club={club} isClub={true} isGame={false}/>
-      <InformationProfileBlock club={club}/>
+      <InformationProfileBlock club={club} isClub={true} isGame={false}/>
     </div>
   </section>
     )
