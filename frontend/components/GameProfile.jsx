@@ -14,7 +14,7 @@ const GameProfile = (props) => (
     </div>
     <div className={styles.profileContent}>
       <ImageProfileBlock game={props.game} isGame={true} isClub={false}/>
-      <InformationProfileBlock cover={props.game.cover} name={props.game.name} description={props.game.short_description}/>
+      <InformationProfileBlock game={game}/>
     </div>
   </section>
 );

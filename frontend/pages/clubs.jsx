@@ -43,7 +43,6 @@ class Clubs extends Component {
 
   render() {
     const { clubs } = this.props;
-    //console.log('this.props clubs.js', this.props);
     const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
     return (
       <div>
@@ -64,9 +63,7 @@ class Clubs extends Component {
       <div className={styles.container}>
         {(this.props.showFilter) && <ClubFilter />}
         <div className={styles.cardsWrapper}>
-          {this.props.clubs.map((club, index) => {
-            return <ClubCard key={index} club={club} />;
-          })}
+          {(clubs.length !== 0) ? (itemsClub) : (<Loading/>)}
         </div>
       </div>
       <Pagination
