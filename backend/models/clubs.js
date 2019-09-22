@@ -14,6 +14,7 @@ const clubSchema = new mongoose.Schema({
   workTime: { weekdays: String, weekend: String },
   games: {
     type: [String],
+    unique: true,
     default: []
   }, //список игр [id`s from Games]
   gamesIds: [ObjectId],

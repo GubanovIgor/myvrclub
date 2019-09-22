@@ -13,7 +13,8 @@ const gameSchema = new mongoose.Schema({
   short_description: String,
   clubs:{
     type: [String],
-    unique:true
+    unique: true,
+    default: []
   },
   clubsIds: [ObjectId],
   cover: String,
