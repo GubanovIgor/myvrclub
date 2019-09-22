@@ -23,9 +23,10 @@ class InformationProfileBlock extends Component {
   };
 
   render() {
-    const { club } = this.props;
+    const { club, isClub, isGame } = this.props;
     const clubTel = club.tel[0].replace(/ /g, '-');
-    return (
+    if (isClub)
+      return (
       <div className={styles.profileInformations}>
         <img src={IMG_URL_PREFIX + club.cover}
              width="360"
@@ -56,7 +57,8 @@ class InformationProfileBlock extends Component {
 				</ul> */}
         </div>
       </div>
-    )
+    );
+    if(isGame){}
   }
 }
 
