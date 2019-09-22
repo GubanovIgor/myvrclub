@@ -19,7 +19,6 @@ class ClubCard extends Component {
             <div className={styles.darkWrapper}>
               <h2 className={styles.description}>{club.name}</h2>
               <p className={styles.description}>{club.address}</p>
-              <p></p>
             </div>
             <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
           </div>

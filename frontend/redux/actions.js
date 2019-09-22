@@ -156,3 +156,18 @@ export const offChangeMapAC = () => {
     type: actionTypes.OFF_CHANGE_MAP,
   }
 };
+
+// Показать мобильный фильтр
+export const showFilterToggleAC = () => {
+  return {
+    type: actionTypes.SHOW_FILTER_TOGGLE,
+  }
+};
+
+// Двигаем карусель на главной
+export const switchCaruselIndexAC = (caruselIndex) => {
+  return {
+    type: actionTypes.SWITCH_CARUSEL_INDEX,
+    caruselIndex,
+  }
+}

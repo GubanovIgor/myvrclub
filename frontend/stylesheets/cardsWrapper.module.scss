@@ -1,6 +1,5 @@
 .container {
   display: flex;
-
   padding: 20px;
 }
 
@@ -17,6 +16,9 @@
 }
 
 .titleWrapper {
+  display: flex;
+  align-items: center;
+
   margin: 40px auto;
 }
 
@@ -24,14 +26,60 @@
   padding-left: 233px;
 }
 
+.filterButton {
+  display: none;
+}
+
 // Mobile
-@media screen and (max-device-width: 375px) {
+@media screen and (max-device-width: 425px) {
+  .container {
+    flex-direction: column;
+    align-content: center;
+
+    padding-top: 0;
+  }
+
+  .cardsWrapper {
+    justify-content: center;
+  
+    align-content: flex-start;
+  
+    flex-wrap: wrap;
+  }
+
   .titleWrapper {
+    justify-content: space-around;
     margin: 10px auto;
   }
 
   .title {
-    padding-left: 20px;
+    padding-left: 0;
     font-size: 15px;
   }
+
+  // .filterButton {
+  //   display: block;
+  //   color: #ffffff;
+
+  //   border: 1px solid #5e98fb;
+  //   border-radius: 2px;
+  //   background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+  //   height: 30px;
+  //   width: 30px;
+
+  //   cursor: pointer;
+  // }
+
+  // .filterButton:hover {
+  //   background: linear-gradient(to top, #5e98fb, #81affe);
+  // }
+
+  // .filterButton:active {
+  //   background: linear-gradient(to top, #5e98fb, #75a5f8);
+  // }
+
+  // .filterIcon {
+  //   fill: white;
+  // }
 }

@@ -2,13 +2,21 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const clubSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
   urlName: String,
   address: String,
   tel: [],
   description: String,
   workTime: { weekdays: String, weekend: String },
-  games: [String], //список игр [id`s from Games]
+  games: {
+    type: [String],
+    unique: true,
+    default: []
+  }, //список игр [id`s from Games]
   gamesIds: [ObjectId],
   cover: String,
   screenShot: [String],

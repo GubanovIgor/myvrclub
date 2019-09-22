@@ -40,7 +40,7 @@ class GamePage extends Component {
       <main>
         <GameProfile game={game}/>
 
-        <section>
+        {/* <section>
           <div className={styles.container}>
             <p className={styles.profileMenu}>Игры клуба</p>
             <p className={styles.profileMenu}>Цены</p>
@@ -49,7 +49,9 @@ class GamePage extends Component {
             <p className={styles.profileMenu}>Контакты</p>
           </div>
           <hr className={styles.breakLine}/>
-        </section>
+        </section> */}
+
+        <h2>Где поиграть в {game.name}</h2>
 
         {/*{(this.props.map) ? <Map /> : <p>qweqr</p>}*/}
 
@@ -91,8 +93,8 @@ class GamePage extends Component {
                 : clubs && (this.props.map) ? <Map/> : (clubItems)}
           </div>
         </div>
-        <hr className={styles.breakLine}/>
-        <Reviews />
+        {/* <hr className={styles.breakLine}/> */}
+        {/* <Reviews /> */}
       </main>
     );
   }

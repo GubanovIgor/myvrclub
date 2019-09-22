@@ -1,0 +1,22 @@
+.profileInformations {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    width: 360px;
+
+    @media screen and (max-device-width: 425px) {
+			max-width: 375px;
+			margin-top: 20px;
+    }
+  }
+  
+  .profileInformations p span {
+    font-weight: 700;
+	}
+	
+	.cover {
+		@media screen and (max-device-width: 425px) {
+			display: none;
+    }
+	}

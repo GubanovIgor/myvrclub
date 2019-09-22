@@ -38,7 +38,7 @@ class ClubPage extends Component {
     return (
       <main>
         <ClubProfile club={club}/>
-        <section>
+        {/* <section>
           <div className={styles.container}>
             <p className={styles.profileMenu}>Игры клуба</p>
             <p className={styles.profileMenu}>Цены</p>
@@ -47,7 +47,8 @@ class ClubPage extends Component {
             <p className={styles.profileMenu}>Контакты</p>
           </div>
           <hr className={styles.breakLine}/>
-        </section>
+        </section> */}
+        <h2>Игры клуба {club.name}</h2>
 
         <div className={cardsWrapper.container}>
           <GameFilter clubId={this.props.club._id}/>
@@ -61,8 +62,8 @@ class ClubPage extends Component {
 
           </div>
         </div>
-        <hr className={styles.breakLine}/>
-        <Reviews/>
+        {/* <hr className={styles.breakLine}/> */}
+        {/* <Reviews/> */}
 
       </main>
     );
