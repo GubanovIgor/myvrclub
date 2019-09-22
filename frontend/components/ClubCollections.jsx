@@ -13,7 +13,6 @@ export class ClubCollections extends Component {
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие клубы</h3>
           <div className={styles.clubList}>
-            {console.log('>>>>>>>>>>>>>>>',this.props.clubs[0])}
               <ClubCard club={this.props.clubs[5]} />
               <ClubCard club={this.props.clubs[7]} />
               <ClubCard club={this.props.clubs[4]} />

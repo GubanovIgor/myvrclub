@@ -12,7 +12,6 @@ class InformationProfileBlock extends Component {
 
   showTel = async (id) => {
     this.setState({ showTel: true });
-    console.log('API_PREFIX', API_PREFIX);
     const resp = await fetch(`${API_PREFIX}/club/statistics`, {
       method: 'POST',
       headers: {
@@ -23,8 +22,8 @@ class InformationProfileBlock extends Component {
   };
 
   render() {
-    const { club, game, isClub, isGame } = this.props;
-    if (isClub) {
+    const { club, game } = this.props;
+    if (!!club) {
       const clubTel = club.tel[0].replace(/ /g, '-');
       return (
         <div className={styles.profileInformations}>
@@ -32,7 +31,7 @@ class InformationProfileBlock extends Component {
                width="360"
                height="202"
                alt={club.name}/>
-          <div className="profile-game-informations">
+          <div className="profile-club-informations">
             <p>
               <span>Адрес: </span>{club.address}<br/>
               <span>Метро: </span>{club.metro[0]}<br/>
@@ -50,7 +49,7 @@ class InformationProfileBlock extends Component {
         </div>
       )
     }
-    if (isGame) {
+    if (!!game) {
       return (
         <div className={styles.profileInformations}>
           <img src={game.cover} width="360" height="202" alt={game.name}/>

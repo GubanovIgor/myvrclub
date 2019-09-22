@@ -22,7 +22,7 @@ export const getClubsAC = (
   pagination = 1,
   gameId = '') => (
   async (dispatch) => {
-    console.log('InitState', InitState);
+    //console.log('InitState', InitState);
     dispatch(request());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];

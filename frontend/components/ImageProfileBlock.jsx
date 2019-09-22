@@ -13,39 +13,40 @@ class ImageProfileBlock extends Component {
   };
 
   componentDidMount() {
-    const { club = [], game = [], isClub, isGame } = this.props;
-    if (isClub) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
-    if (isGame) this.setState({ imageUrl: game.screenShot[0] });
+    const { club, game } = this.props;
+    if (!!club) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
+    if (!!game) this.setState({ imageUrl: game.screenShot[0] });
   }
 
   updateUrlImage = imageUrl => {
-    //console.log('imageUrl>>>>>>>>>>>', imageUrl)
     this.setState({ imageUrl });
   };
 
   render() {
-    const { club = [], game = [], isClub, isGame } = this.props;
-    if (isClub) return (
+    const { club, game } = this.props;
+    let item = [];
+    if (!!club) item = club;
+    if (!!game) item = game;
+      return (
       <div>
-        {console.log('this.state.imageUrl', this.state.imageUrl)}
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
         <img className={styles.img} key={uuidv1()} src={this.state.imageUrl} width="750"
              height="421"
-             alt={club.name}/>
+             alt={item.name}/>
         <div className={styles.screenshotsSwitch}>
-          {club.screenShot.map((imgLink, index) => {
-            if (index === 0) return;
+          {item.screenShot.map((imgLink, index) => {
+            if (index > 4) return;
             return <img className={styles.screen}
                         key={uuidv1()}
                         src={IMG_URL_PREFIX + imgLink}
                         width="144" height="81"
-                        alt={club.name}
-                        onClick={() => this.updateUrlImage(IMG_URL_PREFIX + imgLink)}/>
+                        alt={item.name}
+                        onMouseOver={() => this.updateUrlImage(IMG_URL_PREFIX + imgLink)}/>
           })}
         </div>
       </div>
     );
-    if (isGame) return (
+    if (!!game) return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
         <img className={styles.img} key={uuidv1()} src={this.state.imageUrl} width="750"
@@ -58,7 +59,7 @@ class ImageProfileBlock extends Component {
                         key={uuidv1()} src={imgLink}
                         width="144" height="81"
                         alt={game.name}
-                        onClick={() => this.updateUrlImage(imgLink)}/>
+                        onMouseOver={() => this.updateUrlImage(imgLink)}/>
           })}
         </div>
       </div>

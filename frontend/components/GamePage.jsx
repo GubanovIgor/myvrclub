@@ -18,7 +18,6 @@ class GamePage extends Component {
 
   componentDidMount() {
     this.props.getClubs(undefined, undefined, this.props.game._id);
-    console.log('this.props.game._id', this.props.game._id);
 
     // ymaps.ready(init);
     // // let myMap;
