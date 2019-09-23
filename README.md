@@ -44,4 +44,5 @@ npm run start
 
 ## Контакты
 - applecake@inbox.ru
+- filpoyma@gmail.com
 - i.e.gubanov@gmail.com
