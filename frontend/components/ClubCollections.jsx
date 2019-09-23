@@ -14,7 +14,7 @@ export class ClubCollections extends Component {
           <h3 className={styles.title}>Лучшие клубы</h3>
           <div className={styles.clubList}>
               <ClubCard club={this.props.clubs[5]} />
-              <ClubCard club={this.props.clubs[7]} />
+              <ClubCard club={this.props.clubs[8]} />
               <ClubCard club={this.props.clubs[4]} />
               <ClubCard club={this.props.clubs[1]} />
           </div>
