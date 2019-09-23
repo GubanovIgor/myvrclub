@@ -22,6 +22,7 @@ fs.writeFile("./files/games-temp.csv", data, async function (error) {
 
     let { name,
       description,
+      short_description,
       clubs,
       pictures,
       videos,
@@ -45,6 +46,7 @@ fs.writeFile("./files/games-temp.csv", data, async function (error) {
     let games = new Game({
       name,
       description,
+      short_description,
       clubs,
       screenShot: pictures,
       cover: '',

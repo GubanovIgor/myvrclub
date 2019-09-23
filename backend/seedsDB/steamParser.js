@@ -35,20 +35,27 @@ const fs = require('fs');
 // };
 
 let addGames = async () => {
-  let gameIds = fs.readFileSync('VrGameList.txt', 'utf8').split(',');
+  let gameIds = fs.readFileSync('files/VrGameListInClubs.txt', 'utf8').split(',');
   let data = null;
   for (let i = 0; i < gameIds.length; i++) {
-    let fetch_i=0;
+    let fetch_i = 0;
     while (true) {
       if (data && data[gameIds[i]]) {
         break;
       } else {
-        let url = `https://store.steampowered.com/api/appdetails?appids=${gameIds[i]}`;
-        let response = await fetch(url);
-        data = await response.json();
-        console.log(fetch_i++, gameIds.length, );
+        try {
+          let url = `https://store.steampowered.com/api/appdetails?appids=${gameIds[i]}`;
+          let response = await fetch(url);
+          if (!response.ok) throw new Error(response.statusText);
+          data = await response.json();
+          console.log('SteamID', gameIds[i]);
+          console.log(fetch_i++, gameIds.length,);
+        } catch (err) {
+          console.log(err)
+        }
       }
     }
+
 
     let screenShot;
     let genre;
@@ -72,30 +79,30 @@ let addGames = async () => {
       errLogs.push(e);
       genre = [];
     }
-try {
-  let newGame = new Game({
-    steam_appid: data[gameIds[i]].data.steam_appid,
-    name: data[gameIds[i]].data.name,
-    urlName: transliterate(data[gameIds[i]].data.name),
-    detailed_description: data[gameIds[i]].data.detailed_description,
-    short_description: data[gameIds[i]].data.short_description,
-    ageLimit: data[gameIds[i]].data.required_age,
-    language: data[gameIds[i]].data.supported_languages,
-    cover: data[gameIds[i]].data.header_image,
-    screenShot: screenShot,
-    videos: data[gameIds[i]].data.movies,
-    genre: genre,
-    os: data[gameIds[i]].data.platforms,
-    year: data[gameIds[i]].data.release_date.date,
-    developer: data[gameIds[i]].data.developers,
-    publisher: data[gameIds[i]].data.publishers,
-    website: data[gameIds[i]].data.website,
-  });
-    //await newGame.save();
-} catch (e) {
-  console.log('catched error in NewGame - ', e);
-  errLogs.push(e);
-}
+    try {
+      let newGame = new Game({
+        steam_appid: data[gameIds[i]].data.steam_appid,
+        name: data[gameIds[i]].data.name,
+        urlName: transliterate(data[gameIds[i]].data.name),
+        description: data[gameIds[i]].data.detailed_description,
+        short_description: data[gameIds[i]].data.short_description,
+        ageLimit: data[gameIds[i]].data.required_age,
+        language: data[gameIds[i]].data.supported_languages,
+        cover: data[gameIds[i]].data.header_image,
+        screenShot: screenShot,
+        videos: data[gameIds[i]].data.movies,
+        genre: genre,
+        os: data[gameIds[i]].data.platforms,
+        year: data[gameIds[i]].data.release_date.date,
+        developer: data[gameIds[i]].data.developers,
+        publisher: data[gameIds[i]].data.publishers,
+        website: data[gameIds[i]].data.website,
+      });
+      await newGame.save();
+    } catch (e) {
+      console.log('catched error in NewGame - ', e);
+      errLogs.push(e);
+    }
     console.log(`Игра номер ${i} добавленна`);
   }
   mongoose.connection.close();

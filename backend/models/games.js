@@ -5,15 +5,12 @@ const gameSchema = new mongoose.Schema({
   steam_appid: Number,
   name:{
     type:String,
-    required:true,
-    unique:true
   },
   urlName: String,
   description: String,
   short_description: String,
   clubs:{
     type: [String],
-    unique: true,
     default: []
   },
   clubsIds: [ObjectId],
