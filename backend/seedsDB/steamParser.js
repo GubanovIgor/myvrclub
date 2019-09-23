@@ -37,8 +37,11 @@ const fs = require('fs');
 let addGames = async () => {
   let gameIds = fs.readFileSync('files/VrGameListInClubs.txt', 'utf8').split(',');
   let data = null;
+  let arrGames = [];
+  console.log('Игр :', gameIds.length);
   for (let i = 0; i < gameIds.length; i++) {
-    let fetch_i = 0;
+    let fetch_i = 1;
+
     while (true) {
       if (data && data[gameIds[i]]) {
         break;
@@ -49,7 +52,7 @@ let addGames = async () => {
           if (!response.ok) throw new Error(response.statusText);
           data = await response.json();
           console.log('SteamID', gameIds[i]);
-          console.log(fetch_i++, gameIds.length,);
+          console.log('запрос - ', fetch_i++);
         } catch (err) {
           console.log(err)
         }
