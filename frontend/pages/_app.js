@@ -1,9 +1,10 @@
 import App from 'next/app';
 import React from 'react';
 import withReduxStore from '../redux/lib/with-redux-store';
-import { Provider } from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import Head from 'next/head';
 import Header from '../components/Header';
+import {changeMapAC, getClubsAC, offChangeMapAC} from "../redux/actions";
 
 class ReduxApp extends App {
   render () {
@@ -21,4 +22,5 @@ class ReduxApp extends App {
   }
 }
 
+// Как прикрутить сюда connect?
 export default withReduxStore(ReduxApp);

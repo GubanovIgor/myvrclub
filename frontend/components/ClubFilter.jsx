@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import styles from '../stylesheets/filter.module.scss';
 
 //import AC
-import { changeMapAC, offChangeMapAC } from '../redux/actions';
+import { changeMapAC, offChangeMapAC, getClubsAC, filterToggleClubsAC } from '../redux/actions';
 
 // import components
 import FilterSection from '../components/FilterSection';
-import {filterToggleClubsAC, getClubsAC} from "../redux/actions";
+import MapRatingToggle from '../components/MapRatingToggle'
 
 class ClubFilter extends Component {
 
@@ -40,26 +40,14 @@ class ClubFilter extends Component {
     this.props.offChangeMap();
   }
 
+  componentDidMount() {
+    console.log(window.innerWidth);
+  }
+
   render() {
     return (
       <div className={styles.container}>
-        <div>
-          <h3>Показывать</h3>
-          {/*/!*<TextInput onRequestOptions={this.handleRequestOptions} options={this.state.options}/>*!/*/}
-          {/*<input*/}
-            {/*className={styles.metroInput} placeholder='охотный ряд' type='text' id='1'*/}
-          {/*/><br></br>*/}
-          <div>
-            <input onClick={this.offChangeMap} type="radio" id="huey" name="drone" value="huey"
-                   />
-              <label htmlFor="huey">По рейтингу</label>
-          </div>
-
-          <div>
-            <input onClick={this.onChangeMap} type="radio" id="dewey" name="drone" value="dewey"/>
-              <label htmlFor="dewey">На карте</label>
-          </div>
-        </div>
+        <MapRatingToggle />
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}

@@ -17,5 +17,11 @@
     background-color: #5e98fb;
   }
 
-  margin-right: 10px;
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.paginationArrow {
+  fill: white;
 }

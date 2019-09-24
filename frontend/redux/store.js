@@ -14,6 +14,9 @@ export const InitState = {
   loadingGame: false,
   errorGame: false,
   paginationValue: 1,
+  showFilter: false,
+  caruselIndex: 0,
+  screenMode: 'desktop',
   gamesFilter: [
     {
       title: 'Жанр',

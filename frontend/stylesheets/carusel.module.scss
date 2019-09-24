@@ -1,0 +1,21 @@
+.carusel {
+    width: 1200px;
+    height: 500px;
+
+    background-color: rgb(230, 230, 230);
+
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.caruselImages {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: margin-left 2s;
+}
+
+.caruselImages li {
+    margin: 0 30px 0 0;
+}

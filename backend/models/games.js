@@ -3,11 +3,19 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const gameSchema = new mongoose.Schema({
   steam_appid: Number,
-  name: String,
+  name:{
+    type:String,
+    required:true,
+    unique:true
+  },
   urlName: String,
   description: String,
   short_description: String,
-  clubs: [String],
+  clubs:{
+    type: [String],
+    unique: true,
+    default: []
+  },
   clubsIds: [ObjectId],
   cover: String,
   screenShot: [String],
