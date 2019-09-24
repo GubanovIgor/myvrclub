@@ -15,43 +15,39 @@ const db = mongoose.connection;
 
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
-let data = fs.readFileSync('./files/clubs.csv').toString();
-data = data.replace(/"/g, ""); //удаляем кавычки
-fs.writeFile("./files/club-temp.csv", data, async function (error) {
+const seedClubs = async () => {
     const gamesDB = await Game.find();
-    console.log('gamesDB');
-    if (error) throw error;
-    console.log("запись файла завершена.");
-    const json = csvToJson.getJsonFromCsv('./files/club-temp.csv');
+    const json = csvToJson.getJsonFromCsv('./files/clubs.csv');
+
+    let clubGamesNames = [];
+    let clubGamesgamesID = [];
+    for (let i = 0; i < gamesDB.length; i++) {
+        clubGamesNames[i] = (gamesDB[i].name);
+        clubGamesgamesID[i] = (gamesDB[i].id);
+    }
 
     for (let i = 0; i < json.length; i++) {
         let {
             name,
             address,
             tel,
-            Site,
+            domain,
             workTime,
             metro,
-            Sociallinks,
+            socialLinks,
             games,
             cover,
             screenShot,
             logo,
+            videos,
             price,
             equipment,
+            baloon
         } = json[i];
 
-        let clubGamesNames = [];
-        let clubGamesgamesID = [];
-        // let j = Math.floor(Math.random() * 20) + 5;
-        // for (let i = 0; i <= j; i++) {
-        //     let rndIndex = Math.floor(Math.random() * 30) + 1;
-        //     clubGamesNames.push(gamesDB[rndIndex].name);
-        //     clubGamesgamesID.push(gamesDB[rndIndex].id)
-        // }
-
-        if (Sociallinks !== undefined) Sociallinks = Sociallinks.split(" ") //здесь невидимый символ! c MAC OS
-        else Sociallinks = [];
+        console.log(name)
+        if (socialLinks !== undefined) socialLinks = socialLinks.split(" ") //здесь невидимый символ! c MAC OS
+        else socialLinks = [];
         if (metro !== undefined) metro = metro.split(',') //здесь запятая с MAC
         else metro = [];
         if (games !== undefined) games = games.split(',')
@@ -64,34 +60,39 @@ fs.writeFile("./files/club-temp.csv", data, async function (error) {
         else screenShot = [];
         if (workTime !== undefined) workTime = workTime.split(',');
         else workTime = [];
-        //console.log(screenShot);
 
         let clubs = new Club({
             name,
             urlName: transliterate(name), //https://www.npmjs.com/package/cyrillic-to-translit-js
             address,
             tel,
-            domain: Site,
+            domain,
             cover,
             screenShot,
+            videos,
             logo,
             metro,
             workTime,
             socialLinks: {
-                vk: Sociallinks[0] && Sociallinks[0],
-                instagram: Sociallinks[1] && Sociallinks[1],
-                fb: Sociallinks[2] && Sociallinks[2]
+                vk: socialLinks[0] && socialLinks[0],
+                instagram: socialLinks[1] && socialLinks[1],
+                fb: socialLinks[2] && socialLinks[2]
             },
             games: clubGamesNames,
             gamesIds: clubGamesgamesID,
             equipment,
             price,
+            baloon,
         });
-        console.log(clubs);
+
         await clubs.save();
     }
+    console.log('clubs saved')
     db.close();
-});
+};
+
+seedClubs();
+
 
 
 
