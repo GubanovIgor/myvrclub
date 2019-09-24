@@ -19,6 +19,7 @@ const seedClubs = async () => {
     const gamesDB = await Game.find();
     const json = csvToJson.getJsonFromCsv('./files/clubs.csv');
 
+
     let clubGamesNames = [];
     let clubGamesgamesID = [];
     for (let i = 0; i < gamesDB.length; i++) {
