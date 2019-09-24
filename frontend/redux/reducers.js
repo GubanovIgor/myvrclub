@@ -61,6 +61,11 @@ export const reducer = (state, action) => {
         ...state,
         caruselIndex: action.caruselIndex,
       })
+    case actionTypes.SWITCH_SCREEN_MODE:
+      return ({
+        ...state,
+        screenMode: action.screenMode,
+      })
 
     default:
       return state;

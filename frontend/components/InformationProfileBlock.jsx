@@ -57,7 +57,7 @@ class InformationProfileBlock extends Component {
     if (!!game) {
       return (
         <div className={styles.profileInformations}>
-          <img src={game.cover}
+          <img src={game.cover} // Поставить условие показа в зависимости от screenMode
                width="360"
                height="202"
                alt={game.name}/>
@@ -67,7 +67,7 @@ class InformationProfileBlock extends Component {
               <span>Жанр:</span> {game.genre}<br/>
               <span>Платформа:</span> {game.platform}<br/>
               <span>Язык:</span> {game.language}<br/>
-              <span>Колличество игроков:</span> {game.playersNum}<br/>
+              <span>Количество игроков:</span> {game.playersNum}<br/>
             </p>
           </div>
         </div>

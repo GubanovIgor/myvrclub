@@ -22,4 +22,5 @@ class ReduxApp extends App {
   }
 }
 
+// Как прикрутить сюда connect?
 export default withReduxStore(ReduxApp);
