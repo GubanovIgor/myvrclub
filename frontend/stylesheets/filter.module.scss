@@ -42,7 +42,7 @@
   display: none;
 }
 
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .container {
     flex-direction: row;
     flex-wrap: wrap;

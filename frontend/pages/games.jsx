@@ -16,6 +16,10 @@ import FilterButton from '../components/FilterButton';
 import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Games extends Component {
+  state = {
+    window: false,
+  }
+
   handlePageChange = async (pageNumber) => {
     await this.props.pagination(pageNumber, this.props.filterToggle, 'game');
   };
@@ -26,7 +30,19 @@ class Games extends Component {
 
   componentDidMount = async () => {
       this.props.getGames();
+      console.log(window.innerWidth);
+      this.setState({window: true});
   };
+
+//   updateDimensions: function() {
+//     this.setState({width: $(window).width(), height: $(window).height()});
+// },
+// componentWillMount: function() {
+//     this.updateDimensions();
+// },
+// componentDidMount: function() {
+//     window.addEventListener("resize", this.updateDimensions);
+// },
 
   render() {
     return (
