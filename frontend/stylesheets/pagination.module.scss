@@ -2,5 +2,8 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 80px;
-  margin-right: 10px;
+
+  @media screen and (max-device-width: 425px) {
+    justify-content: center;
+  }
 }

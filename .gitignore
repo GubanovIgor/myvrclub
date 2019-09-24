@@ -19,7 +19,8 @@
 
 # misc
 .DS_Store
-.env*
+/backend/.env*
+/backend/seedsDB/.env*
 
 # debug
 npm-debug.log*

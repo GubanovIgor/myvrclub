@@ -9,7 +9,7 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-bottom: 20px;
   margin-right: 20px;
@@ -22,9 +22,8 @@ $mobile-card-height: 140px;
 
   transition: 0.5s;
 
-  @media screen and (max-device-width: 375px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
+  @media screen and (max-device-width: 425px) {
+    margin: 0 0 20px 0;
   }
 }
 
@@ -32,11 +31,11 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
-  @media screen and (max-device-width: 375px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
+  @media screen and (max-device-width: 425px) {
+    // width: $mobile-card-width;
+    // height: $mobile-card-height;
   }
 }
 
@@ -49,16 +48,16 @@ $mobile-card-height: 140px;
   top: 0;
   left: 0;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   width: 280px;
   height: 280px;
 
-  background: linear-gradient(to top, black, transparent);
+  background: linear-gradient(to top, #171718, #171718 10%, transparent 30%);
 
-  @media screen and (max-device-width: 375px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
+  @media screen and (max-device-width: 425px) {
+    // width: $mobile-card-width;
+    // height: $mobile-card-height;
   }
 }
 
@@ -88,7 +87,7 @@ $mobile-card-height: 140px;
 }
 
 // Mobile
-@media screen and (max-device-width: 375px) {
+@media screen and (max-device-width: 425px) {
   .titleWrapper {
     margin: 10px auto;
   }

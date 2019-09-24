@@ -38,9 +38,26 @@
   cursor: pointer;
 }
 
-@media screen and (max-device-width: 375px) {
+.filterButton {
+  display: none;
+}
+
+@media screen and (max-device-width: 425px) {
   .container {
-    width: 90px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    margin: 0 auto 20px;
+    padding: 0;
+
+    width: 100%;
+
+    border: none;
+  }
+
+  .filterButton {
+    display: block;
   }
 
   .breakLine {

@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const ClubGameId = require('../models/club-game-ids.js');
 const Game = require('../models/games.js');
 const Club = require('../models/clubs.js');
+
 const dbName = 'mongodb://localhost/myvrclub';
+//const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
 const db = mongoose.connection;
+
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
 let gamesIds = [];
