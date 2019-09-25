@@ -14,19 +14,15 @@ import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
 // import AC
-<<<<<<< HEAD
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
-=======
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
->>>>>>> master
 
 class Clubs extends Component {
   state = {
     screenWidth: 0,
   };
 
-  handlePageChange = async (pageNumber) => {
-    await this.props.pagination(pageNumber, this.props.filterToggle, 'club');
+  handlePageChange = async () => {
+    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'club');
   };
 
   componentDidMount = async () => {
@@ -40,14 +36,6 @@ class Clubs extends Component {
     this.props.showFilterToggle();
   };
 
-  prevPage = () => {
-    this.handlePageChange(this.props.paginationValue - 1);
-  }
-
-  nextPage = () => {
-    this.handlePageChange(this.props.paginationValue + 1);
-  }
-
   // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
   updateDimensions = () => {
     if (window.innerWidth <= 438) {
@@ -56,6 +44,10 @@ class Clubs extends Component {
       this.props.switchScreenMode('desktop');
     }
   };
+
+  componentWillUnmount = async () => {
+    await this.props.pagination(1, this.props.filterToggle, 'game');
+  }
 
   render() {
     const { clubs } = this.props;
@@ -76,8 +68,7 @@ class Clubs extends Component {
         </div>
         <Pagination
           handlePageChange={this.handlePageChange}
-          prevPage={this.prevPage}
-          nextPage={this.nextPage}
+          paginationValue={this.props.paginationValue}
         />
         <Footer />
       </div >
@@ -96,7 +87,7 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   showFilterToggle: () => dispatch(showFilterToggleAC()),
   getClubs: () => dispatch(getClubsAC()),
-  pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
+  pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
   switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 });
 

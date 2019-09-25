@@ -15,7 +15,7 @@ export const InitState = {
   errorGame: false,
   paginationValue: 1,
   showFilter: false,
-  caruselIndex: 0,
+  caruselIndex: 4,
   screenMode: 'desktop',
   gamesFilter: [
     {

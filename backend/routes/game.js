@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
     });
 
     conditions.push({ $or: years })
+    // console.log(years);
   }
 
   // Возраст
@@ -46,14 +47,13 @@ router.post('/', async (req, res) => {
     conditions.push({ ageLimit: { $all: ages } })
   }
 
-  const skipItems = (req.body.pagination - 1) * 18;
+  // const skipItems = (req.body.pagination - 1) * 18;
 
-  console.log('conditions >>>>', conditions);
+  // console.log('conditions >>>>', conditions);
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
-  ).skip(skipItems).limit(18);
-  console.log('games >>>>', games.length);
+  ).limit(18 * req.body.pagination);
   res.json(games);
 });
 

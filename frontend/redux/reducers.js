@@ -32,10 +32,10 @@ export const reducer = (state, action) => {
       stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
-      return ({
-        ...state,
-        paginationValue: action.value,
-      });
+        return ({
+          ...state,
+          paginationValue: action.value,
+        });
     case actionTypes.CHANGE_MAP:
       return ({
         ...state,

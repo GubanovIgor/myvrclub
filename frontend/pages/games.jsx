@@ -17,8 +17,8 @@ import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenMo
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  handlePageChange = async (pageNumber) => {
-    await this.props.pagination(pageNumber, this.props.filterToggle, 'game');
+  handlePageChange = async () => {
+    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
   };
 
   showFilter = () => {
@@ -31,6 +31,10 @@ class Games extends Component {
 
     await this.props.getGames();
   };
+
+  componentWillUnmount = async () => {
+    await this.props.pagination(1, this.props.filterToggle, 'game');
+  }
 
   // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
   updateDimensions = () => {
@@ -71,6 +75,7 @@ const mapStateToProps = (store) => {
     games: store.games,
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
+    paginationValue: store.paginationValue,
   };
 };
 

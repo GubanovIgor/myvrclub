@@ -43,7 +43,6 @@ export const getClubsAC = (
       pagination,
       gameId
     };
-
     const resp = await fetch(`${API_PREFIX}/club`, {
       method: 'POST',
       headers: {
@@ -51,6 +50,7 @@ export const getClubsAC = (
       },
       body: JSON.stringify(filterData),
     });
+    console.log(resp);
     const data = await resp.json();
     dispatch(requestGetClubs(data));
   }
@@ -67,7 +67,6 @@ export const getGamesAC = (
   clubId = '',
 ) => (
   async (dispatch) => {
-
     dispatch(requestGames());
     let checkedToggle = {};
 
@@ -133,7 +132,6 @@ export const requestSwitchPaginationValue = (value) => (
 export const switchPaginationValueAC = (value, filterToggleData, type) => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
-    console.log(filterToggleData);
     if (type === 'game') {
       dispatch(getGamesAC(filterToggleData, value));
     }

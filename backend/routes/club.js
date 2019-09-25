@@ -8,7 +8,6 @@ const Game = require('../models/games');
 // });
 
 router.post('/', async (req, res) => {
-
   const conditions =[];
 
   // Для конкретной игры в клубе
@@ -19,7 +18,7 @@ router.post('/', async (req, res) => {
   }
 
   if (req.body.checkedToggle[0].length) {
-    //console.log(req.body.checkedToggle[0]);
+    console.log(req.body.checkedToggle[0]);
     conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
   }
 
@@ -29,12 +28,12 @@ router.post('/', async (req, res) => {
     conditions.push({price: { $lt: num } })
   }
 
-  const skipItems = (req.body.pagination - 1) * 9;
-
+  // const skipItems = (req.body.pagination - 1) * 9;
+  // console.log(req.body.pagination)
   const clubs = await Club.find(
     conditions.length ? { $and: conditions } : {}
-  ).skip(skipItems).limit(9);
-  //console.log('clubs.length>>>>>', clubs.length);
+  ).limit(req.body.pagination * 9);
+  // console.log('clubs.length>>>>>', clubs.length);
   res.json(clubs);
 });
 
@@ -42,7 +41,7 @@ router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
   //const clubs = await Club.findByIdAndUpdate(req.body.clubId, {clickCounter: });
   const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, {new: true }); // new:true возвр измененный док
-  console.log('club',club);
+  // console.log('club', club);
 });
 
 module.exports = router;
