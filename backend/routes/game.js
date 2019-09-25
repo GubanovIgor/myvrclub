@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
   // Для конкретного клуба
   if (req.body.clubId.length) {
     const club = await Club.findById(req.body.clubId);
+      console.log('games in club', club.gamesIds);
     conditions.push({ _id: { $in: club.gamesIds } })
   }
 

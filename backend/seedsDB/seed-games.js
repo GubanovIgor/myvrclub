@@ -2,69 +2,100 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
+
 const Game = require('../models/games.js');
+const Club = require('../models/clubs.js');
 
 const dbName = 'mongodb://localhost/myvrclub';
-mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(dbName, {useNewUrlParser: true, useCreateIndex: true});
 const db = mongoose.connection;
 
 const fs = require('fs');
 const csvToJson = require('convert-csv-to-json');
 
-let data = fs.readFileSync('./files/games.csv').toString();
-data = data.replace(/"/g, "");
-fs.writeFile("./files/games-temp.csv", data, async function (error) {
-  if (error) throw error;
-  console.log("запись файла завершена.");
-  const json = csvToJson.getJsonFromCsv('./files/games-temp.csv');
+// let data = fs.readFileSync('./files/games.csv').toString();
+// data = data.replace(/"/g, "");
 
-  for (let i = 0; i < json.length; i++) {
+const json = csvToJson.getJsonFromCsv('./files/games.csv');
+const seedGames = async () => {
+    const clubsDB = await Club.find();
+    let gameClubsNames = [];
+    let gameClubIDs = [];
+    for (let i = 0; i < clubsDB.length; i++) {
+        gameClubsNames[i] = (clubsDB[i].name);
+        gameClubIDs[i] = (clubsDB[i].id);
+    }
 
-    let { name,
-      description,
-      clubs,
-      pictures,
-      videos,
-      genre,
-      playersNum,
-      platform,
-      language,
-      year,
-      developer,
-      ageLimit,
-      rating,
-      tags } = json[i];
+    for (let i = 0; i < json.length; i++) {
+        let {
+            name,
+            description,
+            short_description,
+            clubs,
+            clubsIds = [],
+            cover,
+            screenShot,
+            videos,
+            genre,
+            playersNum,
+            platform,
+            language,
+            year,
+            developer,
+            ageLimit,
+            rating,
+            tags,
+            duration
+        } = json[i];
 
-    if (clubs !== undefined) clubs = clubs.split(",");
-    if (pictures !== undefined) pictures = pictures.split(",");
-    if (videos !== undefined) videos = videos.split(",");
-    if (genre !== undefined) genre = genre.split(",");
-    if (platform !== undefined) platform = platform.split(",");
-    if (tags !== undefined) tags = tags.split(",");
+        if (clubs === '' || clubs === undefined) {
+            clubs = gameClubsNames;
+            clubsIds = gameClubIDs;
+        }
+        else {
+            clubs = clubs.split(",");
+            for (let j = 0; j < clubs.length; j++) {
+                let club = await Club.findOne({name: clubs[j]});
+                console.log('<<>>>>>>>>>', club, clubs[j])
+                clubsIds[j] = club.id;
+            }
+        }
+        if (screenShot !== undefined) screenShot = screenShot.split(",");
+        if (videos !== undefined) videos = videos.split(",");
+        if (genre !== undefined) genre = genre.split(",");
+        if (platform !== undefined) platform = platform.split(",");
+        if (tags !== undefined) tags = tags.split(",");
 
-    let games = new Game({
-      name,
-      description,
-      clubs,
-      screenShot: pictures,
-      cover: '',
-      videos,
-      genre,
-      playersNum,
-      platform,
-      language,
-      year,
-      developer,
-      ageLimit,
-      rating,
-      tags
-    });
-    console.log(games);
-    await games.save();
-  }
+        let games = new Game({
+            name,
+            urlName: transliterate(name),
+            description,
+            short_description,
+            clubs,
+            clubsIds,
+            screenShot,
+            cover,
+            videos,
+            genre,
+            playersNum,
+            platform,
+            language,
+            year,
+            developer,
+            ageLimit,
+            rating,
+            tags,
+            duration
+        });
 
-  db.close();
-});
+        await games.save();
+        console.log(name)
+    }
+    console.log('games was saved');
+    db.close();
+}
+seedGames();
 
 
 

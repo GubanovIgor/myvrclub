@@ -13,15 +13,15 @@ router.post('/', async (req, res) => {
   // Для конкретной игры в клубе
   if (req.body.gameId.length) {
      const game = await Game.findById(req.body.gameId);
-    //console.log('games in club id>>>>>>>', game.clubsIds);
+    console.log('clubs in game id>>>>>>>', game.clubsIds);
     conditions.push({ _id: { $in: game.clubsIds } })
   }
+
 
   if (req.body.checkedToggle[0].length) {
     console.log(req.body.checkedToggle[0]);
     conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
   }
-
   if (req.body.checkedToggle[1].length) {
     const length = req.body.checkedToggle[1].length;
     const num = req.body.checkedToggle[1][length-1].split(' ')[1];
