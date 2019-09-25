@@ -26,6 +26,7 @@ class Clubs extends Component {
   };
 
   componentDidMount = async () => {
+    window.addEventListener('scroll', this.autoPagination);
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
 
@@ -47,6 +48,14 @@ class Clubs extends Component {
 
   componentWillUnmount = async () => {
     await this.props.pagination(1, this.props.filterToggle, 'game');
+  }
+
+  autoPagination = async () => {
+    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
+    let clientHeight = document.documentElement.clientHeight;
+    if (windowRelativeBottom < clientHeight + 100) {
+      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
+    }
   }
 
   render() {

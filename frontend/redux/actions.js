@@ -87,7 +87,6 @@ export const getGamesAC = (
       pagination,
       clubId,
     };
-    console.log(filterData);
 
     const resp = await fetch(`${API_PREFIX}/game`, {
       method: 'POST',
