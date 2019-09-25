@@ -53,14 +53,8 @@ const seedGames = async () => {
             clubs = gameClubsNames;
             clubsIds = gameClubIDs;
         }
-        else {
-            clubs = clubs.split(",");
-            for (let j = 0; j < clubs.length; j++) {
-                let club = await Club.findOne({name: clubs[j]});
-                console.log('<<>>>>>>>>>', club, clubs[j])
-                clubsIds[j] = club.id;
-            }
-        }
+        else clubs = clubs.split(",");
+
         if (screenShot !== undefined) screenShot = screenShot.split(",");
         if (videos !== undefined) videos = videos.split(",");
         if (genre !== undefined) genre = genre.split(",");
