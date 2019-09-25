@@ -6,7 +6,6 @@
 
     margin-top: 20px;
     margin-bottom: 50px;
-    transition: margin-left 2s;
 }
 
 .caruselImages {
@@ -14,7 +13,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-
+    transition: margin-left 2s;
 }
 
 .caruselImages li {

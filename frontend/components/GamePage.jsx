@@ -21,7 +21,7 @@ class GamePage extends Component {
 
     // ymaps.ready(init);
     // // let myMap;
-    //
+    
     // function init() {
     //   let myMap = new ymaps.Map("map", {
     //     center: [55.76, 37.64],
@@ -52,9 +52,9 @@ class GamePage extends Component {
 
         <h2>Где поиграть в {game.name}</h2>
 
-        {/*{(this.props.map) ? <Map /> : <p>qweqr</p>}*/}
+        {/* {(this.props.map) ? <Map /> : <p>qweqr</p>} */}
 
-        {/*{(this.props.map) ? <Map /> :*/}
+        {/* {(this.props.map) ? <Map /> : */}
           {/*<div className={cardsWrapper.container}>*/}
             {/*<ClubFilter gameId={this.props.game._id}/>*/}
             {/*<div className={cardsWrapper.cardsWrapper}>*/}
@@ -67,7 +67,7 @@ class GamePage extends Component {
                 {/*}))}*/}
             {/*</div>*/}
           {/*</div>*/}
-        {/*}*/}
+        {/*} */}
 
         {/*<div className={cardsWrapper.container}>*/}
           {/*<ClubFilter gameId={this.props.game._id}/>*/}
