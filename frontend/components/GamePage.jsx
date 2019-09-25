@@ -32,9 +32,9 @@ class GamePage extends Component {
 
   render() {
 
-
     const { game = [], clubs, loading, error} = this.props;
-    const clubItems = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
+    const clubItems = clubs.map((club, index) =>
+        <ClubCard key={index} club={club}/>);
     return (
       <main>
         <GameProfile game={game}/>

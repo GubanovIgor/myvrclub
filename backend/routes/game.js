@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
   // Для конкретного клуба
   if (req.body.clubId.length) {
     const club = await Club.findById(req.body.clubId);
+      console.log('games in club', club.gamesIds);
     conditions.push({ _id: { $in: club.gamesIds } })
   }
 
@@ -48,12 +49,12 @@ router.post('/', async (req, res) => {
 
   const skipItems = (req.body.pagination - 1) * 18;
 
-  console.log('conditions >>>>', conditions);
+  console.log('conditions in game.js >>>>', conditions);
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
   ).skip(skipItems).limit(18);
-  console.log('games >>>>', games.length);
+  console.log('games in game.js >>>>', games.length);
   res.json(games);
 });
 
