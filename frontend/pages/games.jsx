@@ -17,10 +17,6 @@ import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenMo
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  state = {
-    autoPaginationCheck: true,
-  }
-
   handlePageChange = async () => {
     await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
   };
@@ -44,8 +40,7 @@ class Games extends Component {
   autoPagination = async () => {
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
     let clientHeight = document.documentElement.clientHeight
-    if (windowRelativeBottom < clientHeight + 100 && this.state.autoPaginationCheck) {
-      this.setState({autoPaginationCheck: false})
+    if (windowRelativeBottom < clientHeight + 100) {
       this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
     }
   }
