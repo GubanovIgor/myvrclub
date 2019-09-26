@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import styles from '../stylesheets/feedbackForm.module.scss';
 
 export default class FeedbackModal extends Component {
 
   state = {
+    userName: '',
     userEmail: '',
     userText: '',
+    currentUrl: window.location.href,
   };
 
   componentDidUpdate() {
@@ -17,14 +20,11 @@ export default class FeedbackModal extends Component {
   };
 
   componentDidMount() {
-    // modal.addEventListener('click', this.onClose, false);
     document.addEventListener('keydown', this.onEscKeyDown, false);
-    // document.addEventListener('click', this.handleClickOutside, false);
   };
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEscKeyDown, false);
-    // document.removeEventListener('click', this.handleClickOutside, false);
   };
 
   onEscKeyDown = (e) => {
@@ -51,9 +51,25 @@ export default class FeedbackModal extends Component {
     });
   };
 
-  onSubmit = (e) => {
+  onNameChange = (e) => {
+    this.setState({
+      userName: e.target.value,
+    });
+  };
+
+  onSubmit = async (e) => {
     e.preventDefault();
     console.log(this.state);
+    await axios.post('http://localhost:3100/send-mail', {
+      name: this.state.userName,
+      from: this.state.userEmail,
+      text: this.state.userText,
+      url: this.state.currentUrl,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   };
 
   render() {
@@ -68,6 +84,10 @@ export default class FeedbackModal extends Component {
           <h2>Сообщить об ошибке</h2>
           <div className="content">
             <form onSubmit={this.onSubmit}>
+            <input type='text'
+                placeholder='Ваше имя'
+                onChange={this.onNameChange}
+                value={this.state.userName} />
               <input type='email'
                 placeholder='Ваш email'
                 onChange={this.onEmailChange}

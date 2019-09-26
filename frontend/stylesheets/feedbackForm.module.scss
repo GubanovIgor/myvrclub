@@ -9,9 +9,9 @@
 }
 
 .innerPopUp {
-  width: 700px;
+  width: 600px;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 10px;
 
   position: fixed;
   top: 100px;
@@ -19,5 +19,5 @@
   transform: translateX(-50%);
   z-index: 11;
 
-  padding: 50px 30px 40px;
+  padding: 10px 30px 40px;
 }
