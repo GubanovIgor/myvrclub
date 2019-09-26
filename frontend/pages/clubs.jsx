@@ -25,7 +25,7 @@ class Clubs extends Component {
     window.addEventListener('scroll', this.autoPagination);
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
-
+    console.log(this.props);
     this.props.getClubs();
   };
 
