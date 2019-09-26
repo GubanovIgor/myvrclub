@@ -9,14 +9,13 @@ class AdminGameCard extends Component {
     const {game = []} = this.props;
     return (
       <>
-        <Link href='/games/[urlname]' as={`/games/${game.urlName}`}>
+        <Link href='games/[urlname]' as={`games/${game.urlName}`}>
           <div className={styles.container}>
             {
               <img className={styles.cover} src={game.cover}/>}
             <p className={styles.title}>Game Name: <b>{game.name}</b></p>
             <div className={styles.darkWrapper}/>
-            {/*<div className={styles.new}>new</div>*/}
-            <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
+            <div className={styles.rating}>{game.rating}</div>
           </div>
         </Link>
       </>

@@ -14,11 +14,7 @@ import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
 // import AC
-<<<<<<< HEAD
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
-=======
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
->>>>>>> master
 
 class Clubs extends Component {
   state = {
