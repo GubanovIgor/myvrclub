@@ -11,6 +11,7 @@ class ReduxApp extends App {
     const { Component, pageProps, reduxStore } = this.props;
     return (
       <Provider store={reduxStore}>
+        
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <script src="https://api-maps.yandex.ru/2.1/?apikey=ea20f38d-5be5-4362-80e9-95ba9d77dc70&lang=ru_RU"

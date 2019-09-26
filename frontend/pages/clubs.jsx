@@ -17,10 +17,6 @@ import Loading from '../components/Loading';
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
 
 class Clubs extends Component {
-  state = {
-    screenWidth: 0,
-  };
-
   handlePageChange = async () => {
     await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'club');
   };
@@ -53,7 +49,7 @@ class Clubs extends Component {
   autoPagination = async () => {
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
     let clientHeight = document.documentElement.clientHeight;
-    if (windowRelativeBottom < clientHeight + 100) {
+    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
       this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
     }
   }
@@ -91,6 +87,7 @@ const mapStateToProps = (store) => ({
   filterToggle: store.gamesFilterToggle,
   paginationValue: store.paginationValue,
   screenMode: store.screenMode,
+  loading: store.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

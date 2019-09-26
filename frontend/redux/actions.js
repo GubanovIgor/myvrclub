@@ -97,6 +97,7 @@ export const getGamesAC = (
     });
     const data = await resp.json();
     dispatch(requestGetGames(data));
+    
   }
 );
 
