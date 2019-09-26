@@ -22,23 +22,11 @@ class Index extends Component {
 			'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
 			'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
       'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
-      
-			'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
-			'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
-			'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
-      'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
-
-      'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
-			'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
-			'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
-			'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
 		],
   }
 
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
-    console.log('getInitialProps - isServer', isServer);
-    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
     return { custom: 'custom props' };
   }
 
@@ -47,32 +35,31 @@ class Index extends Component {
     this.props.getClubs();
   };
 
-  componentDidUpdate = () => {
-    // if (this.props.caruselIndex === 3) {
-    //   this.props.switchCaruselIndex(7);
-    // }
+  caruselDataMix = (side) => {
+    let newData = this.state.caruselData.slice();
+
+    if (side === 'left') {
+      let lastElem = newData.pop();
+      newData.splice(0, 0, lastElem);
+      this.setState({caruselData: newData});
+    }
+
+    if (side === 'right') {
+      let firstElem = newData.shift();
+      newData.splice(newData.length, 0, firstElem);
+      this.setState({caruselData: newData});
+    }
   }
 
   switchCarusel = async (index) => {
-    await this.props.switchCaruselIndex(index);
-    if (index === 3) {
-      this.props.switchCaruselIndex(7);
-      this.setState({caruselData: [
-        'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
-        'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
-        'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
-        'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
-        
-        'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
-        'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
-        'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
-        'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
-  
-        'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
-        'https://www.digiseller.ru/preview/539631/p1_2461891_42c645c0.jpg',
-        'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
-        'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
-      ],})
+    if (index === 0) {
+      await this.props.switchCaruselIndex(index + 1);
+      this.caruselDataMix('left');
+    } else if (index === 3) {
+      await this.props.switchCaruselIndex(index - 1);
+      this.caruselDataMix('right');
+    } else {
+      await this.props.switchCaruselIndex(index);
     }
   };
 

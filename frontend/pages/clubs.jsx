@@ -14,7 +14,7 @@ import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
 // import AC
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Clubs extends Component {
   handlePageChange = async () => {
