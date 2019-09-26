@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
 
+import FeedbackForm from './FeedbackForm';
+
 //SASS
 import styles from '../stylesheets/informationProfileBlock.module.scss';
 
@@ -68,6 +70,7 @@ class InformationProfileBlock extends Component {
               <span>Платформа:</span> {game.platform}<br/>
               <span>Язык:</span> {game.language}<br/>
               <span>Количество игроков:</span> {game.playersNum}<br/>
+              <FeedbackForm />
             </p>
           </div>
         </div>
