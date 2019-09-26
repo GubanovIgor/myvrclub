@@ -70,6 +70,7 @@ export default class FeedbackModal extends Component {
         'Content-Type': 'application/json',
       },
     });
+    this.onClose();
   };
 
   render() {
@@ -81,33 +82,26 @@ export default class FeedbackModal extends Component {
       <div>
         <div ref='modal' className={styles.popUp}></div>
         <div className={styles.innerPopUp}>
-          <h2>Сообщить об ошибке</h2>
-          <div className="content">
+          <h2 className={styles.modal}>Сообщить об ошибке</h2>
+          <div className={styles.content}>
             <form onSubmit={this.onSubmit}>
             <input type='text'
                 placeholder='Ваше имя'
                 onChange={this.onNameChange}
-                value={this.state.userName} />
+                value={this.state.userName}
+                required />
               <input type='email'
                 placeholder='Ваш email'
                 onChange={this.onEmailChange}
-                value={this.state.userEmail} />
-              <br />
+                value={this.state.userEmail}
+                required />
               <textarea type='text'
                 placeholder='Описание ошибки'
                 onChange={this.onTextChange}
-                value={this.state.userText} />
-              <button>Отправить</button>
+                value={this.state.userText}
+                required/>
+              <button onClick={this.onClose} className={styles.button}>Отправить</button>
             </form>
-          </div>
-          <div className="actions">
-            <button
-              className="toggle-button"
-              onClick={() => {
-                this.onClose();
-              }
-              }>
-              Закрыть</button>
           </div>
         </div>
       </div>
