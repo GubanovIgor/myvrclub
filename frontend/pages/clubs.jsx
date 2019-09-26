@@ -23,23 +23,11 @@ class Clubs extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.autoPagination);
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
-    console.log(this.props);
     this.props.getClubs();
   };
 
   showFilter = () => {
     this.props.showFilterToggle();
-  };
-
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
-    }
   };
 
   componentWillUnmount = async () => {
@@ -86,15 +74,14 @@ const mapStateToProps = (store) => ({
   clubs: store.clubs,
   filterToggle: store.gamesFilterToggle,
   paginationValue: store.paginationValue,
-  screenMode: store.screenMode,
   loading: store.loading,
+  screenMode: store.screenMode,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   showFilterToggle: () => dispatch(showFilterToggleAC()),
   getClubs: () => dispatch(getClubsAC()),
   pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
-  switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

@@ -13,7 +13,7 @@ import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
@@ -27,8 +27,6 @@ class Games extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.autoPagination);
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
 
     await this.props.getGames();
   };
@@ -44,15 +42,6 @@ class Games extends Component {
       this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
     }
   }
-
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
-    }
-  };
 
   render() {
     const { games } = this.props;
@@ -94,7 +83,6 @@ const mapDispatchToProps = (dispatch) => {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: () => dispatch(getGamesAC()),
     pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
-    switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
   }
 };
 

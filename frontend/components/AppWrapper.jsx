@@ -2,7 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 
+// import AC
+import { switchScreenModeAC } from '../redux/actions';
+
 class AppWrapper extends Component {
+	updateDimensions = () => {
+    if (window.innerWidth <= 438) {
+      this.props.switchScreenMode('mobile');
+    } else {
+      this.props.switchScreenMode('desktop');
+    }
+	};
+	
+	componentDidMount = async () => {
+    this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions);
+  };
+
 	render() {
 		const { Component, pageProps } = this.props;
 		return (
@@ -20,13 +36,13 @@ class AppWrapper extends Component {
 
 const mapStateToProps = (store) => {
 	return {
-
+		screenMode: store.screenMode,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-
+		switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 	};
 };
 
