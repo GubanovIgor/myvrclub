@@ -40,14 +40,11 @@ class ClubFilter extends Component {
     this.props.offChangeMap();
   }
 
-  componentDidMount() {
-    console.log(window.innerWidth);
-  }
-
   render() {
     return (
       <div className={styles.container}>
         <MapRatingToggle />
+        <hr className={styles.breakLine}/>
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}

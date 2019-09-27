@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link'
 import Header from '../../../components/Header';
 import ClubPage from '../../../components/ClubPage';
-import Footer from '../../../components/Footer';
 import { connect } from 'react-redux';
 import { getGamesAC } from '../../../redux/actions';
 import GamePage from '../../../components/GamePage';
@@ -24,7 +23,6 @@ const Games = (props) => {
           ? <div>Ошибка, попробуйте ещё раз</div>
           : game && <GamePage game={game}/>
       }
-      <Footer/>
     </>
   )
 }

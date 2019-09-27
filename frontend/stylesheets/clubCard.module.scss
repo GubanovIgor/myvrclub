@@ -54,7 +54,7 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  background: linear-gradient(to top, #171718, #171718 10%, transparent 30%);
+  background: linear-gradient(to top, #171718, transparent 30%);
 
   @media screen and (max-width: 425px) {
     // width: $mobile-card-width;

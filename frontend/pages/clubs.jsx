@@ -6,7 +6,6 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
 import Pagination from '../components/Pagination';
@@ -63,7 +62,6 @@ class Clubs extends Component {
           handlePageChange={this.handlePageChange}
           paginationValue={this.props.paginationValue}
         />
-        <Footer />
       </div >
     );
   }
