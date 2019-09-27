@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // SASS
 import styles from '../stylesheets/gamePage.module.scss';
@@ -9,10 +10,12 @@ import ClubCard from '../components/ClubCard';
 import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
-import { getClubsAC } from '../redux/actions';
-import { connect } from 'react-redux';
 import Map from '../components/Map';
 import Loading from './Loading';
+import FilterButton from '../components/FilterButton';
+
+// action creators
+import { getClubsAC, showFilterToggleAC } from '../redux/actions';
 
 class GamePage extends Component {
 
@@ -29,6 +32,10 @@ class GamePage extends Component {
     //   });
     // }
   }
+
+  showFilter = () => {
+    this.props.showFilterToggle();
+  };
 
   render() {
 
@@ -50,7 +57,10 @@ class GamePage extends Component {
           <hr className={styles.breakLine}/>
         </section> */}
 
-        <h2>Где поиграть в {game.name}</h2>
+        <div className={cardsWrapper.titleWrapper}>
+          <h2>Где поиграть в {game.name}</h2>
+          <FilterButton showFilter={this.showFilter} />
+        </div>
 
         {/* {(this.props.map) ? <Map /> : <p>qweqr</p>} */}
 
@@ -83,7 +93,8 @@ class GamePage extends Component {
         {/*</div>*/}
 
         <div className={cardsWrapper.container}>
-          <ClubFilter gameId={this.props.game._id}/>
+          {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
+          {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
             {loading
               ? <Loading/>
@@ -101,17 +112,20 @@ class GamePage extends Component {
 
 const mapStateToProps = (store) => {
   return {
+    showFilter: store.showFilter,
     clubs: store.clubs,
     loading: store.loading,
     error: store.error,
     map: store.map,
+    screenMode: store.screenMode,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showFilterToggle: () => dispatch(showFilterToggleAC()),
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

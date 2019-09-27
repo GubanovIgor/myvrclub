@@ -13,12 +13,12 @@ import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  handlePageChange = async (pageNumber) => {
-    await this.props.pagination(pageNumber, this.props.filterToggle, 'game');
+  handlePageChange = async () => {
+    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
   };
 
   showFilter = () => {
@@ -26,20 +26,22 @@ class Games extends Component {
   };
 
   componentDidMount = async () => {
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('scroll', this.autoPagination);
 
     await this.props.getGames();
   };
 
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
+  componentWillUnmount = () => {
+    this.props.pagination(1, this.props.filterToggle, 'game');
+  }
+
+  autoPagination = async () => {
+    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
+    let clientHeight = document.documentElement.clientHeight
+    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
+      this.handlePageChange();
     }
-  };
+  }
 
   render() {
     const { games } = this.props;
@@ -71,6 +73,8 @@ const mapStateToProps = (store) => {
     games: store.games,
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
+    paginationValue: store.paginationValue,
+    loading: store.loadingGame,
   };
 };
 
@@ -79,7 +83,6 @@ const mapDispatchToProps = (dispatch) => {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: () => dispatch(getGamesAC()),
     pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
-    switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
   }
 };
 

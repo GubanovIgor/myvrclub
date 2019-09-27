@@ -93,12 +93,3 @@ const seedClubs = async () => {
 };
 
 seedClubs();
-
-
-
-
-
-
-
-
-
