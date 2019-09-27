@@ -33,7 +33,8 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-            <img src={IMG_URL_PREFIX + club.cover}
+            <img className={styles.cover}
+                src={IMG_URL_PREFIX + club.cover}
                 width="360"
                 height="202"
                 alt={club.name}/>
@@ -61,7 +62,8 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-            <img src={game.cover} // Поставить условие показа в зависимости от screenMode
+            <img className={styles.cover}
+                src={game.cover}
                 width="360"
                 height="202"
                 alt={game.name}/>
