@@ -26,6 +26,7 @@ router.post('/send-mail', (req, res) => {
     console.log(body);
   });
 
+  res.send();
 });
 
 module.exports = router;

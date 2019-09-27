@@ -27,7 +27,7 @@
   flex-direction: column;
 }
 
-h2 .modal {
+.modalTitle {
   text-align: center;
 }
 
@@ -39,13 +39,16 @@ input {
   margin-top: 10px;
 }
 
-
 textarea {
   height: 100px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 10px;
+}
+
+input .noActive {
+  background-color: grey;
 }
 
 .button {

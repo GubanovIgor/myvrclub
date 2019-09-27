@@ -59,7 +59,6 @@ export default class FeedbackModal extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state);
     await axios.post('http://localhost:3100/send-mail', {
       name: this.state.userName,
       from: this.state.userEmail,
@@ -70,7 +69,15 @@ export default class FeedbackModal extends Component {
         'Content-Type': 'application/json',
       },
     });
+
+    this.setState({
+      userName: '',
+      userEmail: '',
+      userText: '',
+    });
     this.onClose();
+
+    this.props.notifySendMail();
   };
 
   render() {
@@ -82,10 +89,10 @@ export default class FeedbackModal extends Component {
       <div>
         <div ref='modal' className={styles.popUp}></div>
         <div className={styles.innerPopUp}>
-          <h2 className={styles.modal}>Сообщить об ошибке</h2>
+          <h2 className={styles.modalTitle}>Сообщить об ошибке</h2>
           <div className={styles.content}>
             <form onSubmit={this.onSubmit}>
-            <input type='text'
+              <input type='text'
                 placeholder='Ваше имя'
                 onChange={this.onNameChange}
                 value={this.state.userName}
@@ -99,8 +106,8 @@ export default class FeedbackModal extends Component {
                 placeholder='Описание ошибки'
                 onChange={this.onTextChange}
                 value={this.state.userText}
-                required/>
-              <button onClick={this.onClose} className={styles.button}>Отправить</button>
+                required />
+              <button className={styles.button}>Отправить</button>
             </form>
           </div>
         </div>
