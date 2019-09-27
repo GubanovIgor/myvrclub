@@ -39,7 +39,7 @@ class Games extends Component {
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
     let clientHeight = document.documentElement.clientHeight
     if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
+      this.handlePageChange();
     }
   }
 
