@@ -11,14 +11,9 @@ export const reducer = (state, action) => {
     //   });
 
     case actionTypes.REQUEST:
-      return ({
-        ...state, loading: true, error: false,
-      });
+      return ({ ...state, loading: true, error: false, });
     case actionTypes.REQUEST_GAMES:
-      return ({
-        ...state, loadingGame: true, errorGame: false,
-      });
-
+      return ({ ...state, loadingGame: true, errorGame: false, });
     case actionTypes.REQUESTED_CLUBS:
       return ({ ...state, clubs: action.clubs, loading: false, error: false });
     case actionTypes.REQUESTED_GAMES:
@@ -50,22 +45,22 @@ export const reducer = (state, action) => {
       return ({
         ...state,
         showFilter: !state.showFilter,
-      })
+      });
     case actionTypes.CURRENT_PAGE:
       return ({
         ...state,
         currentPage: action.pageNumber,
-      })
+      });
     case actionTypes.SWITCH_CARUSEL_INDEX:
       return ({
         ...state,
         caruselIndex: action.caruselIndex,
-      })
+      });
     case actionTypes.SWITCH_SCREEN_MODE:
       return ({
         ...state,
         screenMode: action.screenMode,
-      })
+      });
 
     default:
       return state;

@@ -1,8 +1,4 @@
 export const actionTypes = {
-  // TICK: 'TICK',
-  // INCREMENT: 'INCREMENT',
-  // DECREMENT: 'DECREMENT',
-  // ADDNUM: 'ADDNUM',
   RESET: 'RESET',
   ADD_TASK: 'ADD_TASK',
   REQUESTED_CLUBS: 'REQUESTED_CLUBS',
