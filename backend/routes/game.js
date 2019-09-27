@@ -33,7 +33,6 @@ router.post('/', async (req, res) => {
       const reg = new RegExp(`\.*${el}`);
       years.push({ year: reg })
     });
-
     conditions.push({ $or: years })
     // console.log(years);
   }
@@ -58,13 +57,16 @@ router.post('/', async (req, res) => {
   res.json(games);
 });
 
-router.post('/update/:gameId', async (req, res) => {
-  const game = await Game.findById(req.params.gameId);
-  console.log('body>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.body);
-  const newGame = {game, ...req.body};
-  console.log('game>>>>>>>>>>>>>>>>>>>>>>>>>>>', game);
-  await newGame.save();
-  res.json(newGame.name);
+router.put('/', async (req, res) => {
+  const game = req.body.game;
+  try {
+    await Game.updateOne({ _id: game._id }, { ...game });
+  } catch (err) {
+    console.log('DB error - ', err);
+    res.json('Ошибка записи.');
+  }
+  res.json(`Игра ${game.name} сохранена.`);
+
 });
 
 module.exports = router;

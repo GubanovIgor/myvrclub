@@ -19,23 +19,23 @@ export default class AdminGamePageEdit extends Component {
   backHandler = () => {Router.push('/admin/games')};
 
   mySubmitHandler = async (event) => {
+    const game = this.state;
     event.preventDefault();
-    const resp = await fetch(`${API_PREFIX}/game/update/${this.props.game._id}`, {
-      method: 'POST',
+    const resp = await fetch(`${API_PREFIX}/game`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({game}),
     });
     const data = await resp.json();
-    if (data) alert(`Игра ${data} сохранена`);
+    if (data) alert(data);
     this.backHandler();
   };
 
 
   render() {
     const  game  = this.state;
-    console.log('game: ', this.state);
     let readOnly = true;
     const itemsGame = Object.keys(game).map((key) => {
       if (Array.isArray(game[key]) && game[key][0] instanceof Object) return;
