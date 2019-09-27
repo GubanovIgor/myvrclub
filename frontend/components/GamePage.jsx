@@ -39,7 +39,7 @@ class GamePage extends Component {
 
   render() {
 
-    const { game = [], clubs, loading, error} = this.props;
+    const { game = [], clubs, loadingClub, error} = this.props;
     const clubItems = clubs.map((club, index) =>
         <ClubCard key={index} club={club}/>);
     return (
@@ -96,7 +96,7 @@ class GamePage extends Component {
           {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
-            {loading
+            {loadingClub
               ? <Loading/>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
@@ -114,6 +114,7 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     clubs: store.clubs,
+    loadingClub: store.loadingClub,
     loading: store.loading,
     error: store.error,
     map: store.map,

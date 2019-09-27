@@ -81,6 +81,7 @@ const mapStateToProps = (store) => {
     showFilter: store.showFilter,
     games: store.games,
     loadingGame: store.loadingGame,
+    loading: store.loading,
     errorGame: store.errorGame,
     screenMode: store.screenMode,
   };

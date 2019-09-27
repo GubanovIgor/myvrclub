@@ -14,11 +14,11 @@ const Clubs = (props) => {
   if (props.clubs.length === 0) props.getClubs();
   const { urlname } = router.query;
   //let index = props.clubs.map(el => el.urlName).indexOf(urlname);
-  if (!props.loading) club = props.clubs.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
+  if (!props.loadingClub) club = props.clubs.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
       <Header/>
-      {props.loading
+      {props.loadingClub
         ? <Loading/>
         : props.error
           ? <div>Ошибка, попробуйте ещё раз</div>
@@ -32,7 +32,7 @@ const Clubs = (props) => {
 const mapStateToProps = (store) => {
   return {
     clubs: store.clubs,
-    loading: store.loading,
+    loadingClub: store.loadingClub,
     error: store.error,
 
   };

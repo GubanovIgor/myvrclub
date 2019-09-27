@@ -27,6 +27,9 @@ class Index extends Component {
 
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req;
+    console.log('getInitialProps - isServer', isServer);
+    console.log('reduxStore', reduxStore);
+    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
     return { custom: 'custom props' };
   }
 

@@ -10,19 +10,14 @@ export const reducer = (state, action) => {
     //     light: !!action.light
     //   });
 
-    case actionTypes.REQUEST:
-      return ({
-        ...state, loading: true, error: false,
-      });
+    case actionTypes.REQUEST_CLUBS:
+      return ({ ...state, loadingClub: true, errorClub: false, loading: true});
     case actionTypes.REQUEST_GAMES:
-      return ({
-        ...state, loadingGame: true, errorGame: false,
-      });
-
+      return ({ ...state, loadingGame: true, errorGame: false, loading: true});
     case actionTypes.REQUESTED_CLUBS:
-      return ({ ...state, clubs: action.clubs, loading: false, error: false });
+      return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false});
     case actionTypes.REQUESTED_GAMES:
-      return ({ ...state, games: action.games, loadingGame: false, errorGame: false});
+      return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false});
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
@@ -50,22 +45,22 @@ export const reducer = (state, action) => {
       return ({
         ...state,
         showFilter: !state.showFilter,
-      })
+      });
     case actionTypes.CURRENT_PAGE:
       return ({
         ...state,
         currentPage: action.pageNumber,
-      })
+      });
     case actionTypes.SWITCH_CARUSEL_INDEX:
       return ({
         ...state,
         caruselIndex: action.caruselIndex,
-      })
+      });
     case actionTypes.SWITCH_SCREEN_MODE:
       return ({
         ...state,
         screenMode: action.screenMode,
-      })
+      });
 
     default:
       return state;

@@ -46,8 +46,8 @@ const seedClubs = async () => {
             baloon
         } = json[i];
 
-        console.log(name)
-        if (socialLinks !== undefined) socialLinks = socialLinks.split(" ") //здесь невидимый символ! c MAC OS
+        console.log(name);
+        if (socialLinks !== undefined) socialLinks = socialLinks.split(" "); //здесь невидимый символ! c MAC OS
         else socialLinks = [];
         if (metro !== undefined) metro = metro.split(',') //здесь запятая с MAC
         else metro = [];

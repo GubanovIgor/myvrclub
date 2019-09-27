@@ -74,6 +74,7 @@ const mapStateToProps = (store) => ({
   clubs: store.clubs,
   filterToggle: store.gamesFilterToggle,
   paginationValue: store.paginationValue,
+  loadingClub: store.loadingClub,
   loading: store.loading,
   screenMode: store.screenMode,
 });
