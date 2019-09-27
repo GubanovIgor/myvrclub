@@ -75,6 +75,7 @@ const mapStateToProps = (store) => {
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
     loadingGame: store.loadingGame,
+    loading: store.loading,
   };
 };
 
