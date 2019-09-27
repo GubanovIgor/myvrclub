@@ -10,7 +10,7 @@ export const requestGetClubs = (data) => (
 );
 
 export const request = () => (
-  { type: actionTypes.REQUEST }
+  { type: actionTypes.REQUEST_CLUBS }
 );
 
 export const requestGames = () => (

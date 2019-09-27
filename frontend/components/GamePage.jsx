@@ -115,6 +115,7 @@ const mapStateToProps = (store) => {
     showFilter: store.showFilter,
     clubs: store.clubs,
     loadingClub: store.loadingClub,
+    loading: store.loading,
     error: store.error,
     map: store.map,
     screenMode: store.screenMode,
