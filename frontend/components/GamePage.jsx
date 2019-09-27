@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // SASS
 import styles from '../stylesheets/gamePage.module.scss';
@@ -10,7 +11,6 @@ import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
 import { getClubsAC } from '../redux/actions';
-import { connect } from 'react-redux';
 import Map from '../components/Map';
 import Loading from './Loading';
 
@@ -111,7 +111,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
