@@ -8,7 +8,6 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
-import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
@@ -58,10 +57,6 @@ class Clubs extends Component {
             {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
           </div>
         </div>
-        <Pagination
-          handlePageChange={this.handlePageChange}
-          paginationValue={this.props.paginationValue}
-        />
       </div >
     );
   }
