@@ -12,36 +12,36 @@ import { API_PREFIX } from '../../services/consts/consts';
 export default class AdminGamePageEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: props.game.name,
-      steam_appid: props.game.steam_appid,
-      urlName: props.game.urlName,
-      description: props.game.description,
-      short_description: props.game.short_description,
-      clubs: props.game.clubs,
-      clubsIds: props.game.clubsIds,
-      cover: props.game.cover,
-      screenShot: props.game.screenShot,
-      videos: props.game.videos,
-      genre: props.game.genre,
-      playersNum: props.game.playersNum,
-      platform: props.game.platform,
-      os: props.game.os,
-      language: props.game.language,
-      year: props.game.year,
-      developer: props.game.developer,
-      publisher: props.game.publisher,
-      ageLimit: props.game.ageLimit,
-      rating: props.game.rating,
-      tags: props.game.tags,
-      website: props.game.website,
-      duration: props.game.duration
+    this.state = { ...this.props.game
+      // name: props.game.name,
+      // steam_appid: props.game.steam_appid,
+      // urlName: props.game.urlName,
+      // description: props.game.description,
+      // short_description: props.game.short_description,
+      // clubs: props.game.clubs,
+      // clubsIds: props.game.clubsIds,
+      // cover: props.game.cover,
+      // screenShot: props.game.screenShot,
+      // videos: props.game.videos,
+      // genre: props.game.genre,
+      // playersNum: props.game.playersNum,
+      // platform: props.game.platform,
+      // os: props.game.os,
+      // language: props.game.language,
+      // year: props.game.year,
+      // developer: props.game.developer,
+      // publisher: props.game.publisher,
+      // ageLimit: props.game.ageLimit,
+      // rating: props.game.rating,
+      // tags: props.game.tags,
+      // website: props.game.website,
+      // duration: props.game.duration
     };
   }
 
   mySubmitHandler = async (event) => {
     event.preventDefault();
-    const resp = await fetch(`${API_PREFIX}/game/update`, {
+    const resp = await fetch(`${API_PREFIX}/game/update/${this.props.game._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default class AdminGamePageEdit extends React.Component {
       body: JSON.stringify(this.state),
     });
     const data = await resp.json();
-    if (data) alert("You are changed Game ");
+    if (data) alert( data );
   };
 
 
