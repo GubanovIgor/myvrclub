@@ -57,7 +57,6 @@ class ClubPage extends Component {
         </div>
 
         <div className={cardsWrapper.container}>
-          {/* <GameFilter clubId={this.props.club._id}/> */}
           {(this.props.screenMode === 'desktop') && <GameFilter clubId={this.props.club._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter clubId={this.props.club._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
