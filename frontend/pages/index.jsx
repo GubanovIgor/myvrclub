@@ -35,7 +35,7 @@ class Index extends Component {
     this.props.getClubs();
   };
 
-  caruselDataMix = (side) => {
+  caruselDataMix = (side, index) => {
     let newData = this.state.caruselData.slice();
 
     if (side === 'left') {
@@ -48,6 +48,7 @@ class Index extends Component {
       let firstElem = newData.shift();
       newData.splice(newData.length, 0, firstElem);
       this.setState({caruselData: newData});
+      this.props.switchCaruselIndex(index - 1);
     }
   }
 
@@ -56,8 +57,8 @@ class Index extends Component {
       await this.props.switchCaruselIndex(index + 1);
       this.caruselDataMix('left');
     } else if (index === 3) {
-      await this.props.switchCaruselIndex(index - 1);
-      this.caruselDataMix('right');
+      await this.props.switchCaruselIndex(index);
+      this.caruselDataMix('right', index);
     } else {
       await this.props.switchCaruselIndex(index);
     }
