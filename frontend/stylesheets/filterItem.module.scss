@@ -16,7 +16,7 @@
   -ms-user-select: none;
   user-select: none;
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     padding-left: 20px;
     margin-bottom: 6px;
   }
@@ -40,7 +40,7 @@
   width: 25px;
   background-color: #eee;
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     height: 15px;
     width: 15px;
   }
@@ -80,7 +80,7 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     border-width: 0 2px 2px 0;
     left: 5px;
     top: 3px;

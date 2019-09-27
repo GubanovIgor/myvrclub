@@ -23,6 +23,10 @@
   width: 1200px;
   margin: 0 auto;
   padding: 0;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .visuallyHidden {
@@ -57,7 +61,7 @@
   color: #d6d8dc;
   background-color: #d6d8dc;
   height: 1px;
-  width: 1200px;
+  width: 100%;
 
   margin: 0 auto;
 }

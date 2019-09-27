@@ -13,7 +13,7 @@ import { switchScreenModeAC } from '../redux/actions';
 
 class AppWrapper extends Component {
 	updateDimensions = () => {
-		if (window.innerWidth <= 438) {
+		if (window.innerWidth <= 425) {
 			this.props.switchScreenMode('mobile');
 		} else {
 			this.props.switchScreenMode('desktop');

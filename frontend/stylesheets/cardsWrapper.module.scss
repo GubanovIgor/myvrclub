@@ -31,7 +31,7 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .container {
     flex-direction: column;
     align-content: center;

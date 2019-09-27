@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
 
 //SASS
@@ -57,10 +58,12 @@ class InformationProfileBlock extends Component {
     if (!!game) {
       return (
         <div className={styles.profileInformations}>
+          {(this.props.screenMode === 'desktop') &&
           <img src={game.cover} // Поставить условие показа в зависимости от screenMode
                width="360"
                height="202"
                alt={game.name}/>
+          }
           <div className="profile-game-informations">
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
@@ -76,4 +79,10 @@ class InformationProfileBlock extends Component {
   }
 }
 
-export default InformationProfileBlock;
+const mapStateToProps = (store) => {
+  return {
+    screenMode: store.screenMode,
+  };
+};
+
+export default connect(mapStateToProps)(InformationProfileBlock);
