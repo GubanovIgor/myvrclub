@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../stylesheets/gameProfile.module.scss';
+import styles from '../stylesheets/profileBlock.module.scss';
 
 // import components
 import ImageProfileBlock from '../components/ImageProfileBlock';

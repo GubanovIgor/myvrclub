@@ -1,6 +1,9 @@
 .container {
   display: flex;
-  padding: 20px;
+
+  padding-left: 20px;
+
+
 }
 
 .cardsWrapper {
@@ -10,16 +13,14 @@
   align-content: flex-start;
 
   flex-wrap: wrap;
-
-  //min-width: 947px;
-  //max-width: 947px;
 }
 
 .titleWrapper {
   display: flex;
-  align-items: center;
 
   margin: 40px auto;
+
+  padding-left: 30px;
 }
 
 .title {
@@ -31,12 +32,12 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .container {
     flex-direction: column;
     align-content: center;
 
-    padding-top: 0;
+    padding-left: 0;
   }
 
   .cardsWrapper {
@@ -48,38 +49,14 @@
   }
 
   .titleWrapper {
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     margin: 10px auto;
+    padding: 0 15px;
   }
 
   .title {
     padding-left: 0;
     font-size: 15px;
   }
-
-  // .filterButton {
-  //   display: block;
-  //   color: #ffffff;
-
-  //   border: 1px solid #5e98fb;
-  //   border-radius: 2px;
-  //   background: linear-gradient(to top, #5e98fb, #69a1ff);
-
-  //   height: 30px;
-  //   width: 30px;
-
-  //   cursor: pointer;
-  // }
-
-  // .filterButton:hover {
-  //   background: linear-gradient(to top, #5e98fb, #81affe);
-  // }
-
-  // .filterButton:active {
-  //   background: linear-gradient(to top, #5e98fb, #75a5f8);
-  // }
-
-  // .filterIcon {
-  //   fill: white;
-  // }
 }

@@ -2,7 +2,7 @@
 	display: none;
 }
 
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
 	.filterButton {
 		display: block;
 		color: #ffffff;
@@ -13,6 +13,8 @@
 
 		height: 30px;
 		width: 30px;
+
+		margin-left: 10px;
 
 		cursor: pointer;
 	}

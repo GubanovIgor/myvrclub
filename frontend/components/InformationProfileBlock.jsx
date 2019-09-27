@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
 
 //SASS
@@ -31,10 +32,13 @@ class InformationProfileBlock extends Component {
       const clubTel = club.tel[0].replace(/ /g, '-');
       return (
         <div className={styles.profileInformations}>
-          <img src={IMG_URL_PREFIX + club.cover}
-               width="360"
-               height="202"
-               alt={club.name}/>
+          {(this.props.screenMode === 'desktop') &&
+            <img className={styles.cover}
+                src={IMG_URL_PREFIX + club.cover}
+                width="360"
+                height="202"
+                alt={club.name}/>
+          }
           <div className="profile-club-informations">
             <p>
               <span>Адрес: </span>{club.address}<br/>
@@ -57,10 +61,13 @@ class InformationProfileBlock extends Component {
     if (!!game) {
       return (
         <div className={styles.profileInformations}>
-          <img src={game.cover} // Поставить условие показа в зависимости от screenMode
-               width="360"
-               height="202"
-               alt={game.name}/>
+          {(this.props.screenMode === 'desktop') &&
+            <img className={styles.cover}
+                src={game.cover}
+                width="360"
+                height="202"
+                alt={game.name}/>
+          }
           <div className="profile-game-informations">
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
@@ -76,4 +83,10 @@ class InformationProfileBlock extends Component {
   }
 }
 
-export default InformationProfileBlock;
+const mapStateToProps = (store) => {
+  return {
+    screenMode: store.screenMode,
+  };
+};
+
+export default connect(mapStateToProps)(InformationProfileBlock);

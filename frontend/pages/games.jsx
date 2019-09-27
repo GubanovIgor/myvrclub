@@ -6,10 +6,8 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
-import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 
 // action creators
@@ -60,8 +58,6 @@ class Games extends Component {
             {(games.length !== 0) ? (gameItems) : (<Loading />)}
           </div>
         </div>
-        <Pagination handlePageChange={this.handlePageChange} />
-        <Footer />
       </div>
     );
   }
