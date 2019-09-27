@@ -11,11 +11,11 @@ export const reducer = (state, action) => {
     //   });
 
     case actionTypes.REQUEST:
-      return ({ ...state, loading: true, error: false, });
+      return ({ ...state, loadingClub: true, errorClub: false, loading: true});
     case actionTypes.REQUEST_GAMES:
-      return ({ ...state, loadingGame: true, errorGame: false, });
+      return ({ ...state, loadingGame: true, errorGame: false, loading: true});
     case actionTypes.REQUESTED_CLUBS:
-      return ({ ...state, clubs: action.clubs, loading: false, error: false });
+      return ({ ...state, clubs: action.clubs, loadingClub: false, error: false });
     case actionTypes.REQUESTED_GAMES:
       return ({ ...state, games: action.games, loadingGame: false, errorGame: false});
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:

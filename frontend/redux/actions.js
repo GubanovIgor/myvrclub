@@ -112,7 +112,6 @@ export const filterToggleClubsAC = (item, category) => (
   }
 );
 
-
 // Фильтр игр
 export const requestFilterToggleGames = (item, category) => (
   { type: actionTypes.REQUEST_FILTER_TOGGLE_GAMES, item, category }
