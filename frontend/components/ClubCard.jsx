@@ -12,7 +12,6 @@ class ClubCard extends Component {
     return (
       <div>
         <Link href='/clubs/[urlname]' as={`/clubs/${club.urlName}`}>
-          <a>
           <div className={styles.container}>
             <img className={styles.cover} src={IMG_URL_PREFIX+club.cover}/>
             <div className={styles.darkWrapper}>
@@ -21,7 +20,6 @@ class ClubCard extends Component {
             </div>
             <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
           </div>
-          </a>
         </Link>
       </div>
     );

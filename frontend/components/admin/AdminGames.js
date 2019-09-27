@@ -16,7 +16,7 @@ class AdminGames extends Component {
       <div>
         <AdminHeader/>
         <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR игр</h1>
+          <h1 className={styles.title}>Список VR игр (админка) </h1>
         </div>
         <div className={styles.container}>
 

@@ -6,21 +6,15 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
-import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  state = {
-    autoPaginationCheck: true,
-  }
-
   handlePageChange = async () => {
     await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
   };
@@ -31,33 +25,21 @@ class Games extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.autoPagination);
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
 
     await this.props.getGames();
   };
 
-  componentWillUnmount = async () => {
-    await this.props.pagination(1, this.props.filterToggle, 'game');
+  componentWillUnmount = () => {
+    this.props.pagination(1, this.props.filterToggle, 'game');
   }
 
   autoPagination = async () => {
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
     let clientHeight = document.documentElement.clientHeight
-    if (windowRelativeBottom < clientHeight + 100 && this.state.autoPaginationCheck) {
-      this.setState({autoPaginationCheck: false})
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
+    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
+      this.handlePageChange();
     }
   }
-
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
-    }
-  };
 
   render() {
     const { games } = this.props;
@@ -76,8 +58,6 @@ class Games extends Component {
             {(games.length !== 0) ? (gameItems) : (<Loading />)}
           </div>
         </div>
-        <Pagination handlePageChange={this.handlePageChange} />
-        <Footer />
       </div>
     );
   }
@@ -90,6 +70,8 @@ const mapStateToProps = (store) => {
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
+    loadingGame: store.loadingGame,
+    loading: store.loading,
   };
 };
 
@@ -98,7 +80,6 @@ const mapDispatchToProps = (dispatch) => {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: () => dispatch(getGamesAC()),
     pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
-    switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
   }
 };
 

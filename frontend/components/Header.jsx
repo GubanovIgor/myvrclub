@@ -30,11 +30,11 @@ class Header extends Component {
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          <ul className={styles.userNavigation}>
+          {/* <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>
               <Link href='/entry'><a>Вход</a></Link>
             </li>
-          </ul>
+          </ul> */}
         </nav>
       </header>
     );

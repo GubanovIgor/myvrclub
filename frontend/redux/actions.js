@@ -10,7 +10,7 @@ export const requestGetClubs = (data) => (
 );
 
 export const request = () => (
-  { type: actionTypes.REQUEST }
+  { type: actionTypes.REQUEST_CLUBS }
 );
 
 export const requestGames = () => (
@@ -97,6 +97,7 @@ export const getGamesAC = (
     });
     const data = await resp.json();
     dispatch(requestGetGames(data));
+    
   }
 );
 
@@ -110,7 +111,6 @@ export const filterToggleClubsAC = (item, category) => (
     dispatch(requestFilterToggleClubs(item, category));
   }
 );
-
 
 // Фильтр игр
 export const requestFilterToggleGames = (item, category) => (
