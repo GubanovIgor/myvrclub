@@ -60,7 +60,11 @@ router.post('/', async (req, res) => {
 
 router.post('/update/:gameId', async (req, res) => {
   const game = await Game.findById(req.params.gameId);
-  res.json(game.name);
+  console.log('body>>>>>>>>>>>>>>>>>>>>>>>>>>>', req.body);
+  const newGame = {game, ...req.body};
+  console.log('game>>>>>>>>>>>>>>>>>>>>>>>>>>>', game);
+  await newGame.save();
+  res.json(newGame.name);
 });
 
 module.exports = router;

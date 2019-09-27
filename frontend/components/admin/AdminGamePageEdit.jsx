@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router'
 
 // SASS
 import styles from '../../stylesheets/admin-page-edit.scss'
@@ -9,35 +10,13 @@ import { connect } from 'react-redux';
 import { API_PREFIX } from '../../services/consts/consts';
 
 
-export default class AdminGamePageEdit extends React.Component {
+export default class AdminGamePageEdit extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.props.game
-      // name: props.game.name,
-      // steam_appid: props.game.steam_appid,
-      // urlName: props.game.urlName,
-      // description: props.game.description,
-      // short_description: props.game.short_description,
-      // clubs: props.game.clubs,
-      // clubsIds: props.game.clubsIds,
-      // cover: props.game.cover,
-      // screenShot: props.game.screenShot,
-      // videos: props.game.videos,
-      // genre: props.game.genre,
-      // playersNum: props.game.playersNum,
-      // platform: props.game.platform,
-      // os: props.game.os,
-      // language: props.game.language,
-      // year: props.game.year,
-      // developer: props.game.developer,
-      // publisher: props.game.publisher,
-      // ageLimit: props.game.ageLimit,
-      // rating: props.game.rating,
-      // tags: props.game.tags,
-      // website: props.game.website,
-      // duration: props.game.duration
-    };
+    this.state = { ...this.props.game };
   }
+
+  backHandler = () => {Router.push('/admin/games')};
 
   mySubmitHandler = async (event) => {
     event.preventDefault();
@@ -49,12 +28,14 @@ export default class AdminGamePageEdit extends React.Component {
       body: JSON.stringify(this.state),
     });
     const data = await resp.json();
-    if (data) alert( data );
+    if (data) alert(`Игра ${data} сохранена`);
+    this.backHandler();
   };
 
 
   render() {
-    const { game = [] } = this.props;
+    const  game  = this.state;
+    console.log('game: ', this.state);
     let readOnly = true;
     const itemsGame = Object.keys(game).map((key) => {
       if (Array.isArray(game[key]) && game[key][0] instanceof Object) return;
@@ -65,7 +46,7 @@ export default class AdminGamePageEdit extends React.Component {
         return (
           <div>
             {key} : Array
-            <input
+            <input style={{backgroundColor: "#e8ffec"}}
               type='text'
               readOnly={readOnly}
               onChange={() =>
@@ -85,13 +66,14 @@ export default class AdminGamePageEdit extends React.Component {
       )
     });
     return (
-      <form className={styles}
-            onSubmit={this.mySubmitHandler}>
+      <form className={styles}>
         <h1>Game {game.name}</h1>
         {itemsGame}
         <div>
-          <input type='submit'/>
+          <button onClick={this.mySubmitHandler}>Записать</button>
+          <button onClick={this.backHandler}>Отмена</button>
         </div>
+
       </form>
     );
   }

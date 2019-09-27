@@ -9,7 +9,7 @@ class AdminGameCard extends Component {
     const {game = []} = this.props;
     return (
       <>
-        <Link href='games/[urlname]' as={`games/${game.urlName}`}>
+        <Link href='/admin/games/[urlname]' as={`/admin/games/${game.urlName}`}>
           <div className={styles.container}>
             {
               <img className={styles.cover} src={game.cover}/>}
