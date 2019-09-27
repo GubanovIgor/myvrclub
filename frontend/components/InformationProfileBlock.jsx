@@ -32,10 +32,12 @@ class InformationProfileBlock extends Component {
       const clubTel = club.tel[0].replace(/ /g, '-');
       return (
         <div className={styles.profileInformations}>
-          <img src={IMG_URL_PREFIX + club.cover}
-               width="360"
-               height="202"
-               alt={club.name}/>
+          {(this.props.screenMode === 'desktop') &&
+            <img src={IMG_URL_PREFIX + club.cover}
+                width="360"
+                height="202"
+                alt={club.name}/>
+          }
           <div className="profile-club-informations">
             <p>
               <span>Адрес: </span>{club.address}<br/>
@@ -59,10 +61,10 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-          <img src={game.cover} // Поставить условие показа в зависимости от screenMode
-               width="360"
-               height="202"
-               alt={game.name}/>
+            <img src={game.cover} // Поставить условие показа в зависимости от screenMode
+                width="360"
+                height="202"
+                alt={game.name}/>
           }
           <div className="profile-game-informations">
             <p>

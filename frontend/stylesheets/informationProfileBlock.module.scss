@@ -5,8 +5,10 @@
   
     width: 360px;
 
-    @media screen and (max-device-width: 425px) {
-			max-width: 375px;
+    border: 1px solid red;
+
+    @media screen and (max-width: 425px) {
+			max-width: 425px;
 			margin-top: 20px;
     }
   }
@@ -16,7 +18,7 @@
 	}
 	
 	.cover {
-		@media screen and (max-device-width: 425px) {
+		@media screen and (max-width: 425px) {
 			display: none;
     }
 	}
