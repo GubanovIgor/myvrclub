@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Router from 'next/router'
 
 // SASS
-import styles from '../../stylesheets/admin-page-edit.scss'
+import styles from '../../../stylesheets/admin-page-edit.scss'
 // import components
 
 //import { getClubsAC } from '../redux/actions';
 import { connect } from 'react-redux';
-import { API_PREFIX } from '../../services/consts/consts';
+import { API_PREFIX } from '../../../services/consts/consts';
 
 
 export default class AdminGamePageEdit extends Component {
@@ -28,11 +28,11 @@ export default class AdminGamePageEdit extends Component {
       },
       body: JSON.stringify({game}),
     });
-    const data = await resp.json();
-    if (data) alert(data);
-    this.backHandler();
-  };
 
+    const data = await resp.json();
+    if (data) alert(data.message);
+    if (data.status === 'ok') this.backHandler();
+  };
 
   render() {
     const  game  = this.state;

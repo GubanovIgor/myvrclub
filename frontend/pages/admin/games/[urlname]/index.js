@@ -6,7 +6,7 @@ import { getGamesAC } from '../../../../redux/actions';
 import GamePage from '../../../../components/GamePage';
 import Loading from '../../../../components/Loading';
 import AdminHeader from '../../../../components/admin/AdminHeader';
-import AdminGamePageEdit from '../../../../components/admin/AdminGamePageEdit';
+import AdminGamePageEdit from '../../../../components/admin/games/AdminGamePageEdit';
 
 const Games = (props) => {
   const router = useRouter();

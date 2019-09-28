@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Game = require('../models/games');
 const Club = require('../models/clubs');
 
@@ -58,15 +59,24 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-  const game = req.body.game;
+   const game = req.body.game;
+  game.urlName = transliterate(game.name);
+  game.clubsIds = [];
+
+  for (let i = 0; i < game.clubs.length; i++) {
+    let club = await Club.findOne({ name: game.clubs[i] });
+    if (club === null || club === undefined) return res.json({message: 'Ошибка в названии клуба', status: 'error'});
+    game.clubs[i] = club.name;
+    game.clubsIds[i] = club._id;
+  }
   try {
     await Game.updateOne({ _id: game._id }, { ...game });
   } catch (err) {
     console.log('DB error - ', err);
-    res.json('Ошибка записи.');
+    res.json({message: 'Ошибка записи.', status: 'error'});
   }
-  res.json(`Игра ${game.name} сохранена.`);
-
+  console.log('game name', game.name);
+  res.json({message: `Игра ${game.name} сохранена.`, status: 'ok'});
 });
 
 module.exports = router;
