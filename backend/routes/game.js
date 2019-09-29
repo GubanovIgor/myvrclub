@@ -60,7 +60,9 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
    const game = req.body.game;
-  game.urlName = transliterate(game.name);
+    let gamenames = await Game.find({ name: game.name });
+    console.log('gamenames', gamenames);
+    game.urlName = transliterate(game.name);
   game.clubsIds = [];
 
   for (let i = 0; i < game.clubs.length; i++) {

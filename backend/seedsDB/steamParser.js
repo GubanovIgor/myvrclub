@@ -39,7 +39,9 @@ function sleepFor( sleepDuration ){
 // };
 
 let addGames = async () => {
-    let gameIds = fs.readFileSync('files/VrGameListInClubs.txt', 'utf8').split(',');
+    //const gamesVrList  = 'files/VrGameListInClubs.txt';
+    const gamesVrList  = 'files/SteamErrorGames.txt';
+    let gameIds = fs.readFileSync(gamesVrList, 'utf8').split(',');
     let data = null;
     console.log('Игр :', gameIds.length);
     for (let i = 0; i < gameIds.length; i++) {

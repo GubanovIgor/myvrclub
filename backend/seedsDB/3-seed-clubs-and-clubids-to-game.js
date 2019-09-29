@@ -30,7 +30,7 @@ let idGame = async () => {
     }
     game.clubs = gameClubsNames;
     game.clubsIds = gameClubIDs;
-    //await game.save();
+    await game.save();
     console.log(game.name);
   }
   console.log('clubs and clubsids saved to games')
