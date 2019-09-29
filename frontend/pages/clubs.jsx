@@ -29,14 +29,14 @@ class Clubs extends Component {
   };
 
   componentWillUnmount = async () => {
-    await this.props.pagination(1, this.props.filterToggle, 'game');
+    await this.props.pagination(1, this.props.filterToggle, 'club');
   }
 
   autoPagination = async () => {
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
     let clientHeight = document.documentElement.clientHeight;
     if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
+      this.handlePageChange();
     }
   }
 
@@ -47,7 +47,7 @@ class Clubs extends Component {
       <div>
         <Header />
         <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR клубов</h1>
+          <h1 className={styles.title}>Список VR клубов (Москва)</h1>
           <FilterButton showFilter={this.showFilter} />
         </div>
         <div className={styles.container}>

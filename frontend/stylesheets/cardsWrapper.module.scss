@@ -2,16 +2,12 @@
   display: flex;
 
   padding-left: 20px;
-
-
 }
 
 .cardsWrapper {
   display: flex;
   justify-content: space-between;
-
   align-content: flex-start;
-
   flex-wrap: wrap;
 }
 
@@ -19,12 +15,7 @@
   display: flex;
 
   margin: 40px auto;
-
   padding-left: 30px;
-}
-
-.title {
-  padding-left: 233px;
 }
 
 .filterButton {
@@ -42,9 +33,7 @@
 
   .cardsWrapper {
     justify-content: center;
-  
     align-content: flex-start;
-  
     flex-wrap: wrap;
   }
 
@@ -56,7 +45,6 @@
   }
 
   .title {
-    padding-left: 0;
     font-size: 15px;
   }
 }

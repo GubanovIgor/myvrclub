@@ -18,8 +18,11 @@ import { getGamesAC, showFilterToggleAC } from '../redux/actions';
 
 class ClubPage extends Component {
 
-  componentDidMount() {
-    this.props.getGames(undefined, undefined, this.props.club._id);
+  componentDidMount = async () => {
+    window.addEventListener('scroll', () => {
+      this.props.autoPagination('game')
+    });
+    await this.props.getGames(undefined, undefined, this.props.club._id);
   }
 
   showFilter = () => {

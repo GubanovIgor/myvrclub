@@ -50,7 +50,6 @@ export const getClubsAC = (
       },
       body: JSON.stringify(filterData),
     });
-    console.log(resp);
     const data = await resp.json();
     dispatch(requestGetClubs(data));
   }
