@@ -5,9 +5,6 @@
   line-height: 24px;
   color: #1f1f22;
 
-  max-width: 1200px;
-  margin: 0 auto;
-
   background-repeat: no-repeat;
 }
 
@@ -16,7 +13,7 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   :global body {
     font-size: 10px;
     line-height: 19px;

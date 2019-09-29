@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link'
 import Header from '../../../components/Header';
 import ClubPage from '../../../components/ClubPage';
-import Footer from '../../../components/Footer';
 import { connect } from 'react-redux';
 import { getClubsAC } from '../../../redux/actions';
 import Loading from '../../../components/Loading';
@@ -24,7 +23,6 @@ const Clubs = (props) => {
           ? <div>Ошибка, попробуйте ещё раз</div>
           : club && <ClubPage club={club}/>
       }
-      <Footer/>
     </>
   )
 }

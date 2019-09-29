@@ -40,14 +40,11 @@ class ClubFilter extends Component {
     this.props.offChangeMap();
   }
 
-  componentDidMount() {
-    console.log(window.innerWidth);
-  }
-
   render() {
     return (
       <div className={styles.container}>
         <MapRatingToggle />
+        {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>}
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}
@@ -64,6 +61,7 @@ class ClubFilter extends Component {
 const mapStateToProps = (store) => ({
   clubsFilter: store.clubsFilter,
   filterToggle: store.clubsFilterToggle,
+  screenMode: store.screenMode,
 });
 
 function mapDispatchToProps(dispatch) {

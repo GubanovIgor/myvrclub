@@ -60,13 +60,11 @@ class ClubPage extends Component {
           {(this.props.screenMode === 'desktop') && <GameFilter clubId={this.props.club._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter clubId={this.props.club._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
-
             {loadingGame
               ? <Loading/>
               : errorGame
                 ? <div>Ошибка, попробуйте ещё раз</div>
                 : games && (gameItems)}
-
           </div>
         </div>
         {/* <hr className={styles.breakLine}/> */}

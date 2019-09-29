@@ -3,6 +3,7 @@ $mobile-card-height: 140px;
 
 .container {
   position: relative;
+  bottom: 0;
 
   cursor: pointer;
 
@@ -15,14 +16,14 @@ $mobile-card-height: 140px;
   margin-right: 20px;
 
   &:hover {
-    transform: scale(1.009);
-    box-shadow: 0 4px 20px -8px #000000;
+    box-shadow: 0 4px 20px -5px #000000;
+    bottom: 10px;
     transition: 0.5s;
   }
 
   transition: 0.5s;
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     margin: 0 0 20px 0;
   }
 }
@@ -33,7 +34,7 @@ $mobile-card-height: 140px;
 
   border-radius: 5px;
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     // width: $mobile-card-width;
     // height: $mobile-card-height;
   }
@@ -53,9 +54,9 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
-  background: linear-gradient(to top, #171718, #171718 10%, transparent 30%);
+  background: linear-gradient(to top, #171718, transparent 30%);
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     // width: $mobile-card-width;
     // height: $mobile-card-height;
   }
@@ -87,7 +88,7 @@ $mobile-card-height: 140px;
 }
 
 // Mobile
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .titleWrapper {
     margin: 10px auto;
   }

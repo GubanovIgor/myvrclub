@@ -4,8 +4,7 @@
 // module.exports = withCSS(withSass({cssModules: true}));
 
 const withSass = require('@zeit/next-sass');
-const withCss = require('@zeit/next-css');
-const withPlugins = require('next-compose-plugins');
+const withCSS = require('@zeit/next-css');
 
 const dev = process.env.NODE_ENV !== 'production';
 

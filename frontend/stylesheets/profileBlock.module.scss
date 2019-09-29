@@ -1,7 +1,12 @@
 .container {
   max-width: 1140px;
   margin: 50px auto 25px;
-  padding: 0;
+
+  @media screen and (max-width: 425px) {
+    max-width: 1140px;
+    margin: 20px auto 25px;
+    padding: 0 10px;
+  }
 }
 
 .profileTitle p {
@@ -61,18 +66,12 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .profileContent {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 
     margin-top: 10px;
-  }
-
-  .container {
-    max-width: 1140px;
-    margin: 20px auto 25px;
-    padding: 0;
   }
 }

@@ -5,17 +5,27 @@ $mobile-card-width: 282px;
 $mobile-card-height: 141px;
 
 .container {
+  position: relative;
+  bottom: 0;
+
   width: $card-width;
   height: $card-height;
 
   cursor: pointer;
-  position: relative;
 
   margin-bottom: 80px;
   margin-right: 30px;
 
+  &:hover {
+    box-shadow: 0 4px 20px -5px #000000;
+    bottom: 10px;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
   // Mobile
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     width: $mobile-card-width;
     height: $mobile-card-height;
     margin: 0 auto 80px;
@@ -25,19 +35,13 @@ $mobile-card-height: 141px;
 .cover {
   width: $card-width;
   height: $card-height;
+
   border-radius: 5px;
 
-  :hover > & {
-    transform: scale(1.009);
-    box-shadow: 0 4px 20px -8px #000000;
-    transition: 0.5s;
-  }
-
   margin: 0;
-  transition: 0.5s;
 
   // Mobile
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     width: $mobile-card-width;
     height: $mobile-card-height;
   }
@@ -53,39 +57,8 @@ $mobile-card-height: 141px;
   margin: 0;
   padding: 5px;
 
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     font-size: 12px;
-  }
-}
-
-// DarkTheme
-.darkWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: $card-width;
-  height: $card-height;
-
-  background: linear-gradient(to bottom, black, rgba(255,0,0,0));
-  opacity: 0;
-
-  border-radius: 5px;
-
-  color: white;
-
-  :hover > & {
-    transform: scale(1.007);
-    opacity: 0.6;
-    transition: 0.5s;
-  }
-
-  transition: 0.5s;
-
-  // Mobile
-  @media screen and (max-device-width: 425px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
   }
 }
 
@@ -116,7 +89,7 @@ $mobile-card-height: 141px;
   align-items: center;
 
   position: absolute;
-  top: -7px;
+  top: 5px;
   left: 10px;
 
   width: 30px;
@@ -129,7 +102,7 @@ $mobile-card-height: 141px;
   text-align: center;
 
   // Mobile
-  @media screen and (max-device-width: 425px) {
+  @media screen and (max-width: 425px) {
     width: 15px;
     height: 15px;
   }
