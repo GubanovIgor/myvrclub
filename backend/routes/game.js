@@ -60,8 +60,10 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
    const game = req.body.game;
-    let gamenames = await Game.find({ name: game.name });
-    console.log('gamenames', gamenames);
+    let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
+   gamenames.forEach(game => {
+     console.log(game.name);
+   })
     game.urlName = transliterate(game.name);
   game.clubsIds = [];
 
@@ -77,7 +79,7 @@ router.put('/', async (req, res) => {
     console.log('DB error - ', err);
     res.json({message: 'Ошибка записи.', status: 'error'});
   }
-  console.log('game name', game.name);
+  //console.log('game name', game.name);
   res.json({message: `Игра ${game.name} сохранена.`, status: 'ok'});
 });
 

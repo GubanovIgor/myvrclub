@@ -84,9 +84,15 @@ const seedGames = async () => {
       tags,
       duration
     });
-
-    await games.save();
-    console.log(name)
+      let isGame = await Game.findOne({name: name});
+      if (!!isGame) {
+          await Game.updateOne({ name: isGame.name }, { ...games });
+          console.log('Игра %s перезаписана!', isGame.name)
+      }
+      else {
+          await games.save();
+          console.log('Игра %s добавленна', games.name);
+      }
   }
   console.log('games was saved');
   db.close();
