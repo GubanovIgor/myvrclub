@@ -15,7 +15,11 @@ const gameSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    clubsIds: [ObjectId],
+    clubsIds: {
+        type: [ObjectId],
+        default: [],
+        unique: true,
+    },
     cover: String,
     screenShot: [String],
     videos: [Object],

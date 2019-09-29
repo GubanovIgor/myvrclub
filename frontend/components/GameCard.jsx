@@ -13,7 +13,7 @@ class GameCard extends Component {
           {<img className={styles.cover} src={game.cover} />}
           <p className={styles.title}>{game.name}</p>
           {/*<div className={styles.new}>new</div>*/}
-          <div className={styles.rating}>{Math.floor(Math.random() * 10) + 1}</div>
+          <div className={styles.rating}>{game.rating}</div>
         </div>
       </Link>
     );
