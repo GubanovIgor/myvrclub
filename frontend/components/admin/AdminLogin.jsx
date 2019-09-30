@@ -11,123 +11,133 @@ import {
 import * as Yup from 'yup';
 // import { DisplayFormikState } from './formikHelper';
 import {API_PREFIX} from '../../services/consts/consts.js'
+import AdminHeader from "./AdminHeader.jsx";
+import {requestLogin} from "../../redux/actions.js";
+import { useSelector, useDispatch } from 'react-redux'
 
 const styles = {};
 
 const contactFormEndpoint = API_PREFIX + '/admin/login';
 
-function Contact(props) {
+function AdminLogin(props) {
+    //const logging = useSelector(state => state.logging);
+    const dispatch = useDispatch();
     const {classes} = props;
+    const isLogging = props.logging;
     const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
-
     return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                margin: 20,
-                padding: 20
-            }}>
-            <Formik
-                initialValues={{password: '', login: '', comment: ''}}
-                onSubmit={(values, {setSubmitting}) => {
-                    setSubmitting(true);
-                    axios.post(contactFormEndpoint, values,
-                        {
-                            headers: {
-                                'Content-Type': 'application/json',
-                            }
-                        },
-                    ).then((resp) => {
-                            setSubmitionCompleted(true);
-                            console.log(resp)
-                            //console.log(setSubmitionCompleted)
-                        }
-                    );
-                }}
+        <>
+            <AdminHeader/>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: 20,
+                    padding: 20
+                }}>
 
-                validationSchema={Yup.object().shape({
-                    password: Yup.string()
-                    //.email()
-                        .required('Required'),
-                    login: Yup.string()
-                        .required('Required'),
-                    // comment: Yup.string()
-                    //     .required('Required'),
-                })}
-            >
-                {(props) => {
-                    const {
-                        values,
-                        touched,
-                        errors,
-                        dirty,
-                        isSubmitting,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        handleReset,
-                    } = props;
-                    return (
-                        <form onSubmit={handleSubmit} style={{width: "50%"}}>
-                            <TextField
-                                fullWidth
-                                label="login"
-                                name="login"
-                                className={classes.textField}
-                                value={values.login}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={(errors.login && touched.login) && errors.login}
-                                margin="normal"
-                            />
+                <Formik
+                    initialValues={{password: '', login: '', comment: ''}}
+                    onSubmit={(values, {setSubmitting}) => {
 
-                            <TextField
-                                fullWidth
-                                error={errors.password && touched.password}
-                                label="password"
-                                name="password"
-                                className={classes.textField}
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={(errors.password && touched.password) && errors.password}
-                                margin="normal"
-                            />
+                        // axios.post(contactFormEndpoint, values,
+                        //     {
+                        //         headers: {
+                        //             'Content-Type': 'application/json',
+                        //         }
+                        //     },
+                        // ).then((resp) => {
+                        //         setSubmitionCompleted(true);
+                        //         console.log(resp)
+                        //         //console.log(setSubmitionCompleted)
+                        //     }
+                        // );
+                        dispatch(requestLogin(values));
+                        //setSubmitting(false);
+                        //setSubmitionCompleted(true);
+                    }}
 
-                            {/*<TextField*/}
-                            {/*label="comment"*/}
-                            {/*name="comment"*/}
-                            {/*className={classes.textField}*/}
-                            {/*value={values.comment}*/}
-                            {/*onChange={handleChange}*/}
-                            {/*onBlur={handleBlur}*/}
-                            {/*helperText={(errors.comment && touched.comment) && errors.comment}*/}
-                            {/*margin="normal"*/}
-                            {/*/>*/}
+                    validationSchema={Yup.object().shape({
+                        password: Yup.string()
+                        //.email()
+                            .required('Required'),
+                        login: Yup.string()
+                            .required('Required'),
+                        // comment: Yup.string()
+                        //     .required('Required'),
+                    })}
+                >
+                    {(props) => {
+                        const {
+                            values,
+                            touched,
+                            errors,
+                            dirty,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            handleReset,
+                        } = props;
+                        return (
+                            <form onSubmit={handleSubmit} style={{width: "50%"}}>
+                                <TextField
+                                    fullWidth
+                                    label="login"
+                                    name="login"
+                                    className={classes.textField}
+                                    value={values.login}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={(errors.login && touched.login) && errors.login}
+                                    margin="normal"
+                                />
+                                <TextField
+                                    fullWidth
+                                    error={errors.password && touched.password}
+                                    label="password"
+                                    name="password"
+                                    className={classes.textField}
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={(errors.password && touched.password) && errors.password}
+                                    margin="normal"
+                                />
 
-                            <Button
-                                type="button"
-                                className="outline"
-                                onClick={handleReset}
-                                disabled={!dirty || isSubmitting}
-                            >
-                                Reset
-                            </Button>
-                            <Button type="submit" disabled={isSubmitting}>
-                                Submit
-                            </Button>
-                            {/* <DisplayFormikState {...props} /> */}
+                                {/*<TextField*/}
+                                {/*label="comment"*/}
+                                {/*name="comment"*/}
+                                {/*className={classes.textField}*/}
+                                {/*value={values.comment}*/}
+                                {/*onChange={handleChange}*/}
+                                {/*onBlur={handleBlur}*/}
+                                {/*helperText={(errors.comment && touched.comment) && errors.comment}*/}
+                                {/*margin="normal"*/}
+                                {/*/>*/}
 
-                        </form>
-                    );
-                }}
-            </Formik>
-    {setSubmitionCompleted && console.log('>>>>>', setSubmitionCompleted)}
-        </div>
+                                <Button
+                                    type="button"
+                                    className="outline"
+                                    onClick={handleReset}
+                                    disabled={!dirty || isLogging}
+                                >
+                                    Reset
+                                </Button>
+                                <Button type="submit" disabled={isLogging}>
+                                    Submit
+                                </Button>
+                                {/* <DisplayFormikState {...props} /> */}
+
+                            </form>
+                        );
+                    }}
+                </Formik>
+                {setSubmitionCompleted && console.log('>>>>>', setSubmitionCompleted)}
+            </div>
+        </>
     );
 
 }
 
-
-export default withStyles(styles)(Contact);
+export default withStyles(styles)(AdminLogin);

@@ -27,7 +27,6 @@ class AdminGames extends Component {
           </div>
         </div>
         {/*<Pagination handlePageChange={this.handlePageChange}/>*/}
-        <Footer />
       </div>
     );
   }

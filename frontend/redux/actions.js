@@ -176,4 +176,43 @@ export const switchScreenModeAC = (screenMode) => {
     type: actionTypes.SWITCH_SCREEN_MODE,
     screenMode,
   }
-}
+};
+
+
+//********LOGIN-LOGOUT**************
+export const requestLogin = (values) => (
+    async (dispatch) => {
+    dispatch(requestLoginAC());
+        console.log('values action', values)
+        const resp = await fetch(API_PREFIX + '/admin/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        });
+        const data = await resp.json();
+        dispatch(requestEndLoginAC());
+        console.log('!!!!!!!!!!!!!!!!!!!!!', data.loginStatus);
+        if (data.loginStatus) dispatch(loginSucsessAC());
+        else dispatch(loginRejectAC());
+    }
+);
+
+
+
+export const requestLoginAC = () => {
+    return {type: actionTypes.REQUEST_LOGIN}
+};
+export const requestEndLoginAC = () => {
+    return {type: actionTypes.REQUEST_END_LOGIN}
+};
+
+export const loginSucsessAC = () => {
+    return {type: actionTypes.LOGIN_SUCSESS}
+};
+export const loginRejectAC = () => {
+    return {type: actionTypes.LOGIN_REJECT}
+};
+
+//*******************END-LOGIN-LOGOUT********************
