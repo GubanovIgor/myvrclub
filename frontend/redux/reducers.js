@@ -3,6 +3,7 @@ import {actionTypes} from './types';
 import {filterToggleAC} from "./actions";
 
 export const reducer = (state, action) => {
+
     switch (action.type) {
 
         case actionTypes.REQUEST_CLUBS:
