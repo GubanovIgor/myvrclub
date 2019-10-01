@@ -17,14 +17,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const styles = {};
 
-const contactFormEndpoint = API_PREFIX + '/admin/login';
-
 function AdminLogin(props) {
     //const logging = useSelector(state => state.logging);
     const dispatch = useDispatch();
     const {classes} = props;
     const isLogging = props.logging;
-    const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
+    //const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
     return (
         <>
             <AdminHeader/>
@@ -133,7 +131,6 @@ function AdminLogin(props) {
                         );
                     }}
                 </Formik>
-                {setSubmitionCompleted && console.log('>>>>>', setSubmitionCompleted)}
             </div>
         </>
     );
