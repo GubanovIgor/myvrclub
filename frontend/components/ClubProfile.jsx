@@ -14,14 +14,14 @@ class ClubProfile extends Component {
     return (
       <section className={styles.container}>
         <div className={styles.profileTitle}>
-          <h2>{club.name}</h2>
+          <h1>{club.name}</h1>
         </div>
         <div className={styles.profileContent}>
           <ImageProfileBlock club={club} />
           <InformationProfileBlock club={club} />
         </div>
       </section>
-    )
+    );
   }
 }
 

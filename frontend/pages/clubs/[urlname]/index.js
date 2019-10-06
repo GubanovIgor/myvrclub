@@ -6,6 +6,7 @@ import ClubPage from '../../../components/ClubPage';
 import { connect } from 'react-redux';
 import { getClubsAC } from '../../../redux/actions';
 import Loading from '../../../components/Loading';
+import Seo from '../../../components/Seo';
 
 const Clubs = (props) => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Clubs = (props) => {
   if (!props.loadingClub) club = props.clubs.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
+    <Seo club={club} />
       <Header />
       {props.loadingClub
         ? <Loading />

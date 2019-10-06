@@ -11,13 +11,13 @@ export const reducer = (state, action) => {
     //   });
 
     case actionTypes.REQUEST_CLUBS:
-      return ({ ...state, loadingClub: true, errorClub: false, loading: true});
+      return ({ ...state, loadingClub: true, errorClub: false, loading: true });
     case actionTypes.REQUEST_GAMES:
-      return ({ ...state, loadingGame: true, errorGame: false, loading: true});
+      return ({ ...state, loadingGame: true, errorGame: false, loading: true });
     case actionTypes.REQUESTED_CLUBS:
-      return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false});
+      return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
-      return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false});
+      return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
