@@ -18,8 +18,16 @@ import FilterButton from '../components/FilterButton';
 import { getClubsAC, showFilterToggleAC } from '../redux/actions';
 
 class GamePage extends Component {
+  showFilter = () => {
+    this.props.showFilterToggle();
+  };
+
+  paginationHandler = () => {
+    this.props.autoPagination('club');
+  }
 
   componentDidMount() {
+    window.addEventListener('scroll', this.paginationHandler);
     this.props.getClubs(undefined, undefined, this.props.game._id);
 
     // ymaps.ready(init);
@@ -33,14 +41,15 @@ class GamePage extends Component {
     // }
   }
 
-  showFilter = () => {
-    this.props.showFilterToggle();
-  };
+  componentWillUnmount = async () => {
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
+  }
 
   render() {
 
     const { game = [], clubs, loadingClub, error} = this.props;
-    const clubItems = clubs.map((club, index) =>
+    const itemsClub = clubs.map((club, index) =>
         <ClubCard key={index} club={club}/>);
     return (
       <main>
@@ -96,11 +105,12 @@ class GamePage extends Component {
           {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
-            {loadingClub
+            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            {/* {loadingClub
               ? <Loading/>
               : error
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : clubs && (this.props.map) ? <Map/> : (clubItems)}
+                : clubs && (this.props.map) ? <Map/> : (clubItems)} */}
           </div>
         </div>
         {/* <hr className={styles.breakLine}/> */}

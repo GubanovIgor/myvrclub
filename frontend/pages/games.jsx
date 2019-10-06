@@ -11,34 +11,26 @@ import GameFilter from '../components/GameFilter';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
+import { getGamesAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  handlePageChange = async () => {
-    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
-  };
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
-  componentDidMount = async () => {
-    window.addEventListener('scroll', this.autoPagination);
+  paginationHandler = () => {
+    this.props.autoPagination('game');
+  }
 
+  componentDidMount = async () => {
+    window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames();
   };
 
   componentWillUnmount = () => {
-    this.props.pagination(1, this.props.filterToggle, 'game');
-  }
-
-  autoPagination = async () => {
-    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-    let clientHeight = document.documentElement.clientHeight
-    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
-      this.handlePageChange();
-    }
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
   }
 
   render() {
@@ -79,7 +71,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: () => dispatch(getGamesAC()),
-    pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
   }
 };
 

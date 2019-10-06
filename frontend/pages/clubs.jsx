@@ -15,29 +15,22 @@ import Loading from '../components/Loading';
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Clubs extends Component {
-  handlePageChange = async () => {
-    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'club');
-  };
-
-  componentDidMount = async () => {
-    window.addEventListener('scroll', this.autoPagination);
-    this.props.getClubs();
-  };
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
-  componentWillUnmount = async () => {
-    await this.props.pagination(1, this.props.filterToggle, 'game');
+  paginationHandler = () => {
+    this.props.autoPagination('club');
   }
 
-  autoPagination = async () => {
-    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-    let clientHeight = document.documentElement.clientHeight;
-    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
-    }
+  componentDidMount = async () => {
+    window.addEventListener('scroll', this.paginationHandler);
+    this.props.getClubs();
+  };
+
+  componentWillUnmount = async () => {
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
   }
 
   render() {
@@ -48,7 +41,7 @@ class Clubs extends Component {
       <div>
         <Header />
         <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR клубов</h1>
+          <h1 className={styles.title}>Список VR клубов (Москва)</h1>
           <FilterButton showFilter={this.showFilter} />
         </div>
         <div className={styles.container}>
