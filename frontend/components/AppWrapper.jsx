@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 // Components
 import Footer from '../components/Footer';
+import ScrollUp from '../components/ScrollUp';
 
 // SASS
 import styles from '../stylesheets/appWrapper.module.scss';
@@ -29,9 +30,11 @@ class AppWrapper extends Component {
 		const { Component, pageProps } = this.props;
 		return (
 			<div>
+				<ScrollUp />
 				<div className={styles.container}>
 					<Head>
 						<meta name="viewport" content="width=device-width, initial-scale=1" />
+						<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"></link>
 						<script src="https://api-maps.yandex.ru/2.1/?apikey=ea20f38d-5be5-4362-80e9-95ba9d77dc70&lang=ru_RU"
 							type="text/javascript" />
 					</Head>
