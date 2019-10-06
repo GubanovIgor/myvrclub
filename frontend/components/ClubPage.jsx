@@ -17,19 +17,28 @@ import FilterButton from '../components/FilterButton';
 import { getGamesAC, showFilterToggleAC } from '../redux/actions';
 
 class ClubPage extends Component {
-
-  componentDidMount() {
-    this.props.getGames(undefined, undefined, this.props.club._id);
-  }
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
+  paginationHandler = () => {
+    this.props.autoPagination('game');
+  }
+
+  componentDidMount = async () => {
+    window.addEventListener('scroll', this.paginationHandler);
+    await this.props.getGames(undefined, undefined, this.props.club._id);
+  }
+
+  componentWillUnmount = async () => {
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
+  }
+
   render() {
-    const { club, games, loadingGame, errorGame } = this.props;
-    const gameItems = games.map((game, index) => {
-      return <GameCard key={index} game={game}/>;
+    const { club, games } = this.props;
+    const gameItems = games.map((game) => {
+      return <GameCard key={game._id} game={game}/>;
     });
     // let clubGames = [];
     // if (!loadingGame) {
@@ -60,11 +69,7 @@ class ClubPage extends Component {
           {(this.props.screenMode === 'desktop') && <GameFilter clubId={this.props.club._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter clubId={this.props.club._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
-            {loadingGame
-              ? <Loading/>
-              : errorGame
-                ? <div>Ошибка, попробуйте ещё раз</div>
-                : games && (gameItems)}
+            {(games.length !== 0) ? (gameItems) : (<Loading />)}
           </div>
         </div>
         {/* <hr className={styles.breakLine}/> */}
@@ -78,9 +83,8 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     games: store.games,
-    loadingGame: store.loadingGame,
-    loading: store.loading,
-    errorGame: store.errorGame,
+    // loadingGame: store.loadingGame,
+    // loading: store.loading,
     screenMode: store.screenMode,
   };
 };

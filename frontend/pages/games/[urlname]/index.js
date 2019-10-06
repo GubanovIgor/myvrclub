@@ -16,12 +16,15 @@ const Games = (props) => {
   if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
-      <Header/>
+      <Header />
       {props.loadingGame
-        ? <Loading/>
+        ? <Loading />
         : props.errorGame
           ? <div>Ошибка, попробуйте ещё раз</div>
-          : game && <GamePage game={game}/>
+          : game && <GamePage
+            game={game}
+            autoPagination={props.autoPagination}
+          />
       }
     </>
   )
