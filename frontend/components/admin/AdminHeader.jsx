@@ -24,7 +24,7 @@ class Header extends Component {
               <Link activeClassName={styles.siteNavigationActive} href='/admin/games'><a>Игры</a></Link>
             </li>
             <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/clubs_admin'><a>Клубы</a></Link>
+              <Link activeClassName={styles.siteNavigationActive} href='/admin/clubs'><a>Клубы</a></Link>
             </li>
             <li>
               <Link activeClassName={styles.siteNavigationActive} href='/admin/reg'><a>Регистрация</a></Link>
@@ -36,12 +36,12 @@ class Header extends Component {
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link activeClassName={styles.siteNavigationActive} href='/admin/login'><a>АдмВход</a></Link>
-            </li>
+          {/*<ul className={styles.userNavigation}>*/}
+            {/*<li className={styles.loginLink}>*/}
+              {/*<Link activeClassName={styles.siteNavigationActive} href='/admin/login'><a>Вход</a></Link>*/}
+            {/*</li>*/}
 
-          </ul>
+          {/*</ul>*/}
         </nav>
       </header>
     );

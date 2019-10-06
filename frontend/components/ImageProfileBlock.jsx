@@ -35,14 +35,14 @@ class ImageProfileBlock extends Component {
                   key={uuidv1()}
                   alt={item.name}
                   src={clubPathPrefix + imgLink}
-                  onMouseOver={() => this.updateUrlImage(clubPathPrefix + imgLink)}/>
+                  onMouseOver={() => this.setState( {imageUrl: clubPathPrefix + imgLink} )}/>
     });
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
         <img className={styles.img}
-             src={this.state.imageUrl}
-             alt={item.name}/>
+          src={this.state.imageUrl}
+          alt={item.name} />
         <div className={styles.screenshotsSwitch}>
           {items}
         </div>

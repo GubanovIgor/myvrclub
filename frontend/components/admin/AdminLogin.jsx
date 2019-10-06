@@ -1,130 +1,140 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+//https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in/SignIn.js
+//https://medium.com/codefully-io/react-forms-validation-with-formik-and-material-ui-1adf0c1cae5c
+import React, {useState} from 'react';
+import {withStyles} from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import {
+    Formik, Form, Field, ErrorMessage,
+} from 'formik';
 import * as Yup from 'yup';
-import AdminHeader from '../../components/admin/AdminHeader';
+// import { DisplayFormikState } from './formikHelper';
+import {API_PREFIX} from '../../services/consts/consts.js'
+import AdminHeader from "./AdminHeader.jsx";
+import {requestLogin} from "../../redux/actions.js";
+import { useSelector, useDispatch } from 'react-redux'
 
-class AdminLogin extends React.Component {
-  submit = (data) => {
-    console.log(data);
-  }
+const styles = {};
 
-  render() {
+function AdminLogin(props) {
+    //const logging = useSelector(state => state.logging);
+    const dispatch = useDispatch();
+    const {classes} = props;
+    const isLogging = props.logging;
+    //const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
     return (
-      <>
-        <AdminHeader/>
-        <Formik
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-          }}
-          validationSchema={Yup.object().shape({
-            firstName: Yup.string()
-              .required('First Name is required'),
-            password: Yup.string()
-              .min(6, 'Password must be at least 6 characters')
-              .required('Password is required'),
-          })}
+        <>
+            <AdminHeader/>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: 20,
+                    padding: 20
+                }}>
 
-          onSubmit={fields => {
-            this.submit(fields)
-          }}
+                <Formik
+                    initialValues={{password: '', login: '', comment: ''}}
+                    onSubmit={(values, {setSubmitting}) => {
 
-          render={({ errors, status, touched }) => (
-            <Form>
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <Field name="firstName" type="text"
-                       className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}/>
-                <ErrorMessage name="firstName" component="div" className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field name="password" type="password"
-                       className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}/>
-                <ErrorMessage name="password" component="div" className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary mr-2">Login</button>
-                <button type="reset" className="btn btn-secondary">Reset</button>
-              </div>
-            </Form>
-          )}
-        />
-      </>
-    )
-  }
+                        // axios.post(contactFormEndpoint, values,
+                        //     {
+                        //         headers: {
+                        //             'Content-Type': 'application/json',
+                        //         }
+                        //     },
+                        // ).then((resp) => {
+                        //         setSubmitionCompleted(true);
+                        //         console.log(resp)
+                        //         //console.log(setSubmitionCompleted)
+                        //     }
+                        // );
+                        dispatch(requestLogin(values));
+                        //setSubmitting(false);
+                        //setSubmitionCompleted(true);
+                    }}
+
+                    validationSchema={Yup.object().shape({
+                        password: Yup.string()
+                        //.email()
+                            .required('Required'),
+                        login: Yup.string()
+                            .required('Required'),
+                        // comment: Yup.string()
+                        //     .required('Required'),
+                    })}
+                >
+                    {(props) => {
+                        const {
+                            values,
+                            touched,
+                            errors,
+                            dirty,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            handleReset,
+                        } = props;
+                        return (
+                            <form onSubmit={handleSubmit} style={{width: "50%"}}>
+                                <TextField
+                                    fullWidth
+                                    label="login"
+                                    name="login"
+                                    className={classes.textField}
+                                    value={values.login}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={(errors.login && touched.login) && errors.login}
+                                    margin="normal"
+                                />
+                                <TextField
+                                    fullWidth
+                                    error={errors.password && touched.password}
+                                    label="password"
+                                    name="password"
+                                    className={classes.textField}
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    helperText={(errors.password && touched.password) && errors.password}
+                                    margin="normal"
+                                />
+
+                                {/*<TextField*/}
+                                {/*label="comment"*/}
+                                {/*name="comment"*/}
+                                {/*className={classes.textField}*/}
+                                {/*value={values.comment}*/}
+                                {/*onChange={handleChange}*/}
+                                {/*onBlur={handleBlur}*/}
+                                {/*helperText={(errors.comment && touched.comment) && errors.comment}*/}
+                                {/*margin="normal"*/}
+                                {/*/>*/}
+
+                                <Button
+                                    type="button"
+                                    className="outline"
+                                    onClick={handleReset}
+                                    disabled={!dirty || isLogging}
+                                >
+                                    Reset
+                                </Button>
+                                <Button type="submit" disabled={isLogging}>
+                                    Submit
+                                </Button>
+                                {/* <DisplayFormikState {...props} /> */}
+
+                            </form>
+                        );
+                    }}
+                </Formik>
+            </div>
+        </>
+    );
+
 }
 
-export default AdminLogin;
-
-
-// class Admin extends React.Component {
-//   render() {
-//     return (
-//       <Formik
-//         initialValues={{
-//           firstName: '',
-//           lastName: '',
-//           email: '',
-//           password: '',
-//           confirmPassword: ''
-//         }}
-//         validationSchema={Yup.object().shape({
-//           firstName: Yup.string()
-//             .required('First Name is required'),
-//           lastName: Yup.string()
-//             .required('Last Name is required'),
-//           email: Yup.string()
-//             .email('Email is invalid')
-//             .required('Email is required'),
-//           password: Yup.string()
-//             .min(6, 'Password must be at least 6 characters')
-//             .required('Password is required'),
-//           confirmPassword:  Yup.string()
-//             .oneOf([Yup.ref('password'), null], 'Passwords must match')
-//             .required('Confirm Password is required')
-//         })}
-//         onSubmit={fields => {
-//           alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
-//           console.log(fields.firstName)
-//         }}
-//         render={({ errors, status, touched }) => (
-//           <Form>
-//             <div className="form-group">
-//               <label htmlFor="firstName">First Name</label>
-//               <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
-//               <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="lastName">Last Name</label>
-//               <Field name="lastName" type="text" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
-//               <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="email">Email</label>
-//               <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
-//               <ErrorMessage name="email" component="div" className="invalid-feedback" />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="password">Password</label>
-//               <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
-//               <ErrorMessage name="password" component="div" className="invalid-feedback" />
-//             </div>
-//             <div className="form-group">
-//               <label htmlFor="confirmPassword">Confirm Password</label>
-//               <Field name="confirmPassword" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
-//               <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
-//             </div>
-//             <div className="form-group">
-//               <button type="submit" className="btn btn-primary mr-2">Register</button>
-//               <button type="reset" className="btn btn-secondary">Reset</button>
-//             </div>
-//           </Form>
-//         )}
-//       />
-//     )
-//   }
-// }
+export default withStyles(styles)(AdminLogin);

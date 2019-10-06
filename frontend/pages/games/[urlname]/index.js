@@ -7,8 +7,11 @@ import { connect } from 'react-redux';
 import { getGamesAC } from '../../../redux/actions';
 import GamePage from '../../../components/GamePage';
 import Loading from '../../../components/Loading';
+import Seo from '../../../components/Seo';
+import Head from 'next/head';
 
 const Games = (props) => {
+  console.log(props.games)
   const router = useRouter();
   let game = null;
   if (props.games.length === 0) props.getGames();
@@ -16,12 +19,16 @@ const Games = (props) => {
   if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
-      <Header/>
+      <Seo game={game} />
+      <Header />
       {props.loadingGame
-        ? <Loading/>
+        ? <Loading />
         : props.errorGame
           ? <div>Ошибка, попробуйте ещё раз</div>
-          : game && <GamePage game={game}/>
+          : game && <GamePage
+            game={game}
+            autoPagination={props.autoPagination}
+          />
       }
     </>
   )

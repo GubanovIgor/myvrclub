@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
+
 //import windowSize from 'react-window-size';
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -11,34 +13,26 @@ import GameFilter from '../components/GameFilter';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
+import { getGamesAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  handlePageChange = async () => {
-    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
-  };
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
-  componentDidMount = async () => {
-    window.addEventListener('scroll', this.autoPagination);
+  paginationHandler = () => {
+    this.props.autoPagination('game');
+  }
 
+  componentDidMount = async () => {
+    window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames();
   };
 
   componentWillUnmount = () => {
-    this.props.pagination(1, this.props.filterToggle, 'game');
-  }
-
-  autoPagination = async () => {
-    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-    let clientHeight = document.documentElement.clientHeight
-    if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
-      this.handlePageChange();
-    }
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
   }
 
   render() {
@@ -46,6 +40,11 @@ class Games extends Component {
     const gameItems = games.map((game, index) => <GameCard key={index} game={game} />);
     return (
       <div>
+        <Head>
+          <title>Список VR игр | Лучшие VR игры на MyVrClub.ru</title>
+          <meta name='description' content='У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+        </Head>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR игр</h1>
@@ -79,7 +78,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: () => dispatch(getGamesAC()),
-    pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
   }
 };
 

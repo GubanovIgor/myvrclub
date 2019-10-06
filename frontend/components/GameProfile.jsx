@@ -12,14 +12,14 @@ const GameProfile = (props) => {
   return (
     <section className={styles.container}>
       <div className={styles.profileTitle}>
-        <h2>{props.game.name}</h2>
+        <h1>{props.game.name}</h1>
       </div>
       <div className={styles.profileContent}>
         <ImageProfileBlock game={props.game}/>
         <InformationProfileBlock game={props.game}/>
       </div>
     </section>
-  )
+  );
 };
 
 export default GameProfile;

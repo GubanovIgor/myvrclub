@@ -1,0 +1,47 @@
+.scrollBtn {
+  display: inline-block;
+  background-color: #3071eb;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 4px;
+  margin: 30px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s;
+  z-index: 1000;
+  visibility: visible;
+
+  // Mobile
+  @media screen and (max-width: 475px) {
+      background-color: #3071eb;
+      width: 30px;
+      height: 30px;
+      margin: 0px;
+      position: fixed;
+      bottom: 20px;
+  }
+}
+
+.scrollBtn:hover {
+  cursor: pointer;
+  background-color: #3071eb;
+}
+.scrollBtn:active {
+  background-color: #3071eb;
+}
+
+.scrollBtn::after {
+  content: "\f102";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 40px;
+  color: #fff;
+  // Mobile
+  @media screen and (max-width: 475px) {
+    line-height: 30px;
+  }
+}
