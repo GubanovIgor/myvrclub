@@ -13,7 +13,7 @@ const gameSchema = new mongoose.Schema({
     short_description: String,
     clubs: {
         type: [String],
-        default: []
+        default: [],
     },
     clubsIds: {
         type: [ObjectId],
@@ -35,7 +35,7 @@ const gameSchema = new mongoose.Schema({
     rating: Number,
     tags: [],
     website: String,
-    duration: String
+    duration: String,
 });
 
 gameSchema.statics.getGames = async function () {

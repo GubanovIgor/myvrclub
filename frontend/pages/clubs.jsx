@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -21,7 +22,7 @@ class Clubs extends Component {
 
   paginationHandler = () => {
     this.props.autoPagination('club');
-  }
+  };
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
@@ -31,7 +32,7 @@ class Clubs extends Component {
   componentWillUnmount = async () => {
     window.removeEventListener('scroll', this.paginationHandler);
     this.props.autoPagination(false);
-  }
+  };
 
   render() {
     console.log('club props', this.props);
@@ -39,6 +40,11 @@ class Clubs extends Component {
     const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club} />);
     return (
       <div>
+        <Head>
+          <title>Список VR клубов | Лучшие VR клубы Москвы на MyVrClub.ru</title>
+          <meta name='description' content='У нас собраны все VR клубы Москвы. Выберите свой VR клуб!' />
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
+        </Head>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов (Москва)</h1>

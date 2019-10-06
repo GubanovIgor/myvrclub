@@ -1,7 +1,7 @@
 // import types
 import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
-import { InitState } from "./store";
+import { InitState } from './store';
 import { API_PREFIX } from '../services/consts/consts';
 
 // Получение клубов
@@ -37,16 +37,16 @@ export const getClubsAC = (
         const categoryKeys = Object.keys(filterToggleData[keys[i]]);
         categoryKeys.forEach((key) => {
           if (filterToggleData[keys[i]][key]) {
-            checkedToggle[i].push(key)
+            checkedToggle[i].push(key);
           }
-        })
+        });
       }
     }
 
     const filterData = {
       checkedToggle,
       pagination,
-      gameId
+      gameId,
     };
     const resp = await fetch(`${API_PREFIX}/club`, {
       method: 'POST',
@@ -59,7 +59,6 @@ export const getClubsAC = (
     dispatch(requestGetClubs(data));
   }
 );
-
 
 export const getGamesAC = (
   filterToggleData = InitState.gamesFilterToggle,
@@ -77,7 +76,7 @@ export const getGamesAC = (
     Object.keys(filterToggleData).forEach(el => {
       Object.keys(filterToggleData[el]).forEach(elInner => {
         if (filterToggleData[el][elInner]) {
-          checkedToggle[el].push(elInner)
+          checkedToggle[el].push(elInner);
         }
       });
     });
@@ -97,7 +96,6 @@ export const getGamesAC = (
     });
     const data = await resp.json();
     dispatch(requestGetGames(data));
-
   }
 );
 
@@ -133,7 +131,8 @@ export const switchPaginationValueAC = (value, filterToggleData, type) => (
     dispatch(requestSwitchPaginationValue(value));
     if (type === 'game') {
       dispatch(getGamesAC(filterToggleData, value));
-    }
+    };
+
     if (type === 'club') {
       dispatch(getClubsAC(filterToggleData, value));
     }
@@ -144,21 +143,21 @@ export const switchPaginationValueAC = (value, filterToggleData, type) => (
 export const changeMapAC = () => {
   return {
     type: actionTypes.CHANGE_MAP,
-  }
+  };
 };
 
 // скрыть карту
 export const offChangeMapAC = () => {
   return {
     type: actionTypes.OFF_CHANGE_MAP,
-  }
+  };
 };
 
 // Показать мобильный фильтр
 export const showFilterToggleAC = () => {
   return {
     type: actionTypes.SHOW_FILTER_TOGGLE,
-  }
+  };
 };
 
 // Двигаем карусель на главной
@@ -166,8 +165,8 @@ export const switchCaruselIndexAC = (caruselIndex) => {
   return {
     type: actionTypes.SWITCH_CARUSEL_INDEX,
     caruselIndex,
-  }
-}
+  };
+};
 
 // Меняем screenMode
 export const switchScreenModeAC = (screenMode) => {
