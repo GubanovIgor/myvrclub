@@ -32,10 +32,10 @@ class ImageProfileBlock extends Component {
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
       return <img className={styles.screen}
-        key={uuidv1()}
-        alt={item.name}
-        src={clubPathPrefix + imgLink}
-        onMouseOver={() => this.updateUrlImage(clubPathPrefix + imgLink)} />
+                  key={uuidv1()}
+                  alt={item.name}
+                  src={clubPathPrefix + imgLink}
+                  onMouseOver={() => this.setState( {imageUrl: clubPathPrefix + imgLink} )}/>
     });
     return (
       <div>

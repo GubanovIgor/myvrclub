@@ -9,7 +9,12 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
-export const request = () => (
+// Получение игр
+export const requestGetGames = (data) => (
+  { type: actionTypes.REQUESTED_GAMES, games: data }
+);
+
+export const requestClubs = () => (
   { type: actionTypes.REQUEST_CLUBS }
 );
 
@@ -23,7 +28,7 @@ export const getClubsAC = (
   gameId = '') => (
   async (dispatch) => {
     //console.log('InitState', InitState);
-    dispatch(request());
+    dispatch(requestClubs());
     // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
     let checkedToggle = [[], []];
     if (filterToggleData) {
@@ -55,10 +60,6 @@ export const getClubsAC = (
   }
 );
 
-// Получение всех игр при первой загрузке
-export const requestGetGames = (data) => (
-  { type: actionTypes.REQUESTED_GAMES, games: data }
-);
 
 export const getGamesAC = (
   filterToggleData = InitState.gamesFilterToggle,

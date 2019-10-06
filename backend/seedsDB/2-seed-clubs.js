@@ -46,7 +46,7 @@ const seedClubs = async () => {
             baloon
         } = json[i];
 
-        console.log(name);
+        console.log('%s >>>>>>> ', name);
         if (socialLinks !== undefined) socialLinks = socialLinks.split(" "); //здесь невидимый символ! c MAC OS
         else socialLinks = [];
         if (metro !== undefined) metro = metro.split(',') //здесь запятая с MAC
@@ -87,8 +87,8 @@ const seedClubs = async () => {
         });
 
         await clubs.save();
+    console.log('club: %s saved', clubs.name)
     }
-    console.log('clubs saved')
     db.close();
 };
 
