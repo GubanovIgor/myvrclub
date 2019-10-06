@@ -11,6 +11,7 @@ const clubSchema = new mongoose.Schema({
     address: String,
     tel: {type:[String], default: []},
     description: String,
+    short_description: String,
     workTime: {type:[String], default: []},
     games: {
         type: [String],
