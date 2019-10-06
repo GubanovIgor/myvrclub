@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {API_PREFIX, IMG_URL_PREFIX} from '../services/consts/consts';
 
 import FeedbackForm from './FeedbackForm';
 
@@ -24,22 +24,22 @@ class InformationProfileBlock extends Component {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clubId: id }),
+      body: JSON.stringify({clubId: id}),
     });
   };
 
   render() {
-    const { club, game } = this.props;
+    const {club, game} = this.props;
     if (!!club) {
       const clubTel = club.tel[0].replace(/ /g, '-');
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-            <img className={styles.cover}
-                src={IMG_URL_PREFIX + club.cover}
-                width="360"
-                height="202"
-                alt={club.name}/>
+          <img className={styles.cover}
+               src={IMG_URL_PREFIX + club.cover}
+               width="360"
+               height="202"
+               alt={club.name}/>
           }
           <div className="profile-club-informations">
             <p>
@@ -64,11 +64,11 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-            <img className={styles.cover}
-                src={game.cover}
-                width="360"
-                height="202"
-                alt={game.name}/>
+          <img className={styles.cover}
+               src={game.cover}
+               width="360"
+               height="202"
+               alt={game.name}/>
           }
           <div className="profile-game-informations">
             <p>
@@ -77,8 +77,8 @@ class InformationProfileBlock extends Component {
               <span>Платформа:</span> {game.platform}<br/>
               <span>Язык:</span> {game.language}<br/>
               <span>Количество игроков:</span> {game.playersNum}<br/>
-              <FeedbackForm />
             </p>
+            <FeedbackForm/>
           </div>
         </div>
       )
