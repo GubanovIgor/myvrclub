@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeedbackModal from './FeedbackModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from '../stylesheets/feedbackForm.module.scss';
 
 export default class FeedbackForm extends Component {
 
@@ -30,7 +31,7 @@ export default class FeedbackForm extends Component {
     return (
       <div>
         <ToastContainer/>
-        <button onClick={this.showModal}>Сообщить об ошибке на странице</button>
+        <a className={styles.link} onClick={this.showModal} href='#'>Сообщить об ошибке на странице</a>
         <FeedbackModal
           onClose={this.showModal}
           show={this.state.show}
