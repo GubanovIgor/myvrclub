@@ -1,0 +1,45 @@
+.instagram {
+  position:relative;
+}
+.instagram:before {
+  content: "\f16d";
+  font-family: FontAwesome;
+  left:5px;
+  top:0;
+  //position:absolute;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 40px;
+}
+.vk {
+  position:relative;
+}
+.vk:before {
+  content: "\f189";
+  font-family: FontAwesome;
+  left:5px;
+  top:0;
+  //position:absolute;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 40px;
+}
+.fb {
+  position:relative;
+}
+.fb:before {
+  content: "\f230";
+  font-family: FontAwesome;
+  left:5px;
+  top:0;
+  //position:absolute;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 40px;
+
+}
+
+//info: http://astronautweb.co/snippet/font-awesome/

@@ -1,14 +1,11 @@
 // REDUCERS
 import { actionTypes } from './types';
-import {filterToggleAC} from "./actions";
+import { filterToggleAC } from "./actions";
 
 export const reducer = (state, action) => {
+  console.log('reducer initial state games', state.games);
+  console.log('reducer initial state clubs', state.clubs);
   switch (action.type) {
-    // case actionTypes.TICK:
-    //   return Object.assign({}, state, {
-    //     lastUpdate: action.ts,
-    //     light: !!action.light
-    //   });
 
     case actionTypes.REQUEST_CLUBS:
       return ({ ...state, loadingClub: true, errorClub: false, loading: true });
@@ -27,10 +24,10 @@ export const reducer = (state, action) => {
       stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
-        return ({
-          ...state,
-          paginationValue: action.value,
-        });
+      return ({
+        ...state,
+        paginationValue: action.value,
+      });
     case actionTypes.CHANGE_MAP:
       return ({
         ...state,
@@ -61,6 +58,16 @@ export const reducer = (state, action) => {
         ...state,
         screenMode: action.screenMode,
       });
+    //***************LOGIN-LOGOUT*************
+    case actionTypes.REQUEST_LOGIN:
+      return ({ ...state, logging: true });
+    case actionTypes.REQUEST_END_LOGIN:
+      return ({ ...state, logging: false });
+    case actionTypes.LOGIN_SUCSESS:
+      return ({ ...state, isLogged: true });
+    case actionTypes.LOGIN_REJECT:
+      return ({ ...state, isLogged: false });
+    //******************************
 
     default:
       return state;

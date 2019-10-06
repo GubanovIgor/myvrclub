@@ -36,11 +36,11 @@ const clubSchema = new mongoose.Schema({
 });
 
 clubSchema.statics.getClubs = async function () {
-    return this.find();
+  return this.find();
 };
 
 clubSchema.statics.addClub = async function (event) {
-    await event.save();
+  await event.save();
 };
 
 module.exports = mongoose.model('Club', clubSchema);
