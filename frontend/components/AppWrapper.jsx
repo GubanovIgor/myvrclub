@@ -26,6 +26,9 @@ class AppWrapper extends Component {
 	};
 
 	autoPagination = async (type) => {
+		if (!type) {
+			this.props.pagination(1);
+		}
 		let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 		let clientHeight = document.documentElement.clientHeight;
 		if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
@@ -34,7 +37,7 @@ class AppWrapper extends Component {
 	}
 
 	handlePageChange = async (type) => {
-		await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, type);
+		await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, type)
 	};
 
 	render() {

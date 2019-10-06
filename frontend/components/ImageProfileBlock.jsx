@@ -32,17 +32,17 @@ class ImageProfileBlock extends Component {
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
       return <img className={styles.screen}
-                  key={uuidv1()}
-                  alt={item.name}
-                  src={clubPathPrefix + imgLink}
-                  onMouseOver={() => this.updateUrlImage(clubPathPrefix + imgLink)}/>
+        key={uuidv1()}
+        alt={item.name}
+        src={clubPathPrefix + imgLink}
+        onMouseOver={() => this.updateUrlImage(clubPathPrefix + imgLink)} />
     });
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
         <img className={styles.img}
-             src={this.state.imageUrl}
-             alt={item.name}/>
+          src={this.state.imageUrl}
+          alt={item.name} />
         <div className={styles.screenshotsSwitch}>
           {items}
         </div>
