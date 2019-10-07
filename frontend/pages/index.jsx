@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 
 // import AC
 import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
@@ -24,20 +25,14 @@ class Index extends Component {
       'https://i.citrus.ua/uploads/content/product-photos/lysyanaya/october/rj1.jpg',
       'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
     ],
-  }
+  };
 
-  static  async getInitialProps({ reduxStore, req }) {
+  static getInitialProps({ reduxStore, req }) {
     const isServer = !!req;
     console.log('getInitialProps - isServer', isServer);
-    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
-    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
-    console.log('getInitialProps - isServer', isServer);
-    const clubs = reduxStore.getState().clubs;
-    const games = reduxStore.getState().games;
-    return {
-       clubs,
-       games
-    };
+    console.log('reduxStore', reduxStore);
+    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
+    return { custom: 'custom props' };
   }
 
   // componentDidMount = async () => {
@@ -61,7 +56,7 @@ class Index extends Component {
       this.setState({ caruselData: newData });
       this.props.switchCaruselIndex(index - 1);
     }
-  }
+  };
 
   switchCarusel = async (index) => {
     if (index === 0) {
@@ -79,7 +74,12 @@ class Index extends Component {
     const { games, clubs } = this.props;
     return (
       <div>
-        <Header/>
+        <Head>
+          <title>MyVrClub.ru | Лучшие VR клубы Москвы</title>
+          <meta name='description' content='Все VR клубы Москвы! У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+        </Head>
+        <Header />
         {/*/!*<IndexSearch />*!/*/}
         {/*<div className={styles.title}>*/}
         {/*<h1>myvrclub.ru</h1>*/}
@@ -90,8 +90,8 @@ class Index extends Component {
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
         />
-        {(games.length !== 0) ? (<GameCollections/>) : (<Loading/>)}
-        {(clubs.length !== 0) ? (<ClubCollections/>) : (<Loading/>)}
+        {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
+        {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
       </div>
     );
   }

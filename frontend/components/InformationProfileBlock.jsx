@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
-
 import FeedbackForm from './FeedbackForm';
 
 //SASS
@@ -64,6 +63,7 @@ class InformationProfileBlock extends Component {
                    onClick={() => this.showTel(club._id)}
                    value="Показать телефон"/>
           </div>
+          <FeedbackForm/>
         </div>
       )
     }
@@ -85,8 +85,8 @@ class InformationProfileBlock extends Component {
               <span>Язык:</span> {game.language}<br/>
               <span>Количество игроков:</span> {game.playersNum}<br/>
             </p>
-            <FeedbackForm/>
           </div>
+          <FeedbackForm/>
         </div>
       )
     }
