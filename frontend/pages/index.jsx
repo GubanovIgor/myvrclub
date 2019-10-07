@@ -26,18 +26,25 @@ class Index extends Component {
     ],
   }
 
-  static getInitialProps({ reduxStore, req }) {
+  static  async getInitialProps({ reduxStore, req }) {
     const isServer = !!req;
     console.log('getInitialProps - isServer', isServer);
-    console.log('reduxStore', reduxStore);
-    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
-    return { custom: 'custom props' };
+    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
+    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
+    console.log('getInitialProps - isServer', isServer);
+    const clubs = reduxStore.getState().clubs;
+    const games = reduxStore.getState().games;
+    return {
+       clubs,
+       games
+    };
   }
 
-  componentDidMount = async () => {
-    this.props.getGames();
-    this.props.getClubs();
-  };
+  // componentDidMount = async () => {
+  //   this.props.getGames();
+  //   this.props.getClubs();
+  //   console.log('DID MOUNT')
+  // };
 
   caruselDataMix = (side, index) => {
     let newData = this.state.caruselData.slice();
@@ -72,7 +79,7 @@ class Index extends Component {
     const { games, clubs } = this.props;
     return (
       <div>
-        <Header />
+        <Header/>
         {/*/!*<IndexSearch />*!/*/}
         {/*<div className={styles.title}>*/}
         {/*<h1>myvrclub.ru</h1>*/}
@@ -83,8 +90,8 @@ class Index extends Component {
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
         />
-        {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
-        {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
+        {(games.length !== 0) ? (<GameCollections/>) : (<Loading/>)}
+        {(clubs.length !== 0) ? (<ClubCollections/>) : (<Loading/>)}
       </div>
     );
   }
