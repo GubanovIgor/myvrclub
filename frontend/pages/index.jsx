@@ -35,11 +35,11 @@ class Index extends Component {
     return { custom: 'custom props' };
   }
 
-  // componentDidMount = async () => {
-  //   this.props.getGames();
-  //   this.props.getClubs();
-  //   console.log('DID MOUNT')
-  // };
+  componentDidMount = async () => {
+    this.props.getGames();
+    this.props.getClubs();
+    console.log('DID MOUNT')
+  };
 
   caruselDataMix = (side, index) => {
     let newData = this.state.caruselData.slice();
