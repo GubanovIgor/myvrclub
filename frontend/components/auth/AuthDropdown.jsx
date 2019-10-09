@@ -34,4 +34,4 @@ export default function SimpleMenu() {
       </Menu>
     </div>
   );
-}
+};
