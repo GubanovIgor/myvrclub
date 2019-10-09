@@ -69,6 +69,10 @@ export const reducer = (state, action) => {
       return ({ ...state, isLogged: false });
     //******************************
 
+    // Firebase Auth
+    case actionTypes.SIGN_IN:
+      return ({ ...state, isSignedIn: action.payload });
+
     default:
       return state;
   }

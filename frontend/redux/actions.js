@@ -3,6 +3,7 @@ import { actionTypes } from './types';
 import fetch from 'isomorphic-unfetch';
 import { InitState } from './store';
 import { API_PREFIX } from '../services/consts/consts';
+import firebase from 'firebase';
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -26,78 +27,78 @@ export const getClubsAC = (
   filterToggleData,
   pagination = 1,
   gameId = '') => (
-  async (dispatch) => {
-    //console.log('InitState', InitState);
-    dispatch(requestClubs());
-    // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
-    let checkedToggle = [[], []];
-    if (filterToggleData) {
-      const keys = Object.keys(filterToggleData);
-      for (let i = 0; i < keys.length; i++) {
-        const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-        categoryKeys.forEach((key) => {
-          if (filterToggleData[keys[i]][key]) {
-            checkedToggle[i].push(key);
-          }
-        });
+    async (dispatch) => {
+      //console.log('InitState', InitState);
+      dispatch(requestClubs());
+      // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
+      let checkedToggle = [[], []];
+      if (filterToggleData) {
+        const keys = Object.keys(filterToggleData);
+        for (let i = 0; i < keys.length; i++) {
+          const categoryKeys = Object.keys(filterToggleData[keys[i]]);
+          categoryKeys.forEach((key) => {
+            if (filterToggleData[keys[i]][key]) {
+              checkedToggle[i].push(key);
+            }
+          });
+        }
       }
-    }
 
-    const filterData = {
-      checkedToggle,
-      pagination,
-      gameId,
-    };
-    const resp = await fetch(`${API_PREFIX}/club`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filterData),
-    });
-    const data = await resp.json();
-    dispatch(requestGetClubs(data));
-  }
-);
+      const filterData = {
+        checkedToggle,
+        pagination,
+        gameId,
+      };
+      const resp = await fetch(`${API_PREFIX}/club`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filterData),
+      });
+      const data = await resp.json();
+      dispatch(requestGetClubs(data));
+    }
+  );
 
 export const getGamesAC = (
   filterToggleData = InitState.gamesFilterToggle,
   pagination = 1,
   clubId = '',
 ) => (
-  async (dispatch) => {
-    dispatch(requestGames());
-    let checkedToggle = {};
+    async (dispatch) => {
+      dispatch(requestGames());
+      let checkedToggle = {};
 
-    Object.keys(filterToggleData).forEach(el => {
-      checkedToggle[el] = [];
-    });
-
-    Object.keys(filterToggleData).forEach(el => {
-      Object.keys(filterToggleData[el]).forEach(elInner => {
-        if (filterToggleData[el][elInner]) {
-          checkedToggle[el].push(elInner);
-        }
+      Object.keys(filterToggleData).forEach(el => {
+        checkedToggle[el] = [];
       });
-    });
 
-    const filterData = {
-      checkedToggle,
-      pagination,
-      clubId,
-    };
+      Object.keys(filterToggleData).forEach(el => {
+        Object.keys(filterToggleData[el]).forEach(elInner => {
+          if (filterToggleData[el][elInner]) {
+            checkedToggle[el].push(elInner);
+          }
+        });
+      });
 
-    const resp = await fetch(`${API_PREFIX}/game`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filterData),
-    });
-    const data = await resp.json();
-    dispatch(requestGetGames(data));
-  }
-);
+      const filterData = {
+        checkedToggle,
+        pagination,
+        clubId,
+      };
+
+      const resp = await fetch(`${API_PREFIX}/game`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filterData),
+      });
+      const data = await resp.json();
+      dispatch(requestGetGames(data));
+    }
+  );
 
 // Фильтр клубов
 export const requestFilterToggleClubs = (item, category) => (
@@ -193,7 +194,7 @@ export const requestLogin = (values) => (
     const data = await resp.json();
 
     dispatch(requestEndLoginAC());
-     console.log('!!!!!!!!!!!!!!!!!!!!!', data.loginStatus);
+    console.log('!!!!!!!!!!!!!!!!!!!!!', data.loginStatus);
     if (data.loginStatus) dispatch(loginSucsessAC());
     else dispatch(loginRejectAC());
   }
@@ -215,3 +216,22 @@ export const loginRejectAC = () => {
 };
 
 //*******************END-LOGIN-LOGOUT********************
+
+// Firebase Auth
+export const fireBaseRedux = () => {
+  return (dispatch) => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('logged in');
+        dispatch(requestSignInAC(true));
+      } else {
+        console.log('not logged in');
+        dispatch(requestSignInAC(false));
+      }
+    });
+  };
+};
+
+export const requestSignInAC = (payloadToSet) => {
+  return { type: actionTypes.SIGN_IN, payload: payloadToSet };
+};
