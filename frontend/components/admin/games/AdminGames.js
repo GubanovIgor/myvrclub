@@ -3,8 +3,8 @@ import AdminHeader from '../AdminHeader';
 import { getGamesAC, switchPaginationValueAC } from '../../../redux/actions';
 import { connect } from 'react-redux';
 import AdminGameCard from './AdminGameCard';
-import Footer from '../../Footer';
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
+
 class AdminGames extends Component {
 
   componentDidMount = async () => {
