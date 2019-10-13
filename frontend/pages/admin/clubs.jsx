@@ -1,4 +1,4 @@
 import React, { Component } from 'react';
-import AdminGamePageEdit from '../../components/admin/clubs/AdminClubPageEdit';
+import AdminClubs from '../../components/admin/clubs/AdminClubs';
 
-export default () => (<AdmincLUBPageEdit/>)
+export default (props) => (<AdminClubs autoPagination={props.autoPagination}/>)
