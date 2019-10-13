@@ -38,7 +38,6 @@ class InformationProfileBlock extends Component {
             <img className={styles.cover}
               src={IMG_URL_PREFIX + club.cover}
               width="360"
-              height="202"
               alt={club.name} />
           }
           <div className="profile-club-informations">
@@ -67,7 +66,6 @@ class InformationProfileBlock extends Component {
             <img className={styles.cover}
               src={game.cover}
               width="360"
-              height="202"
               alt={game.name} />
           }
           <div className="profile-game-informations">
