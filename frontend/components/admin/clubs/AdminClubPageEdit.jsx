@@ -59,26 +59,26 @@ class AdminClubPageEdit extends React.Component {
         );
       //************************************** socialLinks***************************
       if (key === 'socialLinks') {
-        const socialLinksEdit = Object.keys(club[key]).map((socialKey) => {
+        return Object.keys(club[key]).map((socialKey) => {
           return (
             <div>
               <FormControl margin="normal" fullWidth>
-                <InputLabel style={{ color: "#ff452a" }} htmlFor={socialKey}>{key}:{socialKey}</InputLabel>
+                <InputLabel style={{ color: "#ff452a" }}
+                            htmlFor={socialKey}>{key}:{socialKey}</InputLabel>
                 <Input
                   id={socialKey}
                   type='text'
                   disabled={disabled}
                   defaultValue={club[key][socialKey]}
-                  onChange={() => this.setState({ club:{[key]:{[socialKey]: event.target.value}} })}
+                  onChange={() => this.setState({ club: { [key]: { [socialKey]: event.target.value } } })}
                 />
               </FormControl>
             </div>
           );
         });
-        return socialLinksEdit;
       }
       //***********************END socialLinks**********************************
-      return (
+      return ( // return во всех остальных случаях
         <div>
           <FormControl margin="normal" fullWidth>
             <InputLabel htmlFor={key}>{key}</InputLabel>
@@ -86,7 +86,7 @@ class AdminClubPageEdit extends React.Component {
               id={key}
               type='text'
               disabled={disabled}
-              multiline={multiline} rows={10}
+              multiline={multiline} rows={10} // if multiline - true, then multiline field
               defaultValue={club[key]}
               onChange={() => this.setState({ [key]: event.target.value })}
             />
