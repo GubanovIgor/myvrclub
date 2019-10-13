@@ -60,10 +60,10 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
    const game = req.body.game;
-    let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
-   gamenames.forEach(game => {
-     console.log(game.name);
-   })
+  let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
+  gamenames.forEach(game => {
+    console.log(game.name);
+  })
     game.urlName = transliterate(game.name);
   game.clubsIds = [];
 

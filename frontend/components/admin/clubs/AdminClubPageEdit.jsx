@@ -41,7 +41,7 @@ class AdminClubPageEdit extends React.Component {
     const itemsClub = Object.keys(club).map((key) => {
       if (Array.isArray(club[key]) && club[key][0] instanceof Object) return; //пропускаем обьекты
       if (key === '__v') return;
-      (key === '_id' || key === 'gamesIds') ? (disabled = true) : disabled = false;
+      (key === '_id' || key === 'gamesIds' || key === 'urlName') ? (disabled = true) : disabled = false;
       if (Array.isArray(club[key]))
         return (
           <div>
@@ -63,7 +63,7 @@ class AdminClubPageEdit extends React.Component {
           return (
             <div>
               <FormControl margin="normal" fullWidth>
-                <InputLabel style={{ color: "#ff452a" }} htmlFor={socialKey}>{socialKey}</InputLabel>
+                <InputLabel style={{ color: "#ff452a" }} htmlFor={socialKey}>{key}:{socialKey}</InputLabel>
                 <Input
                   id={socialKey}
                   type='text'
