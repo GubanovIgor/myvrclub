@@ -57,6 +57,7 @@ class AdminClubPageEdit extends React.Component {
             </FormControl>
           </div>
         );
+      //************************************** socialLinks***************************
       if (key === 'socialLinks') {
         const socialLinksEdit = Object.keys(club[key]).map((socialKey) => {
           return (
@@ -68,7 +69,6 @@ class AdminClubPageEdit extends React.Component {
                   type='text'
                   disabled={disabled}
                   defaultValue={club[key][socialKey]}
-                  //onChange={() => this.setState({ club{[key]{[socialKey]: event.target.value}}  })}
                   onChange={() => this.setState({ club:{[key]:{[socialKey]: event.target.value}} })}
                 />
               </FormControl>
@@ -77,6 +77,7 @@ class AdminClubPageEdit extends React.Component {
         });
         return socialLinksEdit;
       }
+      //***********************END socialLinks**********************************
       return (
         <div>
           <FormControl margin="normal" fullWidth>
