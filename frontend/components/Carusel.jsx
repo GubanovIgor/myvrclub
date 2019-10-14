@@ -28,8 +28,8 @@ class Carusel extends Component {
 						/>
 					})}
 				</ul>
-				<div className={styles.buttonToLeft} onClick={() => this.props.switchCarusel(this.props.caruselIndex - 1)}>left</div>
-				<div className={styles.buttonToRight} onClick={() => this.props.switchCarusel(this.props.caruselIndex + 1)}>right</div>
+				<div className={styles.buttonToLeft} onClick={() => this.props.switchCarusel(this.props.caruselIndex - 1)}/>
+				<div className={styles.buttonToRight} onClick={() => this.props.switchCarusel(this.props.caruselIndex + 1)}/>
 			</div>
     );
 	}
