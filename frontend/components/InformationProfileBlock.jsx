@@ -81,6 +81,7 @@ class InformationProfileBlock extends Component {
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
               <span>Жанр:</span> {game.genre.join(', ')}<br/>
+              <span>Разработчик:</span> {game.developer.join(', ')}<br/>
               <span>Платформа:</span> {game.platform.join(', ')}<br/>
               <span>Язык:</span> {game.language}<br/>
               <span>Количество игроков:</span> {game.playersNum}<br/>
