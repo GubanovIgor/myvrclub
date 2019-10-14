@@ -7,6 +7,7 @@ import { getClubsAC } from '../../../../redux/actions';
 import Loading from '../../../../components/Loading';
 import Seo from '../../../../components/Seo';
 import AdminClubPageEdit from '../../../../components/admin/clubs/AdminClubPageEdit';
+import AdminHeader from '../../../../components/admin/AdminHeader';
 
 const Clubs = (props) => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Clubs = (props) => {
   return (
     <>
     <Seo club={club} />
-      <Header />
+      <AdminHeader/>
       {props.loadingClub
         ? <Loading />
         : props.error

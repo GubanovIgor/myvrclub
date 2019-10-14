@@ -58,7 +58,6 @@ class AppWrapper extends Component {
 					<Component
 						{...pageProps}
 						autoPagination={this.autoPagination}
-            {...this.props}
 					/>
 				</div>
 				<Footer />
@@ -73,8 +72,6 @@ const mapStateToProps = (store) => {
 		paginationValue: store.paginationValue,
 		filterToggle: store.gamesFilterToggle,
 		loading: store.loading,
-    logging: store.logging,
-    isLogged: store.isLogged,
 	};
 };
 

@@ -5,6 +5,7 @@ import Link from '../ActiveLink';
 // SASS
 import styles from '../../stylesheets/header.module.scss';
 import '../../stylesheets/body.module.scss';
+import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
@@ -61,5 +62,10 @@ class Header extends Component {
     );
   }
 }
-
-export default Header;
+const mapStateToProps = (store) => {
+  return {
+    logging: store.logging,
+    isLogged: store.isLogged,
+  };
+};
+export default connect(mapStateToProps)(Header);
