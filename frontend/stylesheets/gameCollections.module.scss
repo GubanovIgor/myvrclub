@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0;
@@ -14,11 +15,34 @@
 .gameList {
   display: flex;
   justify-content: space-between;
-
   margin: 0 0 15px 0;
   padding: 0;
 
+  transition: 1s ease-in-out;
+
   list-style: none;
+}
+
+.toLeft {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+
+  top: 130px;
+  left: 0;
+
+  background-color: black;
+}
+
+.toRight {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+
+  top: 130px;
+  right: 0;
+
+  background-color: black;
 }
 
 .allTags {
