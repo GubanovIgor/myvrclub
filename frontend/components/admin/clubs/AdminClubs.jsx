@@ -29,7 +29,6 @@ class AdminClubs extends Component {
   };
 
   render() {
-    console.log('club props', this.props);
     const { clubs } = this.props;
     const itemsClub = clubs.map((club, index) => <AdminClubCard key={index} club={club} />);
     return (

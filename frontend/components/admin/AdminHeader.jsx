@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 class Header extends Component {
   render() {
     const { isLogged } = this.props;
-    console.log('props Admin Header', isLogged);
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}
