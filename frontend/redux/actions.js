@@ -131,7 +131,8 @@ export const switchPaginationValueAC = (value, filterToggleData, type) => (
     dispatch(requestSwitchPaginationValue(value));
     if (type === 'game') {
       dispatch(getGamesAC(filterToggleData, value));
-    };
+    }
+    ;
 
     if (type === 'club') {
       dispatch(getClubsAC(filterToggleData, value));
@@ -189,11 +190,9 @@ export const requestLogin = (values) => (
       },
       body: JSON.stringify(values),
     });
-
     const data = await resp.json();
-
     dispatch(requestEndLoginAC());
-     console.log('!!!!!!!!!!!!!!!!!!!!!', data.loginStatus);
+    console.log('login status >>>>>>>>>', data.loginStatus);
     if (data.loginStatus) dispatch(loginSucsessAC());
     else dispatch(loginRejectAC());
   }
@@ -206,12 +205,12 @@ export const requestLoginAC = () => {
 export const requestEndLoginAC = () => {
   return { type: actionTypes.REQUEST_END_LOGIN }
 };
-
 export const loginSucsessAC = () => {
+  console.log('action loginSucsessAC');
   return { type: actionTypes.LOGIN_SUCSESS }
 };
 export const loginRejectAC = () => {
+  console.log('action loginRejectAC');
   return { type: actionTypes.LOGIN_REJECT }
 };
-
 //*******************END-LOGIN-LOGOUT********************

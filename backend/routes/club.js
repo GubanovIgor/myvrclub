@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Club = require('../models/clubs');
 const Game = require('../models/games');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 // router.get('/', async (req, res) => {
 //   const clubs = await Club.find();
 //   res.json(clubs);
@@ -40,10 +41,30 @@ router.post('/', async (req, res) => {
 
 router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
-
-  //const clubs = await Club.findByIdAndUpdate(req.body.clubId, {clickCounter: });
   const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
-  // console.log('club', club);
+});
+
+router.put('/', async (req, res) => {
+  const club = req.body.club;
+  club.urlName = transliterate(club.name);
+  club.clubsIds = [];
+
+  for (let i = 0; i < club.games.length; i++) {
+    console.log('game: ', club.games[i]);
+    let game = await Game.findOne({ name: club.games[i] });
+    if (game === null || club === undefined) return res.json({message: `Ошибка в названии игры ${club.games[i]}`, status: 'error'});
+    club.games[i] = game.name;
+    club.gamesIds[i] = game._id;
+  }
+  console.log('запрос сохранения')
+  try {
+    await Club.updateOne({ _id: club._id }, { ...club });
+  } catch (err) {
+    console.log('DB error - ', err);
+    res.json({message: 'Ошибка записи.', status: 'error'});
+  }
+  console.log('club name %s сохранен', club.name);
+  res.json({message: `Клуб ${club.name} сохранен.`, status: 'ok'});
 });
 
 module.exports = router;
