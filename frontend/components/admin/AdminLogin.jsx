@@ -1,6 +1,7 @@
 //https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in/SignIn.js
 //https://medium.com/codefully-io/react-forms-validation-with-formik-and-material-ui-1adf0c1cae5c
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -9,11 +10,8 @@ import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import * as Yup from 'yup';
-// import { DisplayFormikState } from './formikHelper';
-import { API_PREFIX } from '../../services/consts/consts.js'
 import AdminHeader from "./AdminHeader.jsx";
 import { requestLogin } from "../../redux/actions.js";
-import { useSelector, useDispatch } from 'react-redux'
 
 const styles = {};
 
@@ -21,13 +19,13 @@ function AdminLogin(props) {
   //const logging = useSelector(state => state.logging);
   const dispatch = useDispatch();
   const { classes } = props;
-  const isLogging = props.logging;
-  const isLogged = props.isLogged;
+  const isLogging = useSelector(state => state.logging); // from redux
+  const isLogged = useSelector(state => state.isLogged); // from redux
   console.log('props AdminLogin - >>>>', props);
   //const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
   return (
     <>
-      <AdminHeader {...props}/>
+      <AdminHeader/>
       <div
         style={{
           display: "flex",

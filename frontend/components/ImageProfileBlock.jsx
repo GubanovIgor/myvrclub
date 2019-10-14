@@ -35,7 +35,7 @@ class ImageProfileBlock extends Component {
                   key={uuidv1()}
                   alt={item.name}
                   src={clubPathPrefix + imgLink}
-                  onMouseOver={() => this.setState( {imageUrl: clubPathPrefix + imgLink} )}/>
+                  onClick={() => this.setState( {imageUrl: clubPathPrefix + imgLink} )}/>
     });
     return (
       <div>

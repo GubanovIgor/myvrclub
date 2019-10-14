@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 // import components
-import Header from '../../../components/Header';
 import Loading from '../../../components/Loading';
 import AdminClubCard from './AdminClubCard.jsx';
+import AdminHeader from '../AdminHeader';
 
 // import AC
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../../../redux/actions';
@@ -35,7 +35,7 @@ class AdminClubs extends Component {
     return (
       <div>
 
-        <Header />
+        <AdminHeader/>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов (Админ)</h1>
 
