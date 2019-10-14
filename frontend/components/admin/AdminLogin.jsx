@@ -22,6 +22,7 @@ function AdminLogin(props) {
     const dispatch = useDispatch();
     const {classes} = props;
     const isLogging = props.logging;
+  console.log('AdminLogin isLogging !!!!!!! - >>>>', props);
     //const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
     return (
         <>
@@ -50,9 +51,7 @@ function AdminLogin(props) {
                         //         //console.log(setSubmitionCompleted)
                         //     }
                         // );
-                        dispatch(requestLogin(values));
-                        //setSubmitting(false);
-                        //setSubmitionCompleted(true);
+                        dispatch(requestLogin(values)); //запрос в редакс на вход
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -118,15 +117,14 @@ function AdminLogin(props) {
                                     type="button"
                                     className="outline"
                                     onClick={handleReset}
-                                    disabled={!dirty || isLogging}
-                                >
+                                    disabled={!dirty || isLogging}>
                                     Reset
                                 </Button>
                                 <Button type="submit" disabled={isLogging}>
                                     Submit
+                                  {console.log('AdminLogin isLogging - >>>>', isLogging)}
                                 </Button>
                                 {/* <DisplayFormikState {...props} /> */}
-
                             </form>
                         );
                     }}
