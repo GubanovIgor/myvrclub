@@ -13,10 +13,10 @@ router.post('/login', async (req, res) => {
     console.log('password', password);
     const admin = await Admin.findOne({login: login});
     console.log(admin)
-    sleepFor(3000);
+    sleepFor(2000);
     if (admin && admin.password === password)
         res.json({message: admin.login, loginStatus: true});
     else res.json({message: 'wrong login or password', loginStatus: false});
-})
+});
 
 module.exports = router;

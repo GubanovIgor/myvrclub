@@ -7,17 +7,13 @@ const Club = require('../models/clubs');
 router.post('/', async (req, res) => {
 
   const conditions = [];
-
   const categories = Object.keys(req.body.checkedToggle);
-
-  // console.log(req.body);
-
   let clubGames = [];
 
   // Для конкретного клуба
   if (req.body.clubId.length) {
     const club = await Club.findById(req.body.clubId);
-      console.log('games in club', club.gamesIds);
+    console.log('games in club', club.gamesIds);
     conditions.push({ _id: { $in: club.gamesIds } })
   }
 
@@ -47,9 +43,7 @@ router.post('/', async (req, res) => {
     });
     conditions.push({ ageLimit: { $all: ages } })
   }
-
   // const skipItems = (req.body.pagination - 1) * 18;
-
   // console.log('conditions >>>>', conditions);
 
   const games = await Game.find(
@@ -59,17 +53,20 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-   const game = req.body.game;
-    let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
-   gamenames.forEach(game => {
-     console.log(game.name);
-   })
-    game.urlName = transliterate(game.name);
+  const game = req.body.game;
+  let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
+  gamenames.forEach(game => {
+    console.log(game.name);
+  });
+  game.urlName = transliterate(game.name);
   game.clubsIds = [];
 
   for (let i = 0; i < game.clubs.length; i++) {
     let club = await Club.findOne({ name: game.clubs[i] });
-    if (club === null || club === undefined) return res.json({message: 'Ошибка в названии клуба', status: 'error'});
+    if (club === null || club === undefined) return res.json({
+      message: 'Ошибка в названии клуба',
+      status: 'error'
+    });
     game.clubs[i] = club.name;
     game.clubsIds[i] = club._id;
   }
@@ -77,10 +74,21 @@ router.put('/', async (req, res) => {
     await Game.updateOne({ _id: game._id }, { ...game });
   } catch (err) {
     console.log('DB error - ', err);
-    res.json({message: 'Ошибка записи.', status: 'error'});
+    res.json({ message: 'Ошибка записи.', status: 'error' });
   }
   //console.log('game name', game.name);
-  res.json({message: `Игра ${game.name} сохранена.`, status: 'ok'});
+  res.json({ message: `Игра ${game.name} сохранена.`, status: 'ok' });
+});
+
+router.post('/change_discr', async (req, res) => {
+  const games = await Game.find();
+  games.forEach(async (game) => {
+    let lan = game.language;
+    lan = lan.replace(/<strong>\*<\/strong>/g, '').replace('<br>', ' ');
+    await Game.updateOne({ _id: game._id }, { language: lan });
+    console.log('game %s updated', game.name);
+  });
+  res.end();
 });
 
 module.exports = router;

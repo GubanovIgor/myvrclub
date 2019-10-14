@@ -41,7 +41,7 @@ class AdminGamePageEdit extends React.Component {
             if (Array.isArray(game[key]) && game[key][0] instanceof Object) return; //пропускаем обьекты
             if (key === '__v') return;
             (key === '_id' || key === 'steam_appid' || key === 'clubsIds') ? (disabled = true) : disabled = false;
-            (key === 'description') ? (multiline = true) : (multiline = false);
+            (key === 'description' || key === 'short_description') ? (multiline = true) : (multiline = false);
             if (Array.isArray(game[key]))
                 return (
                     <div>
@@ -65,7 +65,7 @@ class AdminGamePageEdit extends React.Component {
                             id={key}
                             type='text'
                             disabled={disabled}
-                            multiline={multiline} rows={10}
+                            multiline={multiline} rows={5}
                             defaultValue={game[key]}
                             onChange={() => this.setState({[key]: event.target.value})}
                         />

@@ -11,6 +11,7 @@ import styles from '../stylesheets/appWrapper.module.scss';
 
 // import AC
 import { switchScreenModeAC, switchPaginationValueAC } from '../redux/actions';
+import { actionTypes } from '../redux/types';
 
 class AppWrapper extends Component {
 	updateDimensions = () => {
@@ -72,6 +73,8 @@ const mapStateToProps = (store) => {
 		paginationValue: store.paginationValue,
 		filterToggle: store.gamesFilterToggle,
 		loading: store.loading,
+    logging: store.logging,
+    isLogged: store.isLogged,
 	};
 };
 
