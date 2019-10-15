@@ -11,7 +11,6 @@ import Seo from '../../../components/Seo';
 import Head from 'next/head';
 
 const Games = (props) => {
-  console.log(props.games)
   const router = useRouter();
   let game = null;
   if (props.games.length === 0) props.getGames();

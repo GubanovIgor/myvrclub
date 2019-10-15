@@ -21,7 +21,6 @@ function AdminLogin(props) {
   const { classes } = props;
   const isLogging = useSelector(state => state.logging); // from redux
   const isLogged = useSelector(state => state.isLogged); // from redux
-  console.log('props AdminLogin - >>>>', props);
   //const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
   return (
     <>

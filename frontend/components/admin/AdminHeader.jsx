@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 class Header extends Component {
   render() {
     const { isLogged } = this.props;
-    console.log('props Admin Header', isLogged);
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}
@@ -27,11 +26,11 @@ class Header extends Component {
               <>
                 <li>
                   <Link activeClassName={styles.siteNavigationActive}
-                        href='/admin/games'><a>Игры</a></Link>
+                        href='/admin/games'><a>Игры (админ)</a></Link>
                 </li>
                 <li>
                   <Link activeClassName={styles.siteNavigationActive}
-                        href='/admin/clubs'><a>Клубы</a></Link>
+                        href='/admin/clubs'><a>Клубы (админ)</a></Link>
                 </li>
               </>
             )}
@@ -47,16 +46,7 @@ class Header extends Component {
                 </li>
               </>
             )}
-            {/*<li>*/}
-            {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
-            {/*</li>*/}
           </ul>
-          {/*<ul className={styles.userNavigation}>*/}
-          {/*<li className={styles.loginLink}>*/}
-          {/*<Link activeClassName={styles.siteNavigationActive} href='/admin/login'><a>Вход</a></Link>*/}
-          {/*</li>*/}
-
-          {/*</ul>*/}
         </nav>
       </header>
     );
@@ -68,4 +58,5 @@ const mapStateToProps = (store) => {
     isLogged: store.isLogged,
   };
 };
+
 export default connect(mapStateToProps)(Header);

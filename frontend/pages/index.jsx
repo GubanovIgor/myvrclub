@@ -38,7 +38,6 @@ class Index extends Component {
   componentDidMount = async () => {
     this.props.getGames();
     this.props.getClubs();
-    console.log('DID MOUNT')
   };
 
   caruselDataMix = (side, index) => {
