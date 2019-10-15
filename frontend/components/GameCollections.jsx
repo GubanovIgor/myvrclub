@@ -8,37 +8,34 @@ import sectionStyles from '../stylesheets/section.module.scss';
 
 export class GameCollections extends Component {
   state = {
-    caruselIndex: 0,
+    caruselPosition: 0,
   }
 
-  scroll = (side) => {
+  scroll = async (side) => {
     if (side === 'left') {
-      this.setState({ caruselIndex: this.state.caruselIndex - 1 });
+      await this.setState({ caruselPosition: this.state.caruselPosition + 936 })
+      if (this.state.caruselPosition > 0) {
+        await this.setState({ caruselPosition: 0 })
+      }
     } else {
-      this.setState({ caruselIndex: this.state.caruselIndex + 1 });
+      await this.setState({ caruselPosition: this.state.caruselPosition - 936 })
+      if (this.state.caruselPosition < -2900) {
+        await this.setState({ caruselPosition: -2900 })
+      }
     }
   }
 
   render() {
-    console.log(this.props, 'GameCollection')
-
-    const caruselPosition = this.state.caruselIndex * -940;
-    if (caruselPosition > 0) {
-      caruselPosition = 0;
-    } else if (caruselPosition < - 2900 ) {
-      caruselPosition = -2900;
-    }
-
     return (
       <div className={sectionStyles.section}>
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие игры</h3>
-          <div className={styles.gameList} style={{ marginLeft: caruselPosition }}>
+          <div className={styles.gameList} style={{ marginLeft: this.state.caruselPosition }}>
             {this.props.games.map((el, index) => {
               return <GameCard game={el} key={index} />
             })}
           </div>
-          {(caruselPosition !== 0) && <div onClick={() => this.scroll('left')} className={styles.toLeft} />}
+          {(this.state.caruselPosition !== 0) && <div onClick={() => this.scroll('left')} className={styles.toLeft} />}
           {(this.state.caruselIndex !== 300) && <div onClick={() => this.scroll('right')} className={styles.toRight} />}
           {/* <div className={styles.allTags}>
             <ul className={styles.popularTags}>
