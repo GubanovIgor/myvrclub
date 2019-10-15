@@ -4,7 +4,6 @@ import GameCard from '../components/GameCard';
 
 // SASS
 import styles from '../stylesheets/gameCollections.module.scss';
-import sectionStyles from '../stylesheets/section.module.scss';
 
 export class GameCollections extends Component {
   state = {
@@ -27,7 +26,7 @@ export class GameCollections extends Component {
 
   render() {
     return (
-      <div className={sectionStyles.section}>
+      <div className={styles.section}>
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие игры</h3>
           <div className={styles.gameList} style={{ marginLeft: this.state.caruselPosition }}>
@@ -35,8 +34,6 @@ export class GameCollections extends Component {
               return <GameCard game={el} key={index} />
             })}
           </div>
-          {(this.state.caruselPosition !== 0) && <div onClick={() => this.scroll('left')} className={styles.toLeft} />}
-          {(this.state.caruselIndex !== 300) && <div onClick={() => this.scroll('right')} className={styles.toRight} />}
           {/* <div className={styles.allTags}>
             <ul className={styles.popularTags}>
               <li><a href="#">Гонки</a></li>
@@ -49,6 +46,8 @@ export class GameCollections extends Component {
             </ul>
           </div> */}
         </section>
+        {(this.state.caruselPosition !== 0) && <div onClick={() => this.scroll('left')} className={styles.toLeft} />}
+        {(this.state.caruselPosition !== -2900) && <div onClick={() => this.scroll('right')} className={styles.toRight} />}
       </div>
     );
   }
