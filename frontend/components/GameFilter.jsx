@@ -12,9 +12,15 @@ class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
     this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
+    this.forceUpdate()
   };
 
+  shouldComponentUpdate = () => {
+    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
+  }
+
   render() {
+    console.log(this.props, 'GameFilter')
     return (
       <div className={styles.container}>
         {this.props.gamesFilter.map((el, index) =>

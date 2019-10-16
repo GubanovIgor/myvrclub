@@ -24,8 +24,9 @@ class Games extends Component {
   }
 
   componentDidMount = async () => {
+    console.log(this.props.filterToggle)
     window.addEventListener('scroll', this.paginationHandler);
-    await this.props.getGames();
+    await this.props.getGames(this.props.filterToggle); // данные не уходят!
   };
 
   componentWillUnmount = () => {
