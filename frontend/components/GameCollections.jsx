@@ -12,12 +12,12 @@ export class GameCollections extends Component {
 
   scroll = async (side) => {
     if (side === 'left') {
-      await this.setState({ caruselPosition: this.state.caruselPosition + 936 })
+      await this.setState({ caruselPosition: this.state.caruselPosition + 950 })
       if (this.state.caruselPosition > 0) {
         await this.setState({ caruselPosition: 0 })
       }
     } else {
-      await this.setState({ caruselPosition: this.state.caruselPosition - 936 })
+      await this.setState({ caruselPosition: this.state.caruselPosition - 950 })
       if (this.state.caruselPosition < -2900) {
         await this.setState({ caruselPosition: -2900 })
       }

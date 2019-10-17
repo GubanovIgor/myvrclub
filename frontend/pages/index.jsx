@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 
 // import AC
 import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
@@ -26,7 +27,7 @@ class Index extends Component {
       'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
       'https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/12/10/rsz_eve-valkyrie-featured-image_1200x500.jpg',
     ],
-  }
+  };
 
   static getInitialProps({ reduxStore, req }) {
     const isServer = !!req;
@@ -69,6 +70,13 @@ class Index extends Component {
   //     await this.props.switchCaruselIndex(index);
   //   }
   // };
+  //   if (side === 'right') {
+  //     let firstElem = newData.shift();
+  //     newData.splice(newData.length, 0, firstElem);
+  //     this.setState({ caruselData: newData });
+  //     this.props.switchCaruselIndex(index - 1);
+  //   }
+  // };
 
   switchCarusel = async (index) => {
     if (index === 0) {
@@ -84,6 +92,11 @@ class Index extends Component {
     const { games, clubs } = this.props;
     return (
       <div>
+        <Head>
+          <title>MyVrClub.ru | Лучшие VR клубы Москвы</title>
+          <meta name='description' content='Все VR клубы Москвы! У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+        </Head>
         <Header />
         {/*/!*<IndexSearch />*!/*/}
         {/*<div className={styles.title}>*/}

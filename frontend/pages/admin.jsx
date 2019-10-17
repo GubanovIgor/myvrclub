@@ -1,6 +1,4 @@
 import React from 'react';
-import AdminPanel from '../components/admin/AdminPanel';
+import AdminLogin from "../components/admin/AdminLogin.jsx";
 
-export default () => (
-  <AdminPanel/>
-)
+export default (props) => (<AdminLogin {...props}/>);

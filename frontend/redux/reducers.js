@@ -1,23 +1,20 @@
 // REDUCERS
 import { actionTypes } from './types';
-import {filterToggleAC} from "./actions";
+import { filterToggleAC } from "./actions";
 
 export const reducer = (state, action) => {
+  console.log('reducer initial state games', state.games);
+  console.log('reducer initial state clubs', state.clubs);
   switch (action.type) {
-    // case actionTypes.TICK:
-    //   return Object.assign({}, state, {
-    //     lastUpdate: action.ts,
-    //     light: !!action.light
-    //   });
 
     case actionTypes.REQUEST_CLUBS:
-      return ({ ...state, loadingClub: true, errorClub: false, loading: true});
+      return ({ ...state, loadingClub: true, errorClub: false, loading: true });
     case actionTypes.REQUEST_GAMES:
-      return ({ ...state, loadingGame: true, errorGame: false, loading: true});
+      return ({ ...state, loadingGame: true, errorGame: false, loading: true });
     case actionTypes.REQUESTED_CLUBS:
-      return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false});
+      return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
-      return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false});
+      return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
@@ -27,10 +24,10 @@ export const reducer = (state, action) => {
       stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
-        return ({
-          ...state,
-          paginationValue: action.value,
-        });
+      return ({
+        ...state,
+        paginationValue: action.value,
+      });
     case actionTypes.CHANGE_MAP:
       return ({
         ...state,
@@ -61,6 +58,16 @@ export const reducer = (state, action) => {
         ...state,
         screenMode: action.screenMode,
       });
+    //***************LOGIN-LOGOUT*************
+    case actionTypes.REQUEST_LOGIN:
+      return ({ ...state, logging: true });
+    case actionTypes.REQUEST_END_LOGIN:
+      return ({ ...state, logging: false });
+    case actionTypes.LOGIN_SUCSESS:
+      return ({ ...state, isLogged: true });
+    case actionTypes.LOGIN_REJECT:
+      return ({ ...state, isLogged: false });
+    //******************************
 
     default:
       return state;

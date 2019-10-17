@@ -44,8 +44,8 @@ class ClubFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <MapRatingToggle />
-        {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>}
+        {/* <MapRatingToggle /> */}
+        {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}

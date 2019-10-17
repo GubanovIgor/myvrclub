@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
 import React from 'react';
-import Link from 'next/link'
-import Header from '../../../components/Header';
-import ClubPage from '../../../components/ClubPage';
+import Header from '../../../../components/Header';
+import ClubPage from '../../../../components/ClubPage';
 import { connect } from 'react-redux';
-import { getClubsAC } from '../../../redux/actions';
-import Loading from '../../../components/Loading';
-import Seo from '../../../components/Seo';
+import { getClubsAC } from '../../../../redux/actions';
+import Loading from '../../../../components/Loading';
+import Seo from '../../../../components/Seo';
+import AdminClubPageEdit from '../../../../components/admin/clubs/AdminClubPageEdit';
+import AdminHeader from '../../../../components/admin/AdminHeader';
 
 const Clubs = (props) => {
   const router = useRouter();
@@ -18,16 +19,13 @@ const Clubs = (props) => {
   return (
     <>
     <Seo club={club} />
-      <Header />
+      <AdminHeader/>
       {props.loadingClub
         ? <Loading />
         : props.error
           ? <div>Ошибка, попробуйте ещё раз</div>
           // Здесь можно передать пропсы из AppWrapper
-          : club && <ClubPage
-            club={club}
-            autoPagination={props.autoPagination}
-          />
+          : club && <AdminClubPageEdit club={club} />
       }
     </>
   )

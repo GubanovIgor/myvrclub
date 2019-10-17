@@ -7,6 +7,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const clubRouter = require('./routes/club');
 const gameRouter = require('./routes/game');
+const adminRouter = require('./routes/admin');
 
 const port = process.env.PORT || 3100;
 let app = express();
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 app.use('/club', clubRouter);
 app.use('/game', gameRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, function () {
   console.log(`Backend on port ${port}!`);

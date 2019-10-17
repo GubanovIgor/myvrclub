@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const InputWrapper = styled.div`
     position: relative;
     cursor: pointer;
+    margin-bottom: 10px;
 
     :before {
         content: '';

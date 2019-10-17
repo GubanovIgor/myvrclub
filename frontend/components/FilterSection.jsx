@@ -12,17 +12,20 @@ class FilterSection extends Component {
     const { section, checked, onChangeCheckbox } = this.props;
     return (
       <div>
-        <h3>{section.title}</h3>
-        {section.value.map((item, index) => {
-          return <FilterItem
-            key={index}
-            item={item}
-            category={section.title}
-            checked={checked[section.value[index]]}
-            onChangeCheckbox={onChangeCheckbox}
-          />}
-        )}
-        <hr className={styles.breakLine}/>
+        <h3 className={styles.title}>{section.title}</h3>
+        <div className={styles.filterSection}>
+          {section.value.map((item, index) => {
+            return <FilterItem
+              key={index}
+              item={item}
+              category={section.title}
+              checked={checked[section.value[index]]}
+              onChangeCheckbox={onChangeCheckbox}
+            />
+          }
+          )}
+        </div>
+        <hr className={styles.breakLine} />
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
+
 //import windowSize from 'react-window-size';
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -38,6 +40,11 @@ class Games extends Component {
     const gameItems = games.map((game, index) => <GameCard key={index} game={game} />);
     return (
       <div>
+        <Head>
+          <title>Список VR игр | Лучшие VR игры на MyVrClub.ru</title>
+          <meta name='description' content='У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+        </Head>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR игр</h1>

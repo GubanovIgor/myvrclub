@@ -6,6 +6,7 @@
   bottom: 0;
   background-color: black;
   opacity: 0.7;
+  z-index: 1;
 }
 
 .innerPopUp {
@@ -68,5 +69,16 @@ input .noActive {
 }
 
 .button:active {
-  background: linear-gradient(to top, #5e98fb, #75a5f8);
+  background: linear-gradient(to top, #5e98fb, #272829);
+}
+
+.link {
+  color: #81affe;
+  font-size: 10px;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #3071eb;
+
 }

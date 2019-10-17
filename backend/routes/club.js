@@ -2,30 +2,32 @@ const express = require('express');
 const router = express.Router();
 const Club = require('../models/clubs');
 const Game = require('../models/games');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 // router.get('/', async (req, res) => {
 //   const clubs = await Club.find();
 //   res.json(clubs);
 // });
 
 router.post('/', async (req, res) => {
-  const conditions =[];
+  const conditions = [];
 
   // Для конкретной игры в клубе
   if (req.body.gameId.length) {
      const game = await Game.findById(req.body.gameId);
     console.log('clubs in game id>>>>>>>', game.clubsIds);
-    conditions.push({ _id: { $in: game.clubsIds } })
-  }
+    conditions.push({ _id: { $in: game.clubsIds } });
+  };
 
 
   if (req.body.checkedToggle[0].length) {
     console.log(req.body.checkedToggle[0]);
     conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
-  }
+  };
+
   if (req.body.checkedToggle[1].length) {
     const length = req.body.checkedToggle[1].length;
-    const num = req.body.checkedToggle[1][length-1].split(' ')[1];
-    conditions.push({price: { $lt: num } })
+    const num = req.body.checkedToggle[1][length - 1].split(' ')[1];
+    conditions.push({ price: { $lt: num } });
   }
 
   // const skipItems = (req.body.pagination - 1) * 9;
@@ -39,9 +41,30 @@ router.post('/', async (req, res) => {
 
 router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
-  //const clubs = await Club.findByIdAndUpdate(req.body.clubId, {clickCounter: });
-  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, {new: true }); // new:true возвр измененный док
-  // console.log('club', club);
+  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
+});
+
+router.put('/', async (req, res) => {
+  const club = req.body.club;
+  club.urlName = transliterate(club.name);
+  club.clubsIds = [];
+
+  for (let i = 0; i < club.games.length; i++) {
+    console.log('game: ', club.games[i]);
+    let game = await Game.findOne({ name: club.games[i] });
+    if (game === null || club === undefined) return res.json({message: `Ошибка в названии игры ${club.games[i]}`, status: 'error'});
+    club.games[i] = game.name;
+    club.gamesIds[i] = game._id;
+  }
+  console.log('запрос сохранения')
+  try {
+    await Club.updateOne({ _id: club._id }, { ...club });
+  } catch (err) {
+    console.log('DB error - ', err);
+    res.json({message: 'Ошибка записи.', status: 'error'});
+  }
+  console.log('club name %s сохранен', club.name);
+  res.json({message: `Клуб ${club.name} сохранен.`, status: 'ok'});
 });
 
 module.exports = router;
