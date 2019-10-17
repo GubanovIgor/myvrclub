@@ -35,11 +35,10 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-          <img className={styles.cover}
-               src={IMG_URL_PREFIX + club.cover}
-               width="360"
-               height="202"
-               alt={club.name}/>
+            <img className={styles.cover}
+              src={IMG_URL_PREFIX + club.cover}
+              width="360"
+              alt={club.name} />
           }
           <div className={styles.profileInformations}>
             <p>
@@ -71,11 +70,10 @@ class InformationProfileBlock extends Component {
       return (
         <div className={styles.profileInformations}>
           {(this.props.screenMode === 'desktop') &&
-          <img className={styles.cover}
-               src={game.cover}
-               width="360"
-               height="202"
-               alt={game.name}/>
+            <img className={styles.cover}
+              src={game.cover}
+              width="360"
+              alt={game.name} />
           }
           <div className="profile-game-informations">
             <p>

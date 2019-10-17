@@ -4,7 +4,7 @@
     width: 1200px;
     height: 500px;
 
-    background-color: rgb(230, 230, 230);
+    // background-color: rgb(230, 230, 230);
 
     margin-top: 20px;
     margin-bottom: 50px;
@@ -30,7 +30,14 @@
     top: 0;
     right: 1100px;
 
-    border: 1px solid red;
+    cursor: pointer;
+    transition: all 0.5s;
+    background: linear-gradient(to right, #171718, transparent 70%);
+    opacity: 0;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .buttonToRight {
@@ -41,5 +48,12 @@
     top: 0;
     left: 1100px;
 
-    border: 1px solid red;
+    cursor: pointer;
+    transition: all 0.5s;
+    background: linear-gradient(to left, #171718, transparent 70%);
+    opacity: 0;
+
+    &:hover {
+        opacity: 1;
+    }
 }

@@ -1,9 +1,19 @@
 .container {
+  position: relative;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0;
 
   overflow: hidden;
+}
+
+.section {
+  position: relative;
+  border-radius: 7px;
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.5);
+  overflow: hidden;
+
+  margin-bottom: 50px;
 }
 
 .title {
@@ -14,11 +24,40 @@
 .gameList {
   display: flex;
   justify-content: space-between;
-
   margin: 0 0 15px 0;
   padding: 0;
 
+  transition: 1s ease-in-out;
+
   list-style: none;
+}
+
+.toLeft {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+
+  top: 130px;
+  left: 10px;
+
+  border-radius: 50%;
+  background-color: #FFF;
+  box-shadow: 0 8px 20px -5px #000000;
+  cursor: pointer;
+}
+
+.toRight {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+
+  top: 130px;
+  right: 10px;
+
+  border-radius: 50%;
+  background-color: #FFF;
+  box-shadow: 0 8px 20px -5px #000000;
+  cursor: pointer;
 }
 
 .allTags {

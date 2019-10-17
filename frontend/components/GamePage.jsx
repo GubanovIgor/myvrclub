@@ -29,16 +29,6 @@ class GamePage extends Component {
   componentDidMount() {
     window.addEventListener('scroll', this.paginationHandler);
     this.props.getClubs(undefined, undefined, this.props.game._id);
-
-    // ymaps.ready(init);
-    // // let myMap;
-    
-    // function init() {
-    //   let myMap = new ymaps.Map("map", {
-    //     center: [55.76, 37.64],
-    //     zoom: 9,
-    //   });
-    // }
   }
 
   componentWillUnmount = async () => {
@@ -47,10 +37,9 @@ class GamePage extends Component {
   }
 
   render() {
-
     const { game = [], clubs, loadingClub, error} = this.props;
-    const itemsClub = clubs.map((club, index) =>
-        <ClubCard key={index} club={club}/>);
+    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
+
     return (
       <main>
         <GameProfile game={game}/>
@@ -66,51 +55,19 @@ class GamePage extends Component {
           <hr className={styles.breakLine}/>
         </section> */}
 
+        {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
+        {/* <Map/> */}
+
         <div className={cardsWrapper.titleWrapper}>
           <h2>Где поиграть в {game.name}</h2>
           <FilterButton showFilter={this.showFilter} />
         </div>
-
-        {/* {(this.props.map) ? <Map /> : <p>qweqr</p>} */}
-
-        {/* {(this.props.map) ? <Map /> : */}
-          {/*<div className={cardsWrapper.container}>*/}
-            {/*<ClubFilter gameId={this.props.game._id}/>*/}
-            {/*<div className={cardsWrapper.cardsWrapper}>*/}
-              {/*{loading*/}
-                {/*? <div>Загрузка...</div>*/}
-                {/*: error*/}
-                  {/*? <div>Ошибка, попробуйте ещё раз</div>*/}
-                  {/*: clubs && (clubs.map((club, index) => {*/}
-                  {/*return <ClubCard key={index} club={club}/>;*/}
-                {/*}))}*/}
-            {/*</div>*/}
-          {/*</div>*/}
-        {/*} */}
-
-        {/*<div className={cardsWrapper.container}>*/}
-          {/*<ClubFilter gameId={this.props.game._id}/>*/}
-          {/*<div className={cardsWrapper.cardsWrapper}>*/}
-            {/*{loading*/}
-              {/*? <div>Загрузка...</div>*/}
-              {/*: error*/}
-                {/*? <div>Ошибка, попробуйте ещё раз</div>*/}
-                {/*: clubs && (clubs.map((club, index) => {*/}
-                {/*return <ClubCard key={index} club={club}/>;*/}
-              {/*}))}*/}
-          {/*</div>*/}
-        {/*</div>*/}
 
         <div className={cardsWrapper.container}>
           {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
           {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
           <div className={cardsWrapper.cardsWrapper}>
             {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
-            {/* {loadingClub
-              ? <Loading/>
-              : error
-                ? <div>Ошибка, попробуйте ещё раз</div>
-                : clubs && (this.props.map) ? <Map/> : (clubItems)} */}
           </div>
         </div>
         {/* <hr className={styles.breakLine}/> */}
