@@ -20,7 +20,6 @@ class GameFilter extends Component {
   }
 
   render() {
-    console.log(this.props, 'GameFilter')
     return (
       <div className={styles.container}>
         {this.props.gamesFilter.map((el, index) =>

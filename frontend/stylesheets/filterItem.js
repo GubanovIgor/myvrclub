@@ -1,7 +1,9 @@
 import styled from "styled-components";
+// import doneTick from "/static/images/icons/done-tick.svg"
 
 export const InputWrapper = styled.div`
     position: relative;
+    cursor: pointer;
 
     :before {
         content: '';

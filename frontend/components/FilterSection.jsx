@@ -10,13 +10,10 @@ class FilterSection extends Component {
 
   render() {
     const { section, checked, onChangeCheckbox } = this.props;
-    // console.log(this.props.checked['Action'])
-    // console.log(this.props.section.value[0])
     return (
       <div>
         <h3>{section.title}</h3>
         {section.value.map((item, index) => {
-          // console.log(this.props, 'FilterSection')
           return <FilterItem
             key={index}
             item={item}

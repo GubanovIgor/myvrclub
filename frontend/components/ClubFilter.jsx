@@ -30,6 +30,7 @@ class ClubFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
     this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId);
+    this.forceUpdate()
   };
 
   onChangeMap = () => {
