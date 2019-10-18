@@ -56,7 +56,7 @@ router.put('/', async (req, res) => {
     club.games[i] = game.name;
     club.gamesIds[i] = game._id;
   }
-  console.log('запрос сохранения')
+  console.log('запрос сохранения');
   try {
     await Club.updateOne({ _id: club._id }, { ...club });
   } catch (err) {
@@ -66,5 +66,25 @@ router.put('/', async (req, res) => {
   console.log('club name %s сохранен', club.name);
   res.json({message: `Клуб ${club.name} сохранен.`, status: 'ok'});
 });
+
+// router.post('/change_equp', async (req, res) => {
+//   const clubs = await Club.find();
+//   clubs.forEach( async (club) => {
+//     let equipment = club.equipment.map((el)=> {
+//       if(el === '4 HTC Vive') return 'HTC Vive';
+//       if(el === 'PS4') return 'PS VR';
+//       if(el === 'FullBody VR') return 'Full Body VR';
+//       if(el === '8') return 'HTC Vive';
+//       if(el === '4') return 'HTC Vive';
+//       if(el === '24') return 'HTC Vive';
+//       return el;
+//     });
+//     await Club.updateOne({ _id: club._id }, { equipment });
+//     console.log('club ', club.name);
+//     console.log('equipment changed to', equipment);
+//   });
+//   res.end();
+// });
+
 
 module.exports = router;
