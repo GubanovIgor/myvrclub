@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../stylesheets/filterItem.module.scss';
+import styles from '../../stylesheets/filterItem.module.scss';
 
 class MapRatingToggle extends Component {
 	render() {

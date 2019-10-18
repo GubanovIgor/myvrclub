@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import Link from 'next/link';
-import Link from '../ActiveLink';
+import Link from '../layout/ActiveLink';
 
 // SASS
 import styles from '../../stylesheets/header.module.scss';

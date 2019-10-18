@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // SASS
-import styles from '../stylesheets/filter.module.scss';
+import styles from '../../stylesheets/filter.module.scss';
 
 // import components
-import FilterSection from '../components/FilterSection';
-import { filterToggleGamesAC, getGamesAC } from '../redux/actions';
+import FilterSection from '../filters/FilterSection';
+import { filterToggleGamesAC, getGamesAC } from '../../redux/actions';
 
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {

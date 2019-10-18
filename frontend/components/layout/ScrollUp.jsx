@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import styles from '../stylesheets/scrollUp.module.scss';
+import styles from '../../stylesheets/scrollUp.module.scss';
 
 export default class ScrollUp extends Component {
   state = {

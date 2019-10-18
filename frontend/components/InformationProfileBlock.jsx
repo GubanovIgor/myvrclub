@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
-import FeedbackForm from './FeedbackForm';
+import FeedbackForm from './feedbackform/FeedbackForm';
 
 //SASS
 import styles from '../stylesheets/informationProfileBlock.module.scss';

@@ -6,11 +6,11 @@ import Head from 'next/head';
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
-import Header from '../components/Header';
-import ClubCard from '../components/ClubCard';
-import ClubFilter from '../components/ClubFilter';
-import FilterButton from '../components/FilterButton';
-import Loading from '../components/Loading';
+import Header from '../components/layout/Header';
+import ClubCard from '../components/clubs/ClubCard';
+import ClubFilter from '../components/clubs/ClubFilter';
+import FilterButton from '../components/filters/FilterButton';
+import Loading from '../components/common/Loading';
 
 // import AC
 import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';

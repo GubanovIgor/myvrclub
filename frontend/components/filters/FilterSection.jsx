@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../stylesheets/filterSection.module.scss';
+import styles from '../../stylesheets/filterSection.module.scss';
 
 // import components
-import FilterItem from '../components/FilterItem';
+import FilterItem from './FilterItem';
 
 class FilterSection extends Component {
 

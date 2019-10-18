@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GameCard from '../components/GameCard';
+import GameCard from './GameCard';
 
 // SASS
-import styles from '../stylesheets/gameCollections.module.scss';
+import styles from '../../stylesheets/gameCollections.module.scss';
 
 export class GameCollections extends Component {
   state = {

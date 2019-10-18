@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Input, InputWrapper } from '../stylesheets/filterItem';
+import { Input, InputWrapper } from '../../stylesheets/filterItem';
 
 // SASS
-import styles from '../stylesheets/filterItem.module.scss';
+import styles from '../../stylesheets/filterItem.module.scss';
 
 class FilterItem extends Component {
   render() {

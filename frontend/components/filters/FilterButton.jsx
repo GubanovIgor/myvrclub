@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../stylesheets/filterButton.module.scss';
+import styles from '../../stylesheets/filterButton.module.scss';
 
 // import components
 

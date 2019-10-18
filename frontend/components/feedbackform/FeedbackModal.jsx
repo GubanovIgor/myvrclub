@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import styles from '../stylesheets/feedbackForm.module.scss';
+import styles from '../../stylesheets/feedbackForm.module.scss';
 
 export default class FeedbackModal extends Component {
 

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../stylesheets/clubCard.module.scss';
-import { IMG_URL_PREFIX } from '../services/consts/consts';
+import styles from '../../stylesheets/clubCard.module.scss';
+import { IMG_URL_PREFIX } from '../../services/consts/consts';
 
 class ClubCard extends Component {
 

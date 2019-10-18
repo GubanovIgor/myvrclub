@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 //import '~react-autocomplete-input/dist/bundle.css';
 
 // SASS
-import styles from '../stylesheets/filter.module.scss';
+import styles from '../../stylesheets/filter.module.scss';
 
 //import AC
-import { changeMapAC, offChangeMapAC, getClubsAC, filterToggleClubsAC } from '../redux/actions';
+import { changeMapAC, offChangeMapAC, getClubsAC, filterToggleClubsAC } from '../../redux/actions';
 
 // import components
-import FilterSection from '../components/FilterSection';
-import MapRatingToggle from '../components/MapRatingToggle'
+import FilterSection from '../filters/FilterSection';
+import MapRatingToggle from '../map/MapRatingToggle'
 
 class ClubFilter extends Component {
 

@@ -4,7 +4,7 @@ import withReduxStore from '../redux/lib/with-redux-store';
 import { Provider } from 'react-redux';
 
 // Components
-import AppWrapper from '../components/AppWrapper';
+import AppWrapper from '../components/common/AppWrapper';
 
 class ReduxApp extends App {
   render() {

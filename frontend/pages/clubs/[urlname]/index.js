@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import React from 'react';
 import Link from 'next/link'
-import Header from '../../../components/Header';
-import ClubPage from '../../../components/ClubPage';
+import Header from '../../../components/layout/Header';
+import ClubPage from '../../../components/clubs/ClubPage';
 import { connect } from 'react-redux';
 import { getClubsAC } from '../../../redux/actions';
-import Loading from '../../../components/Loading';
+import Loading from '../../../components/common/Loading';
 import Seo from '../../../components/Seo';
 
 const Clubs = (props) => {

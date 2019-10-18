@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import React from 'react';
 import Link from 'next/link'
-import Header from '../../../components/Header';
-import ClubPage from '../../../components/ClubPage';
+import Header from '../../../components/layout/Header';
+import ClubPage from '../../../components/clubs/ClubPage';
 import { connect } from 'react-redux';
 import { getGamesAC } from '../../../redux/actions';
-import GamePage from '../../../components/GamePage';
-import Loading from '../../../components/Loading';
+import GamePage from '../../../components/games/GamePage';
+import Loading from '../../../components/common/Loading';
 import Seo from '../../../components/Seo';
 import Head from 'next/head';
 

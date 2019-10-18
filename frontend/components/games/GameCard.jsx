@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 
 // SASS
-import styles from '../stylesheets/gameCard.module.scss';
+import styles from '../../stylesheets/gameCard.module.scss';
 
 class GameCard extends Component {
   render() {

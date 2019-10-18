@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // SASS
-import styles from '../stylesheets/clubPage.module.scss';
-import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
+import styles from '../../stylesheets/clubPage.module.scss';
+import cardsWrapper from '../../stylesheets/cardsWrapper.module.scss';
 
 // import components
-import GameCard from '../components/GameCard';
-import Reviews from '../components/Reviews';
-import ClubProfile from '../components/ClubProfile';
-import GameFilter from '../components/GameFilter';
-import Loading from './Loading';
-import FilterButton from '../components/FilterButton';
+import GameCard from '../games/GameCard';
+import Reviews from '../Reviews';
+import ClubProfile from './ClubProfile';
+import GameFilter from '../games/GameFilter';
+import Loading from '../common/Loading';
+import FilterButton from '../filters/FilterButton';
 
 // action creators
-import { getGamesAC, showFilterToggleAC } from '../redux/actions';
+import { getGamesAC, showFilterToggleAC } from '../../redux/actions';
 
 class ClubPage extends Component {
   showFilter = () => {

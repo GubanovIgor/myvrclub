@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 //SASS
-import styles from '../stylesheets/profileBlock.module.scss';
+import styles from '../../stylesheets/profileBlock.module.scss';
 
 // import components
-import ImageProfileBlock from '../components/ImageProfileBlock';
-import InformationProfileBlock from '../components/InformationProfileBlock';
+import ImageProfileBlock from '../ImageProfileBlock';
+import InformationProfileBlock from '../InformationProfileBlock';
 
 class ClubProfile extends Component {
 

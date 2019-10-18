@@ -9,13 +9,13 @@ import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
 import styles from '../stylesheets/index.module.scss'
 
 // Components
-import ClubCollections from '../components/ClubCollections';
-import GameCollections from '../components/GameCollections';
+import ClubCollections from '../components/clubs/ClubCollections';
+import GameCollections from '../components/games/GameCollections';
 import Example from '../components/examplesThunk/examples';
-import Carusel from '../components/Carusel';
-import Header from '../components/Header';
+import Carusel from '../components/carousel/Carusel';
+import Header from '../components/layout/Header';
 import IndexSearch from '../components/IndexSearch';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 
 class Index extends Component {
   state = {

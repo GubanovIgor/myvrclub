@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ClubCard from '../components/ClubCard';
-import { ToRightButton, ToLeftButton } from '../stylesheets/carusel';
+import ClubCard from './ClubCard';
+import { ToRightButton, ToLeftButton } from '../../stylesheets/carusel';
 
 // SASS
-import styles from '../stylesheets/clubCollections.module.scss';
+import styles from '../../stylesheets/clubCollections.module.scss';
 
 export class ClubCollections extends Component {
   state = {

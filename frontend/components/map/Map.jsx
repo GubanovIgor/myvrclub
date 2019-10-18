@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../stylesheets/map.module.scss';
+import styles from '../../stylesheets/map.module.scss';
 import {connect} from "react-redux";
 
 class Map extends Component {

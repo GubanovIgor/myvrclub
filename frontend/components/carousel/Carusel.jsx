@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 // SASS
-import styles from '../stylesheets/carusel.module.scss';
+import styles from '../../stylesheets/carusel.module.scss';
 
 // Componentd
-import CaruselItem from '../components/CaruselItem';
+import CaruselItem from './CaruselItem';
 
 class Carusel extends Component {
 	render() {

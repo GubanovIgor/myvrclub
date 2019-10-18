@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 // import components
-import Loading from '../../../components/Loading';
+import Loading from '../../common/Loading';
 import AdminClubCard from './AdminClubCard.jsx';
 import AdminHeader from '../AdminHeader';
 

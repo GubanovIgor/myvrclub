@@ -7,14 +7,14 @@ import Head from 'next/head';
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
-import Header from '../components/Header';
-import GameCard from '../components/GameCard';
-import GameFilter from '../components/GameFilter';
-import FilterButton from '../components/FilterButton';
+import Header from '../components/layout/Header';
+import GameCard from '../components/games/GameCard';
+import GameFilter from '../components/games/GameFilter';
+import FilterButton from '../components/filters/FilterButton';
 
 // action creators
 import { getGamesAC, showFilterToggleAC } from '../redux/actions';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 
 class Games extends Component {
   showFilter = () => {
