@@ -7,19 +7,24 @@ import {connect} from "react-redux";
 class Map extends Component {
 
   componentDidMount() {
-    console.log(this.props.clubs);
+    console.log(this.props.clubs, "MAP");
 
     let baloons = [];
     this.props.clubs.forEach(el => {
-      baloons.push(el.baloon);
+      let coord = el.baloon[0].split(',');
+      coord[0] = parseFloat(coord[0], 10);
+      coord[1] = parseFloat(coord[1], 10);
+      baloons.push(coord);
     });
+
+    console.log(baloons);
 
     let domains = [];
     this.props.clubs.forEach(el => {
       domains.push(el.domain);
     });
 
-    console.log(domains);
+    // console.log(domains);
 
     ymaps.ready(init);
     let myMap;

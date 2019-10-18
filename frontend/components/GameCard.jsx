@@ -11,7 +11,7 @@ class GameCard extends Component {
       <Link href='/games/[urlname]' as={`/games/${game.urlName}`}>
         <div className={styles.container}>
           {<img className={styles.cover} src={game.cover} />}
-          <p className={styles.title}>{game.name}</p>
+          <p className={styles.title}>{game.name} {game.year}</p>
           {/*<div className={styles.new}>new</div>*/}
           <div className={styles.rating}>{game.rating}</div>
         </div>

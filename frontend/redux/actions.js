@@ -68,7 +68,6 @@ export const getGamesAC = (
   async (dispatch) => {
     dispatch(requestGames());
     let checkedToggle = {};
-
     Object.keys(filterToggleData).forEach(el => {
       checkedToggle[el] = [];
     });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Input, InputWrapper } from '../stylesheets/filterItem';
 
 // SASS
 import styles from '../stylesheets/filterItem.module.scss';
@@ -6,17 +7,20 @@ import styles from '../stylesheets/filterItem.module.scss';
 class FilterItem extends Component {
   render() {
     const { item, checked, category } = this.props;
+    // console.log(this.props.checked)
     return (
-      <label className={styles.container}>{item}
-        <input
+      <InputWrapper checked={checked}
+      onClick={() => this.props.onChangeCheckbox(item, category)}>
+      {item}
+        {/* <Input
           onChange={() => this.props.onChangeCheckbox(item, category)}
-          className={styles.filterCheckbox}
-          checked={checked}
+          // className={styles.filterCheckbox}
+          checked1={checked}
           type='checkbox'
           id={item}
         />
-        <span className={styles.checkmark}/>
-      </label>
+        <span className={styles.checkmark}/> */}
+      </InputWrapper>
     );
   }
 }

@@ -33,7 +33,7 @@ class AppWrapper extends Component {
 		}
 		let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 		let clientHeight = document.documentElement.clientHeight;
-		if (windowRelativeBottom < clientHeight + 100 && !this.props.loading) {
+		if (windowRelativeBottom < clientHeight + 200 && !this.props.loading) {
 			this.handlePageChange(type);
 		}
 	}
@@ -60,7 +60,7 @@ class AppWrapper extends Component {
 						autoPagination={this.autoPagination}
 					/>
 				</div>
-				<Footer />
+				{/* <Footer /> */}
 			</div>
 		)
 	}

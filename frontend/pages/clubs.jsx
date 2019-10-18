@@ -26,7 +26,7 @@ class Clubs extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
-    this.props.getClubs();
+    this.props.getClubs(this.props.filterToggle);
   };
 
   componentWillUnmount = async () => {
@@ -64,7 +64,7 @@ class Clubs extends Component {
 const mapStateToProps = (store) => ({
   showFilter: store.showFilter,
   clubs: store.clubs,
-  filterToggle: store.gamesFilterToggle,
+  filterToggle: store.clubsFilterToggle,
   paginationValue: store.paginationValue,
   loadingClub: store.loadingClub,
   loading: store.loading,
@@ -73,7 +73,7 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   showFilterToggle: () => dispatch(showFilterToggleAC()),
-  getClubs: () => dispatch(getClubsAC()),
+  getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
   pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
 });
 

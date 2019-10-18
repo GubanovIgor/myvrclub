@@ -27,7 +27,7 @@ class Games extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
-    await this.props.getGames();
+    await this.props.getGames(this.props.filterToggle);
   };
 
   componentWillUnmount = () => {
@@ -77,7 +77,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
-    getGames: () => dispatch(getGamesAC()),
+    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }
 };
 
