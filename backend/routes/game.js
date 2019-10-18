@@ -80,15 +80,15 @@ router.put('/', async (req, res) => {
   res.json({ message: `Игра ${game.name} сохранена.`, status: 'ok' });
 });
 
-router.post('/change_discr', async (req, res) => {
-  const games = await Game.find();
-  games.forEach(async (game) => {
-    let lan = game.language;
-    lan = lan.replace(/<strong>\*<\/strong>/g, '').replace('<br>', ' ');
-    await Game.updateOne({ _id: game._id }, { language: lan });
-    console.log('game %s updated', game.name);
-  });
-  res.end();
-});
+// router.post('/change_discr', async (req, res) => {
+//   const games = await Game.find();
+//   games.forEach(async (game) => {
+//     let lan = game.language;
+//     lan = lan.replace(/<strong>\*<\/strong>/g, '').replace('<br>', ' ');
+//     await Game.updateOne({ _id: game._id }, { language: lan });
+//     console.log('game %s updated', game.name);
+//   });
+//   res.end();
+// });
 
 module.exports = router;
