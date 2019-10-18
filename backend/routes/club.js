@@ -39,11 +39,6 @@ router.post('/', async (req, res) => {
   res.json(clubs);
 });
 
-router.post('/statistics', async (req, res) => {
-  const id = req.body.clubId;
-  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
-});
-
 router.put('/', async (req, res) => {
   const club = req.body.club;
   club.urlName = transliterate(club.name);
@@ -67,6 +62,12 @@ router.put('/', async (req, res) => {
   res.json({message: `Клуб ${club.name} сохранен.`, status: 'ok'});
 });
 
+router.post('/statistics', async (req, res) => {
+  const id = req.body.clubId;
+  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
+  console.log('club %s was clicked', club.name);
+});
+
 // router.post('/change_equp', async (req, res) => {
 //   const clubs = await Club.find();
 //   clubs.forEach( async (club) => {
@@ -85,6 +86,5 @@ router.put('/', async (req, res) => {
 //   });
 //   res.end();
 // });
-
 
 module.exports = router;
