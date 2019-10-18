@@ -11,12 +11,16 @@ export const InitState = {
   map: false,
   loading: false,
   error: false,
+  loadingClub: false,
+  errorClub: false,
   loadingGame: false,
   errorGame: false,
   paginationValue: 1,
   showFilter: false,
-  caruselIndex: 4,
+  caruselIndex: 1,
   screenMode: 'desktop',
+  isLogged: false,
+  logging: false,
   gamesFilter: [
     {
       title: 'Жанр',

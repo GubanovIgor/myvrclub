@@ -1,6 +1,8 @@
 .mainFooter {
   background-color: #f7f8f9;
   width: 100%;
+
+  margin-top: 40px;
 }
 
 .mainFooter ul {
@@ -9,10 +11,6 @@
 
 .mainFooter a {
   color: #1f1f22;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 //.reference,
@@ -24,9 +22,13 @@
 //}
 
 .container {
-  width: 100%;
+  width: 1200px;
   margin: 0 auto;
   padding: 0;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .visuallyHidden {
@@ -61,7 +63,7 @@
   color: #d6d8dc;
   background-color: #d6d8dc;
   height: 1px;
-  width: 90%;
+  width: 100%;
 
   margin: 0 auto;
 }
@@ -89,8 +91,13 @@
 }
 
 .infoList :not(:first-child) a {
+  text-decoration: underline;
   font-weight: 300;
   font-size: 14px;
+  
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .infoList li {
@@ -98,7 +105,7 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 375px) {
+@media screen and (max-width: 425px) {
   .socialList :first-child {
     font-size: 12px;
   }

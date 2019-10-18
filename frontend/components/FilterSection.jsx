@@ -9,20 +9,23 @@ import FilterItem from '../components/FilterItem';
 class FilterSection extends Component {
 
   render() {
-    const { section } = this.props;
+    const { section, checked, onChangeCheckbox } = this.props;
     return (
       <div>
-        <h3>{section.title}</h3>
-        {section.value.map((item, index) =>
-          <FilterItem
-            key={index}
-            item={item}
-            category={section.title}
-            checked={this.props.checked[index]}
-            onChangeCheckbox={this.props.onChangeCheckbox}
-          />
-        )}
-        <hr className={styles.breakLine}/>
+        <h3 className={styles.title}>{section.title}</h3>
+        <div className={styles.filterSection}>
+          {section.value.map((item, index) => {
+            return <FilterItem
+              key={index}
+              item={item}
+              category={section.title}
+              checked={checked[section.value[index]]}
+              onChangeCheckbox={onChangeCheckbox}
+            />
+          }
+          )}
+        </div>
+        <hr className={styles.breakLine} />
       </div>
     );
   }

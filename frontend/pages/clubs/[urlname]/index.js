@@ -3,10 +3,10 @@ import React from 'react';
 import Link from 'next/link'
 import Header from '../../../components/Header';
 import ClubPage from '../../../components/ClubPage';
-import Footer from '../../../components/Footer';
 import { connect } from 'react-redux';
 import { getClubsAC } from '../../../redux/actions';
 import Loading from '../../../components/Loading';
+import Seo from '../../../components/Seo';
 
 const Clubs = (props) => {
   const router = useRouter();
@@ -14,17 +14,21 @@ const Clubs = (props) => {
   if (props.clubs.length === 0) props.getClubs();
   const { urlname } = router.query;
   //let index = props.clubs.map(el => el.urlName).indexOf(urlname);
-  if (!props.loading) club = props.clubs.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
+  if (!props.loadingClub) club = props.clubs.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
-      <Header/>
-      {props.loading
-        ? <Loading/>
+    <Seo club={club} />
+      <Header />
+      {props.loadingClub
+        ? <Loading />
         : props.error
           ? <div>Ошибка, попробуйте ещё раз</div>
-          : club && <ClubPage club={club}/>
+          // Здесь можно передать пропсы из AppWrapper
+          : club && <ClubPage
+            club={club}
+            autoPagination={props.autoPagination}
+          />
       }
-      <Footer/>
     </>
   )
 }
@@ -32,7 +36,7 @@ const Clubs = (props) => {
 const mapStateToProps = (store) => {
   return {
     clubs: store.clubs,
-    loading: store.loading,
+    loadingClub: store.loadingClub,
     error: store.error,
 
   };

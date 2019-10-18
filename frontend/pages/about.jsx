@@ -10,7 +10,6 @@ import Footer from '../components/Footer';
 const About = () => (
   <div>
     <Header />
-    <Footer />
   </div>
 );
 

@@ -1,64 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
+
 //import windowSize from 'react-window-size';
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
-import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 
 // action creators
-import { getGamesAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getGamesAC, showFilterToggleAC } from '../redux/actions';
 import Loading from '../components/Loading';
 
 class Games extends Component {
-  handlePageChange = async () => {
-    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'game');
-  };
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
+  paginationHandler = () => {
+    this.props.autoPagination('game');
+  }
+
   componentDidMount = async () => {
-    window.addEventListener('scroll', this.autoPagination);
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
-
-    await this.props.getGames();
+    window.addEventListener('scroll', this.paginationHandler);
+    await this.props.getGames(this.props.filterToggle);
   };
 
-  componentWillUnmount = async () => {
-    await this.props.pagination(1, this.props.filterToggle, 'game');
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
   }
-
-  autoPagination = async () => {
-    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-    let clientHeight = document.documentElement.clientHeight
-    if (windowRelativeBottom < clientHeight + 100) {
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
-    }
-  }
-
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
-    }
-  };
 
   render() {
     const { games } = this.props;
     const gameItems = games.map((game, index) => <GameCard key={index} game={game} />);
     return (
       <div>
+        <Head>
+          <title>Список VR игр | Лучшие VR игры на MyVrClub.ru</title>
+          <meta name='description' content='У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+        </Head>
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR игр</h1>
@@ -71,8 +57,6 @@ class Games extends Component {
             {(games.length !== 0) ? (gameItems) : (<Loading />)}
           </div>
         </div>
-        <Pagination handlePageChange={this.handlePageChange} />
-        <Footer />
       </div>
     );
   }
@@ -85,15 +69,15 @@ const mapStateToProps = (store) => {
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
+    loadingGame: store.loadingGame,
+    loading: store.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
-    getGames: () => dispatch(getGamesAC()),
-    pagination: (value, filterToggleData, type) => dispatch(switchPaginationValueAC(value, filterToggleData, type)),
-    switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
+    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }
 };
 

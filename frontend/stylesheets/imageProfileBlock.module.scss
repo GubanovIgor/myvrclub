@@ -3,15 +3,27 @@
   justify-content: space-between;
 }
 
-// Mobile
-@media screen and (max-device-width: 425px) {
-  .img {
-    max-width: 375px;
-    max-height: 210px;
-  }
+.img {
+  width: 750px;
+  margin: 0 auto;
 
-  .screen {
-    width: 72px;
-    height: 40px;
+  border-radius: 5px;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
+}
+
+.screen {
+  width: 144px;
+  height: 81px;
+
+  border-radius: 3px;
+
+  @media screen and (max-width: 425px) {
+    width: 19%;
+    // height: 45px;
+    // width: 72px;
+    max-height: 45px;
   }
 }

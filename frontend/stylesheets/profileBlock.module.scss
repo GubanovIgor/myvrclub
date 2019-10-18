@@ -1,0 +1,77 @@
+.container {
+  max-width: 1140px;
+  margin: 50px auto 25px;
+
+  @media screen and (max-width: 425px) {
+    max-width: 1140px;
+    margin: 20px auto 25px;
+    padding: 0 10px;
+  }
+}
+
+.profileTitle p {
+  font-weight: 300;
+  color: #aeb1b6;
+
+  margin: 0;
+  padding: 0;
+}
+
+.profileContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  color: #ffffff;
+
+  border: 1px solid #5e98fb;
+  background: linear-gradient(to top, #5e98fb, #69a1ff);
+
+  width: 100%;
+  height: 36px;
+
+  cursor: pointer;
+}
+
+.button:hover {
+  background: linear-gradient(to top, #5e98fb, #81affe);
+}
+
+.button:active {
+  background: linear-gradient(to top, #5e98fb, #75a5f8);
+}
+
+.tags {
+  display: flex;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  flex-wrap: wrap;
+}
+
+.tags a:hover {
+  text-decoration: none;
+}
+
+.tags a {
+  color: #3071eb;
+  text-decoration: underline;
+
+  margin-right: 10px;
+  font-weight: 300;
+}
+
+// Mobile
+@media screen and (max-width: 425px) {
+  .profileContent {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+  }
+}

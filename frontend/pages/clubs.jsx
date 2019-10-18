@@ -1,71 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
-import Pagination from '../components/Pagination';
 import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
 // import AC
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC, switchScreenModeAC } from '../redux/actions';
+import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
 
 class Clubs extends Component {
-  state = {
-    screenWidth: 0,
-  };
-
-  handlePageChange = async () => {
-    await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, 'club');
-  };
-
-  componentDidMount = async () => {
-    window.addEventListener('scroll', this.autoPagination);
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions);
-
-    this.props.getClubs();
-  };
-
   showFilter = () => {
     this.props.showFilterToggle();
   };
 
-  // Как менять screenMode на всем сайте, а не на каждой странице отдлеьно?
-  updateDimensions = () => {
-    if (window.innerWidth <= 438) {
-      this.props.switchScreenMode('mobile');
-    } else {
-      this.props.switchScreenMode('desktop');
-    }
+  paginationHandler = () => {
+    this.props.autoPagination('club');
+  };
+
+  componentDidMount = async () => {
+    window.addEventListener('scroll', this.paginationHandler);
+    this.props.getClubs(this.props.filterToggle);
   };
 
   componentWillUnmount = async () => {
-    await this.props.pagination(1, this.props.filterToggle, 'game');
-  }
-
-  autoPagination = async () => {
-    let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-    let clientHeight = document.documentElement.clientHeight;
-    if (windowRelativeBottom < clientHeight + 100) {
-      this.handlePageChange(); // Как сделать, чтобы срабатывало только один раз?
-    }
-  }
+    window.removeEventListener('scroll', this.paginationHandler);
+    this.props.autoPagination(false);
+  };
 
   render() {
     const { clubs } = this.props;
     const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club} />);
     return (
       <div>
+        <Head>
+          <title>Список VR клубов | Лучшие VR клубы Москвы на MyVrClub.ru</title>
+          <meta name='description' content='У нас собраны все VR клубы Москвы. Выберите свой VR клуб!' />
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
+        </Head>
         <Header />
         <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR клубов</h1>
+          <h1 className={styles.title}>Список VR клубов (Москва)</h1>
           <FilterButton showFilter={this.showFilter} />
         </div>
         <div className={styles.container}>
@@ -75,11 +56,6 @@ class Clubs extends Component {
             {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
           </div>
         </div>
-        <Pagination
-          handlePageChange={this.handlePageChange}
-          paginationValue={this.props.paginationValue}
-        />
-        <Footer />
       </div >
     );
   }
@@ -88,16 +64,17 @@ class Clubs extends Component {
 const mapStateToProps = (store) => ({
   showFilter: store.showFilter,
   clubs: store.clubs,
-  filterToggle: store.gamesFilterToggle,
+  filterToggle: store.clubsFilterToggle,
   paginationValue: store.paginationValue,
+  loadingClub: store.loadingClub,
+  loading: store.loading,
   screenMode: store.screenMode,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   showFilterToggle: () => dispatch(showFilterToggleAC()),
-  getClubs: () => dispatch(getClubsAC()),
+  getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
   pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
-  switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

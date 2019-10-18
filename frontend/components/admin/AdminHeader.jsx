@@ -5,14 +5,16 @@ import Link from '../ActiveLink';
 // SASS
 import styles from '../../stylesheets/header.module.scss';
 import '../../stylesheets/body.module.scss';
+import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
+    const { isLogged } = this.props;
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}
           <a className={styles.mainHeaderLogo}>
-            <img src="/static/images/body/logo.png"
+            <img src="../../static/images/body/logo.png"
                  title="MyVRClub - клубы виртулаьной реальности" width="50" height="50"
                  alt="Sensorama"/>
           </a>
@@ -20,32 +22,41 @@ class Header extends Component {
             <li>
               <Link activeClassName={styles.siteNavigationActive} href='/'><a>Главная</a></Link>
             </li>
-            <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/admin/games'><a>Игры</a></Link>
-            </li>
-            <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/clubs_admin'><a>Клубы</a></Link>
-            </li>
-            <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/admin/reg'><a>Регистрация</a></Link>
-            </li>
-            <li>
-              <Link activeClassName={styles.siteNavigationActive} href='/admin/login'><a>Вход</a></Link>
-            </li>
-            {/*<li>*/}
-              {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
-            {/*</li>*/}
-          </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link activeClassName={styles.siteNavigationActive} href='/admin/login'><a>АдмВход</a></Link>
-            </li>
-
+            {(isLogged) && (
+              <>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/games'><a>Игры (админ)</a></Link>
+                </li>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/clubs'><a>Клубы (админ)</a></Link>
+                </li>
+              </>
+            )}
+            {(!isLogged) && (
+              <>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/reg'><a>Регистрация</a></Link>
+                </li>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/login'><a>Вход</a></Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </header>
     );
   }
 }
+const mapStateToProps = (store) => {
+  return {
+    logging: store.logging,
+    isLogged: store.isLogged,
+  };
+};
 
-export default Header;
+export default connect(mapStateToProps)(Header);
