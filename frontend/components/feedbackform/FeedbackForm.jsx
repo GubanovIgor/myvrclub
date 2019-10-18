@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FeedbackModal from './FeedbackModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import styles from '../stylesheets/feedbackForm.module.scss';
+import styles from '../../stylesheets/feedbackForm.module.scss';
 
 export default class FeedbackForm extends Component {
 
