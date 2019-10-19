@@ -29,8 +29,9 @@ class AdminClubs extends Component {
   };
 
   render() {
-    const { clubs } = this.props;
-    const itemsClub = clubs.map((club, index) => <AdminClubCard key={index} club={club} />);
+    const { clubs, isLogged } = this.props;
+    clubs.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+    const itemsClub = clubs.map((club) => <AdminClubCard key={club._id} club={club} />);
     return (
       <div>
 
@@ -41,7 +42,7 @@ class AdminClubs extends Component {
         </div>
         <div className={styles.container}>
           <div className={styles.cardsWrapper}>
-            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            {(clubs.length !== 0 && isLogged) ? (itemsClub) : (<Loading />)}
           </div>
         </div>
       </div >
@@ -57,6 +58,7 @@ const mapStateToProps = (store) => ({
   loadingClub: store.loadingClub,
   loading: store.loading,
   screenMode: store.screenMode,
+  isLogged: store.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

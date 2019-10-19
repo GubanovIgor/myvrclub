@@ -15,7 +15,6 @@ const Games = (props) => {
   return (
     <>
       <AdminHeader/>
-
       {props.loadingGame
         ? <Loading/>
         : props.errorGame

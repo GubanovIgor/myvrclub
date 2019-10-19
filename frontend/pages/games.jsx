@@ -37,7 +37,7 @@ class Games extends Component {
 
   render() {
     const { games } = this.props;
-    const gameItems = games.map((game, index) => <GameCard key={index} game={game} />);
+    const gameItems = games.map((game) => <GameCard key={game._id} game={game} />);
     return (
       <div>
         <Head>

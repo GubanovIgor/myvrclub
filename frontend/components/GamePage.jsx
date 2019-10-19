@@ -39,7 +39,7 @@ class GamePage extends Component {
   render() {
     console.log(this.props.game._id)
     const { game = [], clubs, loadingClub, error} = this.props;
-    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
+    const itemsClub = clubs.map((club) => <ClubCard key={club._id} club={club}/>);
 
     return (
       <main>

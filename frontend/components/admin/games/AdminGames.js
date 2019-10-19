@@ -4,6 +4,8 @@ import { getGamesAC, showFilterToggleAC, switchPaginationValueAC } from '../../.
 import { connect } from 'react-redux';
 import AdminGameCard from './AdminGameCard';
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
+import Loading from "../../Loading.jsx";
+
 class AdminGames extends Component {
 
   paginationHandler = () => {
@@ -13,6 +15,7 @@ class AdminGames extends Component {
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames();
+
   };
 
   componentWillUnmount = () => {
@@ -21,6 +24,8 @@ class AdminGames extends Component {
   };
 
   render() {
+    const {games, isLogged} = this.props;
+    const itemsGame = games.map((game) => <AdminGameCard key={game._id} game={game} />);
     return (
       <div>
         <AdminHeader/>
@@ -29,9 +34,7 @@ class AdminGames extends Component {
         </div>
         <div className={styles.container}>
           <div className={styles.cardsWrapper}>
-            {this.props.games.map((game, index) => {
-              return <AdminGameCard key={index} game={game}/>;
-            })}
+            {(games.length !== 0 && isLogged) ? (itemsGame) : (<Loading />)}
           </div>
         </div>
         {/*<Pagination handlePageChange={this.handlePageChange}/>*/}
@@ -49,6 +52,7 @@ const mapStateToProps = (store) => {
     paginationValue: store.paginationValue,
     loadingGame: store.loadingGame,
     loading: store.loading,
+    isLogged: store.isLogged,
   };
 };
 
