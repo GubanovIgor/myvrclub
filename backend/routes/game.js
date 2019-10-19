@@ -4,6 +4,11 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Game = require('../models/games');
 const Club = require('../models/clubs');
 
+router.get('/', async (req, res) => {
+  const game = await Game.findOne({name: req.name});
+  res.json(game);
+});
+
 router.post('/', async (req, res) => {
 
   const conditions = [];
