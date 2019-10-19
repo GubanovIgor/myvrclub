@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import doneTick from "/static/images/icons/done-tick.svg"
+const imgPath = "/static/images/icons";
 
 export const InputWrapper = styled.div`
     position: relative;
@@ -15,7 +15,13 @@ export const InputWrapper = styled.div`
         border-radius: 4px;
         left: -25px;
         top: 2px;
-        background-color: ${props => (props.checked) && '#2196F3;'}
+        ${props => (props.checked) &&
+        `background-color: #2196F3;
+        background-size: 9px 9px;
+        background-repeat: no-repeat;
+        background-position: right 42% bottom 42%;
+        background-image: url('${imgPath}/${props.img}.png');`}
+        
     }
 `;
 
