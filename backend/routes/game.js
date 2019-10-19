@@ -5,8 +5,10 @@ const Game = require('../models/games');
 const Club = require('../models/clubs');
 
 router.get('/', async (req, res) => {
-  const game = await Game.findOne({name: req.name});
-  res.json(game);
+  console.log(req.query.name)
+  if (req.query.name === '' || req.query.name === undefined) res.json( await Game.find())
+  else res.json([await Game.findOne({name: req.query.name})]);
+
 });
 
 router.post('/', async (req, res) => {

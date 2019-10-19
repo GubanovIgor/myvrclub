@@ -5,12 +5,14 @@ import { getGamesAC } from '../../../../redux/actions';
 import Loading from '../../../../components/Loading';
 import AdminHeader from '../../../../components/admin/AdminHeader';
 import AdminGamePageEdit from '../../../../components/admin/games/AdminGamePageEdit';
+import {API_PREFIX} from "../../../../services/consts/consts.js";
 
 const Games = (props) => {
   const router = useRouter();
   let game = null;
   if (props.games.length === 0) props.getGames();
   const { urlname } = router.query; //прилетает из роутера next.js
+
   if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>

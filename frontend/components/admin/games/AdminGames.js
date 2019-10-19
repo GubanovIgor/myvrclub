@@ -1,40 +1,59 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import AdminHeader from '../AdminHeader';
-import { getGamesAC, showFilterToggleAC, switchPaginationValueAC } from '../../../redux/actions';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import AdminGameCard from './AdminGameCard';
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
 import Loading from "../../Loading.jsx";
+import {getAllGamesAC} from "../../../redux/actions/games.js";
 
 class AdminGames extends Component {
 
-  paginationHandler = () => {
-    this.props.autoPagination('game');
+  state = {
+    val: ''
   };
+
+  // paginationHandler = () => {
+  //   this.props.autoPagination('game');
+  // };
 
   componentDidMount = async () => {
-    window.addEventListener('scroll', this.paginationHandler);
-    await this.props.getGames();
-
+    // window.addEventListener('scroll', this.paginationHandler);
+    // await this.props.getGames();
+    this.props.getAllGames('');
   };
 
-  componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.paginationHandler);
-    this.props.autoPagination(false);
+  search = async () => {
+    this.props.getAllGames(this.state.val);
   };
+
+  // componentWillUnmount = () => {
+  //   window.removeEventListener('scroll', this.paginationHandler);
+  //   this.props.autoPagination(false);
+  // };
 
   render() {
     const {games, isLogged} = this.props;
-    const itemsGame = games.map((game) => <AdminGameCard key={game._id} game={game} />);
+    console.log('gaaaaaaame', games);
+    games.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     return (
       <div>
         <AdminHeader/>
+        <input type="text" onChange={() => this.setState({val: event.target.value})}/>
+        <button onClick={this.search}>Search</button>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR игр (админ) </h1>
         </div>
         <div className={styles.container}>
           <div className={styles.cardsWrapper}>
-            {(games.length !== 0 && isLogged) ? (itemsGame) : (<Loading />)}
+            {/*{(games.length !== 0) ? (games.map((game, index) => <AdminGameCard key={index} game={game}/>)) : (*/}
+              {/*<Loading/>)}*/}
+
+            {this.props.loadingGame
+              ? <Loading />
+              : this.props.errorGame
+                ? <div>Ошибка, попробуйте ещё раз</div>
+                : (games[0]) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
+            }
           </div>
         </div>
         {/*<Pagination handlePageChange={this.handlePageChange}/>*/}
@@ -45,11 +64,12 @@ class AdminGames extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    showFilter: store.showFilter,
+    // showFilter: store.showFilter,
     games: store.games,
-    filterToggle: store.gamesFilterToggle,
-    screenMode: store.screenMode,
-    paginationValue: store.paginationValue,
+    // filterToggle: store.gamesFilterToggle,
+    // screenMode: store.screenMode,
+    // paginationValue: store.paginationValue,
+    errorGame: store.errorGame,
     loadingGame: store.loadingGame,
     loading: store.loading,
     isLogged: store.isLogged,
@@ -58,8 +78,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showFilterToggle: () => dispatch(showFilterToggleAC()),
-    getGames: () => dispatch(getGamesAC()),
+    getAllGames: (name) => dispatch(getAllGamesAC(name)),
   }
 };
 
