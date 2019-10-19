@@ -9,7 +9,7 @@ class FilterItem extends Component {
     const { item, checked, category } = this.props;
     // console.log(this.props.checked)
     return (
-      <InputWrapper checked={checked}
+      <InputWrapper checked={checked} img={'check-mark'}
       onClick={() => this.props.onChangeCheckbox(item, category)}>
       {item}
         {/* <Input

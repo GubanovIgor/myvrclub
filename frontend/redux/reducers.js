@@ -3,8 +3,8 @@ import { actionTypes } from './types';
 import { filterToggleAC } from "./actions";
 
 export const reducer = (state, action) => {
-  console.log('reducer initial state games', state.games);
-  console.log('reducer initial state clubs', state.clubs);
+  // console.log('reducer initial state games', state.games);
+  // console.log('reducer initial state clubs', state.clubs);
   switch (action.type) {
 
     case actionTypes.REQUEST_CLUBS:

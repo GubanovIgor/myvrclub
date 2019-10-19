@@ -28,6 +28,7 @@ class AppWrapper extends Component {
 	};
 
 	autoPagination = async (type) => {
+		console.log(type);
 		if (!type) {
 			this.props.pagination(1);
 		}
@@ -39,7 +40,9 @@ class AppWrapper extends Component {
 	}
 
 	handlePageChange = async (type) => {
-		await this.props.pagination(this.props.paginationValue + 1, this.props.filterToggle, type)
+		(type === 'game') ?
+		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type) :
+		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type)
 	};
 
 	render() {
@@ -70,7 +73,8 @@ const mapStateToProps = (store) => {
 	return {
 		screenMode: store.screenMode,
 		paginationValue: store.paginationValue,
-		filterToggle: store.gamesFilterToggle,
+		gamesFilterToggle: store.gamesFilterToggle,
+		clubsFilterToggle: store.clubsFilterToggle,
 		loading: store.loading,
 	};
 };

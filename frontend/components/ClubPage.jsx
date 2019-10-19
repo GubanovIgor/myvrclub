@@ -27,7 +27,7 @@ class ClubPage extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
-    await this.props.getGames(undefined, undefined, this.props.club._id);
+    await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
   }
 
   componentWillUnmount = async () => {
@@ -86,6 +86,7 @@ const mapStateToProps = (store) => {
     // loadingGame: store.loadingGame,
     // loading: store.loading,
     screenMode: store.screenMode,
+    filterToggle: store.gamesFilterToggle,
   };
 };
 

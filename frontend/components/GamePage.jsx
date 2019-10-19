@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // SASS
-import styles from '../stylesheets/gamePage.module.scss';
+// import styles from '../stylesheets/gamePage.module.scss';
 import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import ClubCard from '../components/ClubCard';
-import Reviews from '../components/Reviews';
+// import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
-import Map from '../components/Map';
+// import Map from '../components/Map';
 import Loading from './Loading';
 import FilterButton from '../components/FilterButton';
 
@@ -26,9 +26,9 @@ class GamePage extends Component {
     this.props.autoPagination('club');
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
-    this.props.getClubs(undefined, undefined, this.props.game._id);
+    await this.props.getClubs(this.props.filterToggle, undefined, this.props.game._id);
   }
 
   componentWillUnmount = async () => {
@@ -37,6 +37,7 @@ class GamePage extends Component {
   }
 
   render() {
+    console.log(this.props.game._id)
     const { game = [], clubs, loadingClub, error} = this.props;
     const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
 
@@ -81,11 +82,12 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     clubs: store.clubs,
-    loadingClub: store.loadingClub,
-    loading: store.loading,
-    error: store.error,
-    map: store.map,
+    // loadingClub: store.loadingClub,
+    // loading: store.loading,
+    // error: store.error,
+    // map: store.map,
     screenMode: store.screenMode,
+    filterToggle: store.clubsFilterToggle,
   };
 };
 

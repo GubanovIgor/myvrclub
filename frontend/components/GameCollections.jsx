@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GameCard from '../components/GameCard';
+import { ToRightButton, ToLeftButton } from '../stylesheets/carusel';
 
 // SASS
 import styles from '../stylesheets/gameCollections.module.scss';
@@ -46,8 +47,12 @@ export class GameCollections extends Component {
             </ul>
           </div> */}
         </section>
-        {(this.state.caruselPosition !== 0) && <div onClick={() => this.scroll('left')} className={styles.toLeft} />}
-        {(this.state.caruselPosition !== -2900) && <div onClick={() => this.scroll('right')} className={styles.toRight} />}
+        {(this.state.caruselPosition !== 0) && <ToLeftButton onClick={() => this.scroll('left')}
+          className={styles.toLeft}
+          img={'arrow-to-left'}/>}
+        {(this.state.caruselPosition !== -2900) && <ToRightButton onClick={() => this.scroll('right')}
+          className={styles.toRight}
+          img={'arrow-to-right'}/>}
       </div>
     );
   }
