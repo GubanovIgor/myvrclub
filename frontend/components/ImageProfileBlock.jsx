@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import uuidv1 from 'uuid/v1'
 import { IMG_URL_PREFIX } from '../services/consts/consts';
+import {
+  ImgMiniImageProfileBlock,
+  PictureUnderline,
+  ScreensotsWrapper,
+} from '../stylesheets/index';
 
 //SASS
 import styles from '../stylesheets/imageProfileBlock.module.scss';
@@ -10,6 +15,7 @@ class ImageProfileBlock extends Component {
 
   state = {
     imageUrl: '',
+    screenIndex: 0,
   };
 
   componentDidMount() {
@@ -22,6 +28,10 @@ class ImageProfileBlock extends Component {
     this.setState({ imageUrl })
   };
 
+  screenChange = (clubPathPrefix, imgLink, index) => {
+    this.setState( { imageUrl: clubPathPrefix + imgLink, screenIndex: index } )
+  }
+
   render() {
     const { club, game } = this.props;
     let item = game, clubPathPrefix = '';
@@ -31,11 +41,10 @@ class ImageProfileBlock extends Component {
     }
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
-      return <img className={styles.screen}
-                  key={uuidv1()}
+      return <ImgMiniImageProfileBlock key={uuidv1()}
                   alt={item.name}
                   src={clubPathPrefix + imgLink}
-                  onClick={() => this.setState( {imageUrl: clubPathPrefix + imgLink} )}/>
+                  onClick={() => this.screenChange(clubPathPrefix, imgLink, index)}/>
     });
     return (
       <div>
@@ -43,9 +52,10 @@ class ImageProfileBlock extends Component {
         <img className={styles.img}
           src={this.state.imageUrl}
           alt={item.name} />
-        <div className={styles.screenshotsSwitch}>
+        <ScreensotsWrapper className={styles.screenshotsSwitch}>
           {items}
-        </div>
+          <PictureUnderline screenIndex={this.state.screenIndex}/>
+        </ScreensotsWrapper>
       </div>
     );
   }
