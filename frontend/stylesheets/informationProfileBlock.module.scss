@@ -1,14 +1,14 @@
 .profileInformations {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  
     width: 360px;
 
     @media screen and (max-width: 425px) {
 			max-width: 425px;
 			margin-top: 20px;
     }
+  }
+
+  p {
+    text-align: justify;
   }
   
   .profileInformations p span {
@@ -21,4 +21,17 @@
 		@media screen and (max-width: 425px) {
 			display: none;
     }
-	}
+  }
+  
+  .button {
+    width: 100%;
+
+    background-color: #2196F3;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(33, 130, 209);
+    }
+  }

@@ -42,3 +42,20 @@ export const PictureUnderline = styled.div`
 	border-radius: 1px;
 	transition: 0.5s ease-in;
 `;
+
+export const ShowTelButton = styled.button`
+	width: 100%;
+	height: 30px;
+
+	background-color: #2196F3;
+	color: #FFF;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #38a7ff;
+	}
+
+	${props => (props.showTel) && 'display: none'};
+`;
