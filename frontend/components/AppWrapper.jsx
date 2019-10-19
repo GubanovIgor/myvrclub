@@ -27,22 +27,22 @@ class AppWrapper extends Component {
 		window.addEventListener('resize', this.updateDimensions);
 	};
 
-	autoPagination = async (type) => {
-		console.log(type);
+	autoPagination = async (type, id) => {
 		if (!type) {
 			this.props.pagination(1);
 		}
 		let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 		let clientHeight = document.documentElement.clientHeight;
 		if (windowRelativeBottom < clientHeight + 200 && !this.props.loading) {
-			this.handlePageChange(type);
+			console.log(id, 'ID');
+			this.handlePageChange(type, id);
 		}
 	}
 
-	handlePageChange = async (type) => {
+	handlePageChange = async (type, id) => {
 		(type === 'game') ?
-		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type) :
-		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type)
+		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type, id) :
+		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type, id)
 	};
 
 	render() {
@@ -82,7 +82,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
-		pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
+		pagination: (paginationValue, filterToggleData, type, id) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, id)),
 	};
 };
 

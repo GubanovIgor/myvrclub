@@ -125,16 +125,16 @@ export const requestSwitchPaginationValue = (value) => (
   { type: actionTypes.SWITCH_PAGINATION_VALUE, value }
 );
 
-export const switchPaginationValueAC = (value, filterToggleData, type) => (
+export const switchPaginationValueAC = (value, filterToggleData, type, id = '') => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
     if (type === 'game') {
-      dispatch(getGamesAC(filterToggleData, value));
+      dispatch(getGamesAC(filterToggleData, value, id));
     }
     ;
 
     if (type === 'club') {
-      dispatch(getClubsAC(filterToggleData, value));
+      dispatch(getClubsAC(filterToggleData, value, id));
     }
   }
 );

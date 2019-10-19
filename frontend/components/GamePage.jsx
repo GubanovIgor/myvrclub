@@ -23,7 +23,7 @@ class GamePage extends Component {
   };
 
   paginationHandler = () => {
-    this.props.autoPagination('club');
+    this.props.autoPagination('club', this.props.game._id);
   }
 
   componentDidMount = async () => {
