@@ -1,10 +1,27 @@
+.filterSectionWrapper {
+  span {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
 .filterSection {
   padding-left: 50px;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 425px) {
+    margin: 10px 0;
+    padding: 0;
+  }
 }
 
 .title {
   padding-left: 20px;
+
+  @media screen and (max-width: 425px) {
+    padding: 0;
+    margin-left: -25px;
+  }
 }
 
 .container {
@@ -43,7 +60,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .breakLine {
     display: none;
   }

@@ -15,8 +15,6 @@ export const ImgMiniImageProfileBlock = styled.img`
 
 	@media screen and (max-width: 425px) {
 		width: 19%;
-		// height: 45px;
-		// width: 72px;
 		max-height: 45px;
 	}
 `;
@@ -58,4 +56,22 @@ export const ShowTelButton = styled.button`
 	}
 
 	${props => (props.showTel) && 'display: none'};
+`;
+
+export const CardsInProfileWrapper = styled.div`
+	@media screen and (max-width: 425px) {
+    width: 93%;
+    margin: 20px auto 25px;
+
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px rgba(14,21,47,.1);
+    border-radius: 10px;
+	padding: 10px;
+	
+	transition: 1s;
+
+    h2 {
+	  margin-top: 0;
+	  margin-bottom: 0;
+    }
+  }
 `;

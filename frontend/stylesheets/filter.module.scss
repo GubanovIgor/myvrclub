@@ -17,6 +17,19 @@
   div label {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 425px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    padding: 10px 0;
+    margin-right: 0;
+
+    width: 100%;
+
+    border: none;
+  }
 }
 
 .breakLine {
@@ -42,20 +55,7 @@
   display: none;
 }
 
-@media screen and (max-device-width: 425px) {
-  .container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    margin: 0 auto 20px;
-    padding: 0;
-
-    width: 100%;
-
-    border: none;
-  }
-
+@media screen and (max-width: 425px) {
   .filterButton {
     display: block;
   }

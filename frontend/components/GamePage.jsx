@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { FilterButton } from '../stylesheets/filterItem';
+import { CardsInProfileWrapper } from '../stylesheets/index';
+
 // SASS
 // import styles from '../stylesheets/gamePage.module.scss';
 import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
@@ -12,7 +15,6 @@ import GameProfile from '../components/GameProfile';
 import ClubFilter from '../components/ClubFilter';
 // import Map from '../components/Map';
 import Loading from './Loading';
-import FilterButton from '../components/FilterButton';
 
 // action creators
 import { getClubsAC, showFilterToggleAC } from '../redux/actions';
@@ -38,12 +40,12 @@ class GamePage extends Component {
 
   render() {
     console.log(this.props.game._id)
-    const { game = [], clubs, loadingClub, error} = this.props;
-    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club}/>);
+    const { game = [], clubs, loadingClub, error } = this.props;
+    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club} />);
 
     return (
       <main>
-        <GameProfile game={game}/>
+        <GameProfile game={game} />
 
         {/* <section>
           <div className={styles.container}>
@@ -58,19 +60,20 @@ class GamePage extends Component {
 
         {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
         {/* <Map/> */}
-
-        <div className={cardsWrapper.titleWrapper}>
-          <h2>Где поиграть в {game.name}</h2>
-          <FilterButton showFilter={this.showFilter} />
-        </div>
-
-        <div className={cardsWrapper.container}>
-          {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id}/>}
-          {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id}/>}
-          <div className={cardsWrapper.cardsWrapper}>
-            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+        <CardsInProfileWrapper>
+          <div className={cardsWrapper.titleWrapper}>
+            <FilterButton img={'filterSettings'} onClick={this.showFilter} />
+            <h2>Где поиграть в {game.name}</h2>
           </div>
-        </div>
+
+          <div className={cardsWrapper.container}>
+            {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id} />}
+            {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id} />}
+            <div className={cardsWrapper.cardsWrapper}>
+              {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            </div>
+          </div>
+        </CardsInProfileWrapper>
         {/* <hr className={styles.breakLine}/> */}
         {/* <Reviews /> */}
       </main>

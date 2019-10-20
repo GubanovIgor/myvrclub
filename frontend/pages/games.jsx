@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 
+import { FilterButton } from '../stylesheets/filterItem';
+
 //import windowSize from 'react-window-size';
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -10,7 +12,6 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 import Header from '../components/Header';
 import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
-import FilterButton from '../components/FilterButton';
 
 // action creators
 import { getGamesAC, showFilterToggleAC } from '../redux/actions';
@@ -48,7 +49,7 @@ class Games extends Component {
         <Header />
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR игр</h1>
-          <FilterButton showFilter={this.showFilter} />
+          <FilterButton img={'filterSettings'} onClick={this.showFilter}/>
         </div>
         <div className={styles.container}>
           {(this.props.screenMode === 'desktop') && <GameFilter />}

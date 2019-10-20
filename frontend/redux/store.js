@@ -135,7 +135,7 @@ export const InitState = {
       ],
     },
     {
-      title: 'Стоимость часа игры',
+      title: 'Стоимость',
       value: [
         'до 500',
         'до 1000',
@@ -150,7 +150,7 @@ export const InitState = {
       'HTC Vive': false,
       'Full Body VR': false,
     },
-    'Стоимость часа игры': {
+    'Стоимость': {
       'до 500': false,
       'до 1000': false,
       'до 5000': false,
