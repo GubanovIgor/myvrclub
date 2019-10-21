@@ -80,6 +80,7 @@ class InformationProfileBlock extends Component {
           <div className="profile-game-informations">
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
+              <br/>
               <span>Жанр:</span> {game.genre.join(', ')}<br/>
               <span>Разработчик:</span> {game.developer.join(', ')}<br/>
               <span>Язык:</span> {game.language}<br/>

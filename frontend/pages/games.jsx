@@ -48,8 +48,8 @@ class Games extends Component {
         </Head>
         <Header />
         <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR игр</h1>
           <FilterButton img={'filterSettings'} onClick={this.showFilter}/>
+          <h1 className={styles.title}>Список VR игр</h1>
         </div>
         <div className={styles.container}>
           {(this.props.screenMode === 'desktop') && <GameFilter />}

@@ -41,14 +41,17 @@
   }
 
   .titleWrapper {
-    justify-content: space-around;
     align-items: center;
     margin: 0 auto;
-    padding: 10px 0;
-    padding-right: 20px;
+    padding: 10px 0 20px;
+
+    h2 {
+      margin-left: 15px;
+    }
   }
 
   .title {
     font-size: 15px;
+    margin-left: 20px;
   }
 }

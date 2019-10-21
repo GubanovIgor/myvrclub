@@ -63,7 +63,7 @@ export const CardsInProfileWrapper = styled.div`
     width: 93%;
     margin: 20px auto 25px;
 
-    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px rgba(14,21,47,.1);
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
     border-radius: 10px;
 	padding: 10px;
 	
