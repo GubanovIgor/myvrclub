@@ -44,6 +44,7 @@ class Games extends Component {
       <div>
         <Head>
           <title>Список VR игр | Лучшие VR игры на MyVrClub.ru</title>
+          <meta name="viewport" content="width=device-width" />
           <meta name='description' content='У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!' />
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
