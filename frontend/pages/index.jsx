@@ -94,6 +94,7 @@ class Index extends Component {
       <div>
         <Head>
           <title>MyVrClub.ru | Лучшие VR клубы Москвы</title>
+          <meta name="viewport" content="width=device-width" />
           <meta name='description' content='Все VR клубы Москвы! У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!' />
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>

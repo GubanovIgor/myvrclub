@@ -42,7 +42,8 @@ class Clubs extends Component {
     return (
       <div>
         <Head>
-          <title>Список VR клубов | Лучшие VR клубы Москвы на MyVrClub.ru</title>
+          <title>Список VR клубов | Лучшие VR клубы Москвы на MyVrClub.ru</title>\
+          <meta name="viewport" content="width=device-width" />
           <meta name='description' content='У нас собраны все VR клубы Москвы. Выберите свой VR клуб!' />
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
