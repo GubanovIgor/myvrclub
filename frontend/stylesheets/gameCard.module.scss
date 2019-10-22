@@ -8,9 +8,6 @@ $mobile-card-height: 141px;
   position: relative;
   bottom: 0;
 
-  width: $card-width;
-  height: $card-height;
-
   border-radius: 5px;
 
   cursor: pointer;
@@ -18,22 +15,31 @@ $mobile-card-height: 141px;
   margin: 0 15px 80px;
 
   &:hover {
-    box-shadow: 0 4px 20px -5px #000000;
     bottom: 10px;
     transition: 0.5s;
   }
 
   transition: 0.5s;
 
+  @media screen and (min-width: 426px) {
+    p {
+      width: $card-width;
+      padding: 0;
+    }
+  }
+
   // Mobile
   @media screen and (max-width: 425px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
-    margin: 0 auto 80px;
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto 30px;
   }
 }
 
 .cover {
+  position: relative;
+  bottom: 0;
+
   width: $card-width;
   height: $card-height;
 
@@ -41,10 +47,19 @@ $mobile-card-height: 141px;
 
   margin: 0;
 
+  &:hover {
+    box-shadow: 0 4px 35px -8px #3b3b3f;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
   // Mobile
   @media screen and (max-width: 425px) {
-    width: $mobile-card-width;
-    height: $mobile-card-height;
+    width: 100%;
+    height: auto;
+
+    margin: 0 auto;
   }
 }
 
@@ -85,10 +100,6 @@ $mobile-card-height: 141px;
 
 // Icon rating
 .rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   position: absolute;
   top: 5px;
   left: 10px;
@@ -97,14 +108,14 @@ $mobile-card-height: 141px;
   height: 30px;
 
   border-radius: 3px;
+  background-color: #2196F3;
 
-  background-color: #3071eb;
   color: white;
   text-align: center;
+  line-height: 30px;
 
   // Mobile
   @media screen and (max-width: 425px) {
-    width: 15px;
-    height: 15px;
+    font-size: 14px;
   }
 }

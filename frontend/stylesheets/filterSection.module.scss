@@ -1,10 +1,38 @@
+.filterSectionWrapper {
+  margin-right: 70px;
+  span {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 90%;
+    margin: 10px auto 10px;
+
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 40px;
+  }
+}
+
 .filterSection {
   padding-left: 50px;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 425px) {
+    margin: 10px 0;
+    padding: 0;
+  }
 }
 
 .title {
   padding-left: 20px;
+
+  @media screen and (max-width: 425px) {
+    padding: 0;
+    margin-left: -25px;
+  }
 }
 
 .container {
@@ -43,7 +71,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-device-width: 425px) {
+@media screen and (max-width: 425px) {
   .breakLine {
     display: none;
   }

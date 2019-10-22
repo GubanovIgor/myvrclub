@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 
+import { FilterButton } from '../stylesheets/filterItem';
+import { CardsInProfileWrapper } from '../stylesheets/index';
+
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
 
@@ -9,7 +12,6 @@ import styles from '../stylesheets/cardsWrapper.module.scss';
 import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
-import FilterButton from '../components/FilterButton';
 import Loading from '../components/Loading';
 
 // import AC
@@ -45,17 +47,19 @@ class Clubs extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <div className={styles.titleWrapper}>
-          <h1 className={styles.title}>Список VR клубов (Москва)</h1>
-          <FilterButton showFilter={this.showFilter} />
-        </div>
-        <div className={styles.container}>
-          {(this.props.screenMode === 'desktop') && <ClubFilter />}
-          {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
-          <div className={styles.cardsWrapper}>
-            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+        <CardsInProfileWrapper>
+          <div className={styles.titleWrapper}>
+            <FilterButton img={'filterSettings'} onClick={this.showFilter} />
+            <h1 className={styles.title}>Список VR клубов (Москва)</h1>
           </div>
-        </div>
+          <div className={styles.container}>
+            {(this.props.screenMode === 'desktop') && <ClubFilter />}
+            {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
+            <div className={styles.cardsWrapper}>
+              {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            </div>
+          </div>
+        </CardsInProfileWrapper>
       </div >
     );
   }
