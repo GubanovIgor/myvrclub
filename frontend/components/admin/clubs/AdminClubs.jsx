@@ -43,7 +43,7 @@ class AdminClubs extends Component {
               ? <Loading />
               : this.props.errorClub
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : (clubs[0]) && (isLogged) && (clubs.map((club) => <AdminClubCard key={club._id} club={club} />))
+                : (clubs[0] ) && (isLogged) && (clubs.map((club) => <AdminClubCard key={club._id} club={club} />))
             }
           </div>
         </div>
