@@ -51,7 +51,7 @@ class AdminGames extends Component {
               ? <Loading />
               : this.props.errorGame
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : (games[0]) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
+                : (games[0]) && (isLogged) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
             }
           </div>
         </div>
