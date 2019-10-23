@@ -31,8 +31,8 @@ export class GameCollections extends Component {
         <section className={styles.container}>
           <h3 className={styles.title}>Лучшие игры</h3>
           <div className={styles.gameList} style={{ marginLeft: this.state.caruselPosition }}>
-            {this.props.games.map((el, index) => {
-              return <GameCard game={el} key={index} />
+            {this.props.games.map((game) => {
+              return <GameCard game={game} key={game._id} />
             })}
           </div>
           {/* <div className={styles.allTags}>

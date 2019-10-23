@@ -38,7 +38,7 @@ class Clubs extends Component {
 
   render() {
     const { clubs } = this.props;
-    const itemsClub = clubs.map((club, index) => <ClubCard key={index} club={club} />);
+    const itemsClub = clubs.map((club) => <ClubCard key={club._id} club={club} />);
     return (
       <div>
         <Head>
