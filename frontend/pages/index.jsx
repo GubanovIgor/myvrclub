@@ -42,51 +42,51 @@ class Index extends Component {
     this.props.getClubs();
   };
 
-  // caruselDataMix = (side, index) => {
-  //   let newData = this.state.caruselData.slice();
+  caruselDataMix = (side, index) => {
+    let newData = this.state.caruselData.slice();
 
-  //   if (side === 'left') {
-  //     let lastElem = newData.pop();
-  //     newData.splice(0, 0, lastElem);
-  //     this.setState({ caruselData: newData });
-  //   }
+    if (side === 'left') {
+      let lastElem = newData.pop();
+      newData.splice(0, 0, lastElem);
+      this.setState({ caruselData: newData });
+    }
 
-  //   if (side === 'right') {
-  //     let firstElem = newData.shift();
-  //     newData.splice(newData.length, 0, firstElem);
-  //     this.setState({ caruselData: newData });
-  //     this.props.switchCaruselIndex(index - 1);
-  //   }
-  // }
-
-  // switchCarusel = async (index) => {
-  //   if (index === 0) {
-  //     await this.props.switchCaruselIndex(index + 1);
-  //     this.caruselDataMix('left');
-  //   } else if (index === 3) {
-  //     await this.props.switchCaruselIndex(index);
-  //     this.caruselDataMix('right', index);
-  //   } else {
-  //     await this.props.switchCaruselIndex(index);
-  //   }
-  // };
-  //   if (side === 'right') {
-  //     let firstElem = newData.shift();
-  //     newData.splice(newData.length, 0, firstElem);
-  //     this.setState({ caruselData: newData });
-  //     this.props.switchCaruselIndex(index - 1);
-  //   }
-  // };
+    if (side === 'right') {
+      let firstElem = newData.shift();
+      newData.splice(newData.length, 0, firstElem);
+      this.setState({ caruselData: newData });
+      this.props.switchCaruselIndex(index - 1);
+    }
+  }
 
   switchCarusel = async (index) => {
     if (index === 0) {
-      await this.props.switchCaruselIndex(4);
-    } else if (index === 5) {
-      await this.props.switchCaruselIndex(1);
+      await this.props.switchCaruselIndex(index + 1);
+      this.caruselDataMix('left');
+    } else if (index === 3) {
+      await this.props.switchCaruselIndex(index);
+      this.caruselDataMix('right', index);
     } else {
       await this.props.switchCaruselIndex(index);
     }
-  }
+  };
+  //   if (side === 'right') {
+  //     let firstElem = newData.shift();
+  //     newData.splice(newData.length, 0, firstElem);
+  //     this.setState({ caruselData: newData });
+  //     this.props.switchCaruselIndex(index - 1);
+  //   }
+  // };
+
+  // switchCarusel = async (index) => {
+  //   if (index === 0) {
+  //     await this.props.switchCaruselIndex(4);
+  //   } else if (index === 5) {
+  //     await this.props.switchCaruselIndex(1);
+  //   } else {
+  //     await this.props.switchCaruselIndex(index);
+  //   }
+  // }
 
   render() {
     const { games, clubs } = this.props;
@@ -94,8 +94,9 @@ class Index extends Component {
       <div>
         <Head>
           <title>MyVrClub.ru | Лучшие VR клубы Москвы</title>
-          <meta name='description' content='Все VR клубы Москвы! У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!'/>
-          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры'/>
+          <meta name="viewport" content="width=device-width" />
+          <meta name='description' content='Все VR клубы Москвы! У нас собраны все самые популярные VR игры. Выберите игру и найдите где в нее можно поиграть!' />
+          <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
         {/*/!*<IndexSearch />*!/*/}

@@ -26,8 +26,10 @@
 
   @media screen and (max-width: 425px) {
     width: 19%;
-    // height: 45px;
-    // width: 72px;
     max-height: 45px;
+
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
   }
 }

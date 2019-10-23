@@ -7,17 +7,11 @@ $mobile-card-height: 140px;
 
   cursor: pointer;
 
-  width: 280px;
-  height: 280px;
-
   border-radius: 5px;
 
-  // margin-bottom: 20px;
-  // margin-right: 20px;
   margin: 0 15px 40px;
 
   &:hover {
-    box-shadow: 0 4px 20px -5px #000000;
     bottom: 10px;
     transition: 0.5s;
   }
@@ -25,7 +19,9 @@ $mobile-card-height: 140px;
   transition: 0.5s;
 
   @media screen and (max-width: 425px) {
-    margin: 0 0 20px 0;
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto 30px;
   }
 }
 
@@ -35,9 +31,16 @@ $mobile-card-height: 140px;
 
   border-radius: 5px;
 
+  &:hover {
+    box-shadow: 0 4px 35px -8px #3b3b3f;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
   @media screen and (max-width: 425px) {
-    // width: $mobile-card-width;
-    // height: $mobile-card-height;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -55,11 +58,18 @@ $mobile-card-height: 140px;
   width: 280px;
   height: 280px;
 
+  &:hover {
+    box-shadow: 0 4px 35px -8px #3b3b3f;
+    transition: 0.5s;
+  }
+
+  transition: 0.5s;
+
   background: linear-gradient(to top, #171718, transparent 30%);
 
   @media screen and (max-width: 425px) {
-    // width: $mobile-card-width;
-    // height: $mobile-card-height;
+    width: 100%;
+    height: 100%;
   }
 }
 
