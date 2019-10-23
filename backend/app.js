@@ -13,7 +13,7 @@ const adminRouter = require('./routes/admin');
 
 let app = express();
 app.use(logger('dev'));
-
+console.log(process.env.PASSW_DB);
 //*********************MONGOOSE CONNECTION*************************************
 //const dbName = 'mongodb://localhost/myvrclub';
 //const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority';
