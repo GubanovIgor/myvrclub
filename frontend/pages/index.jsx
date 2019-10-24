@@ -89,7 +89,8 @@ class Index extends Component {
   // }
 
   render() {
-    const { games, clubs } = this.props;
+    console.log(this.props)
+    const { games, clubs, screenMode } = this.props;
     return (
       <div>
         <Head>
@@ -108,6 +109,7 @@ class Index extends Component {
           caruselIndex={this.props.caruselIndex}
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
+          screenMode={screenMode}
         />
         {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
         {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}

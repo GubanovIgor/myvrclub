@@ -16,17 +16,16 @@ export const InputWrapper = styled.div`
         left: -25px;
         top: 2px;
         ${props => (props.checked) &&
-		`background-color: #2196F3;
-        background-size: 9px 9px;
-        background-repeat: no-repeat;
-        background-position: right 42% bottom 42%;
-        background-image: url('${imgPath}/${props.img}.png');`}
+					`background-color: #2196F3;
+					background-size: 9px 9px;
+					background-repeat: no-repeat;
+					background-position: right 42% bottom 42%;
+					background-image: url('${imgPath}/${props.img}.png');`}
         
     }
 `;
 
 export const Input = styled.div`
-
     ${props => (props.checked1) && 'background-color: #2196F3;'}
 `;
 
@@ -50,7 +49,7 @@ export const FilterButton = styled.div`
 		}
 
 		${props =>
-			`background-size: 20px 20px;
+		`background-size: 20px 20px;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-image: url('${imgPath}/${props.img}.png');`}

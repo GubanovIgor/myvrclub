@@ -1,24 +1,21 @@
 .filterSectionWrapper {
-  margin-right: 70px;
-  span {
-    font-size: 15px;
-    font-weight: 500;
-  }
+  width: 100%;
+  box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 1px rgba(14,21,47,.1);
+  border-radius: 10px;
+
+  padding: 20px;
+  margin-bottom: 40px;
 
   @media screen and (max-width: 425px) {
     width: 90%;
-    margin: 10px auto 10px;
 
-    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
-    border-radius: 10px;
-    padding: 10px;
+    margin: 10px auto 10px;
     padding-left: 40px;
   }
 }
 
 .filterSection {
-  padding-left: 50px;
-  margin-bottom: 30px;
+  padding-left: 20px;
 
   @media screen and (max-width: 425px) {
     margin: 10px 0;
@@ -27,7 +24,11 @@
 }
 
 .title {
-  padding-left: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  
+  margin-bottom: 20px;
 
   @media screen and (max-width: 425px) {
     padding: 0;
@@ -50,12 +51,6 @@
   div label {
     cursor: pointer;
   }
-}
-
-.breakLine {
-  border: 1px solid #e8eaed;
-  border-bottom: none;
-  width: 160px;
 }
 
 .metroInput {
