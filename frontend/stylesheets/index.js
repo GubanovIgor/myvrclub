@@ -18,12 +18,6 @@ export const CardsInProfileWrapper = styled.div`
   }
 `;
 
-export const Test = styled.div`
-	width: 200px;
-	height: 200px;
-	background-color: red;
-`;
-
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 81px;
