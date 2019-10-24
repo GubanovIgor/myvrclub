@@ -13,16 +13,36 @@ const adminRouter = require('./routes/admin');
 
 let app = express();
 app.use(logger('dev'));
-
-// const dbName = 'mongodb://localhost/myvrclub';
-// const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority';
+console.log(process.env.PASSW_DB);
+//*********************MONGOOSE CONNECTION*************************************
+//const dbName = 'mongodb://localhost/myvrclub';
+//const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
 mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose default connection open to ' + dbName);
+});
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
+});
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
+//****************************** END MONGOOSE CONNECTION***********************
 
 const corsMiddleware = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 };
 app.use(corsMiddleware);

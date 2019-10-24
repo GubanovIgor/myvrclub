@@ -3,10 +3,12 @@ const router = express.Router();
 const Club = require('../models/clubs');
 const Game = require('../models/games');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
-// router.get('/', async (req, res) => {
-//   const clubs = await Club.find();
-//   res.json(clubs);
-// });
+
+router.get('/', async (req, res) => {
+  console.log(req.query.name)
+  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find())
+  else res.json([await Club.findOne({name: req.query.name})]);
+});
 
 router.post('/', async (req, res) => {
   const conditions = [];

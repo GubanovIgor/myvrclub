@@ -13,7 +13,7 @@ class AdminGameCard extends Component {
           <div className={styles.container}>
             {
               <img className={styles.cover} src={game.cover}/>}
-            <p className={styles.title}>Game Name: <b>{game.name}</b></p>
+            <p className={styles.title}><b>{game.name}</b></p>
             <div className={styles.darkWrapper}/>
             <div className={styles.rating}>{game.rating}</div>
           </div>

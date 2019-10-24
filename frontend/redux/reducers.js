@@ -25,13 +25,11 @@ export const reducer = (state, action) => {
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
       return ({
-        ...state,
-        paginationValue: action.value,
+        ...state, paginationValue: action.value,
       });
     case actionTypes.CHANGE_MAP:
       return ({
-        ...state,
-        map: true,
+        ...state, map: true,
       });
     case actionTypes.OFF_CHANGE_MAP:
       return ({

@@ -10,38 +10,41 @@ import AdminClubCard from './AdminClubCard.jsx';
 import AdminHeader from '../AdminHeader';
 
 // import AC
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../../../redux/actions';
+import {getAllClubsAC} from "../../../redux/actions/clubs.js";
 
 class AdminClubs extends Component {
 
-  paginationHandler = () => {
-    this.props.autoPagination('club');
-  };
+  // paginationHandler = () => {
+  //   this.props.autoPagination('club');
+  // };
 
   componentDidMount = async () => {
-    window.addEventListener('scroll', this.paginationHandler);
-    this.props.getClubs();
+    // window.addEventListener('scroll', this.paginationHandler);
+    this.props.getAllClubs('');
   };
 
-  componentWillUnmount = async () => {
-    window.removeEventListener('scroll', this.paginationHandler);
-    this.props.autoPagination(false);
-  };
+  // componentWillUnmount = async () => {
+  //   window.removeEventListener('scroll', this.paginationHandler);
+  //   this.props.autoPagination(false);
+  // };
 
   render() {
-    const { clubs } = this.props;
-    const itemsClub = clubs.map((club, index) => <AdminClubCard key={index} club={club} />);
+    const { clubs, isLogged } = this.props;
+    clubs.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     return (
       <div>
-
         <AdminHeader/>
         <div className={styles.titleWrapper}>
           <h1 className={styles.title}>Список VR клубов (Админ)</h1>
-
         </div>
         <div className={styles.container}>
           <div className={styles.cardsWrapper}>
-            {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
+            {this.props.loadingClub
+              ? <Loading />
+              : this.props.errorClub
+                ? <div>Ошибка, попробуйте ещё раз</div>
+                : (clubs[0] ) && (isLogged) && (clubs.map((club) => <AdminClubCard key={club._id} club={club} />))
+            }
           </div>
         </div>
       </div >
@@ -50,19 +53,14 @@ class AdminClubs extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  showFilter: store.showFilter,
   clubs: store.clubs,
-  filterToggle: store.gamesFilterToggle,
-  paginationValue: store.paginationValue,
   loadingClub: store.loadingClub,
   loading: store.loading,
-  screenMode: store.screenMode,
+  isLogged: store.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  showFilterToggle: () => dispatch(showFilterToggleAC()),
-  getClubs: () => dispatch(getClubsAC()),
-  pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
+  getAllClubs: (name) => dispatch(getAllClubsAC(name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminClubs);
