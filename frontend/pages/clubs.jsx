@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
+import { CardsInProfileWrapper, Test } from '../stylesheets/index';
 
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -48,6 +48,7 @@ class Clubs extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
+        <Test></Test>
         <CardsInProfileWrapper>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />

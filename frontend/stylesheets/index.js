@@ -1,5 +1,29 @@
 import styled from "styled-components";
 
+export const CardsInProfileWrapper = styled.div`
+	@media screen and (max-width: 425px) {
+    width: 93%;
+    margin: 20px auto 25px;
+
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    border-radius: 10px;
+		padding: 10px;
+		
+		transition: 1s;
+
+    h2 {
+	  margin-top: 0;
+	  margin-bottom: 0;
+    }
+  }
+`;
+
+export const Test = styled.div`
+	width: 200px;
+	height: 200px;
+	background-color: red;
+`;
+
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 81px;
@@ -56,22 +80,4 @@ export const ShowTelButton = styled.button`
 	}
 
 	${props => (props.showTel) && 'display: none'};
-`;
-
-export const CardsInProfileWrapper = styled.div`
-	@media screen and (max-width: 425px) {
-    width: 93%;
-    margin: 20px auto 25px;
-
-    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
-    border-radius: 10px;
-	padding: 10px;
-	
-	transition: 1s;
-
-    h2 {
-	  margin-top: 0;
-	  margin-bottom: 0;
-    }
-  }
 `;
