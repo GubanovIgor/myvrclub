@@ -30,7 +30,7 @@ export const Input = styled.div`
 `;
 
 export const FilterButton = styled.div`
-    display: none;
+    display: block;
 
 		@media screen and (max-width: 425px) {
     display: block;
