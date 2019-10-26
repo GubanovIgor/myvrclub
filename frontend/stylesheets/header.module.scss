@@ -12,8 +12,6 @@
     display: flex;
     align-items: flex-end;
 
-    height: 65px;
-
     box-shadow: inset 0 -1px 0 0 #eaebee;
 
     @media screen and (max-width: 425px) {
@@ -44,7 +42,7 @@
     color: #1f1f22;
     text-decoration: none;
     margin-left: 25px;
-    padding: 0 3px 19px 3px;
+    padding: 0 3px 42px 3px;
 
     @media screen and (max-width: 425px) {
         margin-left: 15px;
