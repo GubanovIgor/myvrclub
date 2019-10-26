@@ -105,12 +105,12 @@ class Index extends Component {
         {/*<h1>myvrclub.ru</h1>*/}
         {/*<h1>Агрегатор клубов виртуальной реальности</h1>*/}
         {/*</div>*/}
-        <Carusel
+        {(screenMode === 'desktop') && <Carusel
           caruselIndex={this.props.caruselIndex}
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
           screenMode={screenMode}
-        />
+        />}
         {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
         {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
       </div>
