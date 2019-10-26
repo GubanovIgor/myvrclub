@@ -13,6 +13,10 @@
   padding: 0;
 
   overflow: hidden;
+
+  @media screen and (max-width: 425px) {
+    padding: 0 15px;
+  }
 }
 
 .title {
@@ -70,7 +74,7 @@
 }
 
 // Mobile
-@media screen and (max-device-width: 375px) {
+@media screen and (max-width: 425px) {
   .clubList {
     display: flex;
     justify-content: center;
