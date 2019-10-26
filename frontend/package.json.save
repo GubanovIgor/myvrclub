@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "heroku-postbuild": "npm run build",
-"startp": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.4.3",
