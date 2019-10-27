@@ -1,4 +1,3 @@
-import {useRouter} from 'next/router'
 import React, {Component} from 'react';
 import Link from 'next/link'
 import Header from '../../../components/Header';
@@ -38,7 +37,7 @@ class Clubs extends Component {
     );
   }
 }
-//
+
 const mapStateToProps = (store) => {
   return {
     club: store.club,
