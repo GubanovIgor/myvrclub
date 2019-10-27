@@ -7,6 +7,7 @@ export const InitState = {
   // num: NaN,
   clubs: [],
   games: [],
+  club: {},
   currentId: '',
   map: false,
   loading: false,

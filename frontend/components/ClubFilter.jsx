@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 import styles from '../stylesheets/filter.module.scss';
 
 //import AC
-import { changeMapAC, offChangeMapAC, getClubsAC, filterToggleClubsAC } from '../redux/actions';
+import { changeMapAC, offChangeMapAC } from '../redux/actions/map';
+import { filterToggleClubsAC } from '../redux/actions/filters.js';
+import {getClubsAC} from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';

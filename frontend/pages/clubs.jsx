@@ -15,7 +15,9 @@ import ClubFilter from '../components/ClubFilter';
 import Loading from '../components/Loading';
 
 // import AC
-import { getClubsAC, switchPaginationValueAC, showFilterToggleAC } from '../redux/actions';
+import { showFilterToggleAC } from '../redux/actions/filters.js';
+import { switchPaginationValueAC} from '../redux/actions/pagination';
+import {getClubsAC} from "../redux/actions/clubs.js";
 
 class Clubs extends Component {
   showFilter = () => {

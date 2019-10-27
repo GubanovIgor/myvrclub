@@ -11,6 +11,7 @@ class ClubProfile extends Component {
 
   render() {
     const { club } = this.props;
+    console.log('-------->>>', club);
     return (
       <section className={styles.container}>
         <div className={styles.profileTitle}>

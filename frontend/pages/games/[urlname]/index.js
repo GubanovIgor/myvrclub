@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Header from '../../../components/Header';
 import ClubPage from '../../../components/ClubPage';
 import { connect } from 'react-redux';
-import { getGamesAC } from '../../../redux/actions';
+import { getGamesAC } from '../../../redux/actions/games';
 import GamePage from '../../../components/GamePage';
 import Loading from '../../../components/Loading';
 import Seo from '../../../components/Seo';

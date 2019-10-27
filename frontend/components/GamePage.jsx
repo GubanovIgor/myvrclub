@@ -17,7 +17,8 @@ import ClubFilter from '../components/ClubFilter';
 import Loading from './Loading';
 
 // action creators
-import { getClubsAC, showFilterToggleAC } from '../redux/actions';
+import { showFilterToggleAC } from '../redux/actions/filters';
+import {getClubsAC} from "../redux/actions/clubs.js";
 
 class GamePage extends Component {
   showFilter = () => {

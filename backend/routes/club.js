@@ -6,8 +6,13 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
   console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find())
+  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find());
   else res.json([await Club.findOne({name: req.query.name})]);
+});
+
+router.get('/url', async (req, res) => {
+  console.log(req.query.name);
+  res.json(await Club.findOne({urlName: req.query.name}));
 });
 
 router.post('/', async (req, res) => {
