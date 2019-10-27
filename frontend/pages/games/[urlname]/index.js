@@ -12,10 +12,9 @@ class Games extends Component {
 
   static async getInitialProps({ reduxStore, req, query }) {
     const isServer = !!req;
-    reduxStore.dispatch(getGameAC(query.urlname)); //рендер с сервера (первый раз)
+    await reduxStore.dispatch(getGameAC(query.urlname)); //рендер с сервера (первый раз)
     return {
-      //game: reduxStore.getState().game
-      game: {}
+      game: reduxStore.getState().game
     };
   }
 
@@ -34,6 +33,7 @@ class Games extends Component {
         </Head>
         <Seo game={game} />
         <Header/>
+        {console.log('this.props.loadingGame', this.props.loadingGame)}
         {this.props.loadingGame
           ? <Loading/>
           : this.props.error
