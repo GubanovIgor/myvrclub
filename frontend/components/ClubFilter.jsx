@@ -13,7 +13,7 @@ import {getClubsAC} from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
-import MapRatingToggle from '../components/MapRatingToggle'
+//import MapRatingToggle from '../components/MapRatingToggle'
 
 class ClubFilter extends Component {
 

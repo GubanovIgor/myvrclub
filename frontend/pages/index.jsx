@@ -8,15 +8,14 @@ import {getClubsAC} from "../redux/actions/clubs.js";
 import {getGamesAC} from "../redux/actions/games.js";
 
 // SASS
-import styles from '../stylesheets/index.module.scss'
+//import styles from '../stylesheets/index.module.scss'
 
 // Components
 import ClubCollections from '../components/ClubCollections';
 import GameCollections from '../components/GameCollections';
-import Example from '../components/examplesThunk/examples';
 import Carusel from '../components/Carusel';
 import Header from '../components/Header';
-import IndexSearch from '../components/IndexSearch';
+//import IndexSearch from '../components/IndexSearch';
 import Loading from '../components/Loading';
 
 class Index extends Component {
