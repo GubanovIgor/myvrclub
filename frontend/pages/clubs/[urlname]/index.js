@@ -5,10 +5,8 @@ import {connect} from 'react-redux';
 import Loading from '../../../components/Loading';
 import Seo from '../../../components/Seo';
 import Head from 'next/head';
-import {getClubAC, getClubsAC} from "../../../redux/actions/clubs.js";
+import {getClubAC} from "../../../redux/actions/clubs.js";
 import {withRouter} from 'next/router'
-import {getGamesAC} from "../../../redux/actions/games.js";
-
 
 class Clubs extends Component {
 

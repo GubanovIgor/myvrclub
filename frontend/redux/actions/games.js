@@ -9,6 +9,10 @@ export const requestGetGames = (data) => (
   { type: actionTypes.REQUESTED_GAMES, games: data }
 );
 
+export const requestGetGame = (data) => (
+  { type: actionTypes.REQUESTED_GAME, game: data }
+);
+
 export const requestGames = () => (
   { type: actionTypes.REQUEST_GAMES }
 );
@@ -19,6 +23,15 @@ export const getAllGamesAC = (name) => (
     const resp = await fetch(`${API_PREFIX}/game?name=${name}`);
     const games = await resp.json();
     dispatch(requestGetGames(games));
+  }
+);
+
+export const getGameAC = (name) => (
+  async (dispatch) => {
+    dispatch(requestGames());
+    const resp = await fetch(`${API_PREFIX}/game/url/?name=${name}`);
+    const game = await resp.json();
+    dispatch(requestGetGame(game));
   }
 );
 
