@@ -73,7 +73,15 @@ router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
   const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
   console.log('club %s was clicked', club.name);
+  res.end();
 });
+
+// router.post('/adddescription', async (req, res) => {
+//   await Club.update({}, { $set: {"description": '', "short_description":''} }, {upsert:false, multi:true})
+//   console.log('clubbbbbbb');
+//   res.send('ok')
+// });
+
 
 // router.post('/change_equp', async (req, res) => {
 //   const clubs = await Club.find();
