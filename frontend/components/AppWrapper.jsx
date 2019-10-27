@@ -61,6 +61,7 @@ class AppWrapper extends Component {
 					<Component
 						{...pageProps}
 						autoPagination={this.autoPagination}
+						screenMode={this.props.screenMode}
 					/>
 				</div>
 				{/* <Footer /> */}

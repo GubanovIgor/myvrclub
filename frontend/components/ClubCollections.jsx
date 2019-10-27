@@ -53,11 +53,11 @@ export class ClubCollections extends Component {
 					</ul>
 				</div> */}
         </section>
-        {(this.state.caruselPosition !== 0) && <ToLeftButton onClick={() => this.scroll('left')}
+        {(this.state.caruselPosition !== 0 && this.props.screenMode === 'desktop') && <ToLeftButton onClick={() => this.scroll('left')}
           className={styles.toLeft}
           isClub={true}
           img={'arrow-to-left'} />}
-        {(this.state.caruselPosition !== -1635) && <ToRightButton onClick={() => this.scroll('right')}
+        {(this.state.caruselPosition !== -1635 && this.props.screenMode === 'desktop') && <ToRightButton onClick={() => this.scroll('right')}
           className={styles.toRight}
           isClub={true}
           img={'arrow-to-right'} />}
@@ -68,6 +68,7 @@ export class ClubCollections extends Component {
 
 const mapStateToProps = (state) => ({
   clubs: state.clubs,
+  screenMode: state.screenMode,
 });
 
 

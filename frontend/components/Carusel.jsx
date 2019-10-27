@@ -16,20 +16,21 @@ class Carusel extends Component {
 		// 	'https://pic1.zhimg.com/v2-cceec281216bbb881324d1559b80aa91_1200x500.jpg',
 		// ];
 
-		const caruselPosition = this.props.caruselIndex * -1230;
+		const { screenMode, caruselIndex, switchCarusel, caruselData } = this.props;
+		const caruselPosition = caruselIndex * -1230;
 
 		return (
 			<div className={styles.carusel}>
-				<ul className={styles.caruselImages} style={{marginLeft: caruselPosition}}>
-					{this.props.caruselData.map((el, index) => {
+				<ul className={styles.caruselImages} style={(screenMode === 'desktop') && {marginLeft: caruselPosition}}>
+					{caruselData.map((el, index) => {
 						return <CaruselItem
 							img={el}
 							key={index}
 						/>
 					})}
 				</ul>
-				<div className={styles.buttonToLeft} onClick={() => this.props.switchCarusel(this.props.caruselIndex - 1)}/>
-				<div className={styles.buttonToRight} onClick={() => this.props.switchCarusel(this.props.caruselIndex + 1)}/>
+				<div className={styles.buttonToLeft} onClick={() => switchCarusel(caruselIndex - 1)}/>
+				<div className={styles.buttonToRight} onClick={() => switchCarusel(caruselIndex + 1)}/>
 			</div>
     );
 	}

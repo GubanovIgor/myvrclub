@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+export const CardsInProfileWrapper = styled.div`
+	@media screen and (max-width: 425px) {
+    width: 93%;
+    margin: 20px auto 25px;
+
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    border-radius: 10px;
+		padding: 10px;
+		
+		transition: 1s;
+
+    h2 {
+	  margin-top: 0;
+	  margin-bottom: 0;
+    }
+  }
+`;
+
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 81px;
@@ -15,8 +33,6 @@ export const ImgMiniImageProfileBlock = styled.img`
 
 	@media screen and (max-width: 425px) {
 		width: 19%;
-		// height: 45px;
-		// width: 72px;
 		max-height: 45px;
 	}
 `;
@@ -41,4 +57,21 @@ export const PictureUnderline = styled.div`
 	background-color: #2196F3;
 	border-radius: 1px;
 	transition: 0.5s ease-in;
+`;
+
+export const ShowTelButton = styled.button`
+	width: 100%;
+	height: 30px;
+
+	background-color: #2196F3;
+	color: #FFF;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #38a7ff;
+	}
+
+	${props => (props.showTel) && 'display: none'};
 `;

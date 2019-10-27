@@ -13,7 +13,7 @@ class Header extends Component {
         <nav className={styles.mainNavigation}> {/*container*/}
           <a className={styles.mainHeaderLogo}>
             <img src="/static/images/body/logo.png"
-                 title="MyVRClub - клубы виртулаьной реальности" width="50" height="50"
+                 title="MyVRClub - клубы виртулаьной реальности" width="100" height="100"
                  alt="Sensorama"/>
           </a>
           <ul className={styles.siteNavigation}>

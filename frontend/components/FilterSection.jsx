@@ -11,8 +11,8 @@ class FilterSection extends Component {
   render() {
     const { section, checked, onChangeCheckbox } = this.props;
     return (
-      <div>
-        <h3 className={styles.title}>{section.title}</h3>
+      <div className={styles.filterSectionWrapper}>
+        <div className={styles.title}>{section.title}</div>
         <div className={styles.filterSection}>
           {section.value.map((item, index) => {
             return <FilterItem
@@ -25,7 +25,6 @@ class FilterSection extends Component {
           }
           )}
         </div>
-        <hr className={styles.breakLine} />
       </div>
     );
   }

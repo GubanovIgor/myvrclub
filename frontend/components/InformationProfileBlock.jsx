@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { API_PREFIX, IMG_URL_PREFIX } from '../services/consts/consts';
 import FeedbackForm from './FeedbackForm';
+import { ShowTelButton } from '../stylesheets/index';
 
 //SASS
 import styles from '../stylesheets/informationProfileBlock.module.scss';
@@ -56,11 +57,12 @@ class InformationProfileBlock extends Component {
               {this.state.showTel && <><span>Телефон: </span>
                 <a href={'tel:' + clubTel}>{club.tel[0]}</a></>}
             </p>
-            <input className={styles.button}
-                   type="button"
+            <ShowTelButton 
                    disabled={this.state.disabled}
                    onClick={() => this.showTel(club._id)}
-                   value="Показать телефон"/>
+                   showTel={this.state.showTel}>
+                    Показать телефон
+            </ShowTelButton>
           </div>
           <FeedbackForm/>
         </div>
@@ -78,6 +80,7 @@ class InformationProfileBlock extends Component {
           <div className="profile-game-informations">
             <p>
               <span>{game.name}</span> - {game.short_description}<br/>
+              <br/>
               <span>Жанр:</span> {game.genre.join(', ')}<br/>
               <span>Разработчик:</span> {game.developer.join(', ')}<br/>
               <span>Язык:</span> {game.language}<br/>

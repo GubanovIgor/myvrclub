@@ -18,6 +18,9 @@ const Games = (props) => {
   if (!props.loadingGame) game = props.games.find(item => item.urlName === urlname); // получаем обьект из массива по urlname из router.query
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width" />
+      </Head>
       <Seo game={game} />
       <Header />
       {props.loadingGame

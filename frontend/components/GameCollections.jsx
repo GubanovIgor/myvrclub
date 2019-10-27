@@ -47,10 +47,10 @@ export class GameCollections extends Component {
             </ul>
           </div> */}
         </section>
-        {(this.state.caruselPosition !== 0) && <ToLeftButton onClick={() => this.scroll('left')}
+        {(this.state.caruselPosition !== 0 && this.props.screenMode === 'desktop') && <ToLeftButton onClick={() => this.scroll('left')}
           className={styles.toLeft}
           img={'arrow-to-left'}/>}
-        {(this.state.caruselPosition !== -2900) && <ToRightButton onClick={() => this.scroll('right')}
+        {(this.state.caruselPosition !== -2900 && this.props.screenMode === 'desktop') && <ToRightButton onClick={() => this.scroll('right')}
           className={styles.toRight}
           img={'arrow-to-right'}/>}
       </div>
@@ -60,6 +60,7 @@ export class GameCollections extends Component {
 
 const mapStateToProps = (state) => ({
   games: state.games,
+  screenMode: state.screenMode,
 });
 
 const mapDispatchToProps = {

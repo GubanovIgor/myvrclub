@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Image } from 'cloudinary-react';
 import uuidv1 from 'uuid/v1'
 import { IMG_URL_PREFIX } from '../services/consts/consts';
@@ -52,13 +53,19 @@ class ImageProfileBlock extends Component {
         <img className={styles.img}
           src={this.state.imageUrl}
           alt={item.name} />
-        <ScreensotsWrapper className={styles.screenshotsSwitch}>
+        {(this.props.screenMode === 'desktop') && <ScreensotsWrapper className={styles.screenshotsSwitch}>
           {items}
           <PictureUnderline screenIndex={this.state.screenIndex}/>
-        </ScreensotsWrapper>
+        </ScreensotsWrapper>}
       </div>
     );
   }
 }
 
-export default ImageProfileBlock;
+const mapStateToProps = (store) => {
+  return {
+    screenMode: store.screenMode,
+  };
+};
+
+export default connect(mapStateToProps)(ImageProfileBlock);
