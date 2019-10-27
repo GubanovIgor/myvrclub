@@ -1,6 +1,5 @@
 // REDUCERS
 import { actionTypes } from './types';
-import { filterToggleAC } from "./actions";
 
 export const reducer = (state, action) => {
   // console.log('reducer initial state games', state.games);
@@ -13,6 +12,8 @@ export const reducer = (state, action) => {
       return ({ ...state, loadingGame: true, errorGame: false, loading: true });
     case actionTypes.REQUESTED_CLUBS:
       return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false });
+    case actionTypes.REQUESTED_CLUB:
+      return ({ ...state, club: action.club, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
       return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:

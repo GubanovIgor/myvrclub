@@ -11,7 +11,7 @@ import {
 } from 'formik';
 import * as Yup from 'yup';
 import AdminHeader from "./AdminHeader.jsx";
-import { requestLogin } from "../../redux/actions.js";
+import { requestLogin } from "../../redux/actions/submit";
 
 const styles = {};
 

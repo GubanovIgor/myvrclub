@@ -15,7 +15,8 @@ import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
 
 // action creators
-import { getGamesAC, showFilterToggleAC } from '../redux/actions';
+import { showFilterToggleAC } from '../redux/actions/filters.js';
+import {getGamesAC} from "../redux/actions/games.js";
 import Loading from '../components/Loading';
 
 class Games extends Component {

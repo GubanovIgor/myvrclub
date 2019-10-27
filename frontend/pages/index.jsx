@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // import AC
-import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
+import {switchCaruselIndexAC } from '../redux/actions/carousel';
+import {getClubsAC} from "../redux/actions/clubs.js";
+import {getGamesAC} from "../redux/actions/games.js";
 
 // SASS
 import styles from '../stylesheets/index.module.scss'
@@ -29,12 +31,16 @@ class Index extends Component {
     ],
   };
 
-  static getInitialProps({ reduxStore, req }) {
+  static async getInitialProps({ reduxStore, req }) {
     const isServer = !!req;
-    console.log('getInitialProps - isServer', isServer);
+    //console.log('getInitialProps - isServer', isServer);
     console.log('reduxStore', reduxStore);
-    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
-    return { custom: 'custom props' };
+    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
+    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
+    return {
+      games: reduxStore.getState().games,
+      clubs: reduxStore.getState().clubs
+    };
   }
 
   componentDidMount = async () => {
@@ -89,7 +95,6 @@ class Index extends Component {
   // }
 
   render() {
-    console.log(this.props)
     const { games, clubs, screenMode } = this.props;
     return (
       <div>

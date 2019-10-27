@@ -5,18 +5,19 @@ import { FilterButton } from '../stylesheets/filterItem';
 import { CardsInProfileWrapper } from '../stylesheets/index';
 
 // SASS
-import styles from '../stylesheets/clubPage.module.scss';
+//import styles from '../stylesheets/clubPage.module.scss';
 import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import GameCard from '../components/GameCard';
-import Reviews from '../components/Reviews';
+//import Reviews from '../components/Reviews';
 import ClubProfile from '../components/ClubProfile';
 import GameFilter from '../components/GameFilter';
 import Loading from './Loading';
 
 // action creators
-import { getGamesAC, showFilterToggleAC } from '../redux/actions';
+import { showFilterToggleAC } from '../redux/actions/filters';
+import {getGamesAC} from "../redux/actions/games.js";
 
 class ClubPage extends Component {
   showFilter = () => {
@@ -42,13 +43,7 @@ class ClubPage extends Component {
     const gameItems = games.map((game) => {
       return <GameCard key={game._id} game={game} />;
     });
-    // let clubGames = [];
-    // if (!loadingGame) {
-    //   club.gamesIds.map((gameIds, index) => {
-    //     console.log('games', games.find(x => x._id === gameIds))
-    //     clubGames.push(games.find(x => x._id === gameIds))
-    //   })
-    // }
+
     return (
       <main>
         <ClubProfile club={club} />

@@ -10,6 +10,11 @@ router.get('/', async (req, res) => {
   else res.json([await Club.findOne({name: req.query.name})]);
 });
 
+router.get('/url', async (req, res) => {
+  console.log(req.query.name);
+  res.json(await Club.findOne({urlName: req.query.name}));
+});
+
 router.post('/', async (req, res) => {
   const conditions = [];
 

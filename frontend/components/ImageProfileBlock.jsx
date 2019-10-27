@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'cloudinary-react';
-import uuidv1 from 'uuid/v1'
+//import { Image } from 'cloudinary-react';
 import { IMG_URL_PREFIX } from '../services/consts/consts';
 import {
   ImgMiniImageProfileBlock,
@@ -40,9 +39,10 @@ class ImageProfileBlock extends Component {
       item = club;
       clubPathPrefix = IMG_URL_PREFIX;
     }
+    console.log('item', item);
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
-      return <ImgMiniImageProfileBlock key={uuidv1()}
+      return <ImgMiniImageProfileBlock key={imgLink}
                   alt={item.name}
                   src={clubPathPrefix + imgLink}
                   onClick={() => this.screenChange(clubPathPrefix, imgLink, index)}/>
