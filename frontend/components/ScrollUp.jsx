@@ -37,7 +37,7 @@ export default class ScrollUp extends Component {
   render() {
     return (
       <div>
-        <a onClick={this.handleClick} className={this.state.show ? styles.scrollBtn : ''}></a>
+        <a onClick={this.handleClick} className={this.state.show ? styles.scrollBtn : ''}/>
       </div>
     );
   };

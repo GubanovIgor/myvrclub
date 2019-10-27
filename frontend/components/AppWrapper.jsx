@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // Components
-import Footer from '../components/Footer';
 import ScrollUp from '../components/ScrollUp';
 
 // SASS
