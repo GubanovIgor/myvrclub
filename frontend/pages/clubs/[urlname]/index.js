@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
-import Link from 'next/link'
 import Header from '../../../components/Header';
 import ClubPage from '../../../components/ClubPage';
 import {connect} from 'react-redux';
 import Loading from '../../../components/Loading';
 import Seo from '../../../components/Seo';
 import Head from 'next/head';
-import {getClubAC} from "../../../redux/actions/clubs.js";
+import {getClubAC, getClubsAC} from "../../../redux/actions/clubs.js";
 import {withRouter} from 'next/router'
+import {getGamesAC} from "../../../redux/actions/games.js";
 
 
 class Clubs extends Component {
 
-  componentDidMount() {
-    this.props.getClub(this.props.router.query.urlname);
+  static async getInitialProps({ reduxStore, req, query }) {
+    const isServer = !!req;
+    await reduxStore.dispatch(getClubAC(query.urlname)); //рендер с сервера (первый раз)
+    return {
+      club: reduxStore.getState().club
+    };
   }
+
+  // componentDidMount() {
+  //   this.props.getClub(this.props.router.query.urlname);
+  //   console.log('CDM')
+  // }
 
   render() {
     const {club} = this.props;
@@ -23,9 +32,8 @@ class Clubs extends Component {
         <Head>
           <meta name="viewport" content="width=device-width"/>
         </Head>
-        {/*<Seo club={props.club} />*/}
+        <Seo club={club} />
         <Header/>
-        {/*{console.log('this.props.loadingClub', this.props.loadingClub) }*/}
         {this.props.loadingClub
           ? <Loading/>
           : this.props.error

@@ -31,17 +31,17 @@ class Index extends Component {
     ],
   };
 
-  static async getInitialProps({ reduxStore, req }) {
-    const isServer = !!req;
-    //console.log('getInitialProps - isServer', isServer);
-    console.log('reduxStore', reduxStore);
-    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
-    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
-    return {
-      games: reduxStore.getState().games,
-      clubs: reduxStore.getState().clubs
-    };
-  }
+  // static async getInitialProps({ reduxStore, req }) {
+  //   const isServer = !!req;
+  //   //console.log('getInitialProps - isServer', isServer);
+  //   console.log('reduxStore', reduxStore);
+  //   await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
+  //   await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
+  //   return {
+  //     games: reduxStore.getState().games,
+  //     clubs: reduxStore.getState().clubs
+  //   };
+  // }
 
   componentDidMount = async () => {
     this.props.getGames();
