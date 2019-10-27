@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // Components
-import Footer from '../components/Footer';
 import ScrollUp from '../components/ScrollUp';
 
 // SASS
@@ -11,7 +10,6 @@ import styles from '../stylesheets/appWrapper.module.scss';
 
 // import AC
 import { switchScreenModeAC, switchPaginationValueAC } from '../redux/actions';
-import { actionTypes } from '../redux/types';
 
 class AppWrapper extends Component {
 	updateDimensions = () => {

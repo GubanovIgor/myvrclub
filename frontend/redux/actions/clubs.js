@@ -7,7 +7,8 @@ export const getAllClubsAC = (name) => (
   async (dispatch) => {
     dispatch(requestClubs());
     const resp = await fetch(`${API_PREFIX}/club?name=${name}`);
-    const games = await resp.json();
-    dispatch(requestGetClubs(games));
+    console.log('->>>>', name);
+    const clubs = await resp.json();
+    dispatch(requestGetClubs(clubs));
   }
 );
