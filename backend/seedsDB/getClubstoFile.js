@@ -13,9 +13,10 @@ let idGame = async () => {
   const clubs = await Club.find();
   clubs.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
   console.log('********************************************************************************************')
+ let index = 1;
   for (let club of clubs) {
 
-    fs.appendFile("clubs.txt", `${club.name}, ${club.tel} \n`, function(err) {
+    fs.appendFile("clubs.txt", ` ${index++}. ${club.name}, ${club.tel}, ${club.domain} \n`, function(err) {
 
       if(err) {
         return console.log(err);
