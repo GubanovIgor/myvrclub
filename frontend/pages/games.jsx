@@ -6,8 +6,7 @@ import { FilterButton } from '../stylesheets/filterItem';
 import { CardsInProfileWrapper } from '../stylesheets/index';
 
 //import windowSize from 'react-window-size';
-//SASS
-import styles from '../stylesheets/cardsWrapper.module.scss';
+
 
 // import components
 import Header from '../components/Header';
@@ -18,6 +17,9 @@ import GameFilter from '../components/GameFilter';
 import { showFilterToggleAC } from '../redux/actions/filters.js';
 import {getGamesAC} from "../redux/actions/games.js";
 import Loading from '../components/Loading';
+
+//SASS
+import styles from '../stylesheets/cardsWrapper.module.scss';
 
 class Games extends Component {
   showFilter = () => {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-//SASS
-import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Loading from '../../../components/Loading';
@@ -11,6 +9,9 @@ import AdminHeader from '../AdminHeader';
 
 // import AC
 import {getAllClubsAC} from "../../../redux/actions/clubs.js";
+
+//SASS
+import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 class AdminClubs extends Component {
 

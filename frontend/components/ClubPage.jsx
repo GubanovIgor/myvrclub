@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { FilterButton } from '../stylesheets/filterItem';
 import { CardsInProfileWrapper } from '../stylesheets/index';
 
-// SASS
-//import styles from '../stylesheets/clubPage.module.scss';
-import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import GameCard from '../components/GameCard';
@@ -18,6 +15,10 @@ import Loading from './Loading';
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
 import {getGamesAC} from "../redux/actions/games.js";
+
+// SASS
+//import styles from '../stylesheets/clubPage.module.scss';
+import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 class ClubPage extends Component {
   showFilter = () => {
