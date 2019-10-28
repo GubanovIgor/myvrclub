@@ -18,9 +18,17 @@ export const CardsInProfileWrapper = styled.div`
   }
 `;
 
+export const ScreenshotsWrapper = styled.div`
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	overflow-y: hidden;
+`;
+
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
-	height: 81px;
 
 	border-radius: 3px;
 	cursor: pointer;
@@ -32,13 +40,12 @@ export const ImgMiniImageProfileBlock = styled.img`
 	padding-bottom: 10px;
 
 	@media screen and (max-width: 425px) {
-		width: 19%;
-		max-height: 45px;
-	}
-`;
+		min-width: 100%;
+		width: 100%;
 
-export const ScreensotsWrapper = styled.div`
-	position: relative;
+		padding: 0;
+		margin: 0;
+	}
 `;
 
 // Считаем координаты PictureUnderline
@@ -52,11 +59,11 @@ export const PictureUnderline = styled.div`
 	left: ${(props) => getUnderlineCoords(props.screenIndex) + 'px'};
 
 	width: 144px;
-	height: 2px;
+	height: 3px;
 
 	background-color: #2196F3;
 	border-radius: 1px;
-	transition: 0.5s ease-in;
+	transition: 0.3s ease-in;
 `;
 
 export const ShowTelButton = styled.button`
