@@ -32,6 +32,10 @@ class Header extends Component {
                   <Link activeClassName={styles.siteNavigationActive}
                         href='/admin/clubs'><a>Клубы (админ)</a></Link>
                 </li>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/stat'><a>Статистика Клубы</a></Link>
+                </li>
               </>
             )}
             {(!isLogged) && (
