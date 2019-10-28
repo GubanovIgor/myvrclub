@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Link from './ActiveLink';
 
 // SASS
-import styles from '../stylesheets/header.module.scss';
 import '../stylesheets/body.module.scss';
+import styles from '../stylesheets/header.module.scss';
 
 class Header extends Component {
   render() {

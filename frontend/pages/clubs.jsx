@@ -5,9 +5,6 @@ import Head from 'next/head';
 import { FilterButton } from '../stylesheets/filterItem';
 import { CardsInProfileWrapper } from '../stylesheets/index';
 
-//SASS
-import styles from '../stylesheets/cardsWrapper.module.scss';
-
 // import components
 import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
@@ -18,6 +15,9 @@ import Loading from '../components/Loading';
 import { showFilterToggleAC } from '../redux/actions/filters.js';
 import { switchPaginationValueAC} from '../redux/actions/pagination';
 import {getClubsAC} from "../redux/actions/clubs.js";
+
+//SASS
+import styles from '../stylesheets/cardsWrapper.module.scss';
 
 class Clubs extends Component {
   showFilter = () => {
