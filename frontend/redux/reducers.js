@@ -1,6 +1,5 @@
 // REDUCERS
 import { actionTypes } from './types';
-import { filterToggleAC } from "./actions";
 
 export const reducer = (state, action) => {
   // console.log('reducer initial state games', state.games);
@@ -13,8 +12,12 @@ export const reducer = (state, action) => {
       return ({ ...state, loadingGame: true, errorGame: false, loading: true });
     case actionTypes.REQUESTED_CLUBS:
       return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false });
+    case actionTypes.REQUESTED_CLUB:
+      return ({ ...state, club: action.club, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
       return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
+    case actionTypes.REQUESTED_GAME:
+      return ({ ...state, game: action.game, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
       const stateCopy = { ...state };
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
@@ -24,39 +27,21 @@ export const reducer = (state, action) => {
       stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
-      return ({
-        ...state, paginationValue: action.value,
-      });
+      return ({...state, paginationValue: action.value,});
     case actionTypes.CHANGE_MAP:
-      return ({
-        ...state, map: true,
-      });
+      return ({...state, map: true,});
     case actionTypes.OFF_CHANGE_MAP:
-      return ({
-        ...state,
-        map: false,
-      });
+      return ({...state, map: false,});
     case actionTypes.SHOW_FILTER_TOGGLE:
-      return ({
-        ...state,
-        showFilter: !state.showFilter,
-      });
+      return ({...state, showFilter: !state.showFilter,});
     case actionTypes.CURRENT_PAGE:
-      return ({
-        ...state,
-        currentPage: action.pageNumber,
-      });
+      return ({...state, currentPage: action.pageNumber,});
     case actionTypes.SWITCH_CARUSEL_INDEX:
-      return ({
-        ...state,
-        caruselIndex: action.caruselIndex,
-      });
+      return ({...state, caruselIndex: action.caruselIndex,});
     case actionTypes.SWITCH_SCREEN_MODE:
-      return ({
-        ...state,
-        screenMode: action.screenMode,
-      });
-    //***************LOGIN-LOGOUT*************
+      return ({...state, screenMode: action.screenMode,});
+
+      //***************LOGIN-LOGOUT*************
     case actionTypes.REQUEST_LOGIN:
       return ({ ...state, logging: true });
     case actionTypes.REQUEST_END_LOGIN:

@@ -7,6 +7,8 @@ export const InitState = {
   // num: NaN,
   clubs: [],
   games: [],
+  club: {},
+  game: {},
   currentId: '',
   map: false,
   loading: false,
@@ -158,10 +160,15 @@ export const InitState = {
   },
 };
 
+const devTools =
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(thunkMiddleware)
+    : composeWithDevTools(applyMiddleware(thunkMiddleware));
+
 export function initializeStore(initialState = InitState) {
   return createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
+    devTools
   );
 }

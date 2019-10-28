@@ -6,7 +6,8 @@ import styles from '../stylesheets/filter.module.scss';
 
 // import components
 import FilterSection from '../components/FilterSection';
-import { filterToggleGamesAC, getGamesAC } from '../redux/actions';
+import { filterToggleGamesAC } from '../redux/actions/filters';
+import {getGamesAC} from "../redux/actions/games.js";
 
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {

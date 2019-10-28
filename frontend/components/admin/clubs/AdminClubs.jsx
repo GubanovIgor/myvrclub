@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-//SASS
-import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Loading from '../../../components/Loading';
@@ -11,6 +9,9 @@ import AdminHeader from '../AdminHeader';
 
 // import AC
 import {getAllClubsAC} from "../../../redux/actions/clubs.js";
+
+//SASS
+import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 class AdminClubs extends Component {
 
@@ -43,7 +44,7 @@ class AdminClubs extends Component {
               ? <Loading />
               : this.props.errorClub
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : (clubs[0] ) && (isLogged) && (clubs.map((club) => <AdminClubCard key={club._id} club={club} />))
+                : (clubs[0]) && (isLogged) && (clubs.map((club) => <AdminClubCard key={club._id} club={club} />))
             }
           </div>
         </div>

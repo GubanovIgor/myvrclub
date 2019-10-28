@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import React from 'react';
 import { connect } from 'react-redux';
-import { getGamesAC } from '../../../../redux/actions';
+import { getGamesAC } from '../../../../redux/actions/games';
 import Loading from '../../../../components/Loading';
 import AdminHeader from '../../../../components/admin/AdminHeader';
 import AdminGamePageEdit from '../../../../components/admin/games/AdminGamePageEdit';
-import {API_PREFIX} from "../../../../services/consts/consts.js";
 
 const Games = (props) => {
   const router = useRouter();

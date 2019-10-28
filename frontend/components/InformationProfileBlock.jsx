@@ -20,6 +20,7 @@ class InformationProfileBlock extends Component {
       showTel: true,
       disabled: true
     });
+
     const resp = await fetch(`${API_PREFIX}/club/statistics`, {
       method: 'POST',
       headers: {

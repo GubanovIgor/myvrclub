@@ -9,7 +9,7 @@ export default class FeedbackModal extends Component {
     userName: '',
     userEmail: '',
     userText: '',
-    currentUrl: window.location.href,
+    //currentUrl: window.location.href,
   };
 
   componentDidUpdate() {
@@ -30,7 +30,7 @@ export default class FeedbackModal extends Component {
   onEscKeyDown = (e) => {
     if (e.key !== 'Escape') {
       return;
-    } else if (this.props.show == true) {
+    } else if (this.props.show === true) {
       this.onClose();
     };
   };
@@ -87,7 +87,7 @@ export default class FeedbackModal extends Component {
 
     return (
       <div>
-        <div ref='modal' className={styles.popUp}></div>
+        <div ref='modal' className={styles.popUp}/>
         <div className={styles.innerPopUp}>
           <h2 className={styles.modalTitle}>Сообщить об ошибке</h2>
           <div className={styles.content}>

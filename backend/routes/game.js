@@ -8,7 +8,10 @@ router.get('/', async (req, res) => {
   console.log(req.query.name)
   if (req.query.name === '' || req.query.name === undefined) res.json( await Game.find())
   else res.json([await Game.findOne({name: req.query.name})]);
+});
 
+router.get('/url', async (req, res) => {
+  res.json(await Game.findOne({urlName: req.query.name}));
 });
 
 router.post('/', async (req, res) => {

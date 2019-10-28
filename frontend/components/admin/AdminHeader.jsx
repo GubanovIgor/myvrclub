@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import Link from 'next/link';
 import Link from '../ActiveLink';
 
 // SASS
-import styles from '../../stylesheets/header.module.scss';
 import '../../stylesheets/body.module.scss';
-import { connect } from 'react-redux';
+import styles from '../../stylesheets/header.module.scss';
 
 class Header extends Component {
   render() {
@@ -16,7 +16,7 @@ class Header extends Component {
           <a className={styles.mainHeaderLogo}>
             <img src="../../static/images/body/logo.png"
                  title="MyVRClub - клубы виртулаьной реальности" width="50" height="50"
-                 alt="Sensorama"/>
+                 alt="MyVrClub"/>
           </a>
           <ul className={styles.siteNavigation}>
             <li>
@@ -31,6 +31,10 @@ class Header extends Component {
                 <li>
                   <Link activeClassName={styles.siteNavigationActive}
                         href='/admin/clubs'><a>Клубы (админ)</a></Link>
+                </li>
+                <li>
+                  <Link activeClassName={styles.siteNavigationActive}
+                        href='/admin/stat'><a>Статистика Клубы</a></Link>
                 </li>
               </>
             )}

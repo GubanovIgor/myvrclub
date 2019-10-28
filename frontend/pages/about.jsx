@@ -1,7 +1,7 @@
 import React from 'react';
 
 //SASS
-import styles from '../stylesheets/cardsWrapper.module.scss';
+//import styles from '../stylesheets/cardsWrapper.module.scss';
 
 // import components
 import Header from '../components/Header';

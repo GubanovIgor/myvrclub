@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // import AC
-import { getClubsAC, getGamesAC, switchCaruselIndexAC } from '../redux/actions';
+import {switchCaruselIndexAC } from '../redux/actions/carousel';
+import {getClubsAC} from "../redux/actions/clubs.js";
+import {getGamesAC} from "../redux/actions/games.js";
 
 // SASS
 import styles from '../stylesheets/index.module.scss'
@@ -11,10 +13,9 @@ import styles from '../stylesheets/index.module.scss'
 // Components
 import ClubCollections from '../components/ClubCollections';
 import GameCollections from '../components/GameCollections';
-import Example from '../components/examplesThunk/examples';
 import Carusel from '../components/Carusel';
 import Header from '../components/Header';
-import IndexSearch from '../components/IndexSearch';
+//import IndexSearch from '../components/IndexSearch';
 import Loading from '../components/Loading';
 
 class Index extends Component {
@@ -29,18 +30,22 @@ class Index extends Component {
     ],
   };
 
-  static getInitialProps({ reduxStore, req }) {
+  static async getInitialProps({ reduxStore, req }) {
     const isServer = !!req;
-    console.log('getInitialProps - isServer', isServer);
-    console.log('reduxStore', reduxStore);
-    //reduxStore.dispatch(serverRenderClock(isServer)) //рендер с сервера (первый раз)
-    return { custom: 'custom props' };
+    //console.log('getInitialProps - isServer', isServer);
+    //console.log('reduxStore', reduxStore);
+    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
+    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
+    return {
+      games: reduxStore.getState().games,
+      clubs: reduxStore.getState().clubs
+    };
   }
 
-  componentDidMount = async () => {
-    this.props.getGames();
-    this.props.getClubs();
-  };
+  // componentDidMount = async () => {
+  //   this.props.getGames();
+  //   this.props.getClubs();
+  // };
 
   caruselDataMix = (side, index) => {
     let newData = this.state.caruselData.slice();
@@ -89,7 +94,6 @@ class Index extends Component {
   // }
 
   render() {
-    console.log(this.props)
     const { games, clubs, screenMode } = this.props;
     return (
       <div>

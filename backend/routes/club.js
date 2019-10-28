@@ -6,8 +6,13 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
   console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find())
+  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find());
   else res.json([await Club.findOne({name: req.query.name})]);
+});
+
+router.get('/url', async (req, res) => {
+  console.log(req.query.name);
+  res.json(await Club.findOne({urlName: req.query.name}));
 });
 
 router.post('/', async (req, res) => {
@@ -68,7 +73,15 @@ router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
   const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
   console.log('club %s was clicked', club.name);
+  res.end();
 });
+
+// router.post('/adddescription', async (req, res) => {
+//   await Club.update({}, { $set: {"description": '', "short_description":''} }, {upsert:false, multi:true})
+//   console.log('clubbbbbbb');
+//   res.send('ok')
+// });
+
 
 // router.post('/change_equp', async (req, res) => {
 //   const clubs = await Club.find();
