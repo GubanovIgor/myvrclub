@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardsInProfileWrapper = styled.div`
+export const ProfileContent = styled.div`
 	@media screen and (max-width: 425px) {
     width: 93%;
     margin: 20px auto 25px;
@@ -55,11 +55,11 @@ const getUnderlineCoords = (index) => {
 
 export const PictureUnderline = styled.div`
 	position: absolute;
-	top: 90px;
+	bottom: 0;
 	left: ${(props) => getUnderlineCoords(props.screenIndex) + 'px'};
 
 	width: 144px;
-	height: 3px;
+	height: 2px;
 
 	background-color: #2196F3;
 	border-radius: 1px;
@@ -81,4 +81,38 @@ export const ShowTelButton = styled.button`
 	}
 
 	${props => (props.showTel) && 'display: none'};
+`;
+
+export const ProfileContent__Wrapper = styled.div`
+
+`;
+
+export const ProfileMenu__Wrapper = styled.div`
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #eaebee;
+
+	height: 60px;
+
+	margin-left: 20px;
+`;
+
+export const ProfileMenu__Item = styled.p`
+	height: 100%;
+
+	cursor: pointer;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 60px;
+
+	margin: 0;
+	margin-right: 30px;
+
+	${(props) => (props.menuSection === props.section) && `font-weight: 400;
+		color: #338EEE;
+		border-bottom: 1px solid #338EEE;`}
+
+	&:hover {
+		color: #338EEE;
+	}
 `;

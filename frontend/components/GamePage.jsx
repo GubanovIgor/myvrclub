@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
+// Styled Components
+import { ProfileContent } from '../stylesheets/index';
 
-// import components
+// Import Components
 import ClubCard from '../components/ClubCard';
-// import Reviews from '../components/Reviews';
 import GameProfile from '../components/GameProfile';
-import ClubFilter from '../components/ClubFilter';
+import ProfileContentGame from './ProfileContentGame';
+import ProfileMenu from './ProfileMenu';
 // import Map from '../components/Map';
-import Loading from './Loading';
+// import Reviews from '../components/Reviews';
 
-// action creators
+// Action Creators
 import { showFilterToggleAC } from '../redux/actions/filters';
-import {getClubsAC} from "../redux/actions/clubs.js";
-
-// SASS
-// import styles from '../stylesheets/gamePage.module.scss';
-import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
+import { getClubsAC } from "../redux/actions/clubs.js";
 
 class GamePage extends Component {
+  state = {
+    menuSection: 'Где поиграть',
+  }
+
   showFilter = () => {
     this.props.showFilterToggle();
   };
+
+  menuToggle = (menuSection) => {
+    this.setState({menuSection: menuSection});
+  }
 
   paginationHandler = () => {
     this.props.autoPagination('club', this.props.game._id);
@@ -40,41 +44,33 @@ class GamePage extends Component {
   }
 
   render() {
-    console.log(this.props.game._id)
-    const { game = [], clubs, loadingClub, error} = this.props;
-    const itemsClub = clubs.map((club) => <ClubCard key={club._id} club={club} />);
+    const { game = [], clubs, screenMode, showFilter } = this.props;
+    const clubItems = clubs.map((club) => <ClubCard key={club._id} club={club} />);
+
+    const menuItems = [
+      'Где поиграть',
+      'Отзывы',
+      'Оборудование',
+    ];
 
     return (
       <main>
         <GameProfile game={game} />
-
-        {/* <section>
-          <div className={styles.container}>
-            <p className={styles.profileMenu}>Игры клуба</p>
-            <p className={styles.profileMenu}>Цены</p>
-            <p className={styles.profileMenu}>Отзывы</p>
-            <p className={styles.profileMenu}>Оборудование</p>
-            <p className={styles.profileMenu}>Контакты</p>
-          </div>
-          <hr className={styles.breakLine}/>
-        </section> */}
+        <ProfileMenu menuToggle={this.menuToggle}
+                      menuSection={this.state.menuSection}
+                      menuItems={menuItems}/>
 
         {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
         {/* <Map/> */}
-        <CardsInProfileWrapper>
-          <div className={cardsWrapper.titleWrapper}>
-            <FilterButton img={'filterSettings'} onClick={this.showFilter} />
-            <h2>Где поиграть в {game.name}</h2>
-          </div>
+        <ProfileContent>
+          <ProfileContentGame showFilterMark={showFilter}
+            showFilter={this.showFilter}
+            game={game}
+            screenMode={screenMode}
+            clubs={clubs}
+            clubItems={clubItems} />
+        </ProfileContent>
 
-          <div className={cardsWrapper.container}>
-            {(this.props.screenMode === 'desktop') && <ClubFilter gameId={this.props.game._id} />}
-            {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter gameId={this.props.game._id} />}
-            <div className={cardsWrapper.cardsWrapper}>
-              {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
-            </div>
-          </div>
-        </CardsInProfileWrapper>
         {/* <hr className={styles.breakLine}/> */}
         {/* <Reviews /> */}
       </main>
@@ -86,10 +82,6 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     clubs: store.clubs,
-    // loadingClub: store.loadingClub,
-    // loading: store.loading,
-    // error: store.error,
-    // map: store.map,
     screenMode: store.screenMode,
     filterToggle: store.clubsFilterToggle,
   };

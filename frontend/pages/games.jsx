@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
+import { ProfileContent } from '../stylesheets/index';
 
 //import windowSize from 'react-window-size';
 
@@ -52,7 +52,7 @@ class Games extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <CardsInProfileWrapper>
+        <ProfileContent>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
             <h1 className={styles.title}>Список VR игр</h1>
@@ -64,7 +64,7 @@ class Games extends Component {
               {(games.length !== 0) ? (gameItems) : (<Loading />)}
             </div>
           </div>
-        </CardsInProfileWrapper>
+        </ProfileContent>
       </div>
     );
   }

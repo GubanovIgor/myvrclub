@@ -56,9 +56,10 @@ class ImageProfileBlock extends Component {
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-        {(this.props.screenMode === 'desktop') && <img className={styles.img}
-              src={this.state.imageUrl}
-              alt={item.name} />}
+        {(this.props.screenMode === 'desktop') &&
+              <img className={styles.img}
+                    src={this.state.imageUrl}
+                    alt={item.name} />}
         <ScreenshotsWrapper className={styles.screenshotsSwitch}
                             ref={(el) => this.screenshotsWrapper = el}>
             {items}
