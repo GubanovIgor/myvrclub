@@ -5,9 +5,11 @@ const Game = require('../models/games');
 const Club = require('../models/clubs');
 
 router.get('/', async (req, res) => {
-  console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Game.find())
-  else res.json([await Game.findOne({name: req.query.name})]);
+  console.log('req.query.name', req.query.name);
+  if (req.query.name === undefined || req.query.name === 'undefined' || req.query.name === '')
+    res.json( await Game.find());
+  else {console.log('else');
+    res.json(await Game.find({name: req.query.name}))}
 });
 
 router.get('/url', async (req, res) => {

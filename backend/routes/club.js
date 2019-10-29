@@ -5,9 +5,11 @@ const Game = require('../models/games');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
-  console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find());
-  else res.json([await Club.findOne({name: req.query.name})]);
+  console.log(req.query.name);
+  if (req.query.name === '' || req.query.name === undefined || req.query.name === 'undefined')
+    res.json(await Club.find());
+  else
+    res.json(await Club.find({name: req.query.name}));
 });
 
 router.get('/url', async (req, res) => {
@@ -20,27 +22,29 @@ router.post('/', async (req, res) => {
 
   // Для конкретной игры в клубе
   if (req.body.gameId.length) {
-     const game = await Game.findById(req.body.gameId);
+    const game = await Game.findById(req.body.gameId);
     console.log('clubs in game id>>>>>>>', game.clubsIds);
-    conditions.push({ _id: { $in: game.clubsIds } });
-  };
+    conditions.push({_id: {$in: game.clubsIds}});
+  }
+  ;
 
 
   if (req.body.checkedToggle[0].length) {
     console.log(req.body.checkedToggle[0]);
-    conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
-  };
+    conditions.push({equipment: {$all: req.body.checkedToggle[0]}}) // [ps, oculus]
+  }
+  ;
 
   if (req.body.checkedToggle[1].length) {
     const length = req.body.checkedToggle[1].length;
     const num = req.body.checkedToggle[1][length - 1].split(' ')[1];
-    conditions.push({ price: { $lt: num } });
+    conditions.push({price: {$lt: num}});
   }
 
   // const skipItems = (req.body.pagination - 1) * 9;
   // console.log(req.body.pagination)
   const clubs = await Club.find(
-    conditions.length ? { $and: conditions } : {}
+    conditions.length ? {$and: conditions} : {}
   ).limit(req.body.pagination * 9);
   // console.log('clubs.length>>>>>', clubs.length);
   res.json(clubs);
@@ -53,14 +57,17 @@ router.put('/', async (req, res) => {
 
   for (let i = 0; i < club.games.length; i++) {
     console.log('game: ', club.games[i]);
-    let game = await Game.findOne({ name: club.games[i] });
-    if (game === null || club === undefined) return res.json({message: `Ошибка в названии игры ${club.games[i]}`, status: 'error'});
+    let game = await Game.findOne({name: club.games[i]});
+    if (game === null || club === undefined) return res.json({
+      message: `Ошибка в названии игры ${club.games[i]}`,
+      status: 'error'
+    });
     club.games[i] = game.name;
     club.gamesIds[i] = game._id;
   }
   console.log('запрос сохранения');
   try {
-    await Club.updateOne({ _id: club._id }, { ...club });
+    await Club.updateOne({_id: club._id}, {...club});
   } catch (err) {
     console.log('DB error - ', err);
     res.json({message: 'Ошибка записи.', status: 'error'});
@@ -71,7 +78,7 @@ router.put('/', async (req, res) => {
 
 router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
-  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
+  const club = await Club.findOneAndUpdate({_id: id}, {$inc: {clickCounter: 1}}, {new: true}); // new:true возвр измененный док
   console.log('club %s was clicked', club.name);
   res.end();
 });

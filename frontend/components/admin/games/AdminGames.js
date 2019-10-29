@@ -9,7 +9,7 @@ import {getAllGamesAC} from "../../../redux/actions/games.js";
 class AdminGames extends Component {
 
   state = {
-    val: ''
+    val: undefined
   };
 
   // paginationHandler = () => {
@@ -19,7 +19,7 @@ class AdminGames extends Component {
   componentDidMount = async () => {
     // window.addEventListener('scroll', this.paginationHandler);
     // await this.props.getGames();
-    this.props.getAllGames('');
+    this.props.getAllGames();
   };
 
   search = async () => {
@@ -51,7 +51,8 @@ class AdminGames extends Component {
               ? <Loading />
               : this.props.errorGame
                 ? <div>Ошибка, попробуйте ещё раз</div>
-                : (games[0]) && (isLogged) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
+                // : (games[0]) && (isLogged) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
+                : (games[0]) && (games.map((game, index) => <AdminGameCard key={index} game={game}/>))
             }
           </div>
         </div>
