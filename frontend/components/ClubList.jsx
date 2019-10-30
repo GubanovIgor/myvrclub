@@ -11,7 +11,7 @@ import { FilterButton } from '../stylesheets/filterItem';
 import ClubFilter from './ClubFilter';
 import Loading from './Loading';
 
-const ProfileContentGame = (props) => {
+const ClubList = (props) => {
   return (
     <ProfileContent__Wrapper>
       <div className={cardsWrapper.titleWrapper}>
@@ -30,4 +30,4 @@ const ProfileContentGame = (props) => {
   )
 };
 
-export default ProfileContentGame;
+export default ClubList;

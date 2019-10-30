@@ -6,14 +6,16 @@ import { ProfileContent } from '../stylesheets/index';
 
 // import components
 import GameCard from '../components/GameCard';
-//import Reviews from '../components/Reviews';
+import Reviews from '../components/Reviews';
 import ClubProfile from '../components/ClubProfile';
-import ProfileContentClub from './ProfileContentClub';
+import GameList from './GameList';
 import ProfileMenu from './ProfileMenu';
+import Map from '../components/Map';
+import Equipments from '../components/Equipments';
 
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
-import {getGamesAC} from "../redux/actions/games.js";
+import { getGamesAC } from "../redux/actions/games.js";
 
 class ClubPage extends Component {
   state = {
@@ -25,7 +27,7 @@ class ClubPage extends Component {
   };
 
   menuToggle = (menuSection) => {
-    this.setState({menuSection: menuSection});
+    this.setState({ menuSection: menuSection });
   }
 
   paginationHandler = () => {
@@ -59,19 +61,27 @@ class ClubPage extends Component {
       <main>
         <ClubProfile club={club} />
         <ProfileMenu menuToggle={this.menuToggle}
-                      menuSection={this.state.menuSection}
-                      menuItems={menuItems}/>
-        <ProfileContent>
-          <ProfileContentClub showFilterMark={showFilter}
-                                showFilter={this.showFilter}
-                                club={club}
-                                screenMode={screenMode}
-                                games={games}
-                                gameItems={gameItems}/>
-        </ProfileContent>
+          menuSection={this.state.menuSection}
+          menuItems={menuItems} />
 
-        {/* <hr className={styles.breakLine}/> */}
-        {/* <Reviews/> */}
+        <ProfileContent>
+          {(this.state.menuSection === 'Игры клуба') &&
+            <GameList showFilterMark={showFilter}
+              showFilter={this.showFilter}
+              club={club}
+              screenMode={screenMode}
+              games={games}
+              gameItems={gameItems} />}
+
+          {(this.state.menuSection === 'Отзывы') &&
+            <Reviews item={club} />}
+
+          {(this.state.menuSection === 'На карте') &&
+            <Map  club={club}/>}
+
+          {(this.state.menuSection === 'Оборудование') &&
+            <Equipments  item={club}/>}
+        </ProfileContent>
       </main>
     );
   }

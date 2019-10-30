@@ -84,7 +84,7 @@ export const ShowTelButton = styled.button`
 `;
 
 export const ProfileContent__Wrapper = styled.div`
-
+	padding-bottom: 200px;
 `;
 
 export const ProfileMenu__Wrapper = styled.div`
@@ -94,7 +94,7 @@ export const ProfileMenu__Wrapper = styled.div`
 
 	height: 60px;
 
-	margin-left: 20px;
+	margin-left: 28px;
 `;
 
 export const ProfileMenu__Item = styled.p`
@@ -114,5 +114,54 @@ export const ProfileMenu__Item = styled.p`
 
 	&:hover {
 		color: #338EEE;
+	}
+`;
+
+export const ProfileMenu__SectionTitle = styled.div`
+	display: flex;
+
+  margin: 40px auto;
+	padding-left: 15px;
+	
+	@media screen and (max-width: 425px) {
+		align-items: center;
+    margin: 0 auto;
+    padding: 10px 0 20px;
+
+    h2 {
+      margin-left: 15px;
+    }
+	}
+`;
+
+// Модальное окно карты
+export const MapModal__Wrapper = styled.div`
+	position: relative;
+	top: -493px;
+	left: 79px;
+		
+	width: 200px;
+
+	box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+	border-radius: 10px;
+	background-color: #FFF;
+
+	padding: 10px;
+`;
+
+export const MapModal__Title = styled.p`
+	font-size: 14px;
+	font-weight: 500;
+`;
+
+export const MapModal__Img = styled.img`
+	width: 100%;
+`;
+
+export const MapModal__Info = styled.div`
+	font-size: 11px;
+
+	span {
+		font-weight: 600;
 	}
 `;

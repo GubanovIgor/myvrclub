@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styled Components
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper, ProfileMenu__SectionTitle } from '../stylesheets/index';
 
 // SASS
 import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
@@ -11,13 +11,13 @@ import { FilterButton } from '../stylesheets/filterItem';
 import GameFilter from './GameFilter';
 import Loading from './Loading';
 
-const ProfileContentClub = (props) => {
+const GameList = (props) => {
   return (
     <ProfileContent__Wrapper>
-      <div className={cardsWrapper.titleWrapper}>
+      <ProfileMenu__SectionTitle>
         <FilterButton img={'filterSettings'} onClick={props.showFilter} />
         <h2>Игры клуба {props.club.name}</h2>
-      </div>
+      </ProfileMenu__SectionTitle>
 
       <div className={cardsWrapper.container}>
         {(props.screenMode === 'desktop') && <GameFilter clubId={props.club._id} />}
@@ -29,4 +29,4 @@ const ProfileContentClub = (props) => {
     </ProfileContent__Wrapper>
 )};
 
-export default ProfileContentClub;
+export default GameList;

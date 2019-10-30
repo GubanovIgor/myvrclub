@@ -7,10 +7,10 @@ import { ProfileContent } from '../stylesheets/index';
 // Import Components
 import ClubCard from '../components/ClubCard';
 import GameProfile from '../components/GameProfile';
-import ProfileContentGame from './ProfileContentGame';
+import ClubList from './ClubList';
 import ProfileMenu from './ProfileMenu';
+import Reviews from '../components/Reviews';
 // import Map from '../components/Map';
-// import Reviews from '../components/Reviews';
 
 // Action Creators
 import { showFilterToggleAC } from '../redux/actions/filters';
@@ -26,7 +26,7 @@ class GamePage extends Component {
   };
 
   menuToggle = (menuSection) => {
-    this.setState({menuSection: menuSection});
+    this.setState({ menuSection: menuSection });
   }
 
   paginationHandler = () => {
@@ -57,22 +57,23 @@ class GamePage extends Component {
       <main>
         <GameProfile game={game} />
         <ProfileMenu menuToggle={this.menuToggle}
-                      menuSection={this.state.menuSection}
-                      menuItems={menuItems}/>
+          menuSection={this.state.menuSection}
+          menuItems={menuItems} />
 
         {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
         {/* <Map/> */}
         <ProfileContent>
-          <ProfileContentGame showFilterMark={showFilter}
-            showFilter={this.showFilter}
-            game={game}
-            screenMode={screenMode}
-            clubs={clubs}
-            clubItems={clubItems} />
-        </ProfileContent>
+          {(this.state.menuSection === 'Где поиграть') &&
+            <ClubList showFilterMark={showFilter}
+              showFilter={this.showFilter}
+              game={game}
+              screenMode={screenMode}
+              clubs={clubs}
+              clubItems={clubItems} />}
 
-        {/* <hr className={styles.breakLine}/> */}
-        {/* <Reviews /> */}
+          {(this.state.menuSection === 'Отзывы') &&
+            <Reviews item={game} />}
+        </ProfileContent>
       </main>
     );
   }
