@@ -8,6 +8,10 @@ export const requestGetClubs = (data) => (
   { type: actionTypes.REQUESTED_CLUBS, clubs: data }
 );
 
+export const requestGetClubsForMap = (data) => (
+  { type: actionTypes.REQUESTED_CLUBS_FOR_MAP, clubs: data }
+);
+
 export const requestGetClub = (data) => (
   { type: actionTypes.REQUESTED_CLUB, club: data }
 );
@@ -69,5 +73,43 @@ export const getClubsAC = (
     });
     const data = await resp.json();
     dispatch(requestGetClubs(data));
+  }
+);
+
+// Получение клубов для карты
+export const getClubsForMapAC = (
+  filterToggleData,
+  gameId = '') => (
+  async (dispatch) => {
+    console.log('qweqwe')
+    //console.log('InitState', InitState);
+    // dispatch(requestClubs());
+    // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
+    let checkedToggle = [[], []];
+    if (filterToggleData) {
+      const keys = Object.keys(filterToggleData);
+      for (let i = 0; i < keys.length; i++) {
+        const categoryKeys = Object.keys(filterToggleData[keys[i]]);
+        categoryKeys.forEach((key) => {
+          if (filterToggleData[keys[i]][key]) {
+            checkedToggle[i].push(key);
+          }
+        });
+      }
+    }
+
+    const filterData = {
+      checkedToggle,
+      gameId,
+    };
+    const resp = await fetch(`${API_PREFIX}/club`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(filterData),
+    });
+    const data = await resp.json();
+    dispatch(requestGetClubsForMap(data));
   }
 );

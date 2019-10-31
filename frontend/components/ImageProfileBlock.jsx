@@ -45,7 +45,6 @@ class ImageProfileBlock extends Component {
       item = club;
       clubPathPrefix = IMG_URL_PREFIX;
     }
-    console.log('item', item);
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
       return <ImgMiniImageProfileBlock key={imgLink}

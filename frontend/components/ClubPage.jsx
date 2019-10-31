@@ -16,6 +16,7 @@ import Equipments from '../components/Equipments';
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
 import { getGamesAC } from "../redux/actions/games.js";
+import { getClubsForMapAC, getClubsAC } from '../redux/actions/clubs';
 
 class ClubPage extends Component {
   state = {
@@ -35,6 +36,7 @@ class ClubPage extends Component {
   }
 
   componentDidMount = async () => {
+    this.props.getClubsForMap(this.props.filterToggle);
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
   }
@@ -98,6 +100,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }

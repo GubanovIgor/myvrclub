@@ -13,7 +13,7 @@ const MapModal = (props) => (
       <MapModal__Title>
         {props.club.name}
       </MapModal__Title>
-      <MapModal__Img src={`/static/images/clubs/${props.club.cover}`}/>
+      <MapModal__Img src={`/static/images/clubs/${props.club.screenShot[0]}`}/>
       <MapModal__Info>
         <span>Адрес: </span>{props.club.address}<br/>
         <span>Метро: </span>{props.club.metro[0]}<br/>

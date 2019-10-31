@@ -134,6 +134,12 @@ export const ProfileMenu__SectionTitle = styled.div`
 	}
 `;
 
+// Карта
+export const MapContainer = styled.div`
+	width: 80%;
+  height: 600px;
+`;
+
 // Модальное окно карты
 export const MapModal__Wrapper = styled.div`
 	position: relative;

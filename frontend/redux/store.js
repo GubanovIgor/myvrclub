@@ -6,6 +6,7 @@ import { reducer } from './reducers';
 export const InitState = {
   // num: NaN,
   clubs: [],
+  clubsForMap: [],
   games: [],
   club: {},
   game: {},

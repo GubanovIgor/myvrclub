@@ -1,39 +1,41 @@
 import React, { Component } from 'react';
-
-// Styled Components
-import { ProfileContent__Wrapper, ProfileMenu__SectionTitle } from '../stylesheets/index';
-
-// SASS
-import styles from '../stylesheets/map.module.scss';
 import {connect} from "react-redux";
 
+// Styled Components
+import { ProfileContent__Wrapper, ProfileMenu__SectionTitle, MapContainer } from '../stylesheets/index';
+
 // Import Components
-import MapModal from '../components/MapModal';
+import MapModal from './MapModal';
+import Loading from './Loading';
+
+// action creators
+import { getClubsForMapAC, getClubsAC } from '../redux/actions/clubs';
 
 class Map extends Component {
 
-  componentDidMount() {
-    console.log(this.props.club, "MAP");
-
+  componentDidMount = () => {
+    // console.log(this.props.club, "MAP");
+    // this.props.getClubsForMap();
+    console.log(this.props.clubsForMap, "MAP");
     let baloons = [];
     // Подготовка балунов для всех клубов
-    // this.props.club.forEach(el => {
-    //   let coord = el.baloon[0].split(',');
-    //   coord[0] = parseFloat(coord[0], 10);
-    //   coord[1] = parseFloat(coord[1], 10);
-    //   baloons.push(coord);
-    // });
+    this.props.clubsForMap.forEach(el => {
+      let coord = el.baloon[0].split(',');
+      coord[0] = parseFloat(coord[0], 10);
+      coord[1] = parseFloat(coord[1], 10);
+      baloons.push(coord);
+    });
 
     //Балун для одного клуба
-    let coord = this.props.club.baloon[0].split(',');
-    coord[0] = parseFloat(coord[0], 10);
-    coord[1] = parseFloat(coord[1], 10);
-    baloons.push(coord);
+    // let coord = this.props.club.baloon[0].split(',');
+    // coord[0] = parseFloat(coord[0], 10);
+    // coord[1] = parseFloat(coord[1], 10);
+    // baloons.push(coord);
 
-    console.log(baloons);
+    // console.log(baloons);
 
     let domains = [];
-    this.props.clubs.forEach(el => {
+    this.props.clubsForMap.forEach(el => {
       domains.push(el.domain);
     });
 
@@ -50,8 +52,8 @@ class Map extends Component {
 
       for (let i = 0; i < baloons.length; i += 1) {
         const newPlacemark = new ymaps.Placemark(baloons[i], {
-          // content: 'Москва!',
-          // balloonContent: `<p><strong>сайт:</strong>${domains[i]}</p>`
+          content: 'Москва!',
+          balloonContent: `<p><strong>сайт:</strong>${domains[i]}</p>`
           // <p><strong>Адрес:</strong> ${data[i].address}</p>
           // <p><strong>Стоимость:</strong> ${data[i].price} ₽/30мин</p>
           // <a href="${data[i].site}" alt="">веб-сайт</a>
@@ -60,7 +62,6 @@ class Map extends Component {
 
         myMap.geoObjects.add(newPlacemark);
       }
-
     }
   }
 
@@ -70,9 +71,15 @@ class Map extends Component {
         <ProfileMenu__SectionTitle>
           <h2><span>{this.props.club.name} на карте Москвы</span></h2>
         </ProfileMenu__SectionTitle>
-        <div id="map" className={styles.map} club={this.props.item}/>
+        {console.log(this.props.clubsForMap, 'CLUBS')}
 
-        <MapModal club={this.props.club}/>
+        {/* {(this.props.clubs.length !== 0) ?
+        <MapContainer id="map" className={styles.map} club={this.props.item}/> :
+        (<Loading />)} */}
+
+        <MapContainer id="map" club={this.props.item}/>
+        {/* {(!this.state.mapRender && <Loading />)} */}
+        {/* <MapModal club={this.props.club}/> */}
       </ProfileContent__Wrapper>
     )
   }
@@ -80,8 +87,15 @@ class Map extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    clubs: store.clubs,
+    clubsForMap: store.clubsForMap,
   };
 };
 
-export default connect(mapStateToProps)(Map);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // getClubsForMap: () => dispatch(getClubsForMapAC()),
+    // getClubs: (filterToggleData, pagination, clubId) => dispatch(getClubsAC(filterToggleData, pagination, clubId)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
