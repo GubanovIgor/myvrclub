@@ -1,13 +1,14 @@
 import React from 'react';
 
 import * as Rx from "rxjs";
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {connect} from "react-redux";
-import {getAllGamesAC} from "../redux/actions/games.js";
+import {getAllGamesAC, getGamesAC, setSearchGameNameAC} from "../redux/actions/games.js";
+import {showFilterToggleAC} from "../redux/actions/filters.js";
 
 
 const onSearch$ = new Rx.Subject().pipe(
-  debounceTime(700),
+  debounceTime(600),
   distinctUntilChanged()
 );
 
@@ -16,13 +17,16 @@ class GameSearch extends React.Component {
     super(props);
 
     this.state = {
-      search: '',
-      debouncedVal: '',
+      search: ''
     };
   }
 
-  componentDidMount(){
-    this.subscription = onSearch$.subscribe(debouncedVal => this.props.getAllGames(debouncedVal));
+  componentDidMount() {
+    this.subscription = onSearch$.subscribe(searchData =>
+      this.onChangeSearchData(searchData))
+      //this.props.setSearchGameName(searchData));
+      //this.props.getGames(this.props.filterToggle, undefined, undefined, searchData));
+
   }
 
   componentWillUnmount() {
@@ -31,17 +35,22 @@ class GameSearch extends React.Component {
     }
   }
 
+  onChangeSearchData = (name) => {
+    this.props.setSearchGameName(name);
+    this.props.getGames(this.props.filterToggle, undefined, undefined, name);
+}
+
   onSearch = (e) => {
     const search = e.target.value;
-    this.setState({ search });
+    this.setState({search});
     onSearch$.next(search);
   }
 
   render() {
-    const { search, debouncedVal } = this.state;
+    const {search} = this.state;
     return (
       <div>
-        <input type="text" value={search} onChange={this.onSearch} />
+        <input type="text" value={search} onChange={this.onSearch}/>
       </div>
     );
   }
@@ -49,13 +58,15 @@ class GameSearch extends React.Component {
 
 const mapStateToProps = (store) => {
   return {
-    games: store.games,
+    filterToggle: store.gamesFilterToggle,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllGames: (name) => dispatch(getAllGamesAC(name)),
+    setSearchGameName: (name) => dispatch(setSearchGameNameAC(name)),
+    //getAllGames: (name) => dispatch(getAllGamesAC(name)),
+    getGames: (filterToggleData, pagination, clubId, name) => dispatch(getGamesAC(filterToggleData, pagination, clubId, name)),
   }
 };
 

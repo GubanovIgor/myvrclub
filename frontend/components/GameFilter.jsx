@@ -12,13 +12,14 @@ import {getGamesAC} from "../redux/actions/games.js";
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
-    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
+    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId, this.props.searchGameName);
+    console.log('this.props.searchGameName', this.props.searchGameName)
     this.forceUpdate()
   };
 
-  shouldComponentUpdate = () => {
-    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
-  }
+  // shouldComponentUpdate = () => {
+  //   this.props.getGames(this.props.filterToggle, undefined, this.props.clubId);
+  // }
 
   render() {
     return (
@@ -39,12 +40,13 @@ class GameFilter extends Component {
 const mapStateToProps = (store) => ({
   gamesFilter: store.gamesFilter,
   filterToggle: store.gamesFilterToggle,
+  searchGameName: store.searchGameName
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     toggle: (item, category) => dispatch(filterToggleGamesAC(item, category)),
-    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
+    getGames: (filterToggleData, pagination, clubId, name) => dispatch(getGamesAC(filterToggleData, pagination, clubId, name)),
   };
 }
 
