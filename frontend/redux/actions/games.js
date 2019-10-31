@@ -23,7 +23,6 @@ export const getAllGamesAC = (name) => (
     dispatch(requestGames());
     const resp = await fetch(`${API_PREFIX}/game?name=${name}`);
     const games = await resp.json();
-    console.log('games-----', games);
     dispatch(requestGetGames(games));
   }
 );

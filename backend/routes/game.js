@@ -4,16 +4,22 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Game = require('../models/games');
 const Club = require('../models/clubs');
 
-router.get('/', async (req, res) => {
-  console.log('req.query.name', req.query.name);
-  if (req.query.name === undefined || req.query.name === 'undefined' || req.query.name === '')
-    res.json( await Game.find());
-  else {console.log('else');
-    res.json(await Game.find({name: req.query.name}))}
-});
+// router.get('/', async (req, res) => {
+//   console.log('req.query.name', req.query.name);
+//   if (req.query.name === undefined || req.query.name === 'undefined' || req.query.name === '')
+//     res.json( await Game.find());
+//   else {console.log('else');
+//     res.json(await Game.find({name: req.query.name}))}
+// });
 
 router.get('/url', async (req, res) => {
   res.json(await Game.findOne({urlName: req.query.name}));
+});
+
+router.get('/', async (req, res) => {
+  const nameRegex = new RegExp(req.query.name, 'i');
+  const games = await Game.find({name: {$regex: nameRegex}});
+  res.json( games );
 });
 
 router.post('/', async (req, res) => {
@@ -66,10 +72,6 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
   const game = req.body.game;
-  let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
-  gamenames.forEach(game => {
-    console.log(game.name);
-  });
   game.urlName = transliterate(game.name);
   game.clubsIds = [];
 
