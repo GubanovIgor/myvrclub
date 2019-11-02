@@ -21,9 +21,10 @@ router.post('/', async (req, res) => {
   const categories = Object.keys(req.body.checkedToggle);
   let clubGames = [];
 
-  //Для поиска игр
-  if (req.body.searchNameData) {
-    const nameRegex = new RegExp(req.body.searchNameData, 'i');
+    console.log('searchName', req.body.searchName);
+  //Для поиска по имени игры
+  if (req.body.searchName) {
+    const nameRegex = new RegExp(req.body.searchName, 'i');
     //conditions.push({ _id: { $in: club.gamesIds } })
     conditions.push({name: {$regex: nameRegex}})
   }

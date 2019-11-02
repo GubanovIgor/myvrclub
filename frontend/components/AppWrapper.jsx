@@ -45,7 +45,8 @@ class AppWrapper extends Component {
 		(type === 'game') ?
 		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type, id, this.props.searchGameName)
 			:
-		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type, id)
+		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type, id, this.props.searchGameName)
+    console.log('this.props.searchGameName in AppWrapper', this.props.searchGameName)
 	};
 
 	render() {
