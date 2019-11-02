@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
 import Loading from '../components/Loading';
+import ClubCards from '../components/ClubCards';
 
 // import AC
 import { showFilterToggleAC } from '../redux/actions/filters.js';
@@ -58,9 +59,10 @@ class Clubs extends Component {
           <div className={styles.container}>
             {(this.props.screenMode === 'desktop') && <ClubFilter />}
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
-            <div className={styles.cardsWrapper}>
+            {/* <div className={styles.cardsWrapper}>
               {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
-            </div>
+            </div> */}
+            <ClubCards clubs={clubs} itemsClub={itemsClub}/>
           </div>
         </ProfileContent__Wrapper>
       </div >

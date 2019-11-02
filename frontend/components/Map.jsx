@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 // Styled Components
 import { ProfileContent__Wrapper, ProfileMenu__SectionTitle, MapContainer } from '../stylesheets/index';
@@ -14,11 +14,8 @@ import { getClubsForMapAC, getClubsAC } from '../redux/actions/clubs';
 class Map extends Component {
 
   componentDidMount = () => {
-    // console.log(this.props.club, "MAP");
-    // this.props.getClubsForMap();
-    console.log(this.props.clubsForMap, "MAP");
-    let baloons = [];
     // Подготовка балунов для всех клубов
+    let baloons = [];
     this.props.clubsForMap.forEach(el => {
       let coord = el.baloon[0].split(',');
       coord[0] = parseFloat(coord[0], 10);
@@ -26,20 +23,10 @@ class Map extends Component {
       baloons.push(coord);
     });
 
-    //Балун для одного клуба
-    // let coord = this.props.club.baloon[0].split(',');
-    // coord[0] = parseFloat(coord[0], 10);
-    // coord[1] = parseFloat(coord[1], 10);
-    // baloons.push(coord);
-
-    // console.log(baloons);
-
     let domains = [];
     this.props.clubsForMap.forEach(el => {
       domains.push(el.domain);
     });
-
-    // console.log(domains);
 
     ymaps.ready(init);
     let myMap;
@@ -63,25 +50,18 @@ class Map extends Component {
         myMap.geoObjects.add(newPlacemark);
       }
     }
+    this.forceUpdate()
   }
 
   render() {
     return (
       <div>
-        <ProfileMenu__SectionTitle>
-          {(this.props.club) &&
+        {(this.props.club) &&
+          <ProfileMenu__SectionTitle>
             <h2><span>{this.props.club.name} на карте Москвы</span></h2>
-          }
-        </ProfileMenu__SectionTitle>
-        {console.log(this.props.clubsForMap, 'CLUBS')}
+          </ProfileMenu__SectionTitle>}
 
-        {/* {(this.props.clubs.length !== 0) ?
-        <MapContainer id="map" className={styles.map} club={this.props.item}/> :
-        (<Loading />)} */}
-
-        <MapContainer id="map" club={this.props.item}/>
-        {/* {(!this.state.mapRender && <Loading />)} */}
-        {/* <MapModal club={this.props.club}/> */}
+        {(this.props.clubsForMap) && <MapContainer id="map" />}
       </div>
     )
   }

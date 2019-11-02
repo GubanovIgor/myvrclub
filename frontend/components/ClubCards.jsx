@@ -14,7 +14,7 @@ class ClubCards extends Component {
     return (
       <ClubCardsWrapper>
         {(this.props.map) && <Map/>}
-        {(this.props.clubs.length !== 0 && !this.props.map) && (this.props.clubItems)}
+        {(this.props.clubs.length !== 0 && !this.props.map) && (this.props.itemsClub)}
       </ClubCardsWrapper>
     )
   }

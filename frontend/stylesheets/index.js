@@ -188,7 +188,7 @@ export const FilterSectionWrapper__Title = styled.div`
 
 // Карта
 export const MapContainer = styled.div`
-	width: 600px;
+	width: 900px;
   height: 600px;
 `;
 
