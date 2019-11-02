@@ -9,11 +9,11 @@ import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 // Import Components
 import { FilterButton } from '../stylesheets/filterItem';
 import ClubFilter from './ClubFilter';
-import Loading from './Loading';
+import ClubCards from './ClubCards';
 
 const ClubList = (props) => {
   return (
-    <ProfileContent__Wrapper>
+    <div>
       <div className={cardsWrapper.titleWrapper}>
         <FilterButton img={'filterSettings'} onClick={props.showFilter} />
         <h2>Где поиграть в {props.game.name}</h2>
@@ -21,12 +21,10 @@ const ClubList = (props) => {
 
       <div className={cardsWrapper.container}>
         {(props.screenMode === 'desktop') && <ClubFilter gameId={props.game._id} />}
-        {(props.showFilter && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
-        <div className={cardsWrapper.cardsWrapper}>
-          {(props.clubs.length !== 0) ? (props.clubItems) : (<Loading />)}
-        </div>
+        {(props.showFilterMark && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
+        <ClubCards clubs={props.clubs} itemsClub={props.clubItems}/>
       </div>
-    </ProfileContent__Wrapper>
+    </div>
   )
 };
 

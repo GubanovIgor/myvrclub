@@ -7,7 +7,7 @@ import styles from '../stylesheets/reviews.module.scss';
 import { ProfileContent__Wrapper, ProfileMenu__SectionTitle } from '../stylesheets/index';
 
 const Reviews = (props) => (
-    <ProfileContent__Wrapper>
+    <div>
       <ProfileMenu__SectionTitle>
         <h2>Отзывы на <span>{props.item.name}</span></h2>
       </ProfileMenu__SectionTitle>
@@ -56,7 +56,7 @@ const Reviews = (props) => (
           <li><a href="#">Еще отзывы</a></li>
         </ul>
       </div>
-    </ProfileContent__Wrapper>
+    </div>
 );
 
 export default Reviews;

@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { ProfileContent } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import Header from '../components/Header';
 import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
 import Loading from '../components/Loading';
+import ClubCards from '../components/ClubCards';
 
 // import AC
 import { showFilterToggleAC } from '../redux/actions/filters.js';
@@ -50,7 +51,7 @@ class Clubs extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <ProfileContent>
+        <ProfileContent__Wrapper>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
             <h1 className={styles.title}>Список VR клубов (Москва)</h1>
@@ -58,11 +59,9 @@ class Clubs extends Component {
           <div className={styles.container}>
             {(this.props.screenMode === 'desktop') && <ClubFilter />}
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
-            <div className={styles.cardsWrapper}>
-              {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
-            </div>
+            <ClubCards clubs={clubs} itemsClub={itemsClub}/>
           </div>
-        </ProfileContent>
+        </ProfileContent__Wrapper>
       </div >
     );
   }

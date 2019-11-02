@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Styled Components
-import { ProfileContent } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import GameCard from '../components/GameCard';
@@ -10,7 +10,7 @@ import Reviews from '../components/Reviews';
 import ClubProfile from '../components/ClubProfile';
 import GameList from './GameList';
 import ProfileMenu from './ProfileMenu';
-import Map from '../components/Map';
+import MapSection from '../components/MapSection';
 import Equipments from '../components/Equipments';
 
 // action creators
@@ -66,7 +66,7 @@ class ClubPage extends Component {
           menuSection={this.state.menuSection}
           menuItems={menuItems} />
 
-        <ProfileContent>
+        <ProfileContent__Wrapper>
           {(this.state.menuSection === 'Игры клуба') &&
             <GameList showFilterMark={showFilter}
               showFilter={this.showFilter}
@@ -79,11 +79,11 @@ class ClubPage extends Component {
             <Reviews item={club} />}
 
           {(this.state.menuSection === 'На карте') &&
-            <Map  club={club}/>}
+            <MapSection  club={club}/>}
 
           {(this.state.menuSection === 'Оборудование') &&
             <Equipments  item={club}/>}
-        </ProfileContent>
+        </ProfileContent__Wrapper>
       </main>
     );
   }

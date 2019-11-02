@@ -13,6 +13,13 @@ import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
+import MapRatingToggle from '../components/MapRatingToggle'
+
+// Styled Components
+import {
+  FilterSectionWrapper,
+  FilterSectionWrapper__Title,
+} from '../stylesheets/index';
 import Search from "./Search.jsx";
 //import MapRatingToggle from '../components/MapRatingToggle'
 
@@ -38,17 +45,22 @@ class ClubFilter extends Component {
     this.forceUpdate()
   };
 
-  onChangeMap = () => {
+  changeMapHandler = () => {
+    console.log('hui')
     this.props.changeMap();
   };
-
-  offChangeMap = () => {
-    this.props.offChangeMap();
-  }
 
   render() {
     return (
       <div className={styles.container}>
+
+        <FilterSectionWrapper>
+          <FilterSectionWrapper__Title>
+            Рейтинг / Карта
+          </FilterSectionWrapper__Title>
+          <MapRatingToggle changeMapHandler={this.changeMapHandler} map={this.props.map}/>
+        </FilterSectionWrapper>
+
         <Search isClub={true}/>
         {/* <MapRatingToggle /> */}
         {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
@@ -60,6 +72,7 @@ class ClubFilter extends Component {
             checked={this.props.filterToggle[el.title]}
           />
         )}
+
       </div>
     );
   }
@@ -69,6 +82,7 @@ const mapStateToProps = (store) => ({
   clubsFilter: store.clubsFilter,
   filterToggle: store.clubsFilterToggle,
   screenMode: store.screenMode,
+  map: store.map,
   SearchName: store.SearchName
 });
 
@@ -78,7 +92,6 @@ function mapDispatchToProps(dispatch) {
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
     getClubs: (filterToggleData, pagination, gameId, name) => dispatch(getClubsAC(filterToggleData, pagination, gameId, name)),
     changeMap: () => dispatch(changeMapAC()),
-    offChangeMap: () => dispatch(offChangeMapAC()),
   };
 }
 
