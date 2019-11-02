@@ -16,7 +16,7 @@ export const switchPaginationValueAC = (value, filterToggleData, type, id = '', 
     };
 
     if (type === 'club') {
-      dispatch(getClubsAC(filterToggleData, value, id));
+      dispatch(getClubsAC(filterToggleData, value, id, namesForSearch));
     }
   }
 );

@@ -8,12 +8,12 @@ import styles from '../stylesheets/filter.module.scss';
 import FilterSection from '../components/FilterSection';
 import { filterToggleGamesAC } from '../redux/actions/filters';
 import {getGamesAC} from "../redux/actions/games.js";
+import Search from "./Search.jsx";
 
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
-    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId, this.props.searchGameName);
-    console.log('this.props.searchGameName', this.props.searchGameName)
+    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId, this.props.SearchName);
     this.forceUpdate()
   };
 
@@ -24,6 +24,7 @@ class GameFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
+        <Search isGame={true}/>
         {this.props.gamesFilter.map((el, index) =>
           <FilterSection
             key={index}
@@ -40,7 +41,7 @@ class GameFilter extends Component {
 const mapStateToProps = (store) => ({
   gamesFilter: store.gamesFilter,
   filterToggle: store.gamesFilterToggle,
-  searchGameName: store.searchGameName
+  SearchName: store.SearchName
 });
 
 function mapDispatchToProps(dispatch) {

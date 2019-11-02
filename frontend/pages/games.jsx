@@ -17,7 +17,6 @@ import GameFilter from '../components/GameFilter';
 import { showFilterToggleAC } from '../redux/actions/filters.js';
 import {getGamesAC} from "../redux/actions/games.js";
 import Loading from '../components/Loading';
-import GameSearch from "../components/GameSearch.jsx";
 
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -55,7 +54,6 @@ class Games extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <GameSearch/>
         <ProfileContent>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
@@ -79,7 +77,7 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     games: store.games,
-    searchGameName: store.searchGameName,
+    SearchName: store.SearchName,
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,

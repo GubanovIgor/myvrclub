@@ -3,8 +3,9 @@ import React from 'react';
 import * as Rx from "rxjs";
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {connect} from "react-redux";
-import {getAllGamesAC, getGamesAC, setSearchGameNameAC} from "../redux/actions/games.js";
-import {showFilterToggleAC} from "../redux/actions/filters.js";
+import {getGamesAC} from "../redux/actions/games.js";
+import {getClubsAC} from "../redux/actions/clubs.js";
+import {setSearchNameAC} from "../redux/actions/search.js";
 
 
 const onSearch$ = new Rx.Subject().pipe(
@@ -12,7 +13,7 @@ const onSearch$ = new Rx.Subject().pipe(
   distinctUntilChanged()
 );
 
-class GameSearch extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
 
@@ -36,7 +37,8 @@ class GameSearch extends React.Component {
 
   onChangeSearchData = (name) => {
     this.props.setSearchGameName(name);
-    this.props.getGames(this.props.filterToggle, undefined, undefined, name);
+    this.props.isGame && this.props.getGames(this.props.filterToggle, undefined, undefined, name);
+    this.props.isClub && this.props.getClubs(this.props.filterToggle, undefined, undefined, name);
 };
 
   onSearch = (e) => {
@@ -63,10 +65,11 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSearchGameName: (name) => dispatch(setSearchGameNameAC(name)),
+    setSearchGameName: (name) => dispatch(setSearchNameAC(name)),
     //getAllGames: (name) => dispatch(getAllGamesAC(name)),
-    getGames: (filterToggleData, pagination, clubId, name) => dispatch(getGamesAC(filterToggleData, pagination, clubId, name)),
+    getGames: (filterToggleData, pagination, clubIds, name) => dispatch(getGamesAC(filterToggleData, pagination, clubIds, name)),
+    getClubs: (filterToggleData, pagination, gameIds, name) => dispatch(getClubsAC(filterToggleData, pagination, gameIds, name)),
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameSearch);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

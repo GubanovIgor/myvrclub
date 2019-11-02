@@ -5,9 +5,14 @@ const Game = require('../models/games');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
-  // console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find());
-  else res.json([await Club.findOne({name: req.query.name})]);
+  const nameRegex = new RegExp(req.query.name, 'i');
+  const games = await Game.find({name: {$regex: nameRegex}});
+  res.json( games );
+});
+
+router.get('/url', async (req, res) => {
+  // console.log(req.query.name);
+  res.json(await Club.findOne({urlName: req.query.name}));
 });
 
 // Получить один клуб для карты
@@ -18,14 +23,17 @@ router.post('/1', async (req, res) => {
   // else res.json([await Club.findOne({name: req.query.name})]);
 });
 
-router.get('/url', async (req, res) => {
-  // console.log(req.query.name);
-  res.json(await Club.findOne({urlName: req.query.name}));
-});
 
 // Получаем игры по фильтрам
 router.post('/', async (req, res) => {
   const conditions = [];
+
+    console.log('searchName', req.body.searchName);
+  //Для поиска по имени клуба
+  if (req.body.searchName) {
+    const nameRegex = new RegExp(req.body.searchName, 'i');
+    conditions.push({name: {$regex: nameRegex}})
+  }
 
   // Для конкретной игры в клубе
   if (req.body.gameId.length) {
@@ -38,7 +46,7 @@ router.post('/', async (req, res) => {
   if (req.body.checkedToggle[0].length) {
     // console.log(req.body.checkedToggle[0]);
     conditions.push({ equipment: { $all: req.body.checkedToggle[0] }}) // [ps, oculus]
-  };
+  }
 
   // По цене
   if (req.body.checkedToggle[1].length) {
