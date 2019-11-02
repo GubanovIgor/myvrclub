@@ -10,7 +10,7 @@ import Reviews from '../components/Reviews';
 import ClubProfile from '../components/ClubProfile';
 import GameList from './GameList';
 import ProfileMenu from './ProfileMenu';
-import Map from '../components/Map';
+import MapSection from '../components/MapSection';
 import Equipments from '../components/Equipments';
 
 // action creators
@@ -79,7 +79,7 @@ class ClubPage extends Component {
             <Reviews item={club} />}
 
           {(this.state.menuSection === 'На карте') &&
-            <Map  club={club}/>}
+            <MapSection  club={club}/>}
 
           {(this.state.menuSection === 'Оборудование') &&
             <Equipments  item={club}/>}

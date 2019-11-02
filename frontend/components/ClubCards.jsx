@@ -6,14 +6,14 @@ import { ClubCardsWrapper } from '../stylesheets/index';
 
 // Import Components
 import { FilterButton } from '../stylesheets/filterItem';
-import Map from './Map';
+import MapSection from './MapSection';
 import Loading from './Loading';
 
 class ClubCards extends Component {
   render() {
     return (
       <ClubCardsWrapper>
-        {(this.props.map) && <Map/>}
+        {(this.props.map) && <MapSection/>}
         {(this.props.clubs.length !== 0 && !this.props.map) && (this.props.itemsClub)}
       </ClubCardsWrapper>
     )

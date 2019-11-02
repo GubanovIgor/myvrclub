@@ -22,7 +22,7 @@ const ClubList = (props) => {
       <div className={cardsWrapper.container}>
         {(props.screenMode === 'desktop') && <ClubFilter gameId={props.game._id} />}
         {(props.showFilterMark && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
-        <ClubCards clubs={props.clubs} clubItems={props.clubItems}/>
+        <ClubCards clubs={props.clubs} itemsClub={props.clubItems}/>
       </div>
     </div>
   )
