@@ -13,6 +13,7 @@ import {getClubsAC} from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
+import GameSearch from "./Search.jsx";
 //import MapRatingToggle from '../components/MapRatingToggle'
 
 class ClubFilter extends Component {
@@ -46,6 +47,7 @@ class ClubFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
+        <GameSearch isClub={true}/>
         {/* <MapRatingToggle /> */}
         {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
         {this.props.clubsFilter.map((el, index) =>

@@ -4,12 +4,18 @@ const Club = require('../models/clubs');
 const Game = require('../models/games');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
+// router.get('/', async (req, res) => {
+//   console.log(req.query.name);
+//   if (req.query.name === '' || req.query.name === undefined || req.query.name === 'undefined')
+//     res.json(await Club.find());
+//   else
+//     res.json(await Club.find({name: req.query.name}));
+// });
+
 router.get('/', async (req, res) => {
-  console.log(req.query.name);
-  if (req.query.name === '' || req.query.name === undefined || req.query.name === 'undefined')
-    res.json(await Club.find());
-  else
-    res.json(await Club.find({name: req.query.name}));
+  const nameRegex = new RegExp(req.query.name, 'i');
+  const games = await Club.find({name: {$regex: nameRegex}});
+  res.json( games );
 });
 
 router.get('/url', async (req, res) => {
@@ -20,10 +26,15 @@ router.get('/url', async (req, res) => {
 router.post('/', async (req, res) => {
   const conditions = [];
 
+  //Для поиска клубов
+  if (req.body.searchName) {
+    const nameRegex = new RegExp(req.body.searchName, 'i');
+    conditions.push({name: {$regex: nameRegex}})
+  }
+
   // Для конкретной игры в клубе
   if (req.body.gameId.length) {
     const game = await Game.findById(req.body.gameId);
-    console.log('clubs in game id>>>>>>>', game.clubsIds);
     conditions.push({_id: {$in: game.clubsIds}});
   }
 

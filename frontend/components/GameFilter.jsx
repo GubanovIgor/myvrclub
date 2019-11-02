@@ -8,6 +8,7 @@ import styles from '../stylesheets/filter.module.scss';
 import FilterSection from '../components/FilterSection';
 import { filterToggleGamesAC } from '../redux/actions/filters';
 import {getGamesAC} from "../redux/actions/games.js";
+import GameSearch from "./Search.jsx";
 
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
@@ -24,6 +25,7 @@ class GameFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
+        <GameSearch isGame={true}/>
         {this.props.gamesFilter.map((el, index) =>
           <FilterSection
             key={index}

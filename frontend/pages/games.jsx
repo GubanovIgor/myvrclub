@@ -18,7 +18,7 @@ import GameFilter from '../components/GameFilter';
 import { showFilterToggleAC } from '../redux/actions/filters.js';
 import {getGamesAC} from "../redux/actions/games.js";
 import Loading from '../components/Loading';
-import GameSearch from "../components/GameSearch.jsx";
+import GameSearch from "../components/Search.jsx";
 
 class Games extends Component {
   showFilter = () => {
@@ -53,7 +53,6 @@ class Games extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-          <GameSearch/>
         <CardsInProfileWrapper>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />

@@ -44,7 +44,7 @@ export const getGamesAC = (
   filterToggleData = InitState.gamesFilterToggle,
   pagination = 1,
   clubId = '',
-  searchNameData = ''
+  searchName = ''
 ) => (
   async (dispatch) => {
     dispatch(requestGames());
@@ -65,7 +65,7 @@ export const getGamesAC = (
       checkedToggle,
       pagination,
       clubId,
-      searchNameData
+      searchName
     };
 
     const resp = await fetch(`${API_PREFIX}/game`, {

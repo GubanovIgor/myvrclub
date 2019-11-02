@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
-import GameSearch from "./GameSearch.jsx";
+import GameSearch from "./Search.jsx";
 
 // SASS
 import styles from '../stylesheets/header.module.scss';
