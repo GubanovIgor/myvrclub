@@ -9,7 +9,7 @@ import styles from '../stylesheets/filter.module.scss';
 //import AC
 import { changeMapAC, offChangeMapAC } from '../redux/actions/map';
 import { filterToggleClubsAC } from '../redux/actions/filters.js';
-import {getClubsAC} from "../redux/actions/clubs.js";
+import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
@@ -31,6 +31,7 @@ class ClubFilter extends Component {
   // Метод для передачи изменений чекбоксов фильтра в стор
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
+    this.props.getClubsForMap(this.props.filterToggle);
     this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId);
     this.forceUpdate()
   };
@@ -69,6 +70,7 @@ const mapStateToProps = (store) => ({
 
 function mapDispatchToProps(dispatch) {
   return {
+    getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
     changeMap: () => dispatch(changeMapAC()),

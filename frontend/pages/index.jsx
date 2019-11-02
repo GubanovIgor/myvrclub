@@ -8,7 +8,7 @@ import {getClubsAC} from "../redux/actions/clubs.js";
 import {getGamesAC} from "../redux/actions/games.js";
 
 // SASS
-//import styles from '../stylesheets/index.module.scss'
+import styles from '../stylesheets/index.module.scss'
 
 // Components
 import ClubCollections from '../components/ClubCollections';
@@ -30,22 +30,22 @@ class Index extends Component {
     ],
   };
 
-  // static async getInitialProps({ reduxStore, req }) {
-  //   const isServer = !!req;
-  //   //console.log('getInitialProps - isServer', isServer);
-  //   console.log('reduxStore', reduxStore);
-  //   await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
-  //   await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
-  //   return {
-  //     games: reduxStore.getState().games,
-  //     clubs: reduxStore.getState().clubs
-  //   };
-  // }
+  static async getInitialProps({ reduxStore, req }) {
+    const isServer = !!req;
+    //console.log('getInitialProps - isServer', isServer);
+    //console.log('reduxStore', reduxStore);
+    await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
+    await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
+    return {
+      games: reduxStore.getState().games,
+      clubs: reduxStore.getState().clubs
+    };
+  }
 
-  componentDidMount = async () => {
-    this.props.getGames();
-    this.props.getClubs();
-  };
+  // componentDidMount = async () => {
+  //   this.props.getGames();
+  //   this.props.getClubs();
+  // };
 
   caruselDataMix = (side, index) => {
     let newData = this.state.caruselData.slice();

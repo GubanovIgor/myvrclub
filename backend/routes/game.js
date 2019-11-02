@@ -4,13 +4,11 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const Game = require('../models/games');
 const Club = require('../models/clubs');
 
-// router.get('/', async (req, res) => {
-//   console.log('req.query.name', req.query.name);
-//   if (req.query.name === undefined || req.query.name === 'undefined' || req.query.name === '')
-//     res.json( await Game.find());
-//   else {console.log('else');
-//     res.json(await Game.find({name: req.query.name}))}
-// });
+router.get('/', async (req, res) => {
+  // console.log(req.query.name)
+  if (req.query.name === '' || req.query.name === undefined) res.json( await Game.find())
+  else res.json([await Game.findOne({name: req.query.name})]);
+});
 
 router.get('/url', async (req, res) => {
   res.json(await Game.findOne({urlName: req.query.name}));
@@ -38,7 +36,7 @@ router.post('/', async (req, res) => {
   // Для конкретного клуба
   if (req.body.clubId.length) {
     const club = await Club.findById(req.body.clubId);
-    console.log('games in club', club.gamesIds);
+    // console.log('games in club', club.gamesIds);
     conditions.push({ _id: { $in: club.gamesIds } })
   }
 
@@ -94,7 +92,7 @@ router.put('/', async (req, res) => {
   try {
     await Game.updateOne({ _id: game._id }, { ...game });
   } catch (err) {
-    console.log('DB error - ', err);
+    // console.log('DB error - ', err);
     res.json({ message: 'Ошибка записи.', status: 'error' });
   }
   //console.log('game name', game.name);

@@ -9,7 +9,6 @@ import AppWrapper from '../components/AppWrapper';
 class ReduxApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props;
-        //console.log('_app pageProps', pageProps)
     return (
       <Provider store={reduxStore}>
         <AppWrapper pageProps={pageProps} Component={Component}/>

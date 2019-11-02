@@ -1,26 +1,41 @@
 import React, { Component } from 'react';
-
-// SASS
-import styles from '../stylesheets/map.module.scss';
 import {connect} from "react-redux";
+
+// Styled Components
+import { ProfileContent__Wrapper, ProfileMenu__SectionTitle, MapContainer } from '../stylesheets/index';
+
+// Import Components
+import MapModal from './MapModal';
+import Loading from './Loading';
+
+// action creators
+import { getClubsForMapAC, getClubsAC } from '../redux/actions/clubs';
 
 class Map extends Component {
 
-  componentDidMount() {
-    console.log(this.props.clubs, "MAP");
-
+  componentDidMount = () => {
+    // console.log(this.props.club, "MAP");
+    // this.props.getClubsForMap();
+    console.log(this.props.clubsForMap, "MAP");
     let baloons = [];
-    this.props.clubs.forEach(el => {
+    // Подготовка балунов для всех клубов
+    this.props.clubsForMap.forEach(el => {
       let coord = el.baloon[0].split(',');
       coord[0] = parseFloat(coord[0], 10);
       coord[1] = parseFloat(coord[1], 10);
       baloons.push(coord);
     });
 
-    console.log(baloons);
+    //Балун для одного клуба
+    // let coord = this.props.club.baloon[0].split(',');
+    // coord[0] = parseFloat(coord[0], 10);
+    // coord[1] = parseFloat(coord[1], 10);
+    // baloons.push(coord);
+
+    // console.log(baloons);
 
     let domains = [];
-    this.props.clubs.forEach(el => {
+    this.props.clubsForMap.forEach(el => {
       domains.push(el.domain);
     });
 
@@ -47,21 +62,40 @@ class Map extends Component {
 
         myMap.geoObjects.add(newPlacemark);
       }
-
     }
   }
 
   render() {
     return (
-      <div id="map" className={styles.map}/>
+      <ProfileContent__Wrapper>
+        <ProfileMenu__SectionTitle>
+          <h2><span>{this.props.club.name} на карте Москвы</span></h2>
+        </ProfileMenu__SectionTitle>
+        {console.log(this.props.clubsForMap, 'CLUBS')}
+
+        {/* {(this.props.clubs.length !== 0) ?
+        <MapContainer id="map" className={styles.map} club={this.props.item}/> :
+        (<Loading />)} */}
+
+        <MapContainer id="map" club={this.props.item}/>
+        {/* {(!this.state.mapRender && <Loading />)} */}
+        {/* <MapModal club={this.props.club}/> */}
+      </ProfileContent__Wrapper>
     )
   }
 }
 
 const mapStateToProps = (store) => {
   return {
-    clubs: store.clubs,
+    clubsForMap: store.clubsForMap,
   };
 };
 
-export default connect(mapStateToProps)(Map);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // getClubsForMap: () => dispatch(getClubsForMapAC()),
+    // getClubs: (filterToggleData, pagination, clubId) => dispatch(getClubsAC(filterToggleData, pagination, clubId)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

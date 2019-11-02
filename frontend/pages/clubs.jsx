@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
-
-//SASS
-import styles from '../stylesheets/cardsWrapper.module.scss';
+import { ProfileContent } from '../stylesheets/index';
 
 // import components
 import Header from '../components/Header';
@@ -18,6 +15,9 @@ import Loading from '../components/Loading';
 import { showFilterToggleAC } from '../redux/actions/filters.js';
 import { switchPaginationValueAC} from '../redux/actions/pagination';
 import {getClubsAC} from "../redux/actions/clubs.js";
+
+//SASS
+import styles from '../stylesheets/cardsWrapper.module.scss';
 
 class Clubs extends Component {
   showFilter = () => {
@@ -50,7 +50,7 @@ class Clubs extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <CardsInProfileWrapper>
+        <ProfileContent>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
             <h1 className={styles.title}>Список VR клубов (Москва)</h1>
@@ -62,7 +62,7 @@ class Clubs extends Component {
               {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
             </div>
           </div>
-        </CardsInProfileWrapper>
+        </ProfileContent>
       </div >
     );
   }

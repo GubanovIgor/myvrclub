@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import AdminHeader from '../AdminHeader';
 import {connect} from 'react-redux';
 import AdminGameCard from './AdminGameCard';
-import styles from '../../../stylesheets/cardsWrapper.module.scss';
 import Loading from "../../Loading.jsx";
 import {getAllGamesAC} from "../../../redux/actions/games.js";
+import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 class AdminGames extends Component {
 

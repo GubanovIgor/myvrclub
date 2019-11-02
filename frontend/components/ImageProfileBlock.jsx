@@ -5,7 +5,7 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 import {
   ImgMiniImageProfileBlock,
   PictureUnderline,
-  ScreensotsWrapper,
+  ScreenshotsWrapper,
 } from '../stylesheets/index';
 
 //SASS
@@ -22,6 +22,7 @@ class ImageProfileBlock extends Component {
     const { club, game } = this.props;
     if (!!club) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
     if (!!game) this.setState({ imageUrl: game.screenShot[0] });
+    this.setState({screenWrapperWidth: this.screenshotsWrapper.clientWidth});
   }
 
   updateUrlImage = imageUrl => {
@@ -32,14 +33,18 @@ class ImageProfileBlock extends Component {
     this.setState( { imageUrl: clubPathPrefix + imgLink, screenIndex: index } )
   }
 
+  swipe = (index) => {
+    this.setState( { screenIndex: index } )
+  }
+
   render() {
     const { club, game } = this.props;
+
     let item = game, clubPathPrefix = '';
     if (!!club) {
       item = club;
       clubPathPrefix = IMG_URL_PREFIX;
     }
-    console.log('item', item);
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
       return <ImgMiniImageProfileBlock key={imgLink}
@@ -50,13 +55,15 @@ class ImageProfileBlock extends Component {
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-        <img className={styles.img}
-          src={this.state.imageUrl}
-          alt={item.name} />
-        {(this.props.screenMode === 'desktop') && <ScreensotsWrapper className={styles.screenshotsSwitch}>
-          {items}
-          <PictureUnderline screenIndex={this.state.screenIndex}/>
-        </ScreensotsWrapper>}
+        {(this.props.screenMode === 'desktop') &&
+              <img className={styles.img}
+                    src={this.state.imageUrl}
+                    alt={item.name} />}
+        <ScreenshotsWrapper className={styles.screenshotsSwitch}
+                            ref={(el) => this.screenshotsWrapper = el}>
+            {items}
+          {(this.props.screenMode === 'desktop') && <PictureUnderline screenIndex={this.state.screenIndex}/>}
+        </ScreenshotsWrapper>
       </div>
     );
   }
