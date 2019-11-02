@@ -3,8 +3,7 @@ import React from 'react';
 import * as Rx from "rxjs";
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {connect} from "react-redux";
-import {getAllGamesAC, getGamesAC, setSearchGameNameAC} from "../redux/actions/games.js";
-import {showFilterToggleAC} from "../redux/actions/filters.js";
+import {getGamesAC, setSearchGameNameAC} from "../redux/actions/games.js";
 
 
 const onSearch$ = new Rx.Subject().pipe(
@@ -26,7 +25,6 @@ class GameSearch extends React.Component {
       this.onChangeSearchData(searchData))
       //this.props.setSearchGameName(searchData));
       //this.props.getGames(this.props.filterToggle, undefined, undefined, searchData));
-
   }
 
   componentWillUnmount() {
@@ -65,7 +63,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setSearchGameName: (name) => dispatch(setSearchGameNameAC(name)),
-    //getAllGames: (name) => dispatch(getAllGamesAC(name)),
     getGames: (filterToggleData, pagination, clubId, name) => dispatch(getGamesAC(filterToggleData, pagination, clubId, name)),
   }
 };
