@@ -13,8 +13,7 @@ import Search from "./Search.jsx";
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
-    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId, this.props.searchGameName);
-    console.log('this.props.searchGameName', this.props.searchGameName)
+    this.props.getGames(this.props.filterToggle, undefined, this.props.clubId, this.props.SearchName);
     this.forceUpdate()
   };
 
@@ -42,7 +41,7 @@ class GameFilter extends Component {
 const mapStateToProps = (store) => ({
   gamesFilter: store.gamesFilter,
   filterToggle: store.gamesFilterToggle,
-  searchGameName: store.searchGameName
+  SearchName: store.SearchName
 });
 
 function mapDispatchToProps(dispatch) {

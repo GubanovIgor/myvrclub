@@ -33,8 +33,8 @@ class ClubFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
     this.props.getClubsForMap(this.props.filterToggle);
-    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId,  this.props.searchGameName);
-    console.log('this.props.searchGameName', this.props.searchGameName)
+    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId,  this.props.SearchName);
+    console.log('this.props.SearchName', this.props.SearchName)
     this.forceUpdate()
   };
 
@@ -69,7 +69,7 @@ const mapStateToProps = (store) => ({
   clubsFilter: store.clubsFilter,
   filterToggle: store.clubsFilterToggle,
   screenMode: store.screenMode,
-  searchGameName: store.searchGameName
+  SearchName: store.SearchName
 });
 
 function mapDispatchToProps(dispatch) {

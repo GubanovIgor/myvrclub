@@ -18,8 +18,8 @@ export const reducer = (state, action) => {
       return ({ ...state, club: action.club, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
       return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
-    case actionTypes.SET_GAME_NAME:
-      return ({ ...state, searchGameName: action.searchGameName });
+    case actionTypes.SET_SEARCH_NAME:
+      return ({ ...state, SearchName: action.SearchName });
     case actionTypes.REQUESTED_GAME:
       return ({ ...state, game: action.game, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:

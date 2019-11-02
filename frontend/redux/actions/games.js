@@ -17,10 +17,6 @@ export const requestGames = () => (
   { type: actionTypes.REQUEST_GAMES }
 );
 
-export const setSearchGameNameAC = (name) => (
-  { type: actionTypes.SET_GAME_NAME, searchGameName: name }
-);
-
 export const getAllGamesAC = (name) => (
   async (dispatch) => {
     console.log('name----', name);

@@ -3,8 +3,9 @@ import React from 'react';
 import * as Rx from "rxjs";
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {connect} from "react-redux";
-import {getGamesAC, setSearchGameNameAC} from "../redux/actions/games.js";
+import {getGamesAC} from "../redux/actions/games.js";
 import {getClubsAC} from "../redux/actions/clubs.js";
+import {setSearchNameAC} from "../redux/actions/search.js";
 
 
 const onSearch$ = new Rx.Subject().pipe(
@@ -64,7 +65,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSearchGameName: (name) => dispatch(setSearchGameNameAC(name)),
+    setSearchGameName: (name) => dispatch(setSearchNameAC(name)),
     //getAllGames: (name) => dispatch(getAllGamesAC(name)),
     getGames: (filterToggleData, pagination, clubIds, name) => dispatch(getGamesAC(filterToggleData, pagination, clubIds, name)),
     getClubs: (filterToggleData, pagination, gameIds, name) => dispatch(getClubsAC(filterToggleData, pagination, gameIds, name)),
