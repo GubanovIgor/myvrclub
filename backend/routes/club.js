@@ -5,9 +5,9 @@ const Game = require('../models/games');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
-  // console.log(req.query.name)
-  if (req.query.name === '' || req.query.name === undefined) res.json( await Club.find());
-  else res.json([await Club.findOne({name: req.query.name})]);
+  const nameRegex = new RegExp(req.query.name, 'i');
+  const games = await Game.find({name: {$regex: nameRegex}});
+  res.json( games );
 });
 
 // Получить один клуб для карты
