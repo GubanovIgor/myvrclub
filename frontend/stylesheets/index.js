@@ -188,7 +188,7 @@ export const FilterSectionWrapper__Title = styled.div`
 
 // Карта
 export const MapContainer = styled.div`
-	width: 80%;
+	width: 600px;
   height: 600px;
 `;
 
@@ -251,4 +251,21 @@ export const Toggle = styled.div`
 	background-color: #78baff;
 
 	transition: 0.5s ease;
+`;
+
+// Обертка карточек
+export const ClubCardsWrapper = styled.div`
+	display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 425px) {
+    box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    border-radius: 10px;
+    min-width: 940px;
+
+    margin-left: 40px;
+    padding: 40px 20px;
+  }
 `;

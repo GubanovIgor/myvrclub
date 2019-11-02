@@ -9,7 +9,7 @@ import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 // Import Components
 import { FilterButton } from '../stylesheets/filterItem';
 import ClubFilter from './ClubFilter';
-import Loading from './Loading';
+import ClubCards from './ClubCards';
 
 const ClubList = (props) => {
   return (
@@ -22,9 +22,7 @@ const ClubList = (props) => {
       <div className={cardsWrapper.container}>
         {(props.screenMode === 'desktop') && <ClubFilter gameId={props.game._id} />}
         {(props.showFilterMark && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
-        <div className={cardsWrapper.cardsWrapper}>
-          {(props.clubs.length !== 0) ? (props.clubItems) : (<Loading />)}
-        </div>
+        <ClubCards clubs={props.clubs} clubItems={props.clubItems}/>
       </div>
     </div>
   )

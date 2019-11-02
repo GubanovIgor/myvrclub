@@ -69,7 +69,9 @@ class Map extends Component {
     return (
       <div>
         <ProfileMenu__SectionTitle>
-          <h2><span>{this.props.club.name} на карте Москвы</span></h2>
+          {(this.props.club) &&
+            <h2><span>{this.props.club.name} на карте Москвы</span></h2>
+          }
         </ProfileMenu__SectionTitle>
         {console.log(this.props.clubsForMap, 'CLUBS')}
 
