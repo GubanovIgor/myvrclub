@@ -41,7 +41,8 @@ class AppWrapper extends Component {
 
 	handlePageChange = async (type, id) => {
 		(type === 'game') ?
-		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type, id) :
+		await this.props.pagination(this.props.paginationValue + 1, this.props.gamesFilterToggle, type, id, this.props.searchGameName)
+			:
 		await this.props.pagination(this.props.paginationValue + 1, this.props.clubsFilterToggle, type, id)
 	};
 
@@ -77,13 +78,14 @@ const mapStateToProps = (store) => {
 		gamesFilterToggle: store.gamesFilterToggle,
 		clubsFilterToggle: store.clubsFilterToggle,
 		loading: store.loading,
+    searchGameName: store.searchGameName,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
-		pagination: (paginationValue, filterToggleData, type, id) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, id)),
+		pagination: (paginationValue, filterToggleData, type, id, searchName) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, id, searchName)),
 	};
 };
 

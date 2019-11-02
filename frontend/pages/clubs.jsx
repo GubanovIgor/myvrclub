@@ -81,7 +81,7 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   showFilterToggle: () => dispatch(showFilterToggleAC()),
   getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
-  pagination: (paginationValue, filterToggleData, type) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type)),
+  //pagination: (paginationValue, filterToggleData, type, namesForSearch) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, namesForSearch)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

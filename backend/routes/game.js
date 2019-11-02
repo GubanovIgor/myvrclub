@@ -85,7 +85,7 @@ router.put('/', async (req, res) => {
   for (let i = 0; i < game.clubs.length; i++) {
     let club = await Club.findOne({ name: game.clubs[i] });
     if (club === null || club === undefined) return res.json({
-      message: 'Ошибка в названии клуба',
+      message: `Ошибка в названии клуба ${game.clubs[i]}`,
       status: 'error'
     });
     game.clubs[i] = club.name;
