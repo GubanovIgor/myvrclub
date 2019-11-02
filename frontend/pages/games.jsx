@@ -76,7 +76,7 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     games: store.games,
-    searchGameName: store.searchGameName,
+    searchName: store.searchName,
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
