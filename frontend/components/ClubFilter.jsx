@@ -42,13 +42,10 @@ class ClubFilter extends Component {
     this.forceUpdate()
   };
 
-  onChangeMap = () => {
+  changeMapHandler = () => {
+    console.log('hui')
     this.props.changeMap();
   };
-
-  offChangeMap = () => {
-    this.props.offChangeMap();
-  }
 
   render() {
     return (
@@ -56,9 +53,9 @@ class ClubFilter extends Component {
 
         <FilterSectionWrapper>
           <FilterSectionWrapper__Title>
-            Показывать
+            Рейтинг / Карта
           </FilterSectionWrapper__Title>
-          <MapRatingToggle />
+          <MapRatingToggle changeMapHandler={this.changeMapHandler} map={this.props.map}/>
         </FilterSectionWrapper>
 
         {this.props.clubsFilter.map((el, index) =>
@@ -79,6 +76,7 @@ const mapStateToProps = (store) => ({
   clubsFilter: store.clubsFilter,
   filterToggle: store.clubsFilterToggle,
   screenMode: store.screenMode,
+  map: store.map,
 });
 
 function mapDispatchToProps(dispatch) {
@@ -87,7 +85,6 @@ function mapDispatchToProps(dispatch) {
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
     getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
     changeMap: () => dispatch(changeMapAC()),
-    offChangeMap: () => dispatch(offChangeMapAC()),
   };
 }
 

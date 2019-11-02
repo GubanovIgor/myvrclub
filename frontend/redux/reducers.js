@@ -33,9 +33,7 @@ export const reducer = (state, action) => {
     case actionTypes.SWITCH_PAGINATION_VALUE:
       return ({...state, paginationValue: action.value,});
     case actionTypes.CHANGE_MAP:
-      return ({...state, map: true,});
-    case actionTypes.OFF_CHANGE_MAP:
-      return ({...state, map: false,});
+      return ({...state, map: !state.map,});
     case actionTypes.SHOW_FILTER_TOGGLE:
       return ({...state, showFilter: !state.showFilter,});
     case actionTypes.CURRENT_PAGE:

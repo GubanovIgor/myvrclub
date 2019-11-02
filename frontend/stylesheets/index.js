@@ -205,12 +205,29 @@ export const MapModal__Info = styled.div`
 
 // Переключатель карты/рейтинга
 export const MapRatingToggleWrapper = styled.div`
-	width: 100px;
-	height: 50px;
+	display: flex;
+	align-items: center;
 
-	background-color: red;
+	width: 70px;
+	height: 25px;
+
+	cursor: pointer;
+	border-radius: 15px;
+	border: 1px solid #338EEE;
+	background-color: #FFF;
+
+	transition: 0.5s ease;
+
+	padding: 0 1px;
 `;
 
 export const Toggle = styled.div`
+	width: 34px;
+	height: 23px;
 
+	${(props) => props.map ? 'margin-left: 36px' : 'margin-right: 0'};
+	border-radius: ${(props) => props.map ? '3px 12px 12px 3px' : '12px 3px 3px 12px'};
+	background-color: #78baff;
+
+	transition: 0.5s ease;
 `;

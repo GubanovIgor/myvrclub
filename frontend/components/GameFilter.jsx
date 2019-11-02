@@ -24,6 +24,7 @@ class GameFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
+        
         {this.props.gamesFilter.map((el, index) =>
           <FilterSection
             key={index}
