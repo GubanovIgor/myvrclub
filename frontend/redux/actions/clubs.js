@@ -41,7 +41,9 @@ export const getClubAC = (name) => (
 export const getClubsAC = (
   filterToggleData,
   pagination = 1,
-  gameId = '') => (
+  gameId = '',
+  searchName = ''
+) => (
     async (dispatch) => {
       //console.log('InitState', InitState);
       dispatch(requestClubs());
@@ -63,6 +65,7 @@ export const getClubsAC = (
         checkedToggle,
         pagination,
         gameId,
+        searchName
       };
       const resp = await fetch(`${API_PREFIX}/club`, {
         method: 'POST',

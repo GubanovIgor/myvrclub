@@ -20,6 +20,8 @@ import {
   FilterSectionWrapper,
   FilterSectionWrapper__Title,
 } from '../stylesheets/index';
+import Search from "./Search.jsx";
+//import MapRatingToggle from '../components/MapRatingToggle'
 
 class ClubFilter extends Component {
 
@@ -38,7 +40,8 @@ class ClubFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
     this.props.getClubsForMap(this.props.filterToggle);
-    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId);
+    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId,  this.props.SearchName);
+    console.log('this.props.SearchName', this.props.SearchName)
     this.forceUpdate()
   };
 
@@ -58,6 +61,9 @@ class ClubFilter extends Component {
           <MapRatingToggle changeMapHandler={this.changeMapHandler} map={this.props.map}/>
         </FilterSectionWrapper>
 
+        <Search isClub={true}/>
+        {/* <MapRatingToggle /> */}
+        {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}
@@ -77,13 +83,14 @@ const mapStateToProps = (store) => ({
   filterToggle: store.clubsFilterToggle,
   screenMode: store.screenMode,
   map: store.map,
+  SearchName: store.SearchName
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
     toggle: (item, category) => dispatch(filterToggleClubsAC(item, category)),
-    getClubs: (filterToggleData, pagination, gameId) => dispatch(getClubsAC(filterToggleData, pagination, gameId)),
+    getClubs: (filterToggleData, pagination, gameId, name) => dispatch(getClubsAC(filterToggleData, pagination, gameId, name)),
     changeMap: () => dispatch(changeMapAC()),
   };
 }

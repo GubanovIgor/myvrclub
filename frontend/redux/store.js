@@ -10,7 +10,7 @@ export const InitState = {
   games: [],
   club: {},
   game: {},
-  searchGameName: '',
+  SearchName: '',
   currentId: '',
   map: false,
   loading: false,
