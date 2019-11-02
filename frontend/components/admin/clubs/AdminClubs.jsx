@@ -21,7 +21,7 @@ class AdminClubs extends Component {
 
   componentDidMount = async () => {
     // window.addEventListener('scroll', this.paginationHandler);
-    this.props.getAllClubs('');
+    this.props.getAllClubs();
   };
 
   // componentWillUnmount = async () => {

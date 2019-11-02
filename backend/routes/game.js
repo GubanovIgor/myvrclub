@@ -14,11 +14,24 @@ router.get('/url', async (req, res) => {
   res.json(await Game.findOne({urlName: req.query.name}));
 });
 
+router.get('/', async (req, res) => {
+  const nameRegex = new RegExp(req.query.name, 'i');
+  const games = await Game.find({name: {$regex: nameRegex}});
+  res.json( games );
+});
+
 router.post('/', async (req, res) => {
 
   const conditions = [];
   const categories = Object.keys(req.body.checkedToggle);
   let clubGames = [];
+
+  //Для поиска игр
+  if (req.body.searchNameData) {
+    const nameRegex = new RegExp(req.body.searchNameData, 'i');
+    //conditions.push({ _id: { $in: club.gamesIds } })
+    conditions.push({name: {$regex: nameRegex}})
+  }
 
   // Для конкретного клуба
   if (req.body.clubId.length) {
@@ -64,17 +77,13 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
   const game = req.body.game;
-  let gamenames = await Game.find({ name: 'Eternity Warriors™ VR' });
-  gamenames.forEach(game => {
-    // console.log(game.name);
-  });
   game.urlName = transliterate(game.name);
   game.clubsIds = [];
 
   for (let i = 0; i < game.clubs.length; i++) {
     let club = await Club.findOne({ name: game.clubs[i] });
     if (club === null || club === undefined) return res.json({
-      message: 'Ошибка в названии клуба',
+      message: `Ошибка в названии клуба ${game.clubs[i]}`,
       status: 'error'
     });
     game.clubs[i] = club.name;

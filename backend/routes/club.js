@@ -44,13 +44,13 @@ router.post('/', async (req, res) => {
   if (req.body.checkedToggle[1].length) {
     const length = req.body.checkedToggle[1].length;
     const num = req.body.checkedToggle[1][length - 1].split(' ')[1];
-    conditions.push({ price: { $lt: num } });
+    conditions.push({price: {$lt: num}});
   }
 
   // const skipItems = (req.body.pagination - 1) * 9;
   // console.log(req.body.pagination)
   const clubs = await Club.find(
-    conditions.length ? { $and: conditions } : {}
+    conditions.length ? {$and: conditions} : {}
   ).limit(req.body.pagination * 9);
   // console.log('clubs.length>>>>>', clubs.length);
   res.json(clubs);
@@ -62,15 +62,18 @@ router.put('/', async (req, res) => {
   club.clubsIds = [];
 
   for (let i = 0; i < club.games.length; i++) {
-    // console.log('game: ', club.games[i]);
-    let game = await Game.findOne({ name: club.games[i] });
-    if (game === null || club === undefined) return res.json({message: `Ошибка в названии игры ${club.games[i]}`, status: 'error'});
+    console.log('game: ', club.games[i]);
+    let game = await Game.findOne({name: club.games[i]});
+    if (game === null || game === undefined) return res.json({
+      message: `Ошибка в названии игры ${club.games[i]}`,
+      status: 'error'
+    });
     club.games[i] = game.name;
     club.gamesIds[i] = game._id;
   }
   // console.log('запрос сохранения');
   try {
-    await Club.updateOne({ _id: club._id }, { ...club });
+    await Club.updateOne({_id: club._id}, {...club});
   } catch (err) {
     // console.log('DB error - ', err);
     res.json({message: 'Ошибка записи.', status: 'error'});
@@ -81,8 +84,8 @@ router.put('/', async (req, res) => {
 
 router.post('/statistics', async (req, res) => {
   const id = req.body.clubId;
-  const club = await Club.findOneAndUpdate({ _id: id }, { $inc: { clickCounter: 1 } }, { new: true }); // new:true возвр измененный док
-  // console.log('club %s was clicked', club.name);
+  const club = await Club.findOneAndUpdate({_id: id}, {$inc: {clickCounter: 1}}, {new: true}); // new:true возвр измененный док
+  console.log('club %s was clicked', club.name);
   res.end();
 });
 

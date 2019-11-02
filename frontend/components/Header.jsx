@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
+import GameSearch from "./GameSearch.jsx";
 
 // SASS
 import '../stylesheets/body.module.scss';
@@ -42,3 +43,4 @@ class Header extends Component {
 }
 
 export default Header;
+
