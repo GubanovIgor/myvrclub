@@ -134,6 +134,37 @@ export const ProfileMenu__SectionTitle = styled.div`
 	}
 `;
 
+// Фильтр - блок с тенью
+export const FilterSectionWrapper = styled.div`
+	width: 100%;
+  box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 1px rgba(14,21,47,.1);
+  border-radius: 10px;
+
+  padding: 20px;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 425px) {
+    width: 90%;
+
+    margin: 10px auto 10px;
+    padding-left: 40px;
+  }
+`;
+
+// Фильтр - title блока с тенью
+export const FilterSectionWrapper__Title = styled.div`
+	font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 425px) {
+    padding: 0;
+    margin-left: -25px;
+  }
+`;
+
 // Карта
 export const MapContainer = styled.div`
 	width: 80%;
@@ -170,4 +201,16 @@ export const MapModal__Info = styled.div`
 	span {
 		font-weight: 600;
 	}
+`;
+
+// Переключатель карты/рейтинга
+export const MapRatingToggleWrapper = styled.div`
+	width: 100px;
+	height: 50px;
+
+	background-color: red;
+`;
+
+export const Toggle = styled.div`
+
 `;

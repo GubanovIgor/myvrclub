@@ -13,7 +13,13 @@ import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
-//import MapRatingToggle from '../components/MapRatingToggle'
+import MapRatingToggle from '../components/MapRatingToggle'
+
+// Styled Components
+import {
+  FilterSectionWrapper,
+  FilterSectionWrapper__Title,
+} from '../stylesheets/index';
 
 class ClubFilter extends Component {
 
@@ -47,8 +53,14 @@ class ClubFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
-        {/* <MapRatingToggle /> */}
-        {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
+
+        <FilterSectionWrapper>
+          <FilterSectionWrapper__Title>
+            Показывать
+          </FilterSectionWrapper__Title>
+          <MapRatingToggle />
+        </FilterSectionWrapper>
+
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}
@@ -57,6 +69,7 @@ class ClubFilter extends Component {
             checked={this.props.filterToggle[el.title]}
           />
         )}
+
       </div>
     );
   }
