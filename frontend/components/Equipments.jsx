@@ -4,12 +4,12 @@ import React from 'react';
 import { ProfileContent__Wrapper, ProfileMenu__SectionTitle } from '../stylesheets/index';
 
 const Equipments = (props) => (
-    <ProfileContent__Wrapper>
+    <div>
       <ProfileMenu__SectionTitle>
         <h2>Оборудование <span>{props.item.name}</span></h2>
       </ProfileMenu__SectionTitle>
       
-    </ProfileContent__Wrapper>
+    </div>
 );
 
 export default Equipments;

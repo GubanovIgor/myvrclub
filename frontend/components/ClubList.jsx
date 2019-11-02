@@ -13,7 +13,7 @@ import Loading from './Loading';
 
 const ClubList = (props) => {
   return (
-    <ProfileContent__Wrapper>
+    <div>
       <div className={cardsWrapper.titleWrapper}>
         <FilterButton img={'filterSettings'} onClick={props.showFilter} />
         <h2>Где поиграть в {props.game.name}</h2>
@@ -21,12 +21,12 @@ const ClubList = (props) => {
 
       <div className={cardsWrapper.container}>
         {(props.screenMode === 'desktop') && <ClubFilter gameId={props.game._id} />}
-        {(props.showFilter && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
+        {(props.showFilterMark && props.screenMode === 'mobile') && <ClubFilter gameId={props.game._id} />}
         <div className={cardsWrapper.cardsWrapper}>
           {(props.clubs.length !== 0) ? (props.clubItems) : (<Loading />)}
         </div>
       </div>
-    </ProfileContent__Wrapper>
+    </div>
   )
 };
 

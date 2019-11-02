@@ -67,7 +67,7 @@ class Map extends Component {
 
   render() {
     return (
-      <ProfileContent__Wrapper>
+      <div>
         <ProfileMenu__SectionTitle>
           <h2><span>{this.props.club.name} на карте Москвы</span></h2>
         </ProfileMenu__SectionTitle>
@@ -80,7 +80,7 @@ class Map extends Component {
         <MapContainer id="map" club={this.props.item}/>
         {/* {(!this.state.mapRender && <Loading />)} */}
         {/* <MapModal club={this.props.club}/> */}
-      </ProfileContent__Wrapper>
+      </div>
     )
   }
 }

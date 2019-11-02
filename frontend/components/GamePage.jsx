@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Styled Components
-import { ProfileContent } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // Import Components
 import ClubCard from '../components/ClubCard';
@@ -63,7 +63,7 @@ class GamePage extends Component {
 
         {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
         {/* <Map/> */}
-        <ProfileContent>
+        <ProfileContent__Wrapper>
           {(this.state.menuSection === 'Где поиграть') &&
             <ClubList showFilterMark={showFilter}
               showFilter={this.showFilter}
@@ -74,7 +74,7 @@ class GamePage extends Component {
 
           {(this.state.menuSection === 'Отзывы') &&
             <Reviews item={game} />}
-        </ProfileContent>
+        </ProfileContent__Wrapper>
       </main>
     );
   }

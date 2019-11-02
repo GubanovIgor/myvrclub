@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { ProfileContent } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import Header from '../components/Header';
@@ -50,7 +50,7 @@ class Clubs extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <ProfileContent>
+        <ProfileContent__Wrapper>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
             <h1 className={styles.title}>Список VR клубов (Москва)</h1>
@@ -62,7 +62,7 @@ class Clubs extends Component {
               {(clubs.length !== 0) ? (itemsClub) : (<Loading />)}
             </div>
           </div>
-        </ProfileContent>
+        </ProfileContent__Wrapper>
       </div >
     );
   }

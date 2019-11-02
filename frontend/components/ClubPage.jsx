@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Styled Components
-import { ProfileContent } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import GameCard from '../components/GameCard';
@@ -66,7 +66,7 @@ class ClubPage extends Component {
           menuSection={this.state.menuSection}
           menuItems={menuItems} />
 
-        <ProfileContent>
+        <ProfileContent__Wrapper>
           {(this.state.menuSection === 'Игры клуба') &&
             <GameList showFilterMark={showFilter}
               showFilter={this.showFilter}
@@ -83,7 +83,7 @@ class ClubPage extends Component {
 
           {(this.state.menuSection === 'Оборудование') &&
             <Equipments  item={club}/>}
-        </ProfileContent>
+        </ProfileContent__Wrapper>
       </main>
     );
   }

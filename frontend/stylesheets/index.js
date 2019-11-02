@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const ProfileContent = styled.div`
-	@media screen and (max-width: 425px) {
+// export const ProfileContent = styled.div`
+	/* @media screen and (max-width: 425px) {
     width: 93%;
     margin: 20px auto 25px;
 
     box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
     border-radius: 10px;
 		padding: 10px;
+
+		border: 1px solid green;
 		
 		transition: 1s;
 
@@ -15,8 +17,8 @@ export const ProfileContent = styled.div`
 	  margin-top: 0;
 	  margin-bottom: 0;
     }
-  }
-`;
+  } */
+// `;
 
 export const ScreenshotsWrapper = styled.div`
 	position: relative;
@@ -84,7 +86,26 @@ export const ShowTelButton = styled.button`
 `;
 
 export const ProfileContent__Wrapper = styled.div`
+	/* border: 1px solid blue; */
 	padding-bottom: 200px;
+
+	@media screen and (max-width: 425px) {
+    width: 93%;
+    margin: 20px auto 25px;
+
+    box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
+    border-radius: 10px;
+		padding: 10px;
+
+		/* border: 1px solid blue; */
+		
+		transition: 1s;
+
+    h2 {
+	  margin-top: 0;
+	  margin-bottom: 0;
+    }
+  }
 `;
 
 export const ProfileMenu__Wrapper = styled.div`

@@ -13,7 +13,7 @@ import Loading from './Loading';
 
 const GameList = (props) => {
   return (
-    <ProfileContent__Wrapper>
+    <div>
       <ProfileMenu__SectionTitle>
         <FilterButton img={'filterSettings'} onClick={props.showFilter} />
         <h2>Игры клуба {props.club.name}</h2>
@@ -26,7 +26,7 @@ const GameList = (props) => {
           {(props.games.length !== 0) ? (props.gameItems) : (<Loading />)}
         </div>
       </div>
-    </ProfileContent__Wrapper>
+    </div>
 )};
 
 export default GameList;
