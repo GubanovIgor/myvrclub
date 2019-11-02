@@ -11,6 +11,7 @@ import styles from '../stylesheets/appWrapper.module.scss';
 // import AC
 import { switchScreenModeAC } from '../redux/actions/screenmode';
 import { switchPaginationValueAC } from '../redux/actions/pagination';
+import { getClubsForMapAC } from "../redux/actions/clubs.js";
 
 
 class AppWrapper extends Component {
@@ -24,6 +25,7 @@ class AppWrapper extends Component {
 
 	componentDidMount = async () => {
 		this.updateDimensions();
+		this.props.getClubsForMap(this.props.filterToggle);
 		window.addEventListener('resize', this.updateDimensions);
 	};
 
@@ -82,6 +84,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
 		switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 		pagination: (paginationValue, filterToggleData, type, id) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, id)),
 	};

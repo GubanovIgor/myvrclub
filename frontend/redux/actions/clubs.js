@@ -1,7 +1,7 @@
 // import types
 import fetch from 'isomorphic-unfetch';
-import {API_PREFIX} from '../../services/consts/consts';
-import {actionTypes} from "../types.js";
+import { API_PREFIX } from '../../services/consts/consts';
+import { actionTypes } from "../types.js";
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -42,74 +42,95 @@ export const getClubsAC = (
   filterToggleData,
   pagination = 1,
   gameId = '') => (
-  async (dispatch) => {
-    //console.log('InitState', InitState);
-    dispatch(requestClubs());
-    // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
-    let checkedToggle = [[], []];
-    if (filterToggleData) {
-      const keys = Object.keys(filterToggleData);
-      for (let i = 0; i < keys.length; i++) {
-        const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-        categoryKeys.forEach((key) => {
-          if (filterToggleData[keys[i]][key]) {
-            checkedToggle[i].push(key);
-          }
-        });
+    async (dispatch) => {
+      //console.log('InitState', InitState);
+      dispatch(requestClubs());
+      // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
+      let checkedToggle = [[], []];
+      if (filterToggleData) {
+        const keys = Object.keys(filterToggleData);
+        for (let i = 0; i < keys.length; i++) {
+          const categoryKeys = Object.keys(filterToggleData[keys[i]]);
+          categoryKeys.forEach((key) => {
+            if (filterToggleData[keys[i]][key]) {
+              checkedToggle[i].push(key);
+            }
+          });
+        }
       }
+
+      const filterData = {
+        checkedToggle,
+        pagination,
+        gameId,
+      };
+      const resp = await fetch(`${API_PREFIX}/club`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filterData),
+      });
+      const data = await resp.json();
+      dispatch(requestGetClubs(data));
     }
+  );
 
-    const filterData = {
-      checkedToggle,
-      pagination,
-      gameId,
-    };
-    const resp = await fetch(`${API_PREFIX}/club`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filterData),
-    });
-    const data = await resp.json();
-    dispatch(requestGetClubs(data));
-  }
-);
-
-// Получение клубов для карты
+// Получение всех клубов для карты
 export const getClubsForMapAC = (
   filterToggleData,
   gameId = '') => (
-  async (dispatch) => {
-    console.log('qweqwe')
-    //console.log('InitState', InitState);
-    // dispatch(requestClubs());
-    // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
-    let checkedToggle = [[], []];
-    if (filterToggleData) {
-      const keys = Object.keys(filterToggleData);
-      for (let i = 0; i < keys.length; i++) {
-        const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-        categoryKeys.forEach((key) => {
-          if (filterToggleData[keys[i]][key]) {
-            checkedToggle[i].push(key);
-          }
-        });
+    async (dispatch) => {
+      console.log('qweqwe')
+      //console.log('InitState', InitState);
+      // dispatch(requestClubs());
+      // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
+      let checkedToggle = [[], []];
+      if (filterToggleData) {
+        const keys = Object.keys(filterToggleData);
+        for (let i = 0; i < keys.length; i++) {
+          const categoryKeys = Object.keys(filterToggleData[keys[i]]);
+          categoryKeys.forEach((key) => {
+            if (filterToggleData[keys[i]][key]) {
+              checkedToggle[i].push(key);
+            }
+          });
+        }
       }
-    }
 
+      const filterData = {
+        checkedToggle,
+        gameId,
+      };
+      const resp = await fetch(`${API_PREFIX}/club`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filterData),
+      });
+      const data = await resp.json();
+      dispatch(requestGetClubsForMap(data));
+    }
+  );
+
+// Получение одного клуба для карты
+export const getClubForMapAC = (clubId) => (
+  async (dispatch) => {
     const filterData = {
-      checkedToggle,
-      gameId,
+      clubId,
     };
-    const resp = await fetch(`${API_PREFIX}/club`, {
+
+    const resp = await fetch(`${API_PREFIX}/club/1`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(filterData),
     });
+
     const data = await resp.json();
+    console.log(data, '->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     dispatch(requestGetClubsForMap(data));
   }
 );
