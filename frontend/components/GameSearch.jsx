@@ -26,7 +26,6 @@ class GameSearch extends React.Component {
       this.onChangeSearchData(searchData))
       //this.props.setSearchGameName(searchData));
       //this.props.getGames(this.props.filterToggle, undefined, undefined, searchData));
-
   }
 
   componentWillUnmount() {
@@ -38,13 +37,13 @@ class GameSearch extends React.Component {
   onChangeSearchData = (name) => {
     this.props.setSearchGameName(name);
     this.props.getGames(this.props.filterToggle, undefined, undefined, name);
-}
+};
 
   onSearch = (e) => {
     const search = e.target.value;
     this.setState({search});
     onSearch$.next(search);
-  }
+  };
 
   render() {
     const {search} = this.state;
