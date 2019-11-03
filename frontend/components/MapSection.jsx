@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 // Styled Components
-import { ProfileMenu__SectionTitle, MapContainer } from '../stylesheets/index';
+import { ProfileMenu__SectionTitle } from '../stylesheets/index';
+
+// SASS
+import styles from '../stylesheets/mapSection.module.scss';
 
 class MapSection extends Component {
   render() {
@@ -29,7 +32,7 @@ class MapSection extends Component {
           </ProfileMenu__SectionTitle>}
 
         <YMaps>
-          <Map defaultState={mapData}>
+          <Map defaultState={mapData} className={styles.map}>
             {baloons.map((baloon, index) => <Placemark geometry={baloon} key={index}/>)}
           </Map>
         </YMaps>
