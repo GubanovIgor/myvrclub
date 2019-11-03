@@ -47,7 +47,6 @@ class ClubFilter extends Component {
   };
 
   changeMapHandler = () => {
-    console.log('hui')
     this.props.changeMap();
   };
 
