@@ -3,7 +3,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const Game = require('./models/games.js');
 require('dotenv').config();
 
 // Routes import
@@ -11,6 +10,8 @@ const indexRouter = require('./routes/index');
 const clubRouter = require('./routes/club');
 const gameRouter = require('./routes/game');
 const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 let app = express();
 app.use(logger('dev'));
@@ -58,5 +59,7 @@ app.use('/', indexRouter);
 app.use('/club', clubRouter);
 app.use('/game', gameRouter);
 app.use('/admin', adminRouter);
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 module.exports = app;
