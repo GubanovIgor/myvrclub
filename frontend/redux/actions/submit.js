@@ -7,8 +7,9 @@ import fetch from 'isomorphic-unfetch';
 export const requestLogin = (values) => (
   async (dispatch) => {
     dispatch(requestLoginAC());
-    console.log('values action', values);
-    const resp = await fetch(API_PREFIX + '/admin/login', {
+    console.log('values action >>>>>>>', values);
+    // const resp = await fetch(API_PREFIX + '/admin/login', {
+     const resp = await fetch(API_PREFIX + '/admin/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -5,15 +5,15 @@ const expressJwt = require('express-jwt'); // autorization check
 
 exports.signup = (req, res) => {
   // console.log(req.body)
-  const user = new User(req.body)
+  const user = new User(req.body);
   user.save((error, user) => {
     if (error) {
       return res.status(400).json({
         error: errorHandler(error)
       })
     }
-    user.salt = undefined
-    user.hashed_password = undefined
+    user.salt = undefined;
+    user.hashed_password = undefined;
     res.json({
       user
     })
@@ -34,9 +34,9 @@ exports.signin = (req, res) => {
         error: "password does not match"
       })
     }
-    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
-    res.cookie('t', token, {expire: new Date() + 9999})
-    const {_id, name, email, role} = user
+    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
+    res.cookie('t', token, {expire: new Date() + 9999});
+    const {_id, name, email, role} = user;
     res.json({token, user: {_id, name, email, role}})
   })
 }
