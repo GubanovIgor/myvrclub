@@ -7,9 +7,7 @@ class MapRatingToggle extends Component {
 	render() {
 		return (
 			<MapRatingToggleWrapper onClick={this.props.changeMapHandler} map={this.props.map}>
-				<Toggle map={this.props.map}>
-
-				</Toggle>
+				<Toggle map={this.props.map}/>
 			</MapRatingToggleWrapper>
 		);
 	}

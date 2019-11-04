@@ -1,15 +1,15 @@
 import React from 'react';
 
 // Styled Components
-import { ProfileContent__Wrapper } from '../stylesheets/index';
-
-// SASS
-import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
+import {  } from '../stylesheets/index';
 
 // Import Components
 import { FilterButton } from '../stylesheets/filterItem';
 import ClubFilter from './ClubFilter';
 import ClubCards from './ClubCards';
+
+// SASS
+import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
 
 const ClubList = (props) => {
   return (

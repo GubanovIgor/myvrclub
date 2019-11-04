@@ -7,8 +7,14 @@ import styles from '../stylesheets/filter.module.scss';
 // import components
 import FilterSection from '../components/FilterSection';
 import { filterToggleGamesAC } from '../redux/actions/filters';
-import {getGamesAC} from "../redux/actions/games.js";
+import { getGamesAC } from "../redux/actions/games.js";
 import Search from "./Search.jsx";
+
+// Styled Components
+import {
+  FilterSectionWrapper,
+  FilterSectionWrapper__Title,
+} from '../stylesheets/index';
 
 class GameFilter extends Component {
   onChangeCheckbox = (item, category) => {
@@ -24,7 +30,12 @@ class GameFilter extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Search isGame={true}/>
+        <FilterSectionWrapper>
+          <FilterSectionWrapper__Title>
+            Поиск
+          </FilterSectionWrapper__Title>
+          <Search isGame={true} />
+        </FilterSectionWrapper>
         {this.props.gamesFilter.map((el, index) =>
           <FilterSection
             key={index}

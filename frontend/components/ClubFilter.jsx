@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 // import TextInput from 'react-autocomplete-input';
 //import '~react-autocomplete-input/dist/bundle.css';
 
-// SASS
-import styles from '../stylesheets/filter.module.scss';
-
 //import AC
 import { changeMapAC, offChangeMapAC } from '../redux/actions/map';
 import { filterToggleClubsAC } from '../redux/actions/filters.js';
@@ -14,14 +11,18 @@ import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
 // import components
 import FilterSection from '../components/FilterSection';
 import MapRatingToggle from '../components/MapRatingToggle'
+import Search from "./Search.jsx";
+//import MapRatingToggle from '../components/MapRatingToggle'
 
 // Styled Components
 import {
   FilterSectionWrapper,
   FilterSectionWrapper__Title,
 } from '../stylesheets/index';
-import Search from "./Search.jsx";
-//import MapRatingToggle from '../components/MapRatingToggle'
+
+// SASS
+import styles from '../stylesheets/filter.module.scss';
+
 
 class ClubFilter extends Component {
 
@@ -40,15 +41,18 @@ class ClubFilter extends Component {
   onChangeCheckbox = (item, category) => {
     this.props.toggle(item, category);
     this.props.getClubsForMap(this.props.filterToggle);
-    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId,  this.props.SearchName);
+    this.props.getClubs(this.props.filterToggle, undefined, this.props.gameId, this.props.SearchName);
     console.log('this.props.SearchName', this.props.SearchName)
     this.forceUpdate()
   };
 
   changeMapHandler = () => {
-    console.log('hui')
     this.props.changeMap();
   };
+
+  componentWillUnmount = () => {
+    this.props.map && this.props.changeMap();
+  }
 
   render() {
     return (
@@ -58,12 +62,16 @@ class ClubFilter extends Component {
           <FilterSectionWrapper__Title>
             Рейтинг / Карта
           </FilterSectionWrapper__Title>
-          <MapRatingToggle changeMapHandler={this.changeMapHandler} map={this.props.map}/>
+          <MapRatingToggle changeMapHandler={this.changeMapHandler} map={this.props.map} />
         </FilterSectionWrapper>
 
-        <Search isClub={true}/>
-        {/* <MapRatingToggle /> */}
-        {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
+        <FilterSectionWrapper>
+          <FilterSectionWrapper__Title>
+            Поиск
+          </FilterSectionWrapper__Title>
+          <Search isClub={true} />
+        </FilterSectionWrapper>
+
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}
