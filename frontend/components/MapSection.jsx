@@ -3,22 +3,30 @@ import { connect } from "react-redux";
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import { IMG_URL_PREFIX, API_PREFIX_FRONT } from '../services/consts/consts';
 
-// Styled Components
-import { ProfileMenu__SectionTitle, MapModal__Wrapper } from '../stylesheets/index';
+// Import AC
+import { getClubsForMapAC, getClubForMapAC } from "../redux/actions/clubs.js";
 
-// Import Components
-import MapModal from './MapModal';
+// Styled Components
+import { ProfileMenu__SectionTitle } from '../stylesheets/index';
 
 // SASS
 import styles from '../stylesheets/mapSection.module.scss';
 
 class MapSection extends Component {
-  test = () => {
-    console.log('hui')
-  }
+
+  componentDidMount = () => {
+    (this.props.club) ?
+    this.props.getClubForMap(this.props.club._id) :
+    this.props.getClubsForMap(this.props.filterToggle)
+  };
+  
+  // componentDidUpdate = () => {
+  //   (this.props.club) ?
+  //   this.props.getClubForMap(this.props.club._id) :
+  //   this.props.getClubsForMap(this.props.filterToggle)
+  // }
 
   render() {
-
     const mapData = {
       center: [55.751574, 37.573856],
       zoom: 9,
@@ -32,14 +40,6 @@ class MapSection extends Component {
       baloons.push(coord);
     });
 
-    var zoomControl = new ymaps.control.ZoomControl({
-      options: {
-        size: "small"
-      }
-    });
-
-    console.log(this.props.clubsForMap);
-
     return (
       <div>
         {(this.props.club) &&
@@ -48,9 +48,9 @@ class MapSection extends Component {
           </ProfileMenu__SectionTitle>}
 
         <YMaps>
-          <Map state={mapData} className={styles.map}>
-            {this.props.clubsForMap.map((club, index) => <Placemark onClick={this.test} geometry={baloons[index]} key={index} properties={{
-              hintContent: 'Это хинт',
+          <Map defaultState={mapData} className={styles.map}>
+            {this.props.clubsForMap.map((club, index) => <Placemark geometry={baloons[index]} key={club.name} properties={{
+              hintContent: `${club.name}`,
               balloonContent: `<div style='width: 200px; margin-bottom: 5px;'>
                                   <p style='text-align: left'><strong>${club.name}</strong></p>
                                   <img style='width: 200px;' src=${IMG_URL_PREFIX + club.cover}>
@@ -67,7 +67,6 @@ class MapSection extends Component {
             }} modules={['geoObject.addon.balloon', 'geoObject.addon.hint']} />)}
           </Map>
         </YMaps>
-        {/* <MapModal club={this.props.clubsForMap[0]}/> */}
       </div>
     )
   }
@@ -76,7 +75,15 @@ class MapSection extends Component {
 const mapStateToProps = (store) => {
   return {
     clubsForMap: store.clubsForMap,
+    filterToggle: store.clubsFilterToggle,
   };
 };
 
-export default connect(mapStateToProps)(MapSection);
+const mapDispatchToProps = (dispatch) => {
+	return {
+    getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
+    getClubForMap: (clubId) => dispatch(getClubForMapAC(clubId)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapSection);

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styled Components
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import {  } from '../stylesheets/index';
 
 // Import Components
 import { FilterButton } from '../stylesheets/filterItem';

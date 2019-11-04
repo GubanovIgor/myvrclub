@@ -50,6 +50,10 @@ class ClubFilter extends Component {
     this.props.changeMap();
   };
 
+  componentWillUnmount = () => {
+    this.props.map && this.props.changeMap();
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -67,8 +71,7 @@ class ClubFilter extends Component {
           </FilterSectionWrapper__Title>
           <Search isClub={true} />
         </FilterSectionWrapper>
-        {/* <MapRatingToggle /> */}
-        {/* {(this.props.screenMode === 'desktop') && <hr className={styles.breakLine}/>} */}
+
         {this.props.clubsFilter.map((el, index) =>
           <FilterSection
             key={index}
