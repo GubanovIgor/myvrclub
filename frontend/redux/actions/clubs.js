@@ -20,7 +20,7 @@ export const requestClubs = () => (
   { type: actionTypes.REQUEST_CLUBS }
 );
 
-export const getAllClubsAC = (name) => (
+export const getAllClubsAC = (name='') => (
   async (dispatch) => {
     dispatch(requestClubs());
     const resp = await fetch(`${API_PREFIX}/club?name=${name}`);

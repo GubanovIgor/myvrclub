@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 
   const games = await Game.find(
     conditions.length ? { $and: conditions } : {}
-  ).limit(18 * req.body.pagination);
+  ).sort('-rating').limit(18 * req.body.pagination); // "-raiting" - сртировка по убыванию, "raiting" - по возрастанию
   res.json(games);
 });
 
