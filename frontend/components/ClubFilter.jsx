@@ -67,7 +67,7 @@ class ClubFilter extends Component {
 
         <FilterSectionWrapper>
           <FilterSectionWrapper__Title>
-            Поиск
+            Поиск клубов
           </FilterSectionWrapper__Title>
           <Search isClub={true} />
         </FilterSectionWrapper>

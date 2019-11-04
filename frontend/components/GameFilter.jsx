@@ -32,7 +32,7 @@ class GameFilter extends Component {
       <div className={styles.container}>
         <FilterSectionWrapper>
           <FilterSectionWrapper__Title>
-            Поиск
+            Поиск игр
           </FilterSectionWrapper__Title>
           <Search isGame={true} />
         </FilterSectionWrapper>

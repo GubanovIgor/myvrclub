@@ -12,6 +12,7 @@ export const InitState = {
   game: {},
   SearchName: '',
   currentId: '',
+  userId: '',
   map: false,
   loading: false,
   error: false,
