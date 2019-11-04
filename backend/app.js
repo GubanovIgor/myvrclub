@@ -17,10 +17,10 @@ let app = express();
 app.use(logger('dev'));
 
 //*********************MONGOOSE CONNECTION*************************************
-const dbName = 'mongodb://localhost/myvrclub';
+//const dbName = 'mongodb://localhost/myvrclub';
 //const dbName = 'mongodb+srv://mongo:12345@cluster0-xe8h0.mongodb.net/test?retryWrites=true&w=majority';
-// const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
-const db = mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const dbName = `mongodb+srv://rom:${process.env.PASSW_DB}@cluster0-woi64.mongodb.net/myvrclub`;
+mongoose.connect(dbName, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + dbName);
 });
