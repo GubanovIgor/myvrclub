@@ -36,7 +36,8 @@ class ClubPage extends Component {
   }
 
   componentDidMount = async () => {
-    this.props.getClubForMap(this.props.club._id);
+    console.log('im reload')
+    // this.props.getClubForMap(this.props.club._id);
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
   }
@@ -100,7 +101,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getClubForMap: (clubId) => dispatch(getClubForMapAC(clubId)),
+    // getClubForMap: (clubId) => dispatch(getClubForMapAC(clubId)),
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }

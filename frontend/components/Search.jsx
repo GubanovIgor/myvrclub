@@ -7,6 +7,8 @@ import {getGamesAC} from "../redux/actions/games.js";
 import {getClubsAC} from "../redux/actions/clubs.js";
 import {setSearchNameAC} from "../redux/actions/search.js";
 
+import { SearchInput } from '../stylesheets/index';
+
 
 const onSearch$ = new Rx.Subject().pipe(
   debounceTime(600),
@@ -51,7 +53,7 @@ class Search extends React.Component {
     const {search} = this.state;
     return (
       <div>
-        <input type="text" value={search} onChange={this.onSearch}/>
+        <SearchInput type="text" value={search} onChange={this.onSearch}/>
       </div>
     );
   }

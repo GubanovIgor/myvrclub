@@ -240,6 +240,10 @@ export const MapRatingToggleWrapper = styled.div`
 	transition: 0.5s ease;
 
 	padding: 0 1px;
+
+	@media screen and (max-width: 425px) {
+    margin-left: -25px;
+  }
 `;
 
 export const Toggle = styled.div`
@@ -267,5 +271,22 @@ export const ClubCardsWrapper = styled.div`
 
     margin-left: 40px;
     padding: 40px 20px;
+  }
+`;
+
+// Поле поиска
+export const SearchInput = styled.input`
+	margin: 0 auto;
+	padding: 0;
+	padding-left: 10px;
+
+	width: 90%;
+	border: 1px solid #338EEE;
+	border-radius: 5px;
+
+	font-size: 14px;
+
+	@media screen and (max-width: 425px) {
+    margin-left: -25px;
   }
 `;
