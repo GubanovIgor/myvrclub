@@ -6,7 +6,7 @@ const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 
 router.get('/', async (req, res) => {
   const nameRegex = new RegExp(req.query.name, 'i');
-  const games = await Game.find({name: {$regex: nameRegex}});
+  const games = await Club.find({name: {$regex: nameRegex}});
   res.json( games );
 });
 
@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
   // console.log(req.body.pagination)
   const clubs = await Club.find(
     conditions.length ? {$and: conditions} : {}
-  ).limit(req.body.pagination * 9);
+  ).sort("-rating").limit(req.body.pagination * 9);
   // console.log('clubs.length>>>>>', clubs.length);
   res.json(clubs);
 });
