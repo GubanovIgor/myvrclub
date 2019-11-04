@@ -2,6 +2,7 @@
 import fetch from 'isomorphic-unfetch';
 import { API_PREFIX } from '../../services/consts/consts';
 import { actionTypes } from "../types.js";
+import checkedToggleServices from '../../services/checkedToggle.js'
 
 // Получение клубов
 export const requestGetClubs = (data) => (
@@ -47,20 +48,7 @@ export const getClubsAC = (
     async (dispatch) => {
       //console.log('InitState', InitState);
       dispatch(requestClubs());
-      // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
-      let checkedToggle = [[], []];
-      if (filterToggleData) {
-        const keys = Object.keys(filterToggleData);
-        for (let i = 0; i < keys.length; i++) {
-          const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-          categoryKeys.forEach((key) => {
-            if (filterToggleData[keys[i]][key]) {
-              checkedToggle[i].push(key);
-            }
-          });
-        }
-      }
-
+      const checkedToggle = checkedToggleServices(filterToggleData);
       const filterData = {
         checkedToggle,
         pagination,
@@ -87,20 +75,7 @@ export const getClubsForMapAC = (
       console.log('qweqwe')
       //console.log('InitState', InitState);
       // dispatch(requestClubs());
-      // Оставляем в массиве checkedToggle только те тоглы, у которых значение true
-      let checkedToggle = [[], []];
-      if (filterToggleData) {
-        const keys = Object.keys(filterToggleData);
-        for (let i = 0; i < keys.length; i++) {
-          const categoryKeys = Object.keys(filterToggleData[keys[i]]);
-          categoryKeys.forEach((key) => {
-            if (filterToggleData[keys[i]][key]) {
-              checkedToggle[i].push(key);
-            }
-          });
-        }
-      }
-
+      const checkedToggle = checkedToggleServices(filterToggleData);
       const filterData = {
         checkedToggle,
         gameId,

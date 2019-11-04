@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
-import { reducer } from './reducers';
+import { reducer } from './reducers/index.js';
+
+console.log('reducer)))))))))))', reducer);
 
 export const InitState = {
   // num: NaN,
@@ -168,6 +170,7 @@ const devTools =
     : composeWithDevTools(applyMiddleware(thunkMiddleware));
 
 export function initializeStore(initialState = InitState) {
+  console.log('initialState', initialState);
   return createStore(
     reducer,
     initialState,
