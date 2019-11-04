@@ -26,7 +26,21 @@ export const ScreenshotsWrapper = styled.div`
 	align-items: center;
 	width: 100%;
 
+	border: 1px solid red;
+
 	overflow-y: hidden;
+`;
+
+export const ScreenshotsSwiper = styled.div`
+	display: flex;
+	height: 200px;
+	transform: ${props => !props.check && `translate3d(${props.position}px, 0px, 0px)`};
+	/* left: ${props => `${props.position}px`}; */
+	/* left: -100px; */
+
+	transition: 0.5s;
+
+	border: 1px solid green;
 `;
 
 export const ImgMiniImageProfileBlock = styled.img`
