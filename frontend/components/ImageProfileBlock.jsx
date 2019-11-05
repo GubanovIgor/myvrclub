@@ -19,8 +19,10 @@ class ImageProfileBlock extends Component {
     screenIndex: 0,
     startPosition: 0,
     position: 0,
-    startPositionCheck: 0,
-    check: false,
+    startPositionSave: 0,
+    endPositionSave: 0,
+    point: 0,
+    transition: true,
   };
 
   componentDidMount() {
@@ -39,39 +41,38 @@ class ImageProfileBlock extends Component {
     this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index }) :
     this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index + 1 })
   }
-
-  swipe = (index) => {
-    this.setState({ screenIndex: index })
-  }
+  
+  // e.targetTouches[0].clientX - значение этой хуйни лежит в рамках экрана
 
   handleTouchStart = (e) => {
     e.preventDefault();
-    this.setState({check: true});
-    console.log('START POSITION: ', e.targetTouches[0].clientX);
-    this.setState({startPosition: e.targetTouches[0].clientX});
-    this.setState({startPositionCheck: e.targetTouches[0].clientX});
+    this.setState({
+      transition: false,
+      startPosition: e.targetTouches[0].clientX - this.state.position,
+      startPositionSave: e.targetTouches[0].clientX,
+      point: this.state.position,
+    });
   }
 
   handleTouchMove = (e) => {
     e.preventDefault();
-    console.log('CURRENT POSITION: ', e.targetTouches[0].clientX);
-    // this.setState({startPosition: e.targetTouches[0].clientX});
-    this.setState({position: e.targetTouches[0].clientX - this.state.startPosition})
+    this.setState({
+      position: e.targetTouches[0].clientX - this.state.startPosition
+    });
+    this.setState({ endPositionSave: e.targetTouches[0].clientX })
   }
 
-  handleTouchEnd = async () => {
-    console.log(this.state.position)
-    // if (this.state.position - this.state.startPositionCheck < 50) {
-    //   console.log(this.state.position, 'POSITION')
-    //   await this.setState({position: 0})
-    //   console.log(this.state.position, 'POSITION2')
-    // } else if (this.state.position - this.state.startPositionCheck < 50) {
-    //   this.setState({position: this.state.startPositionCheck - 300})
-    // } else {
-    //   this.setState({position: this.state.startPositionCheck})
-    // }
-    this.setState({position: 0});
-    this.setState({check: false});
+  handleTouchEnd = async (e) => {
+    this.setState({ transition: true })
+    let shift = this.state.startPositionSave - this.state.endPositionSave;
+
+    if (shift < -100) {
+      this.setState({position: this.state.position + 200})
+    } else if (shift > 100) {
+      this.setState({position: this.state.position - 200})
+    } else {
+      this.setState({position: this.state.point})
+    }
   }
 
   render() {
@@ -98,12 +99,12 @@ class ImageProfileBlock extends Component {
             alt={item.name} />}
         <ScreenshotsWrapper className={styles.screenshotsSwitch}
           ref={(el) => this.screenshotsWrapper = el}>
-          <ScreenshotsSwiper position={this.state.position} check={this.state.check}
+          <ScreenshotsSwiper position={this.state.position} transition={this.state.transition}
 
           // я тут
           onTouchStart={(e) => this.handleTouchStart(e)}
           onTouchMove={(e) => this.handleTouchMove(e)}
-          onTouchEnd={() => this.handleTouchEnd()}
+          onTouchEnd={(e) => this.handleTouchEnd(e)}
           
           >
             {items}

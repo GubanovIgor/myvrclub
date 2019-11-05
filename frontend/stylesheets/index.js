@@ -25,26 +25,23 @@ export const ScreenshotsWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
+	overflow: hidden;
 
 	border: 1px solid red;
-
-	overflow-y: hidden;
 `;
 
 export const ScreenshotsSwiper = styled.div`
 	display: flex;
 	height: 200px;
-	transform: ${props => !props.check && `translate3d(${props.position}px, 0px, 0px)`};
-	/* left: ${props => `${props.position}px`}; */
-	/* left: -100px; */
+	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
 
-	transition: 0.5s;
+	transition: ${props => props.transition && '0.5s'};
 
-	border: 1px solid green;
+	border: 1px solid yellow;
 `;
 
 export const ImgMiniImageProfileBlock = styled.img`
-	width: 144px;
+	/* width: 144px;
 
 	border-radius: 3px;
 	cursor: pointer;
@@ -61,7 +58,8 @@ export const ImgMiniImageProfileBlock = styled.img`
 
 		padding: 0;
 		margin: 0;
-	}
+	} */
+	width: 100%;
 `;
 
 // Считаем координаты PictureUnderline
