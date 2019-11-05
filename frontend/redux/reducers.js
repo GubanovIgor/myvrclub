@@ -49,7 +49,7 @@ export const reducer = (state, action) => {
     case actionTypes.REQUEST_END_LOGIN:
       return ({ ...state, logging: false });
     case actionTypes.LOGIN_SUCSESS:
-      return ({ ...state, isLogged: true, userId: action.id });
+      return ({ ...state, isLogged: true });
     case actionTypes.LOGIN_REJECT:
       return ({ ...state, isLogged: false });
     //******************************
