@@ -67,9 +67,9 @@ class ImageProfileBlock extends Component {
     let shift = this.state.startPositionSave - this.state.endPositionSave;
 
     if (shift < -100) {
-      this.setState({position: this.state.position + 200})
+      this.setState({position: this.state.point + 329})
     } else if (shift > 100) {
-      this.setState({position: this.state.position - 200})
+      this.setState({position: this.state.point - 329})
     } else {
       this.setState({position: this.state.point})
     }

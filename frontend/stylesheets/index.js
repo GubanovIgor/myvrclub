@@ -31,17 +31,19 @@ export const ScreenshotsWrapper = styled.div`
 `;
 
 export const ScreenshotsSwiper = styled.div`
-	display: flex;
-	height: 200px;
-	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
+	@media screen and (max-width: 425px) {
+		display: flex;
+		height: 200px;
+		transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
 
-	transition: ${props => props.transition && '0.5s'};
+		transition: ${props => props.transition && '0.5s'};
 
-	border: 1px solid yellow;
+		border: 1px solid yellow;
+	}
 `;
 
 export const ImgMiniImageProfileBlock = styled.img`
-	/* width: 144px;
+	width: 144px;
 
 	border-radius: 3px;
 	cursor: pointer;
@@ -58,8 +60,7 @@ export const ImgMiniImageProfileBlock = styled.img`
 
 		padding: 0;
 		margin: 0;
-	} */
-	width: 100%;
+	}
 `;
 
 // Считаем координаты PictureUnderline
