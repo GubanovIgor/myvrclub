@@ -14,6 +14,11 @@ import styles from '../stylesheets/imageProfileBlock.module.scss';
 
 class ImageProfileBlock extends Component {
 
+  constructor(props){
+    super(props)
+    this.img = React.createRef()
+  }
+
   state = {
     imageUrl: '',
     screenIndex: 0,
@@ -23,13 +28,17 @@ class ImageProfileBlock extends Component {
     endPositionSave: 0,
     point: 0,
     transition: true,
+    width: 0,
   };
 
   componentDidMount() {
     const { club, game } = this.props;
     if (!!club) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
     if (!!game) this.setState({ imageUrl: game.screenShot[0] });
-    this.setState({ screenWrapperWidth: this.screenshotsWrapper.clientWidth });
+    this.setState({
+      screenWrapperWidth: this.screenshotsWrapper.clientWidth,
+      width: this.img.current.offsetWidth,
+    });
   }
 
   updateUrlImage = imageUrl => {
@@ -67,9 +76,9 @@ class ImageProfileBlock extends Component {
     let shift = this.state.startPositionSave - this.state.endPositionSave;
 
     if (shift < -100) {
-      this.setState({position: this.state.point + 329})
+      this.setState({position: this.state.point + this.state.width + 5.5})
     } else if (shift > 100) {
-      this.setState({position: this.state.point - 329})
+      this.setState({position: this.state.point - this.state.width - 5.5})
     } else {
       this.setState({position: this.state.point})
     }
@@ -99,7 +108,7 @@ class ImageProfileBlock extends Component {
             alt={item.name} />}
         <ScreenshotsWrapper className={styles.screenshotsSwitch}
           ref={(el) => this.screenshotsWrapper = el}>
-          <ScreenshotsSwiper position={this.state.position} transition={this.state.transition}
+          <ScreenshotsSwiper position={this.state.position} transition={this.state.transition} ref={this.img}
 
           // я тут
           onTouchStart={(e) => this.handleTouchStart(e)}
