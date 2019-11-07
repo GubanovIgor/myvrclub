@@ -55,13 +55,14 @@ class Swiper extends Component {
   render() {
     const { transition, position } = this.state;
     return (
-      <ScreenshotsSwiper position={position} transition={transition}
-
-      // я тут
-      onTouchStart={(e) => this.handleTouchStart(e)}
-      onTouchMove={(e) => this.handleTouchMove(e)}
-      onTouchEnd={() => this.handleTouchEnd()}>
-
+      <ScreenshotsSwiper
+        position={position}
+        transition={transition}
+        onTouchStart={(e) => this.handleTouchStart(e)}
+        onTouchMove={(e) => this.handleTouchMove(e)}
+        onTouchEnd={() => this.handleTouchEnd()}
+      >
+        {this.props.items}
       </ScreenshotsSwiper>
     );
   }

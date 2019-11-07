@@ -26,21 +26,17 @@ export const ScreenshotsWrapper = styled.div`
 	align-items: center;
 	width: 100%;
 	overflow: hidden;
-
-	border: 1px solid red;
 `;
 
 export const ScreenshotsSwiper = styled.div`
 	display: flex;
 	align-items: center;
-	
+
 	@media screen and (max-width: 425px) {
 		position: relative;
+		width: 100%;
 		transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
 		transition: ${props => props.transition && '0.5s'};
-		border: 1px solid yellow;
-
-		width: 100%;
 	}
 `;
 
