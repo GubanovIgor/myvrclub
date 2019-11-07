@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   // based on email address
-  const {email, password} = req.body
+  const {email, password} = req.body;
   User.findOne({email}, (error, user) => {
     if (error || !user) {
       return res.status(400).json({
@@ -53,7 +53,6 @@ exports.requireSignin = expressJwt({
 
 exports.isAuth = (req, res, next) => {
   let user = req.profile && req.auth && req.profile._id == req.auth._id
-  console.log('request', req)
   if (!user) {
     return res.status(403).json({
       error: 'Access denied'

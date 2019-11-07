@@ -78,39 +78,52 @@ export const requestSignIn = (values) => (
     console.log('signup data >>>>>>>>>', data);
     if (data.user) {
       dispatch(loginSucsessAC(data.user._id));
-      sessionStorage.setItem('userId', data.user._id);
-      sessionStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.user._id);
+      localStorage.setItem('token', data.token);
     }
     else dispatch(loginRejectAC());
   }
 );
 
 //*****************CheckSession*********************
-export const checkSession = (values) => (
+export const checkSession = () => (
   async (dispatch) => {
-    //dispatch(requestLoginAC());
-    const userId = sessionStorage.getItem('userId')
-    const token = sessionStorage.getItem('token')
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
     console.log('values id>>>>>>>', userId);
     console.log('values token>>>>>>>', token);
-    const resp = await fetch(`${API_PREFIX}/user/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      };
+      const res = await fetch(`${API_PREFIX}/user/${userId}`, config);
+      if (res.ok) {
+        const data = await res.json();
+        console.log('CheckSession statusData data >>>>>>>>>', data);
+      }else{
+        throw new Error(res.statusText);
       }
-    });
-    const data = await resp.json();
-    //dispatch(requestEndLoginAC());
-    console.log('statusData data >>>>>>>>>', data);
-
+      //dispatch(requestEndLoginAC());
+    } catch(err){
+      console.log(err)
+    }
   }
 );
+
+
+
+
+
 //*******************SignOut***********************
-export const signOut = () => (
+export const requestSignOut = () => (
   async (dispatch) => {
     const resp = await fetch(`${API_PREFIX}/auth/signout`);
     const data = await resp.json();
-    //dispatch(requestEndLoginAC());
-    console.log('statusData >>>>>>>>>', data);
-
+    //dispatch(requestSignOutAC());
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    console.log('SignOut>>>>>>>>>', data);
   }
 );
