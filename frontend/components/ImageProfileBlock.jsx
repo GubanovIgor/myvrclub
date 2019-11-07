@@ -14,11 +14,6 @@ import styles from '../stylesheets/imageProfileBlock.module.scss';
 
 class ImageProfileBlock extends Component {
 
-  constructor(props){
-    super(props)
-    this.img = React.createRef()
-  }
-
   state = {
     imageUrl: '',
     screenIndex: 0,
@@ -35,10 +30,6 @@ class ImageProfileBlock extends Component {
     const { club, game } = this.props;
     if (!!club) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
     if (!!game) this.setState({ imageUrl: game.screenShot[0] });
-    this.setState({
-      screenWrapperWidth: this.screenshotsWrapper.clientWidth,
-      width: this.img.current.offsetWidth,
-    });
   }
 
   updateUrlImage = imageUrl => {
@@ -56,6 +47,7 @@ class ImageProfileBlock extends Component {
   handleTouchStart = (e) => {
     e.preventDefault();
     this.setState({
+      width: e.target.parentNode.offsetWidth,
       transition: false,
       startPosition: e.targetTouches[0].clientX - this.state.position,
       startPositionSave: e.targetTouches[0].clientX,
@@ -71,21 +63,24 @@ class ImageProfileBlock extends Component {
     this.setState({ endPositionSave: e.targetTouches[0].clientX })
   }
 
-  handleTouchEnd = async (e) => {
+  handleTouchEnd = async () => {
+    const { startPositionSave, endPositionSave, point, width } = this.state;
+    let shift = startPositionSave - endPositionSave;
+
     this.setState({ transition: true })
-    let shift = this.state.startPositionSave - this.state.endPositionSave;
 
     if (shift < -100) {
-      this.setState({position: this.state.point + this.state.width + 5.5})
+      this.setState({position: point + width + 5.5})
     } else if (shift > 100) {
-      this.setState({position: this.state.point - this.state.width - 5.5})
+      this.setState({position: point - width - 5.5})
     } else {
-      this.setState({position: this.state.point})
+      this.setState({position: point})
     }
   }
 
   render() {
-    const { club, game } = this.props;
+    const { club, game, screenMode } = this.props;
+    const { transition, position, imageUrl, screenIndex } = this.state;
 
     let item = game, clubPathPrefix = '';
     if (!!club) {
@@ -94,7 +89,7 @@ class ImageProfileBlock extends Component {
     }
     const items = item.screenShot.map((imgLink, index) => {
       if (index > 4) return;
-      return <ImgMiniImageProfileBlock key={imgLink}
+      return <ImgMiniImageProfileBlock
         alt={item.name}
         src={clubPathPrefix + imgLink}
         onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
@@ -102,23 +97,23 @@ class ImageProfileBlock extends Component {
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
-        {(this.props.screenMode === 'desktop') &&
+        {(screenMode === 'desktop') &&
           <img className={styles.img}
-            src={this.state.imageUrl}
+            src={imageUrl}
             alt={item.name} />}
         <ScreenshotsWrapper className={styles.screenshotsSwitch}
           ref={(el) => this.screenshotsWrapper = el}>
-          <ScreenshotsSwiper position={this.state.position} transition={this.state.transition} ref={this.img}
+          <ScreenshotsSwiper position={position} transition={transition}
 
           // я тут
           onTouchStart={(e) => this.handleTouchStart(e)}
           onTouchMove={(e) => this.handleTouchMove(e)}
-          onTouchEnd={(e) => this.handleTouchEnd(e)}
+          onTouchEnd={() => this.handleTouchEnd()}
           
           >
             {items}
           </ScreenshotsSwiper>
-          {(this.props.screenMode === 'desktop') && <PictureUnderline screenIndex={this.state.screenIndex} />}
+          {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
         </ScreenshotsWrapper>
       </div>
     );
