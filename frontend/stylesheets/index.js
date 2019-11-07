@@ -40,6 +40,26 @@ export const ScreenshotsSwiper = styled.div`
 	}
 `;
 
+export const SwiperCounter = styled.div`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 15%;
+	height: 15%;
+
+	color: #FFF;
+
+	background-color: rgba(0,0,0,0.7);
+	border-radius: 4px;
+
+	z-index: 1;
+`;
+
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 100%;

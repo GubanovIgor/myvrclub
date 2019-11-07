@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   ScreenshotsSwiper,
+  SwiperCounter,
 } from '../stylesheets/index';
 
 class Swiper extends Component {
@@ -19,7 +20,6 @@ class Swiper extends Component {
   // e.targetTouches[0].clientX - значение этой хуйни лежит в рамках экрана
 
   handleTouchStart = (e) => {
-    e.preventDefault();
     this.setState({
       width: e.target.parentNode.offsetWidth,
       transition: false,
@@ -30,7 +30,6 @@ class Swiper extends Component {
   }
 
   handleTouchMove = (e) => {
-    e.preventDefault();
     this.setState({
       position: e.targetTouches[0].clientX - this.state.startPosition
     });
@@ -38,15 +37,18 @@ class Swiper extends Component {
   }
 
   handleTouchEnd = async () => {
+    const { items, swiperCounter } = this.props
     const { startPositionSave, endPositionSave, point, width } = this.state;
     let shift = startPositionSave - endPositionSave;
 
     this.setState({ transition: true })
 
-    if (shift < -100) {
-      this.setState({ position: point + width + 5.5 })
-    } else if (shift > 100) {
-      this.setState({ position: point - width - 5.5 })
+    if (shift < -100 && swiperCounter != 1) {
+      this.props.handleSwiperCounter('to left')
+      this.setState({ position: point + width + 7.5 })
+    } else if (shift > 100 && swiperCounter != items.length) {
+      this.props.handleSwiperCounter('to right')
+      this.setState({ position: point - width - 7.5 })
     } else {
       this.setState({ position: point })
     }
@@ -54,6 +56,7 @@ class Swiper extends Component {
 
   render() {
     const { transition, position } = this.state;
+    const { items } = this.props
     return (
       <ScreenshotsSwiper
         position={position}
@@ -62,7 +65,7 @@ class Swiper extends Component {
         onTouchMove={(e) => this.handleTouchMove(e)}
         onTouchEnd={() => this.handleTouchEnd()}
       >
-        {this.props.items}
+        {items}
       </ScreenshotsSwiper>
     );
   }
