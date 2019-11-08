@@ -312,6 +312,7 @@ export const SearchInput = styled.input`
 	padding-left: 10px;
 
 	width: 90%;
+	height: 27px;
 	border: 1px solid #338EEE;
 	border-radius: 5px;
 
