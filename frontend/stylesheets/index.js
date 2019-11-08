@@ -322,3 +322,38 @@ export const SearchInput = styled.input`
     margin-left: -25px;
   }
 `;
+
+export const WhiteContainer = styled.div`
+	position: relative;
+	height: 400px;
+	
+  border-radius: 7px;
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.5);
+  overflow: hidden;
+
+	margin-bottom: 50px;
+	padding: 0 40px;
+`;
+
+export const CarouselWrapper = styled.div`
+	/* overflow: hidden; */
+	border: 1px solid purple;
+`;
+
+export const CarouselMechanism = styled.div`
+	position: relative;
+
+	display: flex;
+	align-items: center;
+
+	width: 100%;
+	/* transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
+	transition: ${props => props.transition && '0.5s'}; */
+
+	transform: translate3d(-100px, 0px, 0px);
+
+
+	> div {
+		margin-right: 30px;
+	}
+`;

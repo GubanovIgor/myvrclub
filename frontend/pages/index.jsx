@@ -7,9 +7,6 @@ import {switchCaruselIndexAC } from '../redux/actions/carousel';
 import {getClubsAC} from "../redux/actions/clubs.js";
 import {getGamesAC} from "../redux/actions/games.js";
 
-// SASS
-import styles from '../stylesheets/index.module.scss'
-
 // Components
 import ClubCollections from '../components/ClubCollections';
 import GameCollections from '../components/GameCollections';
@@ -17,6 +14,11 @@ import Carusel from '../components/Carusel';
 import Header from '../components/Header';
 //import IndexSearch from '../components/IndexSearch';
 import Loading from '../components/Loading';
+import GameCard from '../components/GameCard';
+import Carousel from '../components/Carousel';
+
+// Styled Components
+import { WhiteContainer } from '../stylesheets/index';
 
 class Index extends Component {
   state = {
@@ -95,6 +97,10 @@ class Index extends Component {
 
   render() {
     const { games, clubs, screenMode } = this.props;
+    const items = this.props.games.map(el => {
+      return <GameCard game={el} key={el._id}/>
+    })
+
     return (
       <div>
         <Head>
@@ -117,6 +123,10 @@ class Index extends Component {
         />}
         {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
         {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
+        
+        <WhiteContainer>
+          <Carousel items={items}/>
+        </WhiteContainer>
       </div>
     );
   }
