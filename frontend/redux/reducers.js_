@@ -60,8 +60,7 @@ export const reducer = (state, action) => {
         //***************LOGIN-LOGOUT*************
         case actionTypes.REQUEST_LOGIN:
             return ({...state, logging: true});
-        case actionTypes.REQUEST_END_LOGIN:
-            return ({...state, logging: false});
+
         case actionTypes.LOGIN_SUCSESS:
             return ({...state, isLogged: true});
         case actionTypes.LOGIN_REJECT:
