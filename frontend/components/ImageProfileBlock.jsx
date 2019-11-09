@@ -35,16 +35,16 @@ class ImageProfileBlock extends Component {
 
   screenChange = (clubPathPrefix, imgLink, index) => {
     (this.props.screenMode === 'desktop') ?
-    this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index }) :
-    this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index + 1 })
+      this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index }) :
+      this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index + 1 })
   }
 
   handleSwiperCounter = (side) => {
     const { swiperCounter } = this.state;
 
     (side === 'to right') ?
-    this.setState({ swiperCounter: swiperCounter + 1 }) :
-    this.setState({ swiperCounter: swiperCounter - 1 })
+      this.setState({ swiperCounter: swiperCounter + 1 }) :
+      this.setState({ swiperCounter: swiperCounter - 1 })
   }
 
   render() {
@@ -59,11 +59,11 @@ class ImageProfileBlock extends Component {
 
     const items = item.screenShot.map((imgLink, index) => {
       // if (index <= 4) {
-        return <ImgMiniImageProfileBlock
-          key={imgLink}
-          alt={item.name}
-          src={clubPathPrefix + imgLink}
-          onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
+      return <ImgMiniImageProfileBlock
+        key={imgLink}
+        alt={item.name}
+        src={clubPathPrefix + imgLink}
+        onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
       // };
     });
 
@@ -78,9 +78,11 @@ class ImageProfileBlock extends Component {
           <SwiperCounter>
             {swiperCounter}/{items.length}
           </SwiperCounter>
-          <Swiper items={items}
+          <Swiper
+            items={items}
             handleSwiperCounter={this.handleSwiperCounter}
-            swiperCounter={swiperCounter}/>
+            swiperCounter={swiperCounter}
+            />
           {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
         </ScreenshotsWrapper>
       </div>

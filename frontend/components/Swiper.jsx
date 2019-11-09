@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   ScreenshotsSwiper,
+  SwiperCounter,
 } from '../stylesheets/index';
 
 class Swiper extends Component {

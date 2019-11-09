@@ -77,8 +77,6 @@ class Carousel extends Component {
     const { items } = this.props;
     const { carouselPosition, maxShift, buttonCoordX, buttonCoordY } = this.state;
 
-    console.log(typeof buttonCoordX)
-
     return (
       <CarouselWrapper>
         <CarouselMechanism
