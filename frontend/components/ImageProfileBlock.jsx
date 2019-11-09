@@ -5,10 +5,12 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 import {
   ImgMiniImageProfileBlock,
   PictureUnderline,
+  ScreenshotsWrapper,
 } from '../stylesheets/index';
 
 // Import Components
 import Swiper from './Swiper';
+import Carousel from './Carousel';
 
 //SASS
 import styles from '../stylesheets/imageProfileBlock.module.scss';
@@ -47,11 +49,13 @@ class ImageProfileBlock extends Component {
     }
 
     const items = item.screenShot.map((imgLink, index) => {
-      return <ImgMiniImageProfileBlock
-        key={imgLink}
-        alt={item.name}
-        src={clubPathPrefix + imgLink}
-        onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
+      return <div>
+        <ImgMiniImageProfileBlock
+          key={imgLink}
+          alt={item.name}
+          src={clubPathPrefix + imgLink}
+          onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
+      </div>
     });
 
     return (
@@ -61,7 +65,10 @@ class ImageProfileBlock extends Component {
           <img className={styles.img}
             src={imageUrl}
             alt={item.name} />}
-        <Swiper items={items} />
+        <ScreenshotsWrapper>
+          <Carousel items={items} />
+        </ScreenshotsWrapper>
+        {/* <Swiper items={items}/> */}
         {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
       </div>
     );

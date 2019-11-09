@@ -302,6 +302,18 @@ export const WhiteContainer = styled.div`
 	}
 
 	@media screen and (max-width: 425px) {
-    padding: 15px;
+    padding: 30px;
   }
+`;
+
+// Обертка скриншотов в профиле
+export const ScreenshotsWrapper = styled.div`
+	position: relative;
+	width: 750px;
+
+	&:hover {
+		.carouselShiftButton {
+			opacity: 1;
+		}
+	}
 `;

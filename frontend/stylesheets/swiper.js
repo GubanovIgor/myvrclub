@@ -31,17 +31,15 @@ export const SwiperCounter = styled.div`
 	top: 10px;
 	right: 10px;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: 40px;
+	height: 25px;
 
-	width: 15%;
-	height: 15%;
-
-	color: #FFF;
+  color: #FFF;
+  line-height: 25px;
+  text-align: center;
 
 	background-color: rgba(0,0,0,0.7);
-	border-radius: 4px;
+  border-radius: 4px;
 
 	z-index: 1;
 `;
