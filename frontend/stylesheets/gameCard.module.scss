@@ -19,17 +19,9 @@ $mobile-card-height: 141px;
 
   transition: 0.5s;
 
-  @media screen and (min-width: 426px) {
-    p {
-      width: $card-width;
-      padding: 0;
-    }
-  }
-
-  // Mobile
   @media screen and (max-width: 425px) {
     display: inline-block;
-    width: 100%;
+    min-width: 100%;
     margin: 0 auto 30px;
   }
 }

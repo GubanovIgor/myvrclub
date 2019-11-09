@@ -5,12 +5,18 @@ export const SwiperWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	overflow: hidden;
+  overflow: hidden;
+  
+  /* padding: 30px 0; */
 `;
 
 export const SwiperMechanism = styled.div`
 	display: flex;
-	align-items: center;
+  align-items: center;
+  
+  > div {
+		margin-right: 7.5px;
+	}
 
 	@media screen and (max-width: 425px) {
 		position: relative;

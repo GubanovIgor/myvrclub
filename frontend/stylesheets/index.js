@@ -292,6 +292,7 @@ export const WhiteContainer = styled.div`
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.5);
 
 	margin-bottom: 50px;
+
 	padding: 0 40px;
 
 	&:hover {
@@ -299,4 +300,8 @@ export const WhiteContainer = styled.div`
 			opacity: 1;
 		}
 	}
+
+	@media screen and (max-width: 425px) {
+    padding: 15px;
+  }
 `;

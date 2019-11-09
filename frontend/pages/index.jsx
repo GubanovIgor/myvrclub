@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // import AC
-import {switchCaruselIndexAC } from '../redux/actions/carousel';
-import {getClubsAC} from "../redux/actions/clubs.js";
-import {getGamesAC} from "../redux/actions/games.js";
+import { switchCaruselIndexAC } from '../redux/actions/carousel';
+import { getClubsAC } from "../redux/actions/clubs.js";
+import { getGamesAC } from "../redux/actions/games.js";
 
 // Components
 import Carusel from '../components/Carusel';
@@ -15,6 +15,7 @@ import Loading from '../components/Loading';
 import GameCard from '../components/GameCard';
 import ClubCard from '../components/ClubCard';
 import Carousel from '../components/Carousel';
+import Swiper from '../components/Swiper';
 
 // Styled Components
 import { WhiteContainer } from '../stylesheets/index';
@@ -96,13 +97,13 @@ class Index extends Component {
 
   render() {
     const { games, clubs, screenMode } = this.props;
-    
+
     const itemsGames = games.map(el => {
-      return <GameCard game={el} key={el._id}/>
+      return <GameCard game={el} key={el._id} />
     })
 
     const itemsClubs = clubs.map(el => {
-      return <ClubCard club={el} key={el._id}/>
+      return <ClubCard club={el} key={el._id} />
     })
 
     return (
@@ -119,19 +120,23 @@ class Index extends Component {
         {/*<h1>myvrclub.ru</h1>*/}
         {/*<h1>Агрегатор клубов виртуальной реальности</h1>*/}
         {/*</div>*/}
-        {(screenMode === 'desktop') && <Carusel
+        {/* {(screenMode === 'desktop') && <Carusel
           caruselIndex={this.props.caruselIndex}
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
           screenMode={screenMode}
-        />}
-        
+        />} */}
+
         <WhiteContainer>
-          <Carousel items={itemsGames}/>
+          {(screenMode === 'desktop') ?
+            <Carousel items={itemsGames} /> :
+            <Swiper items={itemsGames} />}
         </WhiteContainer>
 
         <WhiteContainer>
-          <Carousel items={itemsClubs}/>
+          {(screenMode === 'desktop') ?
+            <Carousel items={itemsClubs} /> :
+            <Swiper items={itemsClubs} />}
         </WhiteContainer>
       </div>
     );
