@@ -24,6 +24,7 @@ export const CarouselMechanism = styled.div`
 
 export const ToLeftButton = styled.div`
     position: absolute;
+    opacity: 0;
     width: 40px;
     height: 40px;
   
@@ -35,6 +36,8 @@ export const ToLeftButton = styled.div`
     box-shadow: 0 3px 20px -5px #000000;
     cursor: pointer;
 
+    transition: 0.375s;
+
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: bottom 50% right 55%;
@@ -43,6 +46,7 @@ export const ToLeftButton = styled.div`
   
 export const ToRightButton = styled.div`
     position: absolute;
+    opacity: 0;
     width: 40px;
     height: 40px;
   
@@ -54,9 +58,10 @@ export const ToRightButton = styled.div`
     box-shadow: 0 3px 25px -5px #000000;
     cursor: pointer;
 
+    transition: 0.375s;
+
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: center;
     ${props => `background-image: url(${imgPath}/${props.img}.png);`}
-    z-index: 9;
 `;

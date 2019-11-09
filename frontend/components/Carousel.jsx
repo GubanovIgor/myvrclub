@@ -91,6 +91,7 @@ class Carousel extends Component {
         {(this.state.carouselPosition !== 0) &&
           <ToLeftButton
             onClick={() => this.scroll('left')}
+            className={'carouselShiftButton'}
             coordY={buttonCoordY}
             coordX={buttonCoordX}
             img={'arrow-to-left'}
@@ -98,6 +99,7 @@ class Carousel extends Component {
         {(this.state.carouselPosition !== -maxShift) &&
           <ToRightButton
             onClick={() => this.scroll('right')}
+            className={'carouselShiftButton'}
             coordY={buttonCoordY}
             coordX={buttonCoordX}
             img={'arrow-to-right'}

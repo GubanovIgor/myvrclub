@@ -336,4 +336,10 @@ export const WhiteContainer = styled.div`
 
 	margin-bottom: 50px;
 	padding: 0 40px;
+
+	&:hover {
+		.carouselShiftButton {
+			opacity: 1;
+		}
+	}
 `;

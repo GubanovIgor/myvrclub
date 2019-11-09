@@ -8,8 +8,6 @@ import {getClubsAC} from "../redux/actions/clubs.js";
 import {getGamesAC} from "../redux/actions/games.js";
 
 // Components
-import ClubCollections from '../components/ClubCollections';
-import GameCollections from '../components/GameCollections';
 import Carusel from '../components/Carusel';
 import Header from '../components/Header';
 //import IndexSearch from '../components/IndexSearch';
@@ -98,6 +96,7 @@ class Index extends Component {
 
   render() {
     const { games, clubs, screenMode } = this.props;
+    
     const itemsGames = games.map(el => {
       return <GameCard game={el} key={el._id}/>
     })
