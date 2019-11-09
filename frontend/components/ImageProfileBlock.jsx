@@ -5,8 +5,6 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 import {
   ImgMiniImageProfileBlock,
   PictureUnderline,
-  ScreenshotsWrapper,
-  SwiperCounter,
 } from '../stylesheets/index';
 
 // Import Components
@@ -20,7 +18,6 @@ class ImageProfileBlock extends Component {
   state = {
     imageUrl: '',
     screenIndex: 0,
-    swiperCounter: 1,
   };
 
   componentDidMount() {
@@ -39,17 +36,9 @@ class ImageProfileBlock extends Component {
       this.setState({ imageUrl: clubPathPrefix + imgLink, screenIndex: index + 1 })
   }
 
-  handleSwiperCounter = (side) => {
-    const { swiperCounter } = this.state;
-
-    (side === 'to right') ?
-      this.setState({ swiperCounter: swiperCounter + 1 }) :
-      this.setState({ swiperCounter: swiperCounter - 1 })
-  }
-
   render() {
     const { club, game, screenMode } = this.props;
-    const { imageUrl, screenIndex, swiperCounter } = this.state;
+    const { imageUrl, screenIndex } = this.state;
     let item = game, clubPathPrefix = '';
 
     if (!!club) {
@@ -58,13 +47,11 @@ class ImageProfileBlock extends Component {
     }
 
     const items = item.screenShot.map((imgLink, index) => {
-      // if (index <= 4) {
       return <ImgMiniImageProfileBlock
         key={imgLink}
         alt={item.name}
         src={clubPathPrefix + imgLink}
         onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
-      // };
     });
 
     return (
@@ -74,17 +61,8 @@ class ImageProfileBlock extends Component {
           <img className={styles.img}
             src={imageUrl}
             alt={item.name} />}
-        <ScreenshotsWrapper className={styles.screenshotsSwitch}>
-          <SwiperCounter>
-            {swiperCounter}/{items.length}
-          </SwiperCounter>
-          <Swiper
-            items={items}
-            handleSwiperCounter={this.handleSwiperCounter}
-            swiperCounter={swiperCounter}
-            />
-          {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
-        </ScreenshotsWrapper>
+        <Swiper items={items} />
+        {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
       </div>
     );
   }

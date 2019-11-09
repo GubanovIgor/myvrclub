@@ -20,46 +20,6 @@ import styled from "styled-components";
   } */
 // `;
 
-export const ScreenshotsWrapper = styled.div`
-	position: relative;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	overflow: hidden;
-`;
-
-export const ScreenshotsSwiper = styled.div`
-	display: flex;
-	align-items: center;
-
-	@media screen and (max-width: 425px) {
-		position: relative;
-		width: 100%;
-		transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
-		transition: ${props => props.transition && '0.5s'};
-	}
-`;
-
-export const SwiperCounter = styled.div`
-	position: absolute;
-	top: 10px;
-	right: 10px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	width: 15%;
-	height: 15%;
-
-	color: #FFF;
-
-	background-color: rgba(0,0,0,0.7);
-	border-radius: 4px;
-
-	z-index: 1;
-`;
-
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 100%;
@@ -117,7 +77,6 @@ export const ShowTelButton = styled.button`
 `;
 
 export const ProfileContent__Wrapper = styled.div`
-	/* border: 1px solid blue; */
 	padding-bottom: 200px;
 
 	@media screen and (max-width: 425px) {
@@ -127,8 +86,6 @@ export const ProfileContent__Wrapper = styled.div`
     box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
     border-radius: 10px;
 		padding: 10px;
-
-		/* border: 1px solid blue; */
 		
 		transition: 1s;
 

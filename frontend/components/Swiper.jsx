@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import {
-  ScreenshotsSwiper,
+  SwiperWrapper,
+  SwiperMechanism,
   SwiperCounter,
-} from '../stylesheets/index';
+} from '../stylesheets/swiper';
 
 class Swiper extends Component {
 
@@ -15,7 +16,16 @@ class Swiper extends Component {
     point: 0,
     transition: true,
     width: 0,
+    swiperCounter: 1,
   };
+
+  handleSwiperCounter = (side) => {
+    const { swiperCounter } = this.state;
+
+    (side === 'to right') ?
+      this.setState({ swiperCounter: swiperCounter + 1 }) :
+      this.setState({ swiperCounter: swiperCounter - 1 })
+  }
 
   // e.targetTouches[0].clientX - значение этой хуйни лежит в рамках экрана
 
@@ -37,17 +47,17 @@ class Swiper extends Component {
   }
 
   handleTouchEnd = async () => {
-    const { items, swiperCounter } = this.props
-    const { startPositionSave, endPositionSave, point, width } = this.state;
+    const { items } = this.props
+    const { startPositionSave, endPositionSave, point, width, swiperCounter } = this.state;
     let shift = startPositionSave - endPositionSave;
 
     this.setState({ transition: true })
 
     if (shift < -100 && swiperCounter != 1) {
-      this.props.handleSwiperCounter('to left')
+      this.handleSwiperCounter('to left')
       this.setState({ position: point + width + 7.5 })
     } else if (shift > 100 && swiperCounter != items.length) {
-      this.props.handleSwiperCounter('to right')
+      this.handleSwiperCounter('to right')
       this.setState({ position: point - width - 7.5 })
     } else {
       this.setState({ position: point })
@@ -55,18 +65,24 @@ class Swiper extends Component {
   }
 
   render() {
-    const { transition, position } = this.state;
+    const { transition, position, swiperCounter } = this.state;
     const { items } = this.props
     return (
-      <ScreenshotsSwiper
-        position={position}
-        transition={transition}
-        onTouchStart={(e) => this.handleTouchStart(e)}
-        onTouchMove={(e) => this.handleTouchMove(e)}
-        onTouchEnd={() => this.handleTouchEnd()}
-      >
-        {items}
-      </ScreenshotsSwiper>
+      <SwiperWrapper>
+        <SwiperMechanism
+          position={position}
+          transition={transition}
+          onTouchStart={(e) => this.handleTouchStart(e)}
+          onTouchMove={(e) => this.handleTouchMove(e)}
+          onTouchEnd={() => this.handleTouchEnd()}
+        >
+          {items}
+        </SwiperMechanism>
+
+        <SwiperCounter>
+          {swiperCounter}/{items.length}
+        </SwiperCounter>
+      </SwiperWrapper>
     );
   }
 }
