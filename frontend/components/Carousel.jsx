@@ -1,29 +1,39 @@
 import React, { Component } from 'react';
 
 import {
-  CarouselWrapper,
-  CarouselMechanism,
-} from '../stylesheets/index';
-
-import {
   ToRightButton,
   ToLeftButton,
+  CarouselWrapper,
+  CarouselMechanism,
 } from '../stylesheets/carusel';
 
 class Carousel extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.carouselMechanism = React.createRef()
   }
 
   state = {
     carouselPosition: 0,
-    maxShift: 2^9,
+    maxShift: 2 ^ 9,
+    buttonCoordX: 0,
+    buttonCoordY: 0,
   }
 
   componentDidMount = () => {
-    const container = document.querySelector('.carouselMechanism')
-    console.log(container.offsetWidth)
+    // Высота картинки
+    const imgHeight = this.carouselMechanism.current.firstChild.firstChild.clientHeight;
+    // Padding-top у CarouselWrapper
+    const wrapperPadding = 30;
+    // Ширина кнопки
+    const buttonWidth = this.carouselMechanism.current.nextSibling.clientWidth;
+    // Высота кнопки
+    const buttonHeight = this.carouselMechanism.current.nextSibling.clientHeight;
+
+    this.setState({
+      buttonCoordX: buttonWidth / 2,
+      buttonCoordY: imgHeight / 2 - buttonHeight / 2 + wrapperPadding,
+    })
   }
 
   scroll = async (side) => {
@@ -37,7 +47,7 @@ class Carousel extends Component {
     const itemMargin = parseInt(window
       .getComputedStyle(this.carouselMechanism.current.firstChild)
       .getPropertyValue("margin-right")
-      .replace(/\D/g,''));
+      .replace(/\D/g, ''));
     // Общая ширина элемента (item + margin)
     const itemTotalWidth = itemWidth + itemMargin;
     // Количство целиком помещающихся item + margin
@@ -65,18 +75,33 @@ class Carousel extends Component {
 
   render() {
     const { items } = this.props;
-    const { carouselPosition, maxShift } = this.state;
+    const { carouselPosition, maxShift, buttonCoordX, buttonCoordY } = this.state;
+
+    console.log(typeof buttonCoordX)
 
     return (
       <CarouselWrapper>
-        <CarouselMechanism ref={this.carouselMechanism} className={'carouselMechanism'} position={carouselPosition}>
+        <CarouselMechanism
+          ref={this.carouselMechanism}
+          className={'carouselMechanism'}
+          position={carouselPosition}>
           {items}
         </CarouselMechanism>
 
-        {(this.state.carouselPosition !== 0) && <ToLeftButton onClick={() => this.scroll('left')}
-          img={'arrow-to-left'}/>}
-        {(this.state.carouselPosition !== -maxShift) && <ToRightButton onClick={() => this.scroll('right')}
-          img={'arrow-to-right'}/>}
+        {(this.state.carouselPosition !== 0) &&
+          <ToLeftButton
+            onClick={() => this.scroll('left')}
+            coordY={buttonCoordY}
+            coordX={buttonCoordX}
+            img={'arrow-to-left'}
+          />}
+        {(this.state.carouselPosition !== -maxShift) &&
+          <ToRightButton
+            onClick={() => this.scroll('right')}
+            coordY={buttonCoordY}
+            coordX={buttonCoordX}
+            img={'arrow-to-right'}
+          />}
       </CarouselWrapper>
     );
   }

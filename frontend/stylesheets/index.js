@@ -334,23 +334,3 @@ export const WhiteContainer = styled.div`
 	margin-bottom: 50px;
 	padding: 0 40px;
 `;
-
-export const CarouselWrapper = styled.div`
-	overflow: hidden;
-`;
-
-export const CarouselMechanism = styled.div`
-	position: relative;
-
-	display: flex;
-	align-items: center;
-
-	width: 100%;
-	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
-	transition: 0.7s;
-
-
-	> div {
-		margin-right: 30px;
-	}
-`;

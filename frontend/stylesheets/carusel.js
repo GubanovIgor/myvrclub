@@ -1,13 +1,34 @@
 import styled from "styled-components";
 const imgPath = "/static/images/icons";
 
+export const CarouselWrapper = styled.div`
+	overflow: hidden;
+	padding: 30px 0;
+`;
+
+export const CarouselMechanism = styled.div`
+	position: relative;
+
+	display: flex;
+	align-items: center;
+
+	width: 100%;
+	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
+	transition: 0.9s ease-in-out;
+
+
+	> div {
+		margin-right: 30px;
+	}
+`;
+
 export const ToLeftButton = styled.div`
     position: absolute;
     width: 40px;
     height: 40px;
   
-    top: ${props => (props.isClub) ? '190px' : '130px'};
-    left: ${props => (props.isClub) ? '10px' : '10px'};
+    top: ${props => `${props.coordY}px`};
+    left: ${props => `${props.coordX}px`};
   
     border-radius: 50%;
     background-color: #FFF;
@@ -25,8 +46,8 @@ export const ToRightButton = styled.div`
     width: 40px;
     height: 40px;
   
-    top: ${props => (props.isClub) ? '190px' : '130px'};
-    right: ${props => (props.isClub) ? '10px' : '10px'};
+    top: ${props => `${props.coordY}px`};
+    right: ${props => `${props.coordX}px`};
   
     border-radius: 50%;
     background-color: #FFF;
