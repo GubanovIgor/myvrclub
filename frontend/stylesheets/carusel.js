@@ -58,4 +58,5 @@ export const ToRightButton = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     ${props => `background-image: url(${imgPath}/${props.img}.png);`}
+    z-index: 9;
 `;

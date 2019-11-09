@@ -15,6 +15,7 @@ import Header from '../components/Header';
 //import IndexSearch from '../components/IndexSearch';
 import Loading from '../components/Loading';
 import GameCard from '../components/GameCard';
+import ClubCard from '../components/ClubCard';
 import Carousel from '../components/Carousel';
 
 // Styled Components
@@ -97,8 +98,12 @@ class Index extends Component {
 
   render() {
     const { games, clubs, screenMode } = this.props;
-    const items = this.props.games.map(el => {
+    const itemsGames = games.map(el => {
       return <GameCard game={el} key={el._id}/>
+    })
+
+    const itemsClubs = clubs.map(el => {
+      return <ClubCard club={el} key={el._id}/>
     })
 
     return (
@@ -121,11 +126,13 @@ class Index extends Component {
           caruselData={this.state.caruselData}
           screenMode={screenMode}
         />}
-        {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
-        {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
         
         <WhiteContainer>
-          <Carousel items={items}/>
+          <Carousel items={itemsGames}/>
+        </WhiteContainer>
+
+        <WhiteContainer>
+          <Carousel items={itemsClubs}/>
         </WhiteContainer>
       </div>
     );

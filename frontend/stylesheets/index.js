@@ -293,7 +293,11 @@ export const ClubCardsWrapper = styled.div`
 	display: flex;
   justify-content: center;
   align-content: flex-start;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
+	
+	>div {
+		margin: 0 15px 40px;
+	}
 
   @media screen and (min-width: 425px) {
     box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
@@ -323,13 +327,12 @@ export const SearchInput = styled.input`
   }
 `;
 
+// Простой белый контейнер с тенью
 export const WhiteContainer = styled.div`
 	position: relative;
-	height: 400px;
 	
   border-radius: 7px;
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.5);
-  overflow: hidden;
 
 	margin-bottom: 50px;
 	padding: 0 40px;
