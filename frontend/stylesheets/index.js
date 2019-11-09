@@ -336,8 +336,7 @@ export const WhiteContainer = styled.div`
 `;
 
 export const CarouselWrapper = styled.div`
-	/* overflow: hidden; */
-	border: 1px solid purple;
+	overflow: hidden;
 `;
 
 export const CarouselMechanism = styled.div`
@@ -347,10 +346,8 @@ export const CarouselMechanism = styled.div`
 	align-items: center;
 
 	width: 100%;
-	/* transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
-	transition: ${props => props.transition && '0.5s'}; */
-
-	transform: translate3d(-100px, 0px, 0px);
+	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};
+	transition: 0.7s;
 
 
 	> div {

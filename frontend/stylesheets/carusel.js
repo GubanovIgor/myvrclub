@@ -6,8 +6,8 @@ export const ToLeftButton = styled.div`
     width: 40px;
     height: 40px;
   
-    top: ${props => (props.isClub) ? '190px;' : '130px;'}
-    left: ${props => (props.isClub) ? '10px;' : '10px;'}
+    top: ${props => (props.isClub) ? '190px' : '130px'};
+    left: ${props => (props.isClub) ? '10px' : '10px'};
   
     border-radius: 50%;
     background-color: #FFF;
@@ -17,7 +17,7 @@ export const ToLeftButton = styled.div`
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: bottom 50% right 55%;
-    ${props => `background-image: url(${imgPath}/${props.img}.png);`}
+    ${props => `background-image: url(${imgPath}/${props.img}.png)`};
 `;
   
 export const ToRightButton = styled.div`
@@ -25,8 +25,8 @@ export const ToRightButton = styled.div`
     width: 40px;
     height: 40px;
   
-    top: ${props => (props.isClub) ? '190px;' : '130px;'}
-    right: ${props => (props.isClub) ? '10px;' : '10px;'}
+    top: ${props => (props.isClub) ? '190px' : '130px'};
+    right: ${props => (props.isClub) ? '10px' : '10px'};
   
     border-radius: 50%;
     background-color: #FFF;
