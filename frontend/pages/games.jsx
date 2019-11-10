@@ -32,8 +32,7 @@ class Games extends Component {
 
   componentDidMount = async () => {
     window.addEventListener('scroll', this.paginationHandler);
-    await this.props.getGames();
-
+    await this.props.getGames(this.props.filterToggle);
   };
 
 

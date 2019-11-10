@@ -3,20 +3,22 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // import AC
-import {switchCaruselIndexAC } from '../redux/actions/carousel';
-import {getClubsAC} from "../redux/actions/clubs.js";
-import {getGamesAC} from "../redux/actions/games.js";
-
-// SASS
-import styles from '../stylesheets/index.module.scss'
+import { switchCaruselIndexAC } from '../redux/actions/carousel';
+import { getClubsAC } from "../redux/actions/clubs.js";
+import { getGamesAC } from "../redux/actions/games.js";
 
 // Components
-import ClubCollections from '../components/ClubCollections';
-import GameCollections from '../components/GameCollections';
 import Carusel from '../components/Carusel';
 import Header from '../components/Header';
 //import IndexSearch from '../components/IndexSearch';
 import Loading from '../components/Loading';
+import GameCard from '../components/GameCard';
+import ClubCard from '../components/ClubCard';
+import Carousel from '../components/Carousel';
+import Swiper from '../components/Swiper';
+
+// Styled Components
+import { WhiteContainer } from '../stylesheets/index';
 
 class Index extends Component {
   state = {
@@ -95,6 +97,15 @@ class Index extends Component {
 
   render() {
     const { games, clubs, screenMode } = this.props;
+
+    const itemsGames = games.map(el => {
+      return <GameCard game={el} key={el._id} />
+    })
+
+    const itemsClubs = clubs.map(el => {
+      return <ClubCard club={el} key={el._id} />
+    })
+
     return (
       <div>
         <Head>
@@ -109,14 +120,30 @@ class Index extends Component {
         {/*<h1>myvrclub.ru</h1>*/}
         {/*<h1>Агрегатор клубов виртуальной реальности</h1>*/}
         {/*</div>*/}
-        {(screenMode === 'desktop') && <Carusel
+        {/* {(screenMode === 'desktop') && <Carusel
           caruselIndex={this.props.caruselIndex}
           switchCarusel={this.switchCarusel}
           caruselData={this.state.caruselData}
           screenMode={screenMode}
-        />}
-        {(games.length !== 0) ? (<GameCollections />) : (<Loading />)}
-        {(clubs.length !== 0) ? (<ClubCollections />) : (<Loading />)}
+        />} */}
+
+        <WhiteContainer>
+          {(screenMode === 'desktop') ?
+            <Carousel items={itemsGames}
+            spaceBetweenItems={30}
+            wrapperPaddingTop={20}
+            buttonSize={40}/> :
+            <Swiper items={itemsGames} />}
+        </WhiteContainer>
+
+        <WhiteContainer>
+          {(screenMode === 'desktop') ?
+            <Carousel items={itemsClubs}
+            spaceBetweenItems={30}
+            wrapperPaddingTop={20}
+            buttonSize={40}/> :
+            <Swiper items={itemsClubs} />}
+        </WhiteContainer>
       </div>
     );
   }
