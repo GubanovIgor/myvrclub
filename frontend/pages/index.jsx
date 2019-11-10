@@ -129,7 +129,10 @@ class Index extends Component {
 
         <WhiteContainer>
           {(screenMode === 'desktop') ?
-            <Carousel items={itemsGames} /> :
+            <Carousel items={itemsGames}
+            spaceBetweenItems={30}
+            wrapperPaddingTop={20}
+            buttonSize={40}/> :
             <Swiper items={itemsGames} />}
         </WhiteContainer>
 

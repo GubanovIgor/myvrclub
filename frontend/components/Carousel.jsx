@@ -5,6 +5,7 @@ import {
   ToLeftButton,
   CarouselWrapper,
   CarouselMechanism,
+  WrapperForButton,
 } from '../stylesheets/carusel';
 
 class Carousel extends Component {
@@ -15,28 +16,13 @@ class Carousel extends Component {
 
   state = {
     carouselPosition: 0,
-    maxShift: 2 ^ 9,
+    maxShift: 0,
     buttonCoordX: 0,
     buttonCoordY: 0,
+    shearLength: 0,
   }
 
   componentDidMount = () => {
-    // Высота картинки
-    const imgHeight = this.carouselMechanism.current.firstChild.firstChild.clientHeight;
-    // Padding-top у CarouselWrapper
-    const wrapperPadding = 30;
-    // Ширина кнопки
-    const buttonWidth = this.carouselMechanism.current.nextSibling.clientWidth;
-    // Высота кнопки
-    const buttonHeight = this.carouselMechanism.current.nextSibling.clientHeight;
-
-    this.setState({
-      buttonCoordX: buttonWidth / 2,
-      buttonCoordY: imgHeight / 2 - buttonHeight / 2 + wrapperPadding,
-    })
-  }
-
-  scroll = async (side) => {
     // Ширина внтуреннего блока карусели
     const carouselMechanismWidth = this.carouselMechanism.current.offsetWidth;
     // Количество items
@@ -44,10 +30,7 @@ class Carousel extends Component {
     // Ширина item
     const itemWidth = this.carouselMechanism.current.firstChild.clientWidth;
     // Получаем margin-right у item и приводим в числовой вид регуляркой
-    const itemMargin = parseInt(window
-      .getComputedStyle(this.carouselMechanism.current.firstChild)
-      .getPropertyValue("margin-right")
-      .replace(/\D/g, ''));
+    const itemMargin = this.props.spaceBetweenItems;
     // Общая ширина элемента (item + margin)
     const itemTotalWidth = itemWidth + itemMargin;
     // Количство целиком помещающихся item + margin
@@ -59,6 +42,29 @@ class Carousel extends Component {
     const maxShift = itemsAmount * itemTotalWidth - carouselMechanismWidth - itemMargin;
 
     this.setState({ maxShift: maxShift });
+
+    // Высота картинки
+    const imgHeight = this.carouselMechanism.current.firstChild.firstChild.clientHeight;
+    // Padding-top у CarouselWrapper
+    let wrapperPaddingTop = 0;
+    if (this.props.wrapperPaddingTop) {
+      wrapperPaddingTop = this.props.wrapperPaddingTop;
+    }
+    // Ширина кнопки
+    const buttonWidth = this.props.buttonSize;
+    // Высота кнопки
+    const buttonHeight = this.props.buttonSize;
+
+    this.setState({
+      buttonCoordX: buttonWidth / 2,
+      buttonCoordY: imgHeight / 2 - buttonHeight / 2 + wrapperPaddingTop,
+      maxShift: maxShift,
+      shearLength: shearLength,
+    })
+  }
+
+  scroll = async (side) => {
+    const { shearLength, maxShift } = this.state;
 
     if (side === 'left') {
       await this.setState({ carouselPosition: this.state.carouselPosition + shearLength })
@@ -74,34 +80,39 @@ class Carousel extends Component {
   }
 
   render() {
-    const { items } = this.props;
+    const { items, spaceBetweenItems, wrapperPaddingTop, buttonSize } = this.props;
     const { carouselPosition, maxShift, buttonCoordX, buttonCoordY } = this.state;
 
     return (
       <CarouselWrapper>
-        <CarouselMechanism
-          ref={this.carouselMechanism}
-          className={'carouselMechanism'}
-          position={carouselPosition}>
-          {items}
-        </CarouselMechanism>
+        <WrapperForButton wrapperPaddingTop={wrapperPaddingTop}>
+          <CarouselMechanism
+            ref={this.carouselMechanism}
+            className={'carouselMechanism'}
+            position={carouselPosition}
+            spaceBetweenItems={spaceBetweenItems}>
+            {items}
+          </CarouselMechanism>
 
-        {(this.state.carouselPosition !== 0) &&
-          <ToLeftButton
-            onClick={() => this.scroll('left')}
-            className={'carouselShiftButton'}
-            coordY={buttonCoordY}
-            coordX={buttonCoordX}
-            img={'arrow-to-left'}
-          />}
-        {(this.state.carouselPosition !== -maxShift) &&
-          <ToRightButton
-            onClick={() => this.scroll('right')}
-            className={'carouselShiftButton'}
-            coordY={buttonCoordY}
-            coordX={buttonCoordX}
-            img={'arrow-to-right'}
-          />}
+          {(carouselPosition !== 0) &&
+            <ToLeftButton
+              onClick={() => this.scroll('left')}
+              className={'carouselShiftButton'}
+              coordY={buttonCoordY}
+              coordX={buttonCoordX}
+              img={'arrow-to-left'}
+              size={buttonSize}
+            />}
+          {(carouselPosition !== -maxShift) &&
+            <ToRightButton
+              onClick={() => this.scroll('right')}
+              className={'carouselShiftButton'}
+              coordY={buttonCoordY}
+              coordX={buttonCoordX}
+              img={'arrow-to-right'}
+              size={buttonSize}
+            />}
+        </WrapperForButton>
       </CarouselWrapper>
     );
   }

@@ -65,10 +65,11 @@ class ImageProfileBlock extends Component {
           <img className={styles.img}
             src={imageUrl}
             alt={item.name} />}
-        <ScreenshotsWrapper>
-          <Carousel items={items} />
-        </ScreenshotsWrapper>
-        {/* <Swiper items={items}/> */}
+        {(screenMode === 'desktop') ?
+          <ScreenshotsWrapper>
+            <Carousel items={items} spaceBetweenItems={7.5} buttonSize={30} />
+          </ScreenshotsWrapper> :
+          <Swiper items={items} />}
         {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
       </div>
     );
