@@ -86,6 +86,7 @@ class Carousel extends Component {
     return (
       <CarouselWrapper>
         <WrapperForButton wrapperPaddingTop={wrapperPaddingTop}>
+        {console.log('ITEMS', items)}
           <CarouselMechanism
             ref={this.carouselMechanism}
             className={'carouselMechanism'}
@@ -103,7 +104,7 @@ class Carousel extends Component {
               img={'arrow-to-left'}
               size={buttonSize}
             />}
-          {(carouselPosition !== -maxShift) &&
+          {(carouselPosition > -maxShift) &&
             <ToRightButton
               onClick={() => this.scroll('right')}
               className={'carouselShiftButton'}

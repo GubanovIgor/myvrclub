@@ -26,6 +26,11 @@ class ImageProfileBlock extends Component {
     const { club, game } = this.props;
     if (!!club) this.setState({ imageUrl: IMG_URL_PREFIX + club.screenShot[0] });
     if (!!game) this.setState({ imageUrl: game.screenShot[0] });
+    this.forceUpdate()
+  }
+
+  componentDidUpdate = () => {
+    console.log('window.innerWidth', window.innerWidth)
   }
 
   updateUrlImage = imageUrl => {

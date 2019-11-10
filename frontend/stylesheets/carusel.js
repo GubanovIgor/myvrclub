@@ -11,8 +11,6 @@ export const WrapperForButton = styled.div`
 `;
 
 export const CarouselMechanism = styled.div`
-	position: relative;
-
 	display: flex;
 	align-items: center;
 

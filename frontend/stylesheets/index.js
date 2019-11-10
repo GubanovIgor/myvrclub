@@ -30,8 +30,6 @@ export const ImgMiniImageProfileBlock = styled.img`
 		margin-right: 7.5px;
 	}
 
-	padding-bottom: 5px;
-
 	@media screen and (max-width: 425px) {
 		min-width: 100%;
 		width: 100%;
@@ -257,11 +255,11 @@ export const ClubCardsWrapper = styled.div`
 	}
 
   @media screen and (min-width: 425px) {
-    box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
-    border-radius: 10px;
-    min-width: 940px;
+    /* box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1); */
+    /* border-radius: 10px; */
+    /* min-width: 940px; */
 
-    margin-left: 40px;
+    /* margin-left: 40px; */
     padding: 40px 20px;
   }
 `;
