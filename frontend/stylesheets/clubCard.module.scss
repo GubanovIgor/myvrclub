@@ -19,7 +19,7 @@ $mobile-card-height: 140px;
   transition: 0.5s;
 
   @media screen and (max-width: 426px) {
-    display: inline-block;
+    display: grid;
     min-width: 100%;
     margin: 0 auto 30px;
     padding: 0;
@@ -40,7 +40,7 @@ $mobile-card-height: 140px;
   transition: 0.5s;
 
   @media screen and (max-width: 425px) {
-    min-width: 100%;
+    width: 100%;
     height: auto;
   }
 }
@@ -69,8 +69,8 @@ $mobile-card-height: 140px;
   background: linear-gradient(to top, #171718, transparent 30%);
 
   @media screen and (max-width: 425px) {
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
   }
 }
 

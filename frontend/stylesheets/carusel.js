@@ -12,7 +12,7 @@ export const WrapperForButton = styled.div`
 
 export const CarouselMechanism = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 
 	width: 100%;
 	transform: ${props => `translate3d(${props.position}px, 0px, 0px)`};

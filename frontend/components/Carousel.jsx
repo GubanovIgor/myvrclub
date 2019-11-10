@@ -41,8 +41,6 @@ class Carousel extends Component {
     // Максимальный свдиг
     const maxShift = itemsAmount * itemTotalWidth - carouselMechanismWidth - itemMargin;
 
-    this.setState({ maxShift: maxShift });
-
     // Высота картинки
     const imgHeight = this.carouselMechanism.current.firstChild.firstChild.clientHeight;
     // Padding-top у CarouselWrapper
@@ -54,10 +52,12 @@ class Carousel extends Component {
     const buttonWidth = this.props.buttonSize;
     // Высота кнопки
     const buttonHeight = this.props.buttonSize;
+    // Координаты по оси Y
+    const buttonCoordY = imgHeight / 2 - buttonHeight / 2 + wrapperPaddingTop;
 
     this.setState({
       buttonCoordX: buttonWidth / 2,
-      buttonCoordY: imgHeight / 2 - buttonHeight / 2 + wrapperPaddingTop,
+      buttonCoordY: buttonCoordY,
       maxShift: maxShift,
       shearLength: shearLength,
     })
@@ -86,7 +86,6 @@ class Carousel extends Component {
     return (
       <CarouselWrapper>
         <WrapperForButton wrapperPaddingTop={wrapperPaddingTop}>
-        {console.log('ITEMS', items)}
           <CarouselMechanism
             ref={this.carouselMechanism}
             className={'carouselMechanism'}
@@ -94,7 +93,6 @@ class Carousel extends Component {
             spaceBetweenItems={spaceBetweenItems}>
             {items}
           </CarouselMechanism>
-
           {(carouselPosition !== 0) &&
             <ToLeftButton
               onClick={() => this.scroll('left')}

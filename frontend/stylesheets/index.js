@@ -20,6 +20,10 @@ import styled from "styled-components";
   } */
 // `;
 
+export const ImgMiniImageProfileBlockWrapper = styled.div`
+	display: flex;
+`;
+
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
 	height: 100%;
@@ -102,6 +106,10 @@ export const ProfileMenu__Wrapper = styled.div`
 	height: 60px;
 
 	margin-left: 28px;
+
+	@media screen and (max-width: 425px) {
+		margin: 0;
+	}
 `;
 
 export const ProfileMenu__Item = styled.p`
@@ -121,6 +129,11 @@ export const ProfileMenu__Item = styled.p`
 
 	&:hover {
 		color: #338EEE;
+	}
+
+	@media screen and (max-width: 425px) {
+		font-size: 9px;
+		margin: 14px;
 	}
 `;
 

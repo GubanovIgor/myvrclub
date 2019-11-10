@@ -5,6 +5,7 @@ import { IMG_URL_PREFIX } from '../services/consts/consts';
 import {
   ImgMiniImageProfileBlock,
   PictureUnderline,
+  ImgMiniImageProfileBlockWrapper,
   ScreenshotsWrapper,
 } from '../stylesheets/index';
 
@@ -54,13 +55,13 @@ class ImageProfileBlock extends Component {
     }
 
     const itemsForCarousel = item.screenShot.map((imgLink, index) => {
-      return <div>
+      return <ImgMiniImageProfileBlockWrapper>
         <ImgMiniImageProfileBlock
           key={imgLink}
           alt={item.name}
           src={clubPathPrefix + imgLink}
           onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
-      </div>
+      </ImgMiniImageProfileBlockWrapper>
     });
 
     const itemsForSwiper = item.screenShot.map((imgLink, index) => {
