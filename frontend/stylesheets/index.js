@@ -314,4 +314,9 @@ export const ScreenshotsWrapper = styled.div`
 			opacity: 1;
 		}
 	}
+
+	@media screen and (max-width: 425px) {
+		padding: 30px;
+		display: none;
+  }
 `;

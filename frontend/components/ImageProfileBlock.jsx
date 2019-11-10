@@ -53,7 +53,7 @@ class ImageProfileBlock extends Component {
       clubPathPrefix = IMG_URL_PREFIX;
     }
 
-    const items = item.screenShot.map((imgLink, index) => {
+    const itemsForCarousel = item.screenShot.map((imgLink, index) => {
       return <div>
         <ImgMiniImageProfileBlock
           key={imgLink}
@@ -63,6 +63,14 @@ class ImageProfileBlock extends Component {
       </div>
     });
 
+    const itemsForSwiper = item.screenShot.map((imgLink, index) => {
+      return <ImgMiniImageProfileBlock
+          key={imgLink}
+          alt={item.name}
+          src={clubPathPrefix + imgLink}
+          onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
+    });
+
     return (
       <div>
         {/*<Image cloudName="myvrclub" publicId="sample" width="300" crop="scale"/>*/}
@@ -70,12 +78,11 @@ class ImageProfileBlock extends Component {
           <img className={styles.img}
             src={imageUrl}
             alt={item.name} />}
-        {(screenMode === 'desktop') ?
           <ScreenshotsWrapper>
-            <Carousel items={items} spaceBetweenItems={7.5} buttonSize={30} />
-          </ScreenshotsWrapper> :
-          <Swiper items={items} />}
-        {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />}
+            <Carousel items={itemsForCarousel} spaceBetweenItems={7.5} buttonSize={30} />
+          </ScreenshotsWrapper>
+          <Swiper items={itemsForSwiper} />
+        {/* {(screenMode === 'desktop') && <PictureUnderline screenIndex={screenIndex} />} */}
       </div>
     );
   }

@@ -8,6 +8,10 @@ export const SwiperWrapper = styled.div`
   overflow: hidden;
   
   /* padding: 30px 0; */
+
+  @media screen and (min-width: 426px) {
+		display: none;
+  }
 `;
 
 export const SwiperMechanism = styled.div`
