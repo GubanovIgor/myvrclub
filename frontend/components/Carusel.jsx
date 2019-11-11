@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// ЭТО ПЛОХАЯ КАРУСЕЛЬ
+
 // SASS
 import styles from '../stylesheets/carusel.module.scss';
 

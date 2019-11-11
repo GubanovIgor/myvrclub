@@ -20,26 +20,19 @@ import styled from "styled-components";
   } */
 // `;
 
-export const ScreenshotsWrapper = styled.div`
-	position: relative;
+export const ImgMiniImageProfileBlockWrapper = styled.div`
 	display: flex;
-	align-items: center;
-	width: 100%;
-
-	overflow-y: hidden;
 `;
 
 export const ImgMiniImageProfileBlock = styled.img`
 	width: 144px;
-
+	height: 100%;
 	border-radius: 3px;
 	cursor: pointer;
 
 	&:not(:last-child) {
 		margin-right: 7.5px;
 	}
-
-	padding-bottom: 10px;
 
 	@media screen and (max-width: 425px) {
 		min-width: 100%;
@@ -86,7 +79,6 @@ export const ShowTelButton = styled.button`
 `;
 
 export const ProfileContent__Wrapper = styled.div`
-	/* border: 1px solid blue; */
 	padding-bottom: 200px;
 
 	@media screen and (max-width: 425px) {
@@ -96,8 +88,6 @@ export const ProfileContent__Wrapper = styled.div`
     box-shadow: 0 -2px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
     border-radius: 10px;
 		padding: 10px;
-
-		/* border: 1px solid blue; */
 		
 		transition: 1s;
 
@@ -116,6 +106,10 @@ export const ProfileMenu__Wrapper = styled.div`
 	height: 60px;
 
 	margin-left: 28px;
+
+	@media screen and (max-width: 425px) {
+		margin: 0;
+	}
 `;
 
 export const ProfileMenu__Item = styled.p`
@@ -135,6 +129,11 @@ export const ProfileMenu__Item = styled.p`
 
 	&:hover {
 		color: #338EEE;
+	}
+
+	@media screen and (max-width: 425px) {
+		font-size: 9px;
+		margin: 14px;
 	}
 `;
 
@@ -262,14 +261,18 @@ export const ClubCardsWrapper = styled.div`
 	display: flex;
   justify-content: center;
   align-content: flex-start;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
+	
+	>div {
+		margin: 0 15px 40px;
+	}
 
   @media screen and (min-width: 425px) {
-    box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1);
-    border-radius: 10px;
-    min-width: 940px;
+    /* box-shadow: 0 0px 6px rgba(14,21,47,.02), 0 6px 18px 5px rgba(14,21,47,.1); */
+    /* border-radius: 10px; */
+    /* min-width: 940px; */
 
-    margin-left: 40px;
+    /* margin-left: 40px; */
     padding: 40px 20px;
   }
 `;
@@ -281,6 +284,7 @@ export const SearchInput = styled.input`
 	padding-left: 10px;
 
 	width: 90%;
+	height: 27px;
 	border: 1px solid #338EEE;
 	border-radius: 5px;
 
@@ -288,5 +292,44 @@ export const SearchInput = styled.input`
 
 	@media screen and (max-width: 425px) {
     margin-left: -25px;
+  }
+`;
+
+// Простой белый контейнер с тенью
+export const WhiteContainer = styled.div`
+	position: relative;
+	
+  border-radius: 7px;
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.5);
+
+	margin-bottom: 50px;
+
+	padding: 0 40px;
+
+	&:hover {
+		.carouselShiftButton {
+			opacity: 1;
+		}
+	}
+
+	@media screen and (max-width: 425px) {
+    padding: 30px;
+  }
+`;
+
+// Обертка скриншотов в профиле
+export const ScreenshotsWrapper = styled.div`
+	position: relative;
+	width: 750px;
+
+	&:hover {
+		.carouselShiftButton {
+			opacity: 1;
+		}
+	}
+
+	@media screen and (max-width: 425px) {
+		padding: 30px;
+		display: none;
   }
 `;
