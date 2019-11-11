@@ -63,7 +63,7 @@ class ClubPage extends Component {
 
     return (
       <main>
-        {/* <ReservPopup/> */}
+        <ReservPopup/>
         <ClubProfile club={club} />
         <ProfileMenu menuToggle={this.menuToggle}
           menuSection={this.state.menuSection}
