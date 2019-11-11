@@ -1,0 +1,14 @@
+.map {
+  width: 900px;
+  height: 725px;
+
+  @media screen and (max-width: 426px) {
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.test {
+  width: 200px;
+}

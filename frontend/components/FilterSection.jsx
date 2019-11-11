@@ -6,13 +6,21 @@ import styles from '../stylesheets/filterSection.module.scss';
 // import components
 import FilterItem from '../components/FilterItem';
 
+// Styled Components
+import {
+  FilterSectionWrapper,
+  FilterSectionWrapper__Title,
+} from '../stylesheets/index';
+
 class FilterSection extends Component {
 
   render() {
     const { section, checked, onChangeCheckbox } = this.props;
     return (
-      <div className={styles.filterSectionWrapper}>
-        <div className={styles.title}>{section.title}</div>
+      <FilterSectionWrapper>
+        <FilterSectionWrapper__Title>
+          {section.title}
+        </FilterSectionWrapper__Title>
         <div className={styles.filterSection}>
           {section.value.map((item, index) => {
             return <FilterItem
@@ -25,7 +33,7 @@ class FilterSection extends Component {
           }
           )}
         </div>
-      </div>
+      </FilterSectionWrapper>
     );
   }
 }

@@ -12,10 +12,14 @@ export const reducer = (state, action) => {
       return ({ ...state, loadingGame: true, errorGame: false, loading: true });
     case actionTypes.REQUESTED_CLUBS:
       return ({ ...state, clubs: action.clubs, loadingClub: false, errorClub: false, loading: false });
+    case actionTypes.REQUESTED_CLUBS_FOR_MAP:
+      return ({ ...state, clubsForMap: action.clubs });
     case actionTypes.REQUESTED_CLUB:
       return ({ ...state, club: action.club, loadingClub: false, errorClub: false, loading: false });
     case actionTypes.REQUESTED_GAMES:
       return ({ ...state, games: action.games, loadingGame: false, errorGame: false, loading: false });
+    case actionTypes.SET_SEARCH_NAME:
+      return ({ ...state, SearchName: action.SearchName });
     case actionTypes.REQUESTED_GAME:
       return ({ ...state, game: action.game, loadingGame: false, errorGame: false, loading: false });
     case actionTypes.REQUEST_FILTER_TOGGLE_CLUBS:
@@ -29,9 +33,7 @@ export const reducer = (state, action) => {
     case actionTypes.SWITCH_PAGINATION_VALUE:
       return ({...state, paginationValue: action.value,});
     case actionTypes.CHANGE_MAP:
-      return ({...state, map: true,});
-    case actionTypes.OFF_CHANGE_MAP:
-      return ({...state, map: false,});
+      return ({...state, map: !state.map,});
     case actionTypes.SHOW_FILTER_TOGGLE:
       return ({...state, showFilter: !state.showFilter,});
     case actionTypes.CURRENT_PAGE:

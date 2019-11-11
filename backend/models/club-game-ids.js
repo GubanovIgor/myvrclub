@@ -6,8 +6,6 @@ const clubGameIdSchema = new mongoose.Schema({
   clubName: String,
   gameId: ObjectId,
   gameName: String
-
 });
-
 
 module.exports = mongoose.model('ClubGameId', clubGameIdSchema);

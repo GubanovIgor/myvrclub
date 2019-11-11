@@ -1,35 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
-
+// Styled Components
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import GameCard from '../components/GameCard';
-//import Reviews from '../components/Reviews';
+import Reviews from '../components/Reviews';
 import ClubProfile from '../components/ClubProfile';
-import GameFilter from '../components/GameFilter';
-import Loading from './Loading';
+import GameList from './GameList';
+import ProfileMenu from './ProfileMenu';
+import MapSection from '../components/MapSection';
+import Equipments from '../components/Equipments';
 
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
-import {getGamesAC} from "../redux/actions/games.js";
-
-// SASS
-//import styles from '../stylesheets/clubPage.module.scss';
-import cardsWrapper from '../stylesheets/cardsWrapper.module.scss';
+import { getGamesAC } from "../redux/actions/games.js";
+import { getClubsForMapAC, getClubsAC, getClubForMapAC } from '../redux/actions/clubs';
 
 class ClubPage extends Component {
+  state = {
+    menuSection: 'Игры клуба',
+  }
+
   showFilter = () => {
     this.props.showFilterToggle();
   };
+
+  menuToggle = (menuSection) => {
+    this.setState({ menuSection: menuSection });
+  }
 
   paginationHandler = () => {
     this.props.autoPagination('game', this.props.club._id);
   }
 
   componentDidMount = async () => {
+    console.log('im reload')
+    // this.props.getClubForMap(this.props.club._id);
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
   }
@@ -40,40 +48,43 @@ class ClubPage extends Component {
   }
 
   render() {
-    const { club, games } = this.props;
+    const { club, games, showFilter, screenMode } = this.props;
     const gameItems = games.map((game) => {
       return <GameCard key={game._id} game={game} />;
     });
 
+    const menuItems = [
+      'Игры клуба',
+      'Отзывы',
+      'Оборудование',
+      'На карте',
+    ];
+
     return (
       <main>
         <ClubProfile club={club} />
-        {/* <section>
-          <div className={styles.container}>
-            <p className={styles.profileMenu}>Игры клуба</p>
-            <p className={styles.profileMenu}>Цены</p>
-            <p className={styles.profileMenu}>Отзывы</p>
-            <p className={styles.profileMenu}>Оборудование</p>
-            <p className={styles.profileMenu}>Контакты</p>
-          </div>
-          <hr className={styles.breakLine}/>
-        </section> */}
-        <CardsInProfileWrapper>
-          <div className={cardsWrapper.titleWrapper}>
-            <FilterButton img={'filterSettings'} onClick={this.showFilter} />
-            <h2>Игры клуба {club.name}</h2>
-          </div>
+        <ProfileMenu menuToggle={this.menuToggle}
+          menuSection={this.state.menuSection}
+          menuItems={menuItems} />
 
-          <div className={cardsWrapper.container}>
-            {(this.props.screenMode === 'desktop') && <GameFilter clubId={this.props.club._id} />}
-            {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter clubId={this.props.club._id} />}
-            <div className={cardsWrapper.cardsWrapper}>
-              {(games.length !== 0) ? (gameItems) : (<Loading />)}
-            </div>
-          </div>
-        </CardsInProfileWrapper>
-        {/* <hr className={styles.breakLine}/> */}
-        {/* <Reviews/> */}
+        <ProfileContent__Wrapper>
+          {(this.state.menuSection === 'Игры клуба') &&
+            <GameList showFilterMark={showFilter}
+              showFilter={this.showFilter}
+              club={club}
+              screenMode={screenMode}
+              games={games}
+              gameItems={gameItems} />}
+
+          {(this.state.menuSection === 'Отзывы') &&
+            <Reviews item={club} />}
+
+          {(this.state.menuSection === 'На карте') &&
+            <MapSection  club={club}/>}
+
+          {(this.state.menuSection === 'Оборудование') &&
+            <Equipments  item={club}/>}
+        </ProfileContent__Wrapper>
       </main>
     );
   }
@@ -83,8 +94,6 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     games: store.games,
-    // loadingGame: store.loadingGame,
-    // loading: store.loading,
     screenMode: store.screenMode,
     filterToggle: store.gamesFilterToggle,
   };
@@ -92,6 +101,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // getClubForMap: (clubId) => dispatch(getClubForMapAC(clubId)),
     showFilterToggle: () => dispatch(showFilterToggleAC()),
     getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
   }

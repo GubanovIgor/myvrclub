@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { CardsInProfileWrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 //import windowSize from 'react-window-size';
 
@@ -35,6 +35,7 @@ class Games extends Component {
     await this.props.getGames(this.props.filterToggle);
   };
 
+
   componentWillUnmount = () => {
     window.removeEventListener('scroll', this.paginationHandler);
     this.props.autoPagination(false);
@@ -52,7 +53,8 @@ class Games extends Component {
           <meta name='keywords' content='VR, Виртуальная реальность, vr клубы, vr игры' />
         </Head>
         <Header />
-        <CardsInProfileWrapper>
+        {/* <GameSearch/> */}
+        <ProfileContent__Wrapper>
           <div className={styles.titleWrapper}>
             <FilterButton img={'filterSettings'} onClick={this.showFilter} />
             <h1 className={styles.title}>Список VR игр</h1>
@@ -61,10 +63,11 @@ class Games extends Component {
             {(this.props.screenMode === 'desktop') && <GameFilter />}
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter />}
             <div className={styles.cardsWrapper}>
+
               {(games.length !== 0) ? (gameItems) : (<Loading />)}
             </div>
           </div>
-        </CardsInProfileWrapper>
+        </ProfileContent__Wrapper>
       </div>
     );
   }
@@ -74,18 +77,19 @@ const mapStateToProps = (store) => {
   return {
     showFilter: store.showFilter,
     games: store.games,
+    SearchName: store.SearchName,
     filterToggle: store.gamesFilterToggle,
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
     loadingGame: store.loadingGame,
-    loading: store.loading,
+    loading: store.loading
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     showFilterToggle: () => dispatch(showFilterToggleAC()),
-    getGames: (filterToggleData, pagination, clubId) => dispatch(getGamesAC(filterToggleData, pagination, clubId)),
+    getGames: (filterToggleData, pagination, clubId, name) => dispatch(getGamesAC(filterToggleData, pagination, clubId, name)),
   }
 };
 

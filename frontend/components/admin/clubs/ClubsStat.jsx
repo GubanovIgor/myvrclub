@@ -7,7 +7,6 @@ import Loading from "../../Loading.jsx";
 class ClubsStat extends Component {
 
   componentDidMount = async () => {
-    // window.addEventListener('scroll', this.paginationHandler);
     this.props.getAllClubs('');
   };
 

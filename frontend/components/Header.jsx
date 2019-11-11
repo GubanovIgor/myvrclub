@@ -5,8 +5,18 @@ import Link from './ActiveLink';
 // SASS
 import '../stylesheets/body.module.scss';
 import styles from '../stylesheets/header.module.scss';
+import {connect} from "react-redux";
+import {changeMapAC} from "../redux/actions/map.js";
+import {filterToggleClubsAC} from "../redux/actions/filters.js";
+import {getClubsAC, getClubsForMapAC} from "../redux/actions/clubs.js";
+import {checkSession} from "../redux/actions/submit.js";
 
 class Header extends Component {
+
+  componentDidMount(){
+    this.props.checkSession();
+  }
+
   render() {
     return (
       <header className={styles.mainHeader}>
@@ -30,15 +40,40 @@ class Header extends Component {
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          {/* <ul className={styles.userNavigation}>
+          <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>
-              <Link href='/entry'><a>Вход</a></Link>
+              <Link href='/auth/signup'><a>Регистрация</a></Link>
             </li>
-          </ul> */}
+          </ul>
+          <ul className={styles.userNavigation}>
+            <li className={styles.loginLink}>
+              <Link href='/auth/signin'><a>Вход</a></Link>
+            </li>
+          </ul>
+          <ul className={styles.userNavigation}>
+            <li className={styles.loginLink}>
+              <Link href='/auth/signout'><a>Выход</a></Link>
+            </li>
+          </ul>
         </nav>
       </header>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = (store) => {
+  return {
+    logging: store.logging,
+    isLogged: store.isLogged,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    checkSession: () => dispatch(checkSession()),
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+

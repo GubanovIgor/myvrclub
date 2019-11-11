@@ -8,15 +8,15 @@ export const requestSwitchPaginationValue = (value) => (
   { type: actionTypes.SWITCH_PAGINATION_VALUE, value }
 );
 
-export const switchPaginationValueAC = (value, filterToggleData, type, id = '') => (
+export const switchPaginationValueAC = (value, filterToggleData, type, id = '', namesForSearch) => (
   async (dispatch) => {
     dispatch(requestSwitchPaginationValue(value));
     if (type === 'game') {
-      dispatch(getGamesAC(filterToggleData, value, id));
+      dispatch(getGamesAC(filterToggleData, value, id, namesForSearch));
     };
 
     if (type === 'club') {
-      dispatch(getClubsAC(filterToggleData, value, id));
+      dispatch(getClubsAC(filterToggleData, value, id, namesForSearch));
     }
   }
 );

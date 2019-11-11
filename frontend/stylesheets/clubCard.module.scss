@@ -9,7 +9,7 @@ $mobile-card-height: 140px;
 
   border-radius: 5px;
 
-  margin: 0 15px 40px;
+  // margin: 0 15px 40px;
 
   &:hover {
     bottom: 10px;
@@ -18,10 +18,11 @@ $mobile-card-height: 140px;
 
   transition: 0.5s;
 
-  @media screen and (max-width: 425px) {
-    display: inline-block;
-    width: 100%;
+  @media screen and (max-width: 426px) {
+    display: grid;
+    min-width: 100%;
     margin: 0 auto 30px;
+    padding: 0;
   }
 }
 

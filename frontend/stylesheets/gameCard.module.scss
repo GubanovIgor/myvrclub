@@ -12,8 +12,6 @@ $mobile-card-height: 141px;
 
   cursor: pointer;
 
-  margin: 0 15px 40px;
-
   &:hover {
     bottom: 10px;
     transition: 0.5s;
@@ -21,17 +19,9 @@ $mobile-card-height: 141px;
 
   transition: 0.5s;
 
-  @media screen and (min-width: 426px) {
-    p {
-      width: $card-width;
-      padding: 0;
-    }
-  }
-
-  // Mobile
   @media screen and (max-width: 425px) {
     display: inline-block;
-    width: 100%;
+    min-width: 100%;
     margin: 0 auto 30px;
   }
 }
@@ -54,7 +44,6 @@ $mobile-card-height: 141px;
 
   transition: 0.5s;
 
-  // Mobile
   @media screen and (max-width: 425px) {
     width: 100%;
     height: auto;
@@ -65,6 +54,7 @@ $mobile-card-height: 141px;
 
 .title {
   text-align: center;
+  max-width: 272px;
 
   :hover > & {
     color: #3071eb;
