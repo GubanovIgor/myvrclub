@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
+import {connect} from "react-redux";
+import {checkSession} from "../redux/actions/submit.js";
 
 // SASS
 import '../stylesheets/body.module.scss';
 import styles from '../stylesheets/header.module.scss';
-import {connect} from "react-redux";
-import {changeMapAC} from "../redux/actions/map.js";
-import {filterToggleClubsAC} from "../redux/actions/filters.js";
-import {getClubsAC, getClubsForMapAC} from "../redux/actions/clubs.js";
-import {checkSession} from "../redux/actions/submit.js";
+// import {changeMapAC} from "../redux/actions/map.js";
+// import {filterToggleClubsAC} from "../redux/actions/filters.js";
+// import {getClubsAC, getClubsForMapAC} from "../redux/actions/clubs.js";
 
 class Header extends Component {
 
@@ -40,21 +40,21 @@ class Header extends Component {
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link href='/auth/signup'><a>Регистрация</a></Link>
-            </li>
-          </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link href='/auth/signin'><a>Вход</a></Link>
-            </li>
-          </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link href='/auth/signout'><a>Выход</a></Link>
-            </li>
-          </ul>
+          {/*<ul className={styles.userNavigation}>*/}
+            {/*<li className={styles.loginLink}>*/}
+              {/*<Link href='/auth/signup'><a>Регистрация</a></Link>*/}
+            {/*</li>*/}
+          {/*</ul>*/}
+          {/*<ul className={styles.userNavigation}>*/}
+            {/*<li className={styles.loginLink}>*/}
+              {/*<Link href='/auth/signin'><a>Вход</a></Link>*/}
+            {/*</li>*/}
+          {/*</ul>*/}
+          {/*<ul className={styles.userNavigation}>*/}
+            {/*<li className={styles.loginLink}>*/}
+              {/*<Link href='/auth/signout'><a>Выход</a></Link>*/}
+            {/*</li>*/}
+          {/*</ul>*/}
         </nav>
       </header>
     );

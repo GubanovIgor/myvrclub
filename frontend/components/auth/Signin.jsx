@@ -32,20 +32,20 @@ function SignUp(props) {
 
         <Formik
           initialValues={{
-            name: '',
+            // name: '',
             email: '',
             password: '',
           }}
 
           onSubmit={(values) => {
             dispatch(requestSignIn(values)); //запрос в редакс на вход
-            // values.name = '';
-            // values.password = '';
+            values.email = '';
+            values.password = '';
           }}
 
           validationSchema={Yup.object().shape({
-            name: Yup.string()
-              .required('Name is required'),
+            // name: Yup.string()
+            //   .required('Name is required'),
             email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
@@ -71,17 +71,6 @@ function SignUp(props) {
               <form onSubmit={handleSubmit} style={{width: "50%"}}>
                 <TextField
                   fullWidth
-                  label="name"
-                  name="name"
-                  className={classes.textField}
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  helperText={(errors.name && touched.name) && errors.name}
-                  margin="normal"
-                />
-                <TextField
-                  fullWidth
                   error={errors.email && touched.email}
                   label="email"
                   name="email"
@@ -105,17 +94,6 @@ function SignUp(props) {
                   helperText={(errors.password && touched.password) && errors.password}
                   margin="normal"
                 />
-
-                {/*<TextField*/}
-                {/*label="comment"*/}
-                {/*name="comment"*/}
-                {/*className={classes.textField}*/}
-                {/*value={values.comment}*/}
-                {/*onChange={handleChange}*/}
-                {/*onBlur={handleBlur}*/}
-                {/*helperText={(errors.comment && touched.comment) && errors.comment}*/}
-                {/*margin="normal"*/}
-                {/*/>*/}
 
                 <Button
                   type="button"

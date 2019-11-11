@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/send-mail', (req, res) => {
-  console.log(req.body);
   const mg = mailgun({ apiKey: apiKey, domain: DOMAIN });
   const data = {
     from: `Mailgun <support@myvrclub.ru>`,
@@ -23,7 +22,6 @@ router.post('/send-mail', (req, res) => {
     `,
   };
   mg.messages().send(data, function (error, body) {
-    console.log(body);
   });
 
   res.send();

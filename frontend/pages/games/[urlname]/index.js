@@ -25,7 +25,6 @@ class Games extends Component {
 
   render() {
     const {game, autoPagination} = this.props;
-    console.log('game game', game)
     return (
       <>
         <Head>
