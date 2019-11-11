@@ -8,7 +8,7 @@ export const FadeScreen = styled.div`
   left: 0;
   right: 0;
 
-  background-color: #686b69;
+  background-color: black;
   opacity: 0.7;
 
   z-index: 1;
@@ -16,8 +16,8 @@ export const FadeScreen = styled.div`
 
 // Плашка попапа
 export const Wrapper = styled.div`
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
 
   border-radius: 10px;
   background-color: #FFF;
+  box-shadow: 0px 0px 20px -5px black;
 
   padding: 30px;
 
@@ -95,25 +96,46 @@ export const TimeItemWrapper = styled.div`
   width: 60px;
   height: 40px;
 
+  cursor: pointer;
   border: 1px solid #a94ca5;
   color: #a94ca5;
   line-height: 40px;
   text-align: center;
 
   margin: 2px;
+
+  transition: 0.275s;
+
+  &:hover {
+    border: 1px solid #a94ca5;
+    color: #FFF;
+    background-color: #a94ca5;
+  }
 `;
 
+// Раздел с выбором очков
 export const HeadsetsInfo = styled.div`
   margin-bottom: 20px;
 `;
 
 export const HeadsetsTable = styled.div`
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
 `;
 
 export const HeadsetSectionWrapper = styled.div`
   width: 250px;
+
+  margin-bottom: 20px;
+
+  &:nth-child(3n+3) {
+    border-left: 1px solid #bfbfbf;
+  }
+
+  &:nth-child(3n+2) {
+    border-left: 1px solid #bfbfbf;
+  }
 `;
 
 export const HeadsetSection__Title = styled.div`
@@ -121,17 +143,66 @@ export const HeadsetSection__Title = styled.div`
   color: #1f1f22;
 
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 15px;
 `;
 
 export const HeadsetSection__Items = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  img {
-    width: 50px;
-    height: 50px;
+  margin-bottom: 30px;
+`;
 
-    margin: 0 20px;
+export const HeadsetIcon = styled.svg`
+  margin: 10px 16px;
+  width: 50px;
+  height: 50px;
+
+  cursor: pointer;
+  fill: #338EEE;
+
+  transition: 0.275s;
+
+  &:hover {
+    fill: black;
+  }
+`;
+
+// Блок с кнопкой продолжить
+export const ToPersonalData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const PriceInfo = styled.div`
+  margin-right: 30px;
+`;
+
+export const Sum = styled.div`
+  font-size: 18px;
+  color: #3b3b3d;
+`;
+
+export const Commission = styled.div`
+  font-size: 12px;
+  color: #b9b9b9;
+  line-height: 12px;
+`;
+
+export const ToPersonalDataButton = styled.div`
+  width: 120px;
+  height: 30px;
+
+  cursor: pointer;
+  background-color: #338EEE;
+  border-radius: 3px;
+
+  color: #FFF;
+  line-height: 30px;
+  text-align: center;
+
+  &:hover {
+    opacity: 0.8;
   }
 `;

@@ -20,6 +20,11 @@ import {
   TimeTable,
   HeadsetsInfo,
   HeadsetsTable,
+  ToPersonalData,
+  PriceInfo,
+  Sum,
+  Commission,
+  ToPersonalDataButton,
 } from '../../stylesheets/reservation';
 
 import {
@@ -29,6 +34,10 @@ import {
 } from './mok'
 
 class ReservPopup extends Component {
+  state = {
+    step: 'date and time',
+  }
+
   render() {
     return (
       <div>
@@ -45,7 +54,7 @@ class ReservPopup extends Component {
 
           <DateAndPriceInfo>
             <Paragraph>
-              1. Выберите дату и время
+              Выберите дату и время
             </Paragraph>
             <DateField />
             <PriceCategorys>
@@ -63,7 +72,7 @@ class ReservPopup extends Component {
 
           <HeadsetsInfo>
             <Paragraph>
-              2. Выберите VR очки
+              Выберите VR очки
             </Paragraph>
           </HeadsetsInfo>
 
@@ -72,6 +81,20 @@ class ReservPopup extends Component {
               return <HeadsetSection item={el}/>
             })}
           </HeadsetsTable>
+
+          <ToPersonalData>
+            <PriceInfo>
+              <Sum>
+                3400 Р
+              </Sum>
+              <Commission>
+                Без комиссии
+              </Commission>
+            </PriceInfo>
+            <ToPersonalDataButton>
+              Продолжить
+            </ToPersonalDataButton>
+          </ToPersonalData>
 
         </Wrapper>
         <FadeScreen />

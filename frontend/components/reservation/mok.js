@@ -2,9 +2,9 @@ export const headsets = [
   {headset: 'HTC Vive Pro', amount: ['free', 'reserved', 'free', 'reserved']},
   {headset: 'Oculus Rift', amount: ['free', 'reserved', 'free', 'reserved', 'free', 'free']},
   {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
-  {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
-  {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
-  {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
+  // {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
+  // {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
+  // {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
 ]
 
 export const prices = ['400 P', '700 P', '1500 P', 'н/д',];
