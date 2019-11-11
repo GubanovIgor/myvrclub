@@ -12,6 +12,7 @@ import GameList from './GameList';
 import ProfileMenu from './ProfileMenu';
 import MapSection from '../components/MapSection';
 import Equipments from '../components/Equipments';
+import ReservPopup from './reservation/ReservPopup';
 
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
@@ -62,6 +63,7 @@ class ClubPage extends Component {
 
     return (
       <main>
+        {/* <ReservPopup/> */}
         <ClubProfile club={club} />
         <ProfileMenu menuToggle={this.menuToggle}
           menuSection={this.state.menuSection}
