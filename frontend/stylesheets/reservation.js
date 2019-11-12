@@ -87,12 +87,12 @@ export const DateAndPriceInfo = styled.div`
     margin: 0;
     padding-left: 10px;
     width: 130px;
-    border: 1px solid #338EEE;
+    border: 1px solid #69b2ff;
     cursor: pointer;
   }
 
   .react-datepicker {
-    border: 1px solid #338EEE;
+    border: 1px solid #69b2ff;
 
     font-family: Roboto, Arial, sans-serif;
     font-weight: 400;
@@ -103,7 +103,7 @@ export const DateAndPriceInfo = styled.div`
     .react-datepicker__triangle {
         border-bottom-color: #FFF;
       &:before {
-        border-bottom-color: #338EEE;
+        border-bottom-color: #69b2ff;
       }
     }
 
