@@ -171,6 +171,7 @@ export const TimeItemWrapper = styled.div`
 
   cursor: pointer;
   border: 1px solid #a94ca5;
+  border-radius: 5px;
   color: #a94ca5;
   line-height: 40px;
   text-align: center;
