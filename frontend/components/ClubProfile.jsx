@@ -18,7 +18,7 @@ class ClubProfile extends Component {
         </div>
         <div className={styles.profileContent}>
           <ImageProfileBlock club={club} />
-          <InformationProfileBlock club={club} />
+          <InformationProfileBlock club={club} handleReservePopup={this.props.handleReservePopup}/>
         </div>
       </section>
     );

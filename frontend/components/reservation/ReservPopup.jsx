@@ -25,6 +25,7 @@ import {
   Sum,
   Commission,
   ToPersonalDataButton,
+  CloseButton,
 } from '../../stylesheets/reservation';
 
 import {
@@ -42,6 +43,7 @@ class ReservPopup extends Component {
     return (
       <div>
         <Wrapper>
+          <CloseButton onClick={this.props.handleReservePopup}/>
 
           <Header>
             <Title>
@@ -97,7 +99,7 @@ class ReservPopup extends Component {
           </ToPersonalData>
 
         </Wrapper>
-        <FadeScreen />
+        <FadeScreen onClick={this.props.handleReservePopup}/>
       </div>
     );
   }

@@ -14,10 +14,39 @@ export const FadeScreen = styled.div`
   z-index: 1;
 `;
 
+// Кнопка закрыть
+export const CloseButton = styled.div`
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+  &:before, &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 18px;
+    width: 2px;
+    background-color: #333;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+`;
+
 // Плашка попапа
 export const Wrapper = styled.div`
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -56,6 +85,49 @@ export const DateAndPriceInfo = styled.div`
 
   input {
     margin: 0;
+    padding-left: 10px;
+    width: 130px;
+    border: 1px solid #338EEE;
+    cursor: pointer;
+  }
+
+  .react-datepicker {
+    border: 1px solid #338EEE;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #1f1f22;
+
+    .react-datepicker__triangle {
+        border-bottom-color: #FFF;
+      &:before {
+        border-bottom-color: #338EEE;
+      }
+    }
+
+    .react-datepicker__header {
+      background-color: #FFF;
+      border-bottom: 1px solid #69b2ff;
+    }
+
+    .react-datepicker__navigation--previous {
+      border-right-color: #69b2ff;
+    }
+
+    .react-datepicker__navigation--next {
+      border-left-color: #69b2ff;
+    }
+
+    .react-datepicker__day--selected {
+      background-color: #69b2ff;
+    }
+
+    .react-datepicker__current-month {
+      color: #1f1f22;
+      font-weight: 500;
+    }
   }
 `;
 
@@ -76,11 +148,12 @@ export const PriceCategorys = styled.div`
 export const PriceCategoryWrapper = styled.div`
   width: 80px;
 
-  border-bottom: 2px solid orange;
+  box-shadow: inset 0px -2px 0px orange;
+  /* border-bottom: 2px solid orange; */
 
   text-align: center;
 
-  padding: 10px 0 5px;
+  padding: 10px 0 7px;
   margin: 0 3px;
 `;
 

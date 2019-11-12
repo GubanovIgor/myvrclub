@@ -22,6 +22,7 @@ import { getClubsForMapAC, getClubsAC, getClubForMapAC } from '../redux/actions/
 class ClubPage extends Component {
   state = {
     menuSection: 'Игры клуба',
+    reserveState: false,
   }
 
   showFilter = () => {
@@ -37,7 +38,6 @@ class ClubPage extends Component {
   }
 
   componentDidMount = async () => {
-    console.log('im reload')
     // this.props.getClubForMap(this.props.club._id);
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
@@ -46,6 +46,10 @@ class ClubPage extends Component {
   componentWillUnmount = async () => {
     window.removeEventListener('scroll', this.paginationHandler);
     this.props.autoPagination(false);
+  }
+
+  handleReservePopup = () => {
+    this.setState({ reserveState: !this.state.reserveState })
   }
 
   render() {
@@ -63,8 +67,8 @@ class ClubPage extends Component {
 
     return (
       <main>
-        <ReservPopup/>
-        <ClubProfile club={club} />
+        {(this.state.reserveState) && <ReservPopup handleReservePopup={this.handleReservePopup}/>}
+        <ClubProfile club={club} handleReservePopup={this.handleReservePopup}/>
         <ProfileMenu menuToggle={this.menuToggle}
           menuSection={this.state.menuSection}
           menuItems={menuItems} />

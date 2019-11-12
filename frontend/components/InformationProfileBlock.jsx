@@ -60,7 +60,8 @@ class InformationProfileBlock extends Component {
             </p>
             <ShowTelButton 
                    disabled={this.state.disabled}
-                   onClick={() => this.showTel(club._id)}
+                  //  onClick={() => this.showTel(club._id)}
+                    onClick={this.props.handleReservePopup}
                    showTel={this.state.showTel}>
                     Показать телефон
             </ShowTelButton>
