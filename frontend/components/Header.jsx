@@ -40,21 +40,21 @@ class Header extends Component {
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          {/*<ul className={styles.userNavigation}>*/}
-            {/*<li className={styles.loginLink}>*/}
-              {/*<Link href='/auth/signup'><a>Регистрация</a></Link>*/}
-            {/*</li>*/}
-          {/*</ul>*/}
-          {/*<ul className={styles.userNavigation}>*/}
-            {/*<li className={styles.loginLink}>*/}
-              {/*<Link href='/auth/signin'><a>Вход</a></Link>*/}
-            {/*</li>*/}
-          {/*</ul>*/}
-          {/*<ul className={styles.userNavigation}>*/}
-            {/*<li className={styles.loginLink}>*/}
-              {/*<Link href='/auth/signout'><a>Выход</a></Link>*/}
-            {/*</li>*/}
-          {/*</ul>*/}
+          <ul className={styles.userNavigation}>
+            <li className={styles.loginLink}>
+              <Link href='/auth/signup'><a>Регистрация</a></Link>
+            </li>
+          </ul>
+          <ul className={styles.userNavigation}>
+            <li className={styles.loginLink}>
+              <Link href='/auth/signin'><a>Вход</a></Link>
+            </li>
+          </ul>
+          <ul className={styles.userNavigation}>
+            <li className={styles.loginLink}>
+              <Link href='/auth/signout'><a>Выход</a></Link>
+            </li>
+          </ul>
         </nav>
       </header>
     );

@@ -1,5 +1,5 @@
-const User = require('../models/users');
-const {errorHandler} = require('../helpers/dbErrorHandler')
+const User = require('../../models/users');
+const {errorHandler} = require('../helpers/dbErrorHandler');
 const jwt = require('jsonwebtoken'); // generate token
 const expressJwt = require('express-jwt'); // autorization check
 
@@ -35,14 +35,15 @@ exports.signin = (req, res) => {
       })
     }
     const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
-    res.cookie('t', token, {expire: new Date() + 9999});
+    res.cookie('t', token, {expire: new Date() + 9999, httpOnly: false});
     const {_id, name, email, role} = user;
     res.json({token, user: {_id, name, email, role}})
   })
 }
 
 exports.signout = (req, res) => {
-  res.clearCookie('t')
+  res.clearCookie('t');
+  console.log('Signing out successfully');
   res.json({message: 'Signing out successfully'})
 }
 
