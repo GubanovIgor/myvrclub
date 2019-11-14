@@ -61,6 +61,7 @@ class Clubs extends Component {
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
             <ClubCards clubs={clubs} itemsClub={itemsClub}/>
           </div>
+          <Loading/>
         </ProfileContent__Wrapper>
       </div >
     );

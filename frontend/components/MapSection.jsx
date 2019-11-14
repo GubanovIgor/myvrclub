@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import {YMaps, Map, Placemark, ZoomControl} from 'react-yandex-maps';
 import {IMG_URL_PREFIX, API_PREFIX_FRONT} from '../services/consts/consts';
 
 // Import AC
@@ -27,10 +27,11 @@ class MapSection extends Component {
   // }
 
   render() {
-    const mapData = {
-      center: [55.751574, 37.573856],
+    let mapData = {
       zoom: 9,
+      center: [55.751574, 37.573856],
     };
+    console.log(this.props.clubsForMap)
     {this.props.clubsForMap.map((club) =>{console.log(club.name, club.baloon)})}
     return (
       <div>
@@ -60,6 +61,7 @@ class MapSection extends Component {
                                 </div>`
                          }}
                          modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}/>)}
+            <ZoomControl/>
           </Map>
         </YMaps>
       </div>

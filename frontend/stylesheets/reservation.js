@@ -134,6 +134,7 @@ export const DateAndPriceInfo = styled.div`
 export const Paragraph = styled.div`
   white-space: nowrap;
   font-size: 18px;
+  font-weight: 400;
   color: #505051;
 
   margin-right: 15px;
