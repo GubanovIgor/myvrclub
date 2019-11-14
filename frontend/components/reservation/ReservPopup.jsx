@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
+const moment = require('moment');
 
 // Import Components
 import DateField from './DateField';
@@ -40,42 +40,30 @@ class ReservPopup extends Component {
   }
 
   componentDidMount = () => {
-    this.getTimeLapse();
+    this.getTimeLapse(this.props.club);
   }
 
-  getTimeLapse = () => {
+  getTimeLapse = (club) => {
+    console.log(club.workTime);
+    let timeLapse = [];
     let interval = 45;
 
-    let time = '';
-    let startWork = 10;
-    let endWork = '22';
-    let hour = 0;
-    let timeLapse = [];
+    let workStart = moment('07:00', 'HH:mm');
+    let workEnd = moment('01:00', 'HH:mm');
 
-    for (let i = 0; hour !== endWork; i++) {
-      hour = Math.floor(((interval * i) / 60) + startWork);
-      if (hour >= 24) {
-        hour = hour - 24;
-      }
-      let minutes = (interval * i) % 60;
+    timeLapse.push(workStart.format('HH:mm'));
+    
+    console.log(workStart.isBefore(workEnd))
 
-      hour = String(hour);
-      if (hour.length === 1) {
-        hour = '0' + hour;
-      }
-      minutes = String(minutes)
-      if (minutes.length === 1) {
-        minutes = minutes + '0';
-      }
-
-      time = `${hour}.${minutes}`;
-
-      console.log(time);
-      timeLapse.push(time);
+    while (workStart.isBefore(workEnd)) {
+      let currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
+      workStart = moment(currentTime, 'HH:mm');
+      console.log(workStart)
+      timeLapse.push(currentTime);
     }
 
-    timeLapse.pop()
-
+    console.log(timeLapse)
+    
     this.setState({timeLapse: timeLapse})
   }
 
