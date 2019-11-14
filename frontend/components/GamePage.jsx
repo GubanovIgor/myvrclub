@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Styled Components
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper, Spinner  } from '../stylesheets/index';
 
 // Import Components
 import ClubCard from '../components/ClubCard';
@@ -10,7 +10,6 @@ import GameProfile from '../components/GameProfile';
 import ClubList from './ClubList';
 import ProfileMenu from './ProfileMenu';
 import Reviews from '../components/Reviews';
-// import Map from '../components/Map';
 
 // Action Creators
 import { showFilterToggleAC } from '../redux/actions/filters';
@@ -45,7 +44,7 @@ class GamePage extends Component {
   }
 
   render() {
-    const { game = [], clubs, screenMode, showFilter } = this.props;
+    const { game = [], clubs, screenMode, showFilter, clubsAmount } = this.props;
     const clubItems = clubs.map((club) => <ClubCard key={club._id} club={club} />);
 
     const menuItems = [
@@ -61,8 +60,6 @@ class GamePage extends Component {
           menuSection={this.state.menuSection}
           menuItems={menuItems} />
 
-        {/* {(this.props.loading) ? <Map/> : (<Loading />)} */}
-        {/* <Map/> */}
         <ProfileContent__Wrapper>
           {(this.state.menuSection === 'Где поиграть') &&
             <ClubList showFilterMark={showFilter}
@@ -74,6 +71,8 @@ class GamePage extends Component {
 
           {(this.state.menuSection === 'Отзывы') &&
             <Reviews item={game} />}
+
+          {(clubsAmount > clubs.length) && <Spinner img={'spinner'}/>}
         </ProfileContent__Wrapper>
       </main>
     );
@@ -86,6 +85,7 @@ const mapStateToProps = (store) => {
     clubs: store.clubs,
     screenMode: store.screenMode,
     filterToggle: store.clubsFilterToggle,
+    clubsAmount: store.clubsAmount,
   };
 };
 

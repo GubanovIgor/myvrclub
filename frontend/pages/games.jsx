@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper, Spinner } from '../stylesheets/index';
 
 //import windowSize from 'react-window-size';
 
@@ -42,7 +42,7 @@ class Games extends Component {
   }
 
   render() {
-    const { games } = this.props;
+    const { games, gamesAmount } = this.props;
     const gameItems = games.map((game) => <GameCard key={game._id} game={game} />);
     return (
       <div>
@@ -64,9 +64,10 @@ class Games extends Component {
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter />}
             <div className={styles.cardsWrapper}>
 
-              {(games.length !== 0) ? (gameItems) : (<Loading />)}
+              {(games.length !== 0) ? (gameItems) : (<Spinner img={'spinner'}/>)}
             </div>
           </div>
+          {(gamesAmount > games.length) && <Spinner img={'spinner'}/>}
         </ProfileContent__Wrapper>
       </div>
     );
@@ -82,7 +83,8 @@ const mapStateToProps = (store) => {
     screenMode: store.screenMode,
     paginationValue: store.paginationValue,
     loadingGame: store.loadingGame,
-    loading: store.loading
+    loading: store.loading,
+    gamesAmount: store.gamesAmount,
   };
 };
 

@@ -11,7 +11,8 @@ import styles from '../stylesheets/appWrapper.module.scss';
 // import AC
 import { switchScreenModeAC } from '../redux/actions/screenmode';
 import { switchPaginationValueAC } from '../redux/actions/pagination';
-// import { getClubsForMapAC } from "../redux/actions/clubs.js";
+import { getAmountClubsAC } from '../redux/actions/clubs';
+import { getAmountGamesAC } from '../redux/actions/games';
 
 
 class AppWrapper extends Component {
@@ -27,6 +28,8 @@ class AppWrapper extends Component {
 		this.updateDimensions();
 		// this.props.getClubsForMap(this.props.filterToggle);
 		window.addEventListener('resize', this.updateDimensions);
+		this.props.getAmountClubs();
+		this.props.getAmountGames();
 	};
 
 	autoPagination = async (type, id) => {
@@ -88,7 +91,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// getClubsForMap: (filterToggleData) => dispatch(getClubsForMapAC(filterToggleData)),
+		getAmountClubs: () => dispatch(getAmountClubsAC()),
+		getAmountGames: () => dispatch(getAmountGamesAC()),
 		switchScreenMode: (screenMode) => dispatch(switchScreenModeAC(screenMode)),
 		pagination: (paginationValue, filterToggleData, type, id, searchName) => dispatch(switchPaginationValueAC(paginationValue, filterToggleData, type, id, searchName)),
 	};

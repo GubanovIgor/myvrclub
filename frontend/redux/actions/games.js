@@ -75,3 +75,23 @@ export const getGamesAC = (
     dispatch(requestGetGames(data));
   }
 );
+
+// Получение количества игр
+export const requestGetAmountGames = (value) => (
+  { type: actionTypes.REQUESTED_AMOUNT_GAMES, value }
+);
+
+export const getAmountGamesAC = () => (
+  async (dispatch) => {
+
+    const resp = await fetch(`${API_PREFIX}/game/amount`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await resp.json();
+    dispatch(requestGetAmountGames(data));
+  }
+);

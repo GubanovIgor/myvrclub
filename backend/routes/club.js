@@ -23,6 +23,10 @@ router.post('/1', async (req, res) => {
   // else res.json([await Club.findOne({name: req.query.name})]);
 });
 
+// Получаем количество клубов
+router.get('/amount', async (req, res) => {
+  res.json(await Club.count());
+});
 
 // Получаем игры по фильтрам
 router.post('/', async (req, res) => {

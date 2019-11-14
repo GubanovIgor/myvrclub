@@ -1,4 +1,5 @@
 import styled from "styled-components";
+const imgPath = "/static/images/icons";
 
 // export const ProfileContent = styled.div`
 	/* @media screen and (max-width: 425px) {
@@ -331,5 +332,22 @@ export const ScreenshotsWrapper = styled.div`
 	@media screen and (max-width: 425px) {
 		padding: 30px;
 		display: none;
+  }
+`;
+
+// Spinner
+export const Spinner = styled.div`
+	width: 1000px;
+	height: 50px;
+
+	margin-left: auto;
+
+	${props => `background: url(${imgPath}/${props.img}.gif)`};
+	background-repeat: no-repeat;
+	background-position: center;
+
+	@media screen and (max-width: 425px) {
+		margin: 0 auto;
+		width: 100%;
   }
 `;

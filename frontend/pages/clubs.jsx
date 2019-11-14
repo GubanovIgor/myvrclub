@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import { FilterButton } from '../stylesheets/filterItem';
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper, Spinner } from '../stylesheets/index';
 
 // import components
 import Header from '../components/Header';
@@ -40,7 +40,7 @@ class Clubs extends Component {
   };
 
   render() {
-    const { clubs } = this.props;
+    const { clubs, clubsAmount } = this.props;
     const itemsClub = clubs.map((club) => <ClubCard key={club._id} club={club} />);
     return (
       <div>
@@ -61,7 +61,7 @@ class Clubs extends Component {
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
             <ClubCards clubs={clubs} itemsClub={itemsClub}/>
           </div>
-          <Loading/>
+          {(clubsAmount > clubs.length) && <Spinner img={'spinner'}/>}
         </ProfileContent__Wrapper>
       </div >
     );
@@ -76,6 +76,7 @@ const mapStateToProps = (store) => ({
   loadingClub: store.loadingClub,
   loading: store.loading,
   screenMode: store.screenMode,
+  clubsAmount: store.clubsAmount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

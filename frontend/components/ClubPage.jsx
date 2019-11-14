@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Styled Components
-import { ProfileContent__Wrapper } from '../stylesheets/index';
+import { ProfileContent__Wrapper, Spinner } from '../stylesheets/index';
 
 // import components
 import GameCard from '../components/GameCard';
@@ -17,7 +17,6 @@ import ReservPopup from './reservation/ReservPopup';
 // action creators
 import { showFilterToggleAC } from '../redux/actions/filters';
 import { getGamesAC } from "../redux/actions/games.js";
-import { getClubsForMapAC, getClubsAC, getClubForMapAC } from '../redux/actions/clubs';
 
 class ClubPage extends Component {
   state = {
@@ -38,7 +37,6 @@ class ClubPage extends Component {
   }
 
   componentDidMount = async () => {
-    // this.props.getClubForMap(this.props.club._id);
     window.addEventListener('scroll', this.paginationHandler);
     await this.props.getGames(this.props.filterToggle, undefined, this.props.club._id);
   }
@@ -53,7 +51,7 @@ class ClubPage extends Component {
   }
 
   render() {
-    const { club, games, showFilter, screenMode } = this.props;
+    const { club, games, showFilter, screenMode, gamesAmount } = this.props;
     const gameItems = games.map((game) => {
       return <GameCard key={game._id} game={game} />;
     });
@@ -90,6 +88,8 @@ class ClubPage extends Component {
 
           {(this.state.menuSection === 'Оборудование') &&
             <Equipments  item={club}/>}
+
+          {(gamesAmount > games.length) && <Spinner img={'spinner'}/>}
         </ProfileContent__Wrapper>
       </main>
     );
@@ -102,6 +102,7 @@ const mapStateToProps = (store) => {
     games: store.games,
     screenMode: store.screenMode,
     filterToggle: store.gamesFilterToggle,
+    gamesAmount: store.gamesAmount,
   };
 };
 

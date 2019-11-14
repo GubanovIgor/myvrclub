@@ -133,7 +133,26 @@ export const getClubForMapAC = (clubId) => (
     });
 
     const data = await resp.json();
-    console.log(data, '->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     dispatch(requestGetClubsForMap(data));
+  }
+);
+
+// Получение количества клубов
+export const requestGetAmountClubs = (value) => (
+  { type: actionTypes.REQUESTED_AMOUNT_CLUBS, value }
+);
+
+export const getAmountClubsAC = () => (
+  async (dispatch) => {
+
+    const resp = await fetch(`${API_PREFIX}/club/amount`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await resp.json();
+    dispatch(requestGetAmountClubs(data));
   }
 );

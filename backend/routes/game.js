@@ -14,6 +14,10 @@ router.get('/url', async (req, res) => {
   res.json(await Game.findOne({urlName: req.query.name}));
 });
 
+// Получаем количество игр
+router.get('/amount', async (req, res) => {
+  res.json(await Game.count());
+});
 
 router.post('/', async (req, res) => {
 
