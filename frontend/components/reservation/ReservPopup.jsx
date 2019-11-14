@@ -44,25 +44,30 @@ class ReservPopup extends Component {
   }
 
   getTimeLapse = (club) => {
-    console.log(club.workTime);
     let timeLapse = [];
-    let interval = 45;
+    let interval = 30;
 
-    let workStart = moment('07:00', 'HH:mm');
-    let workEnd = moment('01:00', 'HH:mm');
+    let workStart = moment('10:00', 'HH:mm');
+    let workStartCheck = moment('10:00', 'HH:mm');
+    let workEnd = moment('22:00', 'HH:mm');
+
+    if (workEnd.isBefore(workStart)) {
+      workEnd = moment('22:00', 'HH:mm').add(1, 'day');
+    }
 
     timeLapse.push(workStart.format('HH:mm'));
-    
-    console.log(workStart.isBefore(workEnd))
 
     while (workStart.isBefore(workEnd)) {
       let currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
-      workStart = moment(currentTime, 'HH:mm');
-      console.log(workStart)
+      workStart = moment(currentTime, 'HH:mm')
+
+      if (workStart.isBefore(workStartCheck)) {
+        workStart = moment(currentTime, 'HH:mm').add(1, 'day');
+      }
+
       timeLapse.push(currentTime);
     }
-
-    console.log(timeLapse)
+    timeLapse.pop()
     
     this.setState({timeLapse: timeLapse})
   }
