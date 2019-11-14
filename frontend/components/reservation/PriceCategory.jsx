@@ -5,7 +5,7 @@ import {
 
 const PriceCategory = (props) => {
   return (
-    <PriceCategoryWrapper>
+    <PriceCategoryWrapper color={props.color}>
       {props.price}
     </PriceCategoryWrapper>
   );

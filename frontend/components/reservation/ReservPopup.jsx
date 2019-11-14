@@ -29,7 +29,6 @@ import {
 } from '../../stylesheets/reservation';
 
 import {
-  time,
   prices,
   headsets,
 } from './mok'
@@ -37,6 +36,47 @@ import {
 class ReservPopup extends Component {
   state = {
     step: 'date and time',
+    timeLapse: [],
+  }
+
+  componentDidMount = () => {
+    this.getTimeLapse();
+  }
+
+  getTimeLapse = () => {
+    let interval = 45;
+
+    let time = '';
+    let startWork = 10;
+    let endWork = '22';
+    let hour = 0;
+    let timeLapse = [];
+
+    for (let i = 0; hour !== endWork; i++) {
+      hour = Math.floor(((interval * i) / 60) + startWork);
+      if (hour >= 24) {
+        hour = hour - 24;
+      }
+      let minutes = (interval * i) % 60;
+
+      hour = String(hour);
+      if (hour.length === 1) {
+        hour = '0' + hour;
+      }
+      minutes = String(minutes)
+      if (minutes.length === 1) {
+        minutes = minutes + '0';
+      }
+
+      time = `${hour}.${minutes}`;
+
+      console.log(time);
+      timeLapse.push(time);
+    }
+
+    timeLapse.pop()
+
+    this.setState({timeLapse: timeLapse})
   }
 
   render() {
@@ -61,13 +101,13 @@ class ReservPopup extends Component {
             <DateField />
             <PriceCategorys>
               {prices.map(el => {
-                return <PriceCategory price={el} key={el}/>
+                return <PriceCategory price={el.price} key={el.category} color={el.color}/>
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
 
           <TimeTable>
-              {time.map(el => {
+              {this.state.timeLapse.map(el => {
                 return <TimeItem time={el} key={el}/>
               })}
           </TimeTable>

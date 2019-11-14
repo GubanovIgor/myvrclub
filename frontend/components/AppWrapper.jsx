@@ -26,7 +26,6 @@ class AppWrapper extends Component {
 
 	componentDidMount = async () => {
 		this.updateDimensions();
-		// this.props.getClubsForMap(this.props.filterToggle);
 		window.addEventListener('resize', this.updateDimensions);
 		this.props.getAmountClubs();
 		this.props.getAmountGames();

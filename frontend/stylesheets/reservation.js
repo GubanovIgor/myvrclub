@@ -149,7 +149,7 @@ export const PriceCategorys = styled.div`
 export const PriceCategoryWrapper = styled.div`
   width: 80px;
 
-  box-shadow: inset 0px -2px 0px orange;
+  box-shadow: ${props => `inset 0px -2px 0px ${props.color}`};
   /* border-bottom: 2px solid orange; */
 
   text-align: center;
