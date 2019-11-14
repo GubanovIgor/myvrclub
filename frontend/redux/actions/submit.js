@@ -1,6 +1,7 @@
 import {actionTypes} from "../types.js";
 import {API_PREFIX} from "../../services/consts/consts.js";
 import fetch from 'isomorphic-unfetch';
+import {auth} from "../../firebase/firebase.js";
 
 // export const requestLoginAC = () => {
 //   return {type: actionTypes.REQUEST_LOGIN}
@@ -14,9 +15,8 @@ import fetch from 'isomorphic-unfetch';
 //   return {type: actionTypes.LOGIN_REJECT}
 // };
 //
-// //********LOGIN ADMIN**************
-// export const requestLogin = (values) => (
-//   async (dispatch) => {
+//********LOGIN ADMIN**************
+// export const requestLogin = (values) => async (dispatch) => {
 //     dispatch(requestLoginAC());
 //     console.log('values action >>>>>>>', values);
 //     const resp = await fetch(API_PREFIX + '/admin/login', {
@@ -31,7 +31,6 @@ import fetch from 'isomorphic-unfetch';
 //     if (data.loginStatus) dispatch(loginSucsessAC());
 //     else dispatch(loginRejectAC());
 //   }
-// );
 //
 //
 // //*******************END-LOGIN ADMIN********************
@@ -74,29 +73,71 @@ const logoutError = () => {
   };
 };
 
-const requestVerify = () => {
+const verifyRequest = () => {
   return {
     type: actionTypes.VERIFY_REQUEST
   };
 };
 
-const receiveVerify = user => {
+const verifySuccess = user => {
   return {
     type: actionTypes.VERIFY_SUCCESS,
     user
   };
 };
 
-export const loginUser = (email, password) => dispatch => {
+export const signupUser = (email, password) => (dispatch) => {
+  //dispatch(requestSignup());
+  auth
+    .sendSignInLinkToEmail(email, {
+      'url': `${window.location.href}`, // Here we redirect back to this same page.
+      'handleCodeInApp': true // This must be true.
+    })
+    .then(() => {
+      localStorage.setItem('emailForSignIn', email);
+      alert('An email was sent to ' + email + '. Please use the link in the email to sign-in.');
+      //dispatch(receiveSignup(user));
+    })
+    .catch(error => {
+      console.log('user signup error - ', error);
+      //dispatch(signupError());
+    });
+}; //TODO что делать с ответом от firbase непонятно
+
+export const loginUser = (email, password) => (dispatch) => {
+  console.log('e,p------->>>>', email, password)
   dispatch(requestLogin());
-  myFirebase
-    .auth()
+  auth
     .signInWithEmailAndPassword(email, password)
     .then(user => {
       dispatch(receiveLogin(user));
     })
     .catch(error => {
-      //Do something with the error if you want!
+      console.log('user login error - ', error);
       dispatch(loginError());
     });
+};
+
+export const logoutUser = () => dispatch => {
+  dispatch(requestLogout());
+  auth
+    .signOut()
+    .then(() => {
+      dispatch(receiveLogout());
+    })
+    .catch(error => {
+      console.log('user logout error - ', error);
+      dispatch(logoutError());
+    });
+};
+
+export const verifyAuth = () => dispatch => {
+  dispatch(verifyRequest());
+  auth.onAuthStateChanged(user => {
+    if (user !== null) {
+      dispatch(receiveLogin(user));
+    }
+    console.log('verify user --->>>', user)
+    dispatch(verifySuccess());
+  });
 };

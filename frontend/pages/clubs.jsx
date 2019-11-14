@@ -7,7 +7,6 @@ import { ProfileContent__Wrapper } from '../stylesheets/index';
 
 // import components
 import Header from '../components/Header';
-import ClubCard from '../components/ClubCard';
 import ClubFilter from '../components/ClubFilter';
 import Loading from '../components/Loading';
 import ClubCards from '../components/ClubCards';
@@ -41,7 +40,6 @@ class Clubs extends Component {
 
   render() {
     const { clubs } = this.props;
-    const itemsClub = clubs.map((club) => <ClubCard key={club._id} club={club} />);
     return (
       <div>
         <Head>
@@ -59,7 +57,7 @@ class Clubs extends Component {
           <div className={styles.container}>
             {(this.props.screenMode === 'desktop') && <ClubFilter />}
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <ClubFilter />}
-            <ClubCards clubs={clubs} itemsClub={itemsClub}/>
+            {(clubs.length === 0) ? (<Loading />) : <ClubCards clubs={clubs}/>}
           </div>
         </ProfileContent__Wrapper>
       </div >

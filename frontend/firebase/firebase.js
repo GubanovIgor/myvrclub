@@ -13,6 +13,13 @@ const firebaseConfig = {
   measurementId: "G-FWDWHE1C5Q"
 };
 
-export const myFirebase = firebase.initializeApp(firebaseConfig);
-const baseDb = myFirebase.firestore();
-export const db = baseDb;
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+//const db = firebase.database();
+export const auth = firebase.auth();
+
+//export { db, auth }
+
+// const baseDb = myvrclubFirebase.firestore();
+// export const db = baseDb;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
 import {connect} from "react-redux";
-import {checkSession} from "../redux/actions/submit.js";
+import {verifyAuth} from "../redux/actions/submit.js";
 
 // SASS
 import '../stylesheets/body.module.scss';
@@ -13,9 +13,9 @@ import styles from '../stylesheets/header.module.scss';
 
 class Header extends Component {
 
-  componentDidMount(){
-    this.props.checkSession();
-  }
+  // componentDidMount(){
+  //   this.props.checkSession();
+  // }
 
   render() {
     return (
@@ -63,14 +63,14 @@ class Header extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    logging: store.logging,
-    isLogged: store.isLogged,
+    isLoggingIn: store.isLoggingIn,
+    isAuthenticated: store.isAuthenticated,
   };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    checkSession: () => dispatch(checkSession()),
+    checkSession: () => dispatch(verifyAuth()),
   };
 }
 

@@ -63,8 +63,7 @@ class Games extends Component {
             {(this.props.screenMode === 'desktop') && <GameFilter />}
             {(this.props.showFilter && this.props.screenMode === 'mobile') && <GameFilter />}
             <div className={styles.cardsWrapper}>
-
-              {(games.length !== 0) ? (gameItems) : (<Loading />)}
+              {(games.length === 0) ? (<Loading />) : (gameItems) }
             </div>
           </div>
         </ProfileContent__Wrapper>

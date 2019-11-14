@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import { reducer } from './reducers';
+import {verifyAuth} from "./actions/submit.js";
 
 export const InitState = {
   // num: NaN,
@@ -11,7 +12,6 @@ export const InitState = {
   club: {},
   game: {},
   SearchName: '',
-  currentId: '',
   map: false,
   loading: false,
   error: false,
@@ -23,8 +23,18 @@ export const InitState = {
   showFilter: false,
   caruselIndex: 1,
   screenMode: 'desktop',
-  isLogged: false,
-  logging: false,
+
+  isLogged: false, //old
+  logging: false,  //old
+
+  isLoggingIn: false,
+  isLoggingOut: false,
+  isVerifying: false,
+  loginError: false,
+  logoutError: false,
+  isAuthenticated: false,
+  user: {},
+
   gamesFilter: [
     {
       title: 'Жанр',
@@ -168,9 +178,13 @@ const devTools =
     : composeWithDevTools(applyMiddleware(thunkMiddleware));
 
 export function initializeStore(initialState = InitState) {
-  return createStore(
+
+
+  const store = createStore(
     reducer,
     initialState,
     devTools
   );
+  store.dispatch(verifyAuth());
+  return store;
 }

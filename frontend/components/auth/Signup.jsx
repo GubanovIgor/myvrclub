@@ -10,15 +10,15 @@ import {
 } from 'formik';
 import * as Yup from 'yup';
 import AdminHeader from "./../Header.jsx";
-import {requestSignUp} from "../../redux/actions/submit.js";
+import {signupUser} from "../../redux/actions/submit.js";
 
 const styles = {};
 
 function SignUp(props) {
   const dispatch = useDispatch();
   const {classes} = props;
-  const isLogging = useSelector(state => state.logging); // from redux
-  const isLogged = useSelector(state => state.isLogged); // from redux
+  const isLogging = useSelector(state => state.isLoggingIn); // from redux
+  const isAuthenticated = useSelector(state => state.isAuthenticated); // from redux
   return (
     <>
       <AdminHeader/>
@@ -39,7 +39,7 @@ function SignUp(props) {
           }}
 
           onSubmit={(values) => {
-            dispatch(requestSignUp(values)); //запрос в редакс на вход
+            dispatch(signupUser(values.email, values.password)); //запрос в редакс на вход
             // values.name = '';
             // values.password = '';
           }}
@@ -141,7 +141,7 @@ function SignUp(props) {
                   disabled={!dirty || isLogging}>
                   Reset
                 </Button>
-                <Button type="submit" disabled={isLogging || isLogged}>
+                <Button type="submit" disabled={isLogging || isAuthenticated}>
                   Submit
                 </Button>
               </form>
