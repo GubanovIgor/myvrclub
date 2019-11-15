@@ -7,6 +7,13 @@ export const headsets = [
   // {headset: 'PS VR', amount: ['free', 'free', 'free', 'reserved']},
 ]
 
+export const categoryColor = {
+  'low': '#53a31a',
+  'middle': '#ff9f2e',
+  'high': '#a94ca5',
+  'not available': '#b9b9b9',
+}
+
 export const prices = [
   {price: '400 Р', category: 'low', color: '#9ec746'},
   {price: '700 Р', category: 'middle', color: '#f9a01e'},

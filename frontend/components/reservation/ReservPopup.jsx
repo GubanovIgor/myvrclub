@@ -125,7 +125,7 @@ class ReservPopup extends Component {
           {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
-              return <TimeItem time={el.time} key={i} />
+              return <TimeItem time={el.time} category={el.category} key={i} />
             })}
           </TimeTable>
 

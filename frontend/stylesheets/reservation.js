@@ -170,10 +170,10 @@ export const TimeItemWrapper = styled.div`
   width: 60px;
   height: 40px;
 
+  ${props => `border: 1px solid ${props.color}`};
   cursor: pointer;
-  border: 1px solid #a94ca5;
   border-radius: 5px;
-  color: #a94ca5;
+  ${props => `color: ${props.color}`};
   line-height: 40px;
   text-align: center;
 
@@ -182,9 +182,8 @@ export const TimeItemWrapper = styled.div`
   transition: 0.275s;
 
   &:hover {
-    border: 1px solid #a94ca5;
     color: #FFF;
-    background-color: #a94ca5;
+    ${props => `background-color: ${props.color}`};
   }
 `;
 
