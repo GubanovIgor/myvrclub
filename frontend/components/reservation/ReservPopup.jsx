@@ -37,6 +37,7 @@ class ReservPopup extends Component {
   state = {
     step: 'date and time',
     timeLapse: [],
+    currentDate: moment(new Date()).format('DD.MM.YY'),
   }
 
   componentDidMount = () => {
@@ -45,15 +46,19 @@ class ReservPopup extends Component {
 
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
-    const start = '07:00'
-    const end = '03:00'
+    const start = '00:00'
+    const end = '23:00'
     let interval = 60;
     const priceRange = [
-      { category: 'middle', start: '07:00', end: '11:00' },
+      { category: 'middle', start: '00:00', end: '11:00' },
       { category: 'low', start: '11:00', end: '14:00' },
       { category: 'middle', start: '14:00', end: '20:00' },
-      { category: 'high', start: '20:00', end: '03:00' },
+      { category: 'high', start: '20:00', end: '23:00' },
     ]
+
+    const reservedSessions = {
+      '15.11.19': ['10:00', '16:00', '19:00'],
+    }
 
     let timeLapse = [];
 
@@ -93,6 +98,12 @@ class ReservPopup extends Component {
     this.setState({ timeLapse: timeLapse })
   }
 
+  handleChangeDate = (date) => {
+    const currentDate = moment(date).format('DD.MM.YY');
+    console.log(moment(date).format( 'dddd' ));
+    this.setState({ currentDate: currentDate });
+  }
+
   render() {
     return (
       <div>
@@ -112,7 +123,9 @@ class ReservPopup extends Component {
             <Paragraph>
               Выберите дату и время
             </Paragraph>
-            <DateField />
+
+            <DateField handleChangeDate={this.handleChangeDate} currentDate={this.state.currentDate}/>
+
             <PriceCategorys>
               {prices.map((el, i) => {
                 return <PriceCategory price={el.price} key={i} color={el.color} />

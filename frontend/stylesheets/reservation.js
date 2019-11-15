@@ -1,4 +1,5 @@
 import styled from "styled-components";
+const imgPath = "/static/images/icons";
 
 // Темный экран
 export const FadeScreen = styled.div`
@@ -89,6 +90,24 @@ export const DateAndPriceInfo = styled.div`
     width: 130px;
     border: 1px solid #69b2ff;
     cursor: pointer;
+  }
+
+  .react-datepicker-wrapper {
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      right: 10px;
+
+      background-image: url("${imgPath}/calendar.svg");
+      background-size: 21px 21px; 
+      width: 21px; 
+      height: 21px; 
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
   }
 
   .react-datepicker {
