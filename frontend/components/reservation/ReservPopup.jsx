@@ -58,6 +58,8 @@ class ReservPopup extends Component {
 
     const reservedSessions = {
       '15.11.19': ['10:00', '16:00', '19:00'],
+      '14.11.19': ['12:00', '13:00', '14:00'],
+      '16.11.19': ['11:00', '17:00', '20:00'],
     }
 
     let timeLapse = [];
@@ -93,15 +95,27 @@ class ReservPopup extends Component {
       }
     }
 
+    // Помечаем недоступные сеансы
+    if (reservedSessions.hasOwnProperty(this.state.currentDate)) {
+      reservedSessions[this.state.currentDate].forEach(reserve => {
+        timeLapse.forEach(session => {
+          if (session.time === reserve) {
+            session.category = 'not available'
+          }
+        })
+      })
+    }
+
     // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня
     timeLapse.pop()
     this.setState({ timeLapse: timeLapse })
   }
 
-  handleChangeDate = (date) => {
+  handleChangeDate = async (date) => {
     const currentDate = moment(date).format('DD.MM.YY');
     console.log(moment(date).format( 'dddd' ));
-    this.setState({ currentDate: currentDate });
+    await this.setState({ currentDate: currentDate });
+    this.getTimeLapse();
   }
 
   render() {
