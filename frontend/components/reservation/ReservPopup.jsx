@@ -44,28 +44,47 @@ class ReservPopup extends Component {
   }
 
   getTimeLapse = (club) => {
-    let timeLapse = [];
+    //Данные которые придут из клуба
+    const start = '10:00'
+    const end = '01:00'
     let interval = 30;
+    const priceRange = [
+      {category: 'low', start: '10:00', end: '14:00'},
+      {category: 'middle', start: '14:00', end: '20:00'},
+      {category: 'high', start: '20:00', end: '23:00'},
+    ]
 
-    let workStart = moment('10:00', 'HH:mm');
-    let workStartCheck = moment('10:00', 'HH:mm');
-    let workEnd = moment('22:00', 'HH:mm');
+    let timeLapse = [];
 
+    let workStart = moment(start, 'HH:mm');
+    let workStartCheck = moment(start, 'HH:mm');
+    let workEnd = moment(end, 'HH:mm');
+
+    // Если клуб заканчивает работать после 00:00, прибавляем к workEnd 1 день
     if (workEnd.isBefore(workStart)) {
-      workEnd = moment('22:00', 'HH:mm').add(1, 'day');
+      workEnd = moment(end, 'HH:mm').add(1, 'day');
     }
 
     timeLapse.push(workStart.format('HH:mm'));
 
     while (workStart.isBefore(workEnd)) {
+      let timeBlock = {}
+      timeBlock.currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
+
       let currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
       workStart = moment(currentTime, 'HH:mm')
+
+      priceRange.forEach(el => {
+        if ( workStart.isAfter(moment(el.start, 'HH:mm')) && workStart.isBefore(moment(el.end, 'HH:mm')) || workStart.isSame(moment(el.end, 'HH:mm')) ) {
+          timeBlock.category = el.category;
+          timeLapse.push(timeBlock)
+        }
+      })
 
       if (workStart.isBefore(workStartCheck)) {
         workStart = moment(currentTime, 'HH:mm').add(1, 'day');
       }
 
-      timeLapse.push(currentTime);
     }
     timeLapse.pop()
     
@@ -93,15 +112,15 @@ class ReservPopup extends Component {
             </Paragraph>
             <DateField />
             <PriceCategorys>
-              {prices.map(el => {
-                return <PriceCategory price={el.price} key={el.category} color={el.color}/>
+              {prices.map((el, i) => {
+                return <PriceCategory price={el.price} key={i} color={el.color}/>
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
 
           <TimeTable>
-              {this.state.timeLapse.map(el => {
-                return <TimeItem time={el} key={el}/>
+              {this.state.timeLapse.map((el, i) => {
+                return <TimeItem time={el.currentTime} key={i}/>
               })}
           </TimeTable>
 
@@ -112,8 +131,8 @@ class ReservPopup extends Component {
           </HeadsetsInfo>
 
           <HeadsetsTable>
-            {headsets.map(el => {
-              return <HeadsetSection item={el}/>
+            {headsets.map((el, i) => {
+              return <HeadsetSection item={el} key={i}/>
             })}
           </HeadsetsTable>
 
