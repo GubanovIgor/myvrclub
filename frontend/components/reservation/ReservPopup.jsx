@@ -45,13 +45,14 @@ class ReservPopup extends Component {
 
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
-    const start = '10:00'
-    const end = '04:00'
-    let interval = 90;
+    const start = '07:00'
+    const end = '03:00'
+    let interval = 60;
     const priceRange = [
-      { category: 'low', start: '10:00', end: '14:00' },
+      { category: 'middle', start: '07:00', end: '11:00' },
+      { category: 'low', start: '11:00', end: '14:00' },
       { category: 'middle', start: '14:00', end: '20:00' },
-      { category: 'high', start: '20:00', end: '23:00' },
+      { category: 'high', start: '20:00', end: '03:00' },
     ]
 
     let timeLapse = [];
@@ -73,12 +74,8 @@ class ReservPopup extends Component {
       timeBlock.time = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
       // Определяем ценовую категория сеанса (.subtract(interval*2, 'm') -  необходимо, чтобы первые два сеанса получили категорию)
       priceRange.forEach(el => {
-        if (
-          workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(moment(el.end, 'HH:mm')) ||
-          workStart.isSame(moment(el.end, 'HH:mm'))
-        ) {
+        if ( workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd) )
           timeBlock.category = el.category;
-        }
       })
       // Добавляем сеанс в массив сеансов
       timeLapse.push(timeBlock)
@@ -122,7 +119,6 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
-          {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
               return <TimeItem time={el.time} category={el.category} key={i} />
