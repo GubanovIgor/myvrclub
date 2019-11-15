@@ -57,7 +57,7 @@ class ImageProfileBlock extends Component {
     const itemsForCarousel = item.screenShot.map((imgLink, index) => {
       return <ImgMiniImageProfileBlockWrapper>
         <ImgMiniImageProfileBlock
-          key={imgLink}
+          key={index}
           alt={item.name}
           src={clubPathPrefix + imgLink}
           onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />
@@ -66,7 +66,7 @@ class ImageProfileBlock extends Component {
 
     const itemsForSwiper = item.screenShot.map((imgLink, index) => {
       return <ImgMiniImageProfileBlock
-          key={imgLink}
+          key={index}
           alt={item.name}
           src={clubPathPrefix + imgLink}
           onClick={() => this.screenChange(clubPathPrefix, imgLink, index)} />

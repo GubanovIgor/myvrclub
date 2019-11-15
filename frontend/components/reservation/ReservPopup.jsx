@@ -46,7 +46,7 @@ class ReservPopup extends Component {
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
     const start = '10:00'
-    const end = '01:00'
+    const end = '23:00'
     let interval = 30;
     const priceRange = [
       {category: 'low', start: '10:00', end: '14:00'},
@@ -56,7 +56,8 @@ class ReservPopup extends Component {
 
     let timeLapse = [];
 
-    let workStart = moment(start, 'HH:mm');
+
+    let workStart = moment(start, 'HH:mm').subtract(interval, 'm'); // Отнимаем один интервал, чтобы не потерять первый сеанс
     let workStartCheck = moment(start, 'HH:mm');
     let workEnd = moment(end, 'HH:mm');
 
@@ -65,27 +66,30 @@ class ReservPopup extends Component {
       workEnd = moment(end, 'HH:mm').add(1, 'day');
     }
 
-    timeLapse.push(workStart.format('HH:mm'));
-
+    // Собираем массив сеансов
     while (workStart.isBefore(workEnd)) {
-      let timeBlock = {}
-      timeBlock.currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
 
-      let currentTime = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
-      workStart = moment(currentTime, 'HH:mm')
-
+      // Создаем сеанс, вычисляем его время
+      let timeBlock = {};
+      timeBlock.time = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
+      // Определяем ценовую категория сеанса
       priceRange.forEach(el => {
         if ( workStart.isAfter(moment(el.start, 'HH:mm')) && workStart.isBefore(moment(el.end, 'HH:mm')) || workStart.isSame(moment(el.end, 'HH:mm')) ) {
           timeBlock.category = el.category;
-          timeLapse.push(timeBlock)
         }
       })
+      // Добавляем сеанс
+      timeLapse.push(timeBlock)
 
+      // Переход к следующему сеансу
+      workStart = moment(timeBlock.time, 'HH:mm')
+      // Проверяем, если мы перешли за 00:00, то делаем переход на следующий день
       if (workStart.isBefore(workStartCheck)) {
-        workStart = moment(currentTime, 'HH:mm').add(1, 'day');
+        workStart = moment(timeBlock.time, 'HH:mm').add(1, 'day');
       }
-
     }
+
+    // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня
     timeLapse.pop()
     
     this.setState({timeLapse: timeLapse})
@@ -120,7 +124,7 @@ class ReservPopup extends Component {
 
           <TimeTable>
               {this.state.timeLapse.map((el, i) => {
-                return <TimeItem time={el.currentTime} key={i}/>
+                return <TimeItem time={el.time} key={i}/>
               })}
           </TimeTable>
 
