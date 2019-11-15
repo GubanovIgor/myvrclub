@@ -46,16 +46,15 @@ class ReservPopup extends Component {
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
     const start = '10:00'
-    const end = '23:00'
-    let interval = 30;
+    const end = '04:00'
+    let interval = 90;
     const priceRange = [
-      {category: 'low', start: '10:00', end: '14:00'},
-      {category: 'middle', start: '14:00', end: '20:00'},
-      {category: 'high', start: '20:00', end: '23:00'},
+      { category: 'low', start: '10:00', end: '14:00' },
+      { category: 'middle', start: '14:00', end: '20:00' },
+      { category: 'high', start: '20:00', end: '23:00' },
     ]
 
     let timeLapse = [];
-
 
     let workStart = moment(start, 'HH:mm').subtract(interval, 'm'); // Отнимаем один интервал, чтобы не потерять первый сеанс
     let workStartCheck = moment(start, 'HH:mm');
@@ -72,13 +71,16 @@ class ReservPopup extends Component {
       // Создаем сеанс, вычисляем его время
       let timeBlock = {};
       timeBlock.time = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
-      // Определяем ценовую категория сеанса
+      // Определяем ценовую категория сеанса (.subtract(interval*2, 'm') -  необходимо, чтобы первые два сеанса получили категорию)
       priceRange.forEach(el => {
-        if ( workStart.isAfter(moment(el.start, 'HH:mm')) && workStart.isBefore(moment(el.end, 'HH:mm')) || workStart.isSame(moment(el.end, 'HH:mm')) ) {
+        if (
+          workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(moment(el.end, 'HH:mm')) ||
+          workStart.isSame(moment(el.end, 'HH:mm'))
+        ) {
           timeBlock.category = el.category;
         }
       })
-      // Добавляем сеанс
+      // Добавляем сеанс в массив сеансов
       timeLapse.push(timeBlock)
 
       // Переход к следующему сеансу
@@ -91,15 +93,14 @@ class ReservPopup extends Component {
 
     // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня
     timeLapse.pop()
-    
-    this.setState({timeLapse: timeLapse})
+    this.setState({ timeLapse: timeLapse })
   }
 
   render() {
     return (
       <div>
         <Wrapper>
-          <CloseButton onClick={this.props.handleReservePopup}/>
+          <CloseButton onClick={this.props.handleReservePopup} />
 
           <Header>
             <Title>
@@ -117,15 +118,15 @@ class ReservPopup extends Component {
             <DateField />
             <PriceCategorys>
               {prices.map((el, i) => {
-                return <PriceCategory price={el.price} key={i} color={el.color}/>
+                return <PriceCategory price={el.price} key={i} color={el.color} />
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
-
+          {console.log(this.state.timeLapse)}
           <TimeTable>
-              {this.state.timeLapse.map((el, i) => {
-                return <TimeItem time={el.time} key={i}/>
-              })}
+            {this.state.timeLapse.map((el, i) => {
+              return <TimeItem time={el.time} key={i} />
+            })}
           </TimeTable>
 
           <HeadsetsInfo>
@@ -136,7 +137,7 @@ class ReservPopup extends Component {
 
           <HeadsetsTable>
             {headsets.map((el, i) => {
-              return <HeadsetSection item={el} key={i}/>
+              return <HeadsetSection item={el} key={i} />
             })}
           </HeadsetsTable>
 
@@ -155,7 +156,7 @@ class ReservPopup extends Component {
           </ToPersonalData>
 
         </Wrapper>
-        <FadeScreen onClick={this.props.handleReservePopup}/>
+        <FadeScreen onClick={this.props.handleReservePopup} />
       </div>
     );
   }
