@@ -78,9 +78,11 @@ class ReservPopup extends Component {
       // Создаем сеанс, вычисляем его время
       let timeBlock = {};
       timeBlock.time = moment(workStart, 'HH:mm').add(interval, 'm').format('HH:mm');
+      // Добавляем статус
+      timeBlock.status = false
       // Определяем ценовую категория сеанса (.subtract(interval*2, 'm') -  необходимо, чтобы первые два сеанса получили категорию)
       priceRange.forEach(el => {
-        if ( workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd) )
+        if (workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd))
           timeBlock.category = el.category;
         // Определяем занят ли сеанс
         if (reservedSessions.hasOwnProperty(this.state.currentDate)) {
@@ -107,9 +109,19 @@ class ReservPopup extends Component {
 
   handleChangeDate = async (date) => {
     const currentDate = moment(date).format('DD.MM.YY');
-    console.log(moment(date).format( 'dddd' ));
+    console.log(moment(date).format('dddd'));
     await this.setState({ currentDate: currentDate });
     this.getTimeLapse();
+  }
+
+  handleChoseSession = (time) => {
+    let timeLapse = this.state.timeLapse;
+    timeLapse.forEach(el => {
+      if (el.time === time) {
+        el.status = !el.status
+      }
+    })
+    this.setState({ timeLapse: timeLapse });
   }
 
   render() {
@@ -132,7 +144,7 @@ class ReservPopup extends Component {
               Выберите дату и время
             </Paragraph>
 
-            <DateField handleChangeDate={this.handleChangeDate} currentDate={this.state.currentDate}/>
+            <DateField handleChangeDate={this.handleChangeDate} currentDate={this.state.currentDate} />
 
             <PriceCategorys>
               {prices.map((el, i) => {
@@ -140,9 +152,15 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
+          {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
-              return <TimeItem time={el.time} category={el.category} key={i} />
+              return <TimeItem
+                time={el.time}
+                category={el.category}
+                status={el.status}
+                key={i}
+                handleChoseSession={this.handleChoseSession} />
             })}
           </TimeTable>
 

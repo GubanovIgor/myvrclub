@@ -8,15 +8,15 @@ export const headsets = [
 ]
 
 export const categoryColor = {
-  'low': '#53a31a',
-  'middle': '#ff9f2e',
-  'high': '#a94ca5',
-  'not available': '#b9b9b9',
+  'low': '#6ebf2c',
+  'middle': '#ffb700',
+  'high': '#9D429A',
+  'not available': '#959595',
 }
 
 export const prices = [
-  {price: '400 Р', category: 'low', color: '#9ec746'},
-  {price: '700 Р', category: 'middle', color: '#f9a01e'},
+  {price: '400 Р', category: 'low', color: '#6ebf2c'},
+  {price: '700 Р', category: 'middle', color: '#ffb700'},
   {price: '1500 Р', category: 'high', color: '#a94ca5'},
   {price: 'н/д', category: 'not available', color: '#b9b9b9'},
 ];

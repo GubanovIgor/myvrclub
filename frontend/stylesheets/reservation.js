@@ -196,11 +196,13 @@ export const TimeItemWrapper = styled.div`
   ${props => `border: 1px solid ${props.color}`};
   ${props => (props.category === 'not available') ? 'cursor: default' : 'cursor: pointer'};
   border-radius: 5px;
-  ${props => `color: ${props.color}`};
+  ${props => (props.status && props.category !== 'not available') ? 'color: #FFF' : `color: ${props.color}`};
   line-height: 40px;
   text-align: center;
 
   margin: 2px;
+
+  ${props => (props.status && props.category !== 'not available') && `background-color: ${props.color}`};
 
   transition: 0.275s;
 
