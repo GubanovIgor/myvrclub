@@ -257,13 +257,14 @@ export const HeadsetIcon = styled.svg`
   width: 50px;
   height: 50px;
 
-  cursor: pointer;
-  fill: #338EEE;
+  ${props => (props.status !== 'reserved') && 'cursor: pointer'};
+  ${props => (props.status === 'reserved') && 'fill: #D3D3D3'};
+  ${props => (props.status === false) && 'fill: #338EEE'};
 
-  transition: 0.275s;
+  transition: 0.5s;
 
   &:hover {
-    fill: black;
+    ${props => (props.status !== 'reserved') && 'fill: black'};
   }
 `;
 

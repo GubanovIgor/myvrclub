@@ -39,6 +39,7 @@ class ReservPopup extends Component {
     timeLapse: [],
     currentDate: moment(new Date()).format('DD.MM.YY'),
     selectedTime: [],
+    headsetsPack: [],
   }
 
   componentDidMount = () => {
@@ -110,12 +111,11 @@ class ReservPopup extends Component {
 
   handleChangeDate = async (date) => {
     const currentDate = moment(date).format('DD.MM.YY');
-    console.log(moment(date).format('dddd'));
     await this.setState({ currentDate: currentDate });
     this.getTimeLapse();
   }
 
-  handleChoseSession = async (time) => {
+  handleSelectSession = async (time) => {
     // Меняем статус у сеансов для рендера
     let timeLapse = this.state.timeLapse;
     timeLapse.forEach(el => {
@@ -160,7 +160,7 @@ class ReservPopup extends Component {
       let glasses = [];
       modelPack.glasses.forEach(el => {
         if (this.areArraysDifferent(el['reserved'][this.state.currentDate])) {
-          glasses.push('rserved');
+          glasses.push('reserved');
         } else {
           glasses.push(false);
         }
@@ -169,7 +169,19 @@ class ReservPopup extends Component {
       headsetsPack.push(modelSection);
     })
 
-    console.log(headsetsPack)
+    this.setState({ headsetsPack: headsetsPack })
+  }
+
+  // Ручка выбора очков
+  handleSelectGlasses = (index, model) => {
+    let headsetsPack = this.state.headsetsPack;
+    headsetsPack.forEach(el => {
+      if (el.model === model) {
+        el.glasses[index] = !el.glasses[index];
+      }
+    })
+
+    this.setState({ headsetsPack: headsetsPack });
   }
 
   render() {
@@ -207,7 +219,7 @@ class ReservPopup extends Component {
                 category={el.category}
                 status={el.status}
                 key={i}
-                handleChoseSession={this.handleChoseSession} />
+                handleSelectSession={this.handleSelectSession} />
             })}
           </TimeTable>
 
@@ -216,10 +228,10 @@ class ReservPopup extends Component {
               Выберите VR очки
             </Paragraph>
           </HeadsetsInfo>
-
+            {console.log(this.state.headsetsPack)}
           <HeadsetsTable>
-            {headsets.map((section, i) => {
-              return <HeadsetSection section={section} key={i} />
+            {this.state.headsetsPack.map((section, i) => {
+              return <HeadsetSection section={section} key={i} handleSelectGlasses={this.handleSelectGlasses} />
             })}
           </HeadsetsTable>
 

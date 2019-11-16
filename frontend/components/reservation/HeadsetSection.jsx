@@ -15,8 +15,13 @@ const HeadsetSection = (props) => {
         {props.section.model}
       </HeadsetSection__Title>
       <HeadsetSection__Items>
-        {props.section.glasses.map((glasses, i) => {
-          return <HeadsetSection__Item key={i}/>
+        {props.section.glasses.map((status, i) => {
+          return <HeadsetSection__Item
+            status={status}
+            key={i}
+            index={i}
+            handleSelectGlasses={props.handleSelectGlasses}
+            model={props.section.model}/>
         })}
       </HeadsetSection__Items>
     </HeadsetSectionWrapper>

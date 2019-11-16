@@ -6,13 +6,13 @@ import {
 import { categoryColor } from './mok';
 
 const TimeItem = (props) => {
-  const { category, handleChoseSession, time, status } = props
+  const { category, handleSelectSession, time, status } = props
   return (
     <TimeItemWrapper
       color={categoryColor[category]}
       category={category}
       status={status}
-      onClick={() => handleChoseSession(time)}>
+      onClick={() => handleSelectSession(time)}>
       {time}
     </TimeItemWrapper>
   );
