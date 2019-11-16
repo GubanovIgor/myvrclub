@@ -38,6 +38,7 @@ class ReservPopup extends Component {
     step: 'date and time',
     timeLapse: [],
     currentDate: moment(new Date()).format('DD.MM.YY'),
+    selectedTime: [],
   }
 
   componentDidMount = () => {
@@ -48,7 +49,7 @@ class ReservPopup extends Component {
     //Данные которые придут из клуба
     const start = '11:00'
     const end = '22:00'
-    let interval = 45;
+    let interval = 60;
     const priceRange = [
       { category: 'low', start: '11:00', end: '14:00' },
       { category: 'middle', start: '14:00', end: '20:00' },
@@ -114,14 +115,61 @@ class ReservPopup extends Component {
     this.getTimeLapse();
   }
 
-  handleChoseSession = (time) => {
+  handleChoseSession = async (time) => {
+    // Меняем статус у сеансов для рендера
     let timeLapse = this.state.timeLapse;
     timeLapse.forEach(el => {
       if (el.time === time) {
         el.status = !el.status
       }
     })
-    this.setState({ timeLapse: timeLapse });
+    await this.setState({ timeLapse: timeLapse });
+
+    // Получаем все выбранные сеансы в отдельный массив
+    let selectedTime = [];
+    this.state.timeLapse.forEach(el => {
+      if (el.status === true) {
+        selectedTime.push(el.time)
+      }
+    })
+    await this.setState({ selectedTime: selectedTime })
+
+    this.getGlasses();
+  }
+
+  // Проверка есть ли совпадения в 2 массивах
+  areArraysDifferent = (massive) => {
+    let check = false;
+    massive.forEach(el => {
+      if (this.state.selectedTime.includes(el)) {
+        check = true;
+      }
+    })
+
+    return check;
+  }
+
+  // Делаем массив всех очков для рендера в выбранный сеанс выбранного дня
+  getGlasses = () => {
+    let headsetsPack = [];
+
+    headsets.forEach(modelPack => {
+      let modelSection = {};
+      modelSection.model = modelPack.model;
+      
+      let glasses = [];
+      modelPack.glasses.forEach(el => {
+        if (this.areArraysDifferent(el['reserved'][this.state.currentDate])) {
+          glasses.push('rserved');
+        } else {
+          glasses.push(false);
+        }
+      })
+      modelSection.glasses = glasses;
+      headsetsPack.push(modelSection);
+    })
+
+    console.log(headsetsPack)
   }
 
   render() {
@@ -152,7 +200,6 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
-          {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
               return <TimeItem
@@ -171,8 +218,8 @@ class ReservPopup extends Component {
           </HeadsetsInfo>
 
           <HeadsetsTable>
-            {headsets.map((el, i) => {
-              return <HeadsetSection item={el} key={i} />
+            {headsets.map((section, i) => {
+              return <HeadsetSection section={section} key={i} />
             })}
           </HeadsetsTable>
 

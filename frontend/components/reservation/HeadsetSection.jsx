@@ -12,11 +12,11 @@ const HeadsetSection = (props) => {
   return (
     <HeadsetSectionWrapper>
       <HeadsetSection__Title>
-        {props.item.headset}
+        {props.section.model}
       </HeadsetSection__Title>
       <HeadsetSection__Items>
-        {props.item.amount.map(el => {
-          return <HeadsetSection__Item/>
+        {props.section.glasses.map((glasses, i) => {
+          return <HeadsetSection__Item key={i}/>
         })}
       </HeadsetSection__Items>
     </HeadsetSectionWrapper>
