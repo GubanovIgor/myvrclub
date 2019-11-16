@@ -46,14 +46,13 @@ class ReservPopup extends Component {
 
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
-    const start = '00:00'
-    const end = '23:00'
-    let interval = 60;
+    const start = '11:00'
+    const end = '22:00'
+    let interval = 45;
     const priceRange = [
-      { category: 'middle', start: '00:00', end: '11:00' },
       { category: 'low', start: '11:00', end: '14:00' },
       { category: 'middle', start: '14:00', end: '20:00' },
-      { category: 'high', start: '20:00', end: '23:00' },
+      { category: 'high', start: '20:00', end: '22:00' },
     ]
 
     const reservedSessions = {
@@ -83,6 +82,12 @@ class ReservPopup extends Component {
       priceRange.forEach(el => {
         if ( workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd) )
           timeBlock.category = el.category;
+        // Определяем занят ли сеанс
+        if (reservedSessions.hasOwnProperty(this.state.currentDate)) {
+          if (reservedSessions[this.state.currentDate].includes(timeBlock.time)) {
+            timeBlock.category = 'not available';
+          }
+        }
       })
       // Добавляем сеанс в массив сеансов
       timeLapse.push(timeBlock)
@@ -93,17 +98,6 @@ class ReservPopup extends Component {
       if (workStart.isBefore(workStartCheck)) {
         workStart = moment(timeBlock.time, 'HH:mm').add(1, 'day');
       }
-    }
-
-    // Помечаем недоступные сеансы
-    if (reservedSessions.hasOwnProperty(this.state.currentDate)) {
-      reservedSessions[this.state.currentDate].forEach(reserve => {
-        timeLapse.forEach(session => {
-          if (session.time === reserve) {
-            session.category = 'not available'
-          }
-        })
-      })
     }
 
     // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня

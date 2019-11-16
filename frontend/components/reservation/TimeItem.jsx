@@ -7,7 +7,7 @@ import { categoryColor } from './mok';
 
 const TimeItem = (props) => {
   return (
-    <TimeItemWrapper color={categoryColor[props.category]}>
+    <TimeItemWrapper color={categoryColor[props.category]} category={props.category}>
       {props.time}
     </TimeItemWrapper>
   );

@@ -108,6 +108,10 @@ export const DateAndPriceInfo = styled.div`
       background-repeat: no-repeat;
       pointer-events: none;
     }
+
+    input {
+      color: #505051;
+    }
   }
 
   .react-datepicker {
@@ -190,7 +194,7 @@ export const TimeItemWrapper = styled.div`
   height: 40px;
 
   ${props => `border: 1px solid ${props.color}`};
-  ${props => (props.color === '#b9b9b9') ? 'cursor: default' : 'cursor: pointer'};
+  ${props => (props.category === 'not available') ? 'cursor: default' : 'cursor: pointer'};
   border-radius: 5px;
   ${props => `color: ${props.color}`};
   line-height: 40px;
@@ -201,8 +205,8 @@ export const TimeItemWrapper = styled.div`
   transition: 0.275s;
 
   &:hover {
-    ${props => (props.color !== '#b9b9b9') && 'color: #FFF'};
-    ${props => (props.color !== '#b9b9b9') && `background-color: ${props.color}`};
+    ${props => (props.category !== 'not available') && 'color: #FFF'};
+    ${props => (props.category !== 'not available') && `background-color: ${props.color}`};
   }
 `;
 
