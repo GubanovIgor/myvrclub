@@ -9,7 +9,7 @@ import {
   Formik,
 } from 'formik';
 import * as Yup from 'yup';
-import AdminHeader from "./../Header.jsx";
+import Header from '../Header';
 import {signupUser} from "../../redux/actions/submit.js";
 
 const styles = {};
@@ -21,7 +21,7 @@ function SignUp(props) {
   const isAuthenticated = useSelector(state => state.isAuthenticated); // from redux
   return (
     <>
-      <AdminHeader/>
+      <Header/>
       <div
         style={{
           display: "flex",

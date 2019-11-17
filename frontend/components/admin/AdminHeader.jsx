@@ -58,7 +58,7 @@ class Header extends Component {
 }
 const mapStateToProps = (store) => {
   return {
-    logging: store.logging,
+    islogging: store.islogging,
     isLogged: store.isLogged,
   };
 };

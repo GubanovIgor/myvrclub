@@ -13,13 +13,11 @@ const firebaseConfig = {
   measurementId: "G-FWDWHE1C5Q"
 };
 
-if (!firebase.apps.length) {
+if (!firebase.apps.length)
   firebase.initializeApp(firebaseConfig);
-}
-//const db = firebase.database();
-export const auth = firebase.auth();
 
-//export { db, auth }
+const db = firebase.firestore();
+const auth = firebase.auth();
+auth.useDeviceLanguage();
 
-// const baseDb = myvrclubFirebase.firestore();
-// export const db = baseDb;
+export { db, auth, firebase }

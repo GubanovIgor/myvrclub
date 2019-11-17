@@ -24,15 +24,16 @@ export const InitState = {
   caruselIndex: 1,
   screenMode: 'desktop',
 
-  isLogged: false, //old
-  logging: false,  //old
+  isLogged: false, //for admin
+  islogging: false,  //for admin
 
   isLoggingIn: false,
   isLoggingOut: false,
   isVerifying: false,
-  loginError: false,
-  logoutError: false,
+  isloginError: false,
+  islogoutError: false,
   isAuthenticated: false,
+  isemailVerified: false,
   user: {},
 
   gamesFilter: [

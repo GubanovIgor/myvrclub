@@ -6,8 +6,6 @@ export default function () {
   const dispatch = useDispatch();
   //const isLogging = useSelector(state => state.isLoggingIn); // from redux
   dispatch(logoutUser());
-  return (
-    <div>
-      {window.location = '/'}
-    </div>)
+  window.location = '/';
+  return <></>
 }

@@ -2,6 +2,7 @@ import {actionTypes} from "../types.js";
 import {API_PREFIX} from "../../services/consts/consts.js";
 import fetch from 'isomorphic-unfetch';
 import {auth} from "../../firebase/firebase.js";
+import Router from "next/router.js";
 
 // export const requestLoginAC = () => {
 //   return {type: actionTypes.REQUEST_LOGIN}
@@ -42,10 +43,17 @@ const requestLogin = () => {
 };
 
 const receiveLogin = user => {
-  return {
-    type: actionTypes.LOGIN_SUCCESS,
-    user
-  };
+  if(user.emailVerified){
+    return {
+      type: actionTypes.LOGIN_SUCCESS,
+      user
+    }
+  }else{
+    return {
+      type: actionTypes.LOGIN_SUCCESS_NOT_EMAIL_VERIFYED,
+      user
+    }
+  }
 };
 
 const loginError = () => {
@@ -67,9 +75,10 @@ const receiveLogout = user => {
   };
 };
 
-const logoutError = () => {
+const logoutError = (err) => {
   return {
-    type: actionTypes.LOGOUT_FAILURE
+    type: actionTypes.LOGOUT_FAILURE,
+    payload: err
   };
 };
 
@@ -88,15 +97,20 @@ const verifySuccess = user => {
 
 export const signupUser = (email, password) => (dispatch) => {
   //dispatch(requestSignup());
+  const role = 0;
   auth
-    .sendSignInLinkToEmail(email, {
-      'url': `${window.location.href}`, // Here we redirect back to this same page.
-      'handleCodeInApp': true // This must be true.
+    .createUserWithEmailAndPassword(email, password)
+    .then((authUser) => {
+      //db.doCreateUser(authUser.user.uid, 'vasya', email, role);
+      //db.doUser(aauthUser.user.uid, 'vasya', email, role);
+      console.log('current user---->>', authUser);
+      //dispatch(receiveSignup(user));
     })
     .then(() => {
-      localStorage.setItem('emailForSignIn', email);
-      alert('An email was sent to ' + email + '. Please use the link in the email to sign-in.');
-      //dispatch(receiveSignup(user));
+      auth.languageCode = 'ru';
+      auth.currentUser.sendEmailVerification();
+      alert('A link was sent to ' + email + '. Please use the link in the email to veryfy profile.');
+      Router.push('/')
     })
     .catch(error => {
       console.log('user signup error - ', error);
@@ -113,8 +127,8 @@ export const loginUser = (email, password) => (dispatch) => {
       dispatch(receiveLogin(user));
     })
     .catch(error => {
-      console.log('user login error - ', error);
-      dispatch(loginError());
+      console.log('user login error - ', error.message);
+      dispatch(loginError(error.message));
     });
 };
 
@@ -133,11 +147,14 @@ export const logoutUser = () => dispatch => {
 
 export const verifyAuth = () => dispatch => {
   dispatch(verifyRequest());
-  auth.onAuthStateChanged(user => {
-    if (user !== null) {
-      dispatch(receiveLogin(user));
-    }
-    console.log('verify user --->>>', user)
-    dispatch(verifySuccess());
-  });
+  auth
+    .onAuthStateChanged(user => {
+      if (user !== null) {
+        console.log('user verification --->>> ', user);
+        dispatch(receiveLogin(user));
+      } else {
+        dispatch(loginError('Not Authorization'));
+      }
+      dispatch(verifySuccess());
+    });
 };

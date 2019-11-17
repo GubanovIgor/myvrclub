@@ -56,7 +56,7 @@ class MapSection extends Component {
                                             border-radius: 2px;
                                             background-color: #338EEE;
                                             color: #FFF;
-                                            &:hover {opacity: 0.8;}' href='${API_PREFIX_FRONT}/clubs/${club.urlName}' alt="">Подробнее</a>
+                                            &:hover {opacity: 0.8;}'/clubs/${club.urlName}' alt="">Подробнее</a>
                                 </div>`
                          }}
                          modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}/>)}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
 import {connect} from "react-redux";
@@ -13,11 +13,12 @@ import styles from '../stylesheets/header.module.scss';
 
 class Header extends Component {
 
-  // componentDidMount(){
-  //   this.props.checkSession();
-  // }
+  componentDidMount() {
+    this.props.checkSession();
+  }
 
   render() {
+    const {isAuthenticated} = this.props;
     return (
       <header className={styles.mainHeader}>
         <nav className={styles.mainNavigation}> {/*container*/}
@@ -37,24 +38,28 @@ class Header extends Component {
               <Link activeClassName={styles.siteNavigationActive} href='/clubs'><a>Клубы</a></Link>
             </li>
             {/*<li>*/}
-              {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
+            {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}
           </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link href='/auth/signup'><a>Регистрация</a></Link>
-            </li>
-          </ul>
-          <ul className={styles.userNavigation}>
-            <li className={styles.loginLink}>
-              <Link href='/auth/signin'><a>Вход</a></Link>
-            </li>
-          </ul>
+          {!isAuthenticated &&
+          <>
+            <ul className={styles.userNavigation}>
+              <li className={styles.loginLink}>
+                <Link href='/auth/signin'><a>Вход</a></Link>
+              </li>
+            </ul>
+            <ul className={styles.userNavigation}>
+              <li className={styles.loginLink}>
+                <Link href='/auth/signup'><a>Регистрация</a></Link>
+              </li>
+            </ul>
+          </>}
+          {isAuthenticated &&
           <ul className={styles.userNavigation}>
             <li className={styles.loginLink}>
               <Link href='/auth/signout'><a>Выход</a></Link>
             </li>
-          </ul>
+          </ul>}
         </nav>
       </header>
     );
