@@ -110,9 +110,11 @@ class ReservPopup extends Component {
     this.setState({ timeLapse: timeLapse })
   }
 
+  // Ручка выбора даты
   handleChangeDate = async (date) => {
     const currentDate = moment(date).format('DD.MM.YY');
     await this.setState({ currentDate: currentDate });
+    this.setState({ selectedTime: [] });
     this.getTimeLapse();
   }
 
@@ -141,11 +143,14 @@ class ReservPopup extends Component {
   // Проверка есть ли совпадения в 2 массивах
   areArraysDifferent = (massive) => {
     let check = false;
-    massive.forEach(el => {
-      if (this.state.selectedTime.includes(el)) {
-        check = true;
-      }
-    })
+
+    if (massive) {
+      massive.forEach(el => {
+        if (this.state.selectedTime.includes(el)) {
+          check = true;
+        }
+      })
+    }
 
     return check;
   }
@@ -223,7 +228,7 @@ class ReservPopup extends Component {
                 handleSelectSession={this.handleSelectSession} />
             })}
           </TimeTable>
-
+            {console.log(this.state.selectedTime)}
           <HeadsetsSectionWrapper status={this.state.selectedTime.length}>
             <HeadsetsInfo>
               <Paragraph>

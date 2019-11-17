@@ -4,7 +4,6 @@ import {
 } from '../../stylesheets/reservation';
 
 const ModelSection__Item = (props) => {
-  {console.log(props)}
   return (
     <HeadsetIcon
       status={props.status}
