@@ -5,7 +5,7 @@ const moment = require('moment');
 import DateField from './DateField';
 import PriceCategory from './PriceCategory';
 import TimeItem from './TimeItem';
-import HeadsetSection from './HeadsetSection';
+import ModelSection from './ModelSection';
 
 // Styled Components
 import {
@@ -18,6 +18,7 @@ import {
   Paragraph,
   PriceCategorys,
   TimeTable,
+  HeadsetsSectionWrapper,
   HeadsetsInfo,
   HeadsetsTable,
   ToPersonalData,
@@ -48,8 +49,8 @@ class ReservPopup extends Component {
 
   getTimeLapse = (club) => {
     //Данные которые придут из клуба
-    const start = '11:00'
-    const end = '22:00'
+    const start = '11:00';
+    const end = '22:00';
     let interval = 60;
     const priceRange = [
       { category: 'low', start: '11:00', end: '14:00' },
@@ -156,7 +157,7 @@ class ReservPopup extends Component {
     headsets.forEach(modelPack => {
       let modelSection = {};
       modelSection.model = modelPack.model;
-      
+
       let glasses = [];
       modelPack.glasses.forEach(el => {
         if (this.areArraysDifferent(el['reserved'][this.state.currentDate])) {
@@ -223,17 +224,19 @@ class ReservPopup extends Component {
             })}
           </TimeTable>
 
-          <HeadsetsInfo>
-            <Paragraph>
-              Выберите VR очки
+          <HeadsetsSectionWrapper status={this.state.selectedTime.length}>
+            <HeadsetsInfo>
+              <Paragraph>
+                Выберите VR очки
             </Paragraph>
-          </HeadsetsInfo>
-            {console.log(this.state.headsetsPack)}
-          <HeadsetsTable>
-            {this.state.headsetsPack.map((section, i) => {
-              return <HeadsetSection section={section} key={i} handleSelectGlasses={this.handleSelectGlasses} />
-            })}
-          </HeadsetsTable>
+            </HeadsetsInfo>
+
+            <HeadsetsTable>
+              {this.state.headsetsPack.map((section, i) => {
+                return <ModelSection section={section} key={i} handleSelectGlasses={this.handleSelectGlasses} />
+              })}
+            </HeadsetsTable>
+          </HeadsetsSectionWrapper>
 
           <ToPersonalData>
             <PriceInfo>

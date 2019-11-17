@@ -59,6 +59,8 @@ export const Wrapper = styled.div`
 
   padding: 30px;
 
+  transition: height 0.5s;
+
   z-index: 2;
 `;
 
@@ -213,6 +215,13 @@ export const TimeItemWrapper = styled.div`
 `;
 
 // Раздел с выбором очков
+export const HeadsetsSectionWrapper = styled.div`
+  height: auto;
+  ${props => !props.status ? 'max-height: 0px' : 'max-height: 416px'};
+  overflow: hidden;
+  transition: max-height 0.375s linear;
+`;
+
 export const HeadsetsInfo = styled.div`
   margin-bottom: 20px;
 `;
@@ -223,7 +232,7 @@ export const HeadsetsTable = styled.div`
   flex-wrap: wrap;
 `;
 
-export const HeadsetSectionWrapper = styled.div`
+export const ModelSectionWrapper = styled.div`
   width: 250px;
 
   margin-bottom: 20px;
@@ -237,7 +246,7 @@ export const HeadsetSectionWrapper = styled.div`
   }
 `;
 
-export const HeadsetSection__Title = styled.div`
+export const ModelSection__Title = styled.div`
   font-size: 14px;
   color: #1f1f22;
 
@@ -245,7 +254,7 @@ export const HeadsetSection__Title = styled.div`
   margin-left: 15px;
 `;
 
-export const HeadsetSection__Items = styled.div`
+export const ModelSection__Items = styled.div`
   display: flex;
   flex-wrap: wrap;
 
