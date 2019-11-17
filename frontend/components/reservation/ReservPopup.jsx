@@ -41,6 +41,7 @@ class ReservPopup extends Component {
     currentDate: moment(new Date()).format('DD.MM.YY'),
     selectedTime: [],
     headsetsPack: [],
+    sum: 0,
   }
 
   componentDidMount = () => {
@@ -53,9 +54,9 @@ class ReservPopup extends Component {
     const end = '22:00';
     let interval = 60;
     const priceRange = [
-      { category: 'low', start: '11:00', end: '14:00' },
-      { category: 'middle', start: '14:00', end: '20:00' },
-      { category: 'high', start: '20:00', end: '22:00' },
+      { category: 'low', start: '11:00', end: '14:00', price: 400 },
+      { category: 'middle', start: '14:00', end: '20:00', price: 700 },
+      { category: 'high', start: '20:00', end: '22:00', price: 1500 },
     ]
 
     const reservedSessions = {
@@ -85,13 +86,19 @@ class ReservPopup extends Component {
       timeBlock.status = false
       // Определяем ценовую категория сеанса (.subtract(interval*2, 'm') -  необходимо, чтобы первые два сеанса получили категорию)
       priceRange.forEach(el => {
-        if (workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd))
+        if (workStart.isAfter(moment(el.start, 'HH:mm').subtract(interval * 2, 'm')) && workStart.isBefore(workEnd)) {
           timeBlock.category = el.category;
+          timeBlock.price = el.price;
+        }
         // Определяем занят ли сеанс
         if (reservedSessions.hasOwnProperty(this.state.currentDate)) {
           if (reservedSessions[this.state.currentDate].includes(timeBlock.time)) {
             timeBlock.category = 'not available';
           }
+        }
+        console.log(this.state.currentDate + ' ' + timeBlock.time)
+        if ( moment().isAfter(moment(this.state.currentDate + ' ' + timeBlock.time, 'DD.MM.YY HH:mm')) ) {
+          timeBlock.category = 'not available';
         }
       })
       // Добавляем сеанс в массив сеансов
@@ -188,6 +195,27 @@ class ReservPopup extends Component {
     })
 
     this.setState({ headsetsPack: headsetsPack });
+    this.getSum();
+  }
+
+  // Считаем общий счет
+  getSum = () => {
+    // Находим количество выбранных очков
+    let headsetsCount = 0;
+    this.state.headsetsPack.forEach(model => {
+      let modelCount = model.glasses.filter(el => el === true).length;
+      headsetsCount += modelCount;
+    })
+
+    // Цена выбранных сеансов за одни очки
+    let priceForOne = 0;
+    this.state.timeLapse.forEach(el => {
+      if (el.status) {
+        priceForOne += el.price
+      }
+    })
+    
+    this.setState({ sum: priceForOne * headsetsCount });
   }
 
   render() {
@@ -195,7 +223,7 @@ class ReservPopup extends Component {
       <div>
         <Wrapper>
           <CloseButton onClick={this.props.handleReservePopup} />
-
+          {console.log(this.state.headsetsPack)}
           <Header>
             <Title>
               Нереальное место
@@ -228,7 +256,7 @@ class ReservPopup extends Component {
                 handleSelectSession={this.handleSelectSession} />
             })}
           </TimeTable>
-            {console.log(this.state.selectedTime)}
+
           <HeadsetsSectionWrapper status={this.state.selectedTime.length}>
             <HeadsetsInfo>
               <Paragraph>
@@ -246,7 +274,7 @@ class ReservPopup extends Component {
           <ToPersonalData>
             <PriceInfo>
               <Sum>
-                3400 Р
+                {this.state.sum} ₽
               </Sum>
               <Commission>
                 Без комиссии
