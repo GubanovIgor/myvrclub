@@ -315,3 +315,68 @@ export const ToPersonalDataButton = styled.div`
     opacity: 0.8;
   }
 `;
+
+// Попап сбор персональных данных
+export const PersonalDataPopupWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+
+  ${props => props.status ? 'opacity: 1' : 'opacity: 0'};
+  ${props => !props.status && 'pointer-events: none'};
+
+  transition: opacity 0.375s;
+`;
+
+export const PersonalDataPopup__FadeScreen = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background-color: black;
+  border-radius: 10px;
+  opacity: 0.8;
+`;
+
+export const PersonalDataPopup__Content = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  overflow: hidden;
+
+  ${props => props.status ? 'width: 350px' : 'width: 0px'};
+
+  background-color: #FFF;
+  border-radius: 0 10px 10px 0;
+
+  padding: 30px;
+
+  transition: width 0.375s;
+`;
+
+export const PersonalDataPopup__Title = styled.div`
+  font-size: 18px;
+  color: #1f1f22;
+`;
+
+export const PersonalDataPopup__ButtonComplete = styled.div`
+  width: 120px;
+  height: 30px;
+
+  cursor: pointer;
+  background-color: #338EEE;
+  border-radius: 3px;
+
+  color: #FFF;
+  line-height: 30px;
+  text-align: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

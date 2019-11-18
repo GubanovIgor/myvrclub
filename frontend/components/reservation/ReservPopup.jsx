@@ -6,6 +6,7 @@ import DateField from './DateField';
 import PriceCategory from './PriceCategory';
 import TimeItem from './TimeItem';
 import ModelSection from './ModelSection';
+import PersonalDataPopup from './PersonalDataPopup';
 
 // Styled Components
 import {
@@ -42,6 +43,7 @@ class ReservPopup extends Component {
     selectedTime: [],
     headsetsPack: [],
     sum: 0,
+    PersonalDataPopupStatus: false,
   }
 
   componentDidMount = () => {
@@ -218,6 +220,10 @@ class ReservPopup extends Component {
     this.setState({ sum: priceForOne * headsetsCount });
   }
 
+  handlerPersonalDataPopup = () => {
+    this.setState({ PersonalDataPopupStatus: !this.state.PersonalDataPopupStatus })
+  }
+
   render() {
     return (
       <div>
@@ -246,6 +252,7 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
+          {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
               return <TimeItem
@@ -270,7 +277,6 @@ class ReservPopup extends Component {
               })}
             </HeadsetsTable>
           </HeadsetsSectionWrapper>
-
           <ToPersonalData>
             <PriceInfo>
               <Sum>
@@ -280,10 +286,12 @@ class ReservPopup extends Component {
                 Без комиссии
               </Commission>
             </PriceInfo>
-            <ToPersonalDataButton>
+            <ToPersonalDataButton onClick={this.handlerPersonalDataPopup}>
               Продолжить
             </ToPersonalDataButton>
           </ToPersonalData>
+
+          <PersonalDataPopup status={this.state.PersonalDataPopupStatus} handler={this.handlerPersonalDataPopup}/>
 
         </Wrapper>
         <FadeScreen onClick={this.props.handleReservePopup} />
