@@ -11,6 +11,7 @@ import {
 const PersonalDataPopup = (props) => {
   return (
     <PersonalDataPopupWrapper status={props.status}>
+      {console.log(props.reservPopupData)}
       <PersonalDataPopup__FadeScreen status={props.status} onClick={props.handler}/>
       <PersonalDataPopup__Content status={props.status}>
         <CloseButton onClick={props.handler} />

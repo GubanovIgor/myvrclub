@@ -46,8 +46,10 @@ export const CloseButton = styled.div`
 
 export const ReservPopupWrapper = styled.div`
   ${props => props.status ? 'opacity: 1' : 'opacity: 0'};
-  transition: 0.375s;
   ${props => !props.status && 'pointer-events: none'};
+  transition: opacity 0.375s;
+
+  z-index: 2;
 `;
 
 // Плашка попапа
@@ -355,7 +357,7 @@ export const PersonalDataPopup__Content = styled.div`
 
   overflow: hidden;
 
-  ${props => props.status ? 'width: 350px' : 'width: 0px'};
+  ${props => props.status ? 'width: 250px' : 'width: 0px'};
 
   background-color: #FFF;
   border-radius: 0 10px 10px 0;
@@ -363,6 +365,11 @@ export const PersonalDataPopup__Content = styled.div`
   padding: 30px;
 
   transition: width 0.375s;
+
+  input {
+    margin: 0;
+    margin-bottom: 25px;
+  }
 `;
 
 export const PersonalDataPopup__Title = styled.div`
@@ -381,6 +388,8 @@ export const PersonalDataPopup__ButtonComplete = styled.div`
   color: #FFF;
   line-height: 30px;
   text-align: center;
+
+  margin-left: auto;
 
   &:hover {
     opacity: 0.8;

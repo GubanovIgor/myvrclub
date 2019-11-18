@@ -103,7 +103,6 @@ class ReservPopup extends Component {
             timeBlock.category = 'not available';
           }
         }
-        console.log(this.state.currentDate + ' ' + timeBlock.time)
         if (moment().isAfter(moment(this.state.currentDate + ' ' + timeBlock.time, 'DD.MM.YY HH:mm'))) {
           timeBlock.category = 'not available';
         }
@@ -325,7 +324,16 @@ class ReservPopup extends Component {
             </ToPersonalDataButton>
           </ToPersonalData>
 
-          <PersonalDataPopup status={this.state.PersonalDataPopupStatus} handler={this.handlerPersonalDataPopup} />
+          <PersonalDataPopup
+            reservPopupData={{
+              clubId: this.props.club._id,
+              date: this.state.currentDate,
+              time: this.state.selectedTime,
+              headsets: this.state.headsetsPack,
+              sum: this.state.sum,
+            }}
+            status={this.state.PersonalDataPopupStatus}
+            handler={this.handlerPersonalDataPopup} />
 
         </Content>
         <FadeScreen onClick={this.props.handleReservePopup} />
