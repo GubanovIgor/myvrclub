@@ -252,7 +252,6 @@ class ReservPopup extends Component {
       <ReservPopupWrapper status={this.props.status}>
         <Content>
           <CloseButton onClick={this.props.handleReservePopup} />
-          {console.log(this.state.headsetsPack)}
           <Header>
             <Title>
               Нереальное место

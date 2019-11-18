@@ -101,6 +101,11 @@ router.post('/statistics', async (req, res) => {
   res.end();
 });
 
+router.post('/reservation', (req, res) => {
+  console.log(req.body)
+  res.end();
+})
+
 // router.post('/adddescription', async (req, res) => {
 //   await Club.update({}, { $set: {"description": '', "short_description":''} }, {upsert:false, multi:true})
 //   console.log('clubbbbbbb');

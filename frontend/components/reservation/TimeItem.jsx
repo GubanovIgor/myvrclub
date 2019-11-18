@@ -7,7 +7,6 @@ import { categoryColor } from './mok';
 
 const TimeItem = (props) => {
   const { category, handleSelectSession, time, status } = props
-  console.log(status)
   return (
     <TimeItemWrapper
       color={categoryColor[category]}
