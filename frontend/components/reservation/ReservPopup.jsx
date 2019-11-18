@@ -28,6 +28,8 @@ import {
   Commission,
   ToPersonalDataButton,
   CloseButton,
+  AddInfo,
+  ValidationHint,
 } from '../../stylesheets/reservation';
 
 import {
@@ -44,6 +46,8 @@ class ReservPopup extends Component {
     headsetsPack: [],
     sum: 0,
     PersonalDataPopupStatus: false,
+    timeValidation: false,
+    headsetsValidation: false,
   }
 
   componentDidMount = () => {
@@ -99,7 +103,7 @@ class ReservPopup extends Component {
           }
         }
         console.log(this.state.currentDate + ' ' + timeBlock.time)
-        if ( moment().isAfter(moment(this.state.currentDate + ' ' + timeBlock.time, 'DD.MM.YY HH:mm')) ) {
+        if (moment().isAfter(moment(this.state.currentDate + ' ' + timeBlock.time, 'DD.MM.YY HH:mm'))) {
           timeBlock.category = 'not available';
         }
       })
@@ -123,7 +127,7 @@ class ReservPopup extends Component {
   handleChangeDate = async (date) => {
     const currentDate = moment(date).format('DD.MM.YY');
     await this.setState({ currentDate: currentDate });
-    this.setState({ selectedTime: [] });
+    this.setState({ selectedTime: [], sum: 0 });
     this.getTimeLapse();
   }
 
@@ -145,6 +149,8 @@ class ReservPopup extends Component {
       }
     })
     await this.setState({ selectedTime: selectedTime })
+
+    this.setState({ timeValidation: false });
 
     this.getGlasses();
   }
@@ -196,7 +202,7 @@ class ReservPopup extends Component {
       }
     })
 
-    this.setState({ headsetsPack: headsetsPack });
+    this.setState({ headsetsPack: headsetsPack, headsetsValidation: false });
     this.getSum();
   }
 
@@ -216,12 +222,29 @@ class ReservPopup extends Component {
         priceForOne += el.price
       }
     })
-    
+
     this.setState({ sum: priceForOne * headsetsCount });
   }
 
+  // Показывает подсказки валидации
+  toPersonalDataValidation = () => {
+    let check = true;
+
+    if (this.state.selectedTime.length === 0) {
+      this.setState({ timeValidation: true })
+      check = false;
+    } else if (this.state.sum === 0) {
+      this.setState({ headsetsValidation: true })
+      check = false;
+    }
+
+    return check
+  }
+
+  // Показывает попап сбора личных данных
   handlerPersonalDataPopup = () => {
-    this.setState({ PersonalDataPopupStatus: !this.state.PersonalDataPopupStatus })
+    if (this.toPersonalDataValidation())
+      this.setState({ PersonalDataPopupStatus: !this.state.PersonalDataPopupStatus })
   }
 
   render() {
@@ -242,6 +265,9 @@ class ReservPopup extends Component {
           <DateAndPriceInfo>
             <Paragraph>
               Выберите дату и время
+              <ValidationHint status={this.state.timeValidation}>
+                Выберите время
+              </ValidationHint>
             </Paragraph>
 
             <DateField handleChangeDate={this.handleChangeDate} currentDate={this.state.currentDate} />
@@ -252,7 +278,6 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
-          {console.log(this.state.timeLapse)}
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
               return <TimeItem
@@ -268,7 +293,10 @@ class ReservPopup extends Component {
             <HeadsetsInfo>
               <Paragraph>
                 Выберите VR очки
-            </Paragraph>
+                <ValidationHint status={this.state.headsetsValidation}>
+                Выберите модель и количество VR очков
+              </ValidationHint>
+              </Paragraph>
             </HeadsetsInfo>
 
             <HeadsetsTable>
@@ -277,7 +305,12 @@ class ReservPopup extends Component {
               })}
             </HeadsetsTable>
           </HeadsetsSectionWrapper>
+
           <ToPersonalData>
+            <AddInfo>
+              * При игре от 60 минут - скидка 10%<br />
+              ** Скидка 30% в день рождения
+            </AddInfo>
             <PriceInfo>
               <Sum>
                 {this.state.sum} ₽
@@ -291,7 +324,7 @@ class ReservPopup extends Component {
             </ToPersonalDataButton>
           </ToPersonalData>
 
-          <PersonalDataPopup status={this.state.PersonalDataPopupStatus} handler={this.handlerPersonalDataPopup}/>
+          <PersonalDataPopup status={this.state.PersonalDataPopupStatus} handler={this.handlerPersonalDataPopup} />
 
         </Wrapper>
         <FadeScreen onClick={this.props.handleReservePopup} />

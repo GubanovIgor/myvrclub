@@ -5,6 +5,7 @@ import {
   PersonalDataPopup__Content,
   PersonalDataPopup__Title,
   PersonalDataPopup__ButtonComplete,
+  CloseButton,
 } from '../../stylesheets/reservation';
 
 const PersonalDataPopup = (props) => {
@@ -12,6 +13,7 @@ const PersonalDataPopup = (props) => {
     <PersonalDataPopupWrapper status={props.status}>
       <PersonalDataPopup__FadeScreen status={props.status} onClick={props.handler}/>
       <PersonalDataPopup__Content status={props.status}>
+        <CloseButton onClick={props.handler} />
         <PersonalDataPopup__Title>
           Укажите Ваши данные
         </PersonalDataPopup__Title>

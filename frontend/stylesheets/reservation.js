@@ -380,3 +380,22 @@ export const PersonalDataPopup__ButtonComplete = styled.div`
     opacity: 0.8;
   }
 `;
+
+// Подсказки под звездочками **
+export const AddInfo = styled.div`
+  margin-right: auto;
+  font-size: 12px;
+  color: #b9b9b9;
+  line-height: 18px;
+`;
+
+// Подсказки валидации
+export const ValidationHint = styled.div`
+  font-size: 12px;
+  color: red;
+
+  height: auto;
+  ${props => !props.status ? 'max-height: 0px' : 'max-height: 18px'};
+  overflow: hidden;
+  transition: max-height 0.175s linear;
+`;
