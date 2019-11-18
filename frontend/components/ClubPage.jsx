@@ -65,7 +65,8 @@ class ClubPage extends Component {
 
     return (
       <main>
-        {(this.state.reserveState) && <ReservPopup handleReservePopup={this.handleReservePopup} club={club}/>}
+        <ReservPopup status={this.state.reserveState} handleReservePopup={this.handleReservePopup} club={club}/>
+
         <ClubProfile club={club} handleReservePopup={this.handleReservePopup}/>
         <ProfileMenu menuToggle={this.menuToggle}
           menuSection={this.state.menuSection}

@@ -10,7 +10,8 @@ import PersonalDataPopup from './PersonalDataPopup';
 
 // Styled Components
 import {
-  Wrapper,
+  ReservPopupWrapper,
+  Content,
   FadeScreen,
   Header,
   Title,
@@ -249,8 +250,8 @@ class ReservPopup extends Component {
 
   render() {
     return (
-      <div>
-        <Wrapper>
+      <ReservPopupWrapper status={this.props.status}>
+        <Content>
           <CloseButton onClick={this.props.handleReservePopup} />
           {console.log(this.state.headsetsPack)}
           <Header>
@@ -326,9 +327,9 @@ class ReservPopup extends Component {
 
           <PersonalDataPopup status={this.state.PersonalDataPopupStatus} handler={this.handlerPersonalDataPopup} />
 
-        </Wrapper>
+        </Content>
         <FadeScreen onClick={this.props.handleReservePopup} />
-      </div>
+      </ReservPopupWrapper>
     );
   }
 }
