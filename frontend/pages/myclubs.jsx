@@ -6,12 +6,8 @@ import { getClubsAC } from '../redux/actions/clubs';
 
 // import components
 import Header from '../components/Header';
-import ClubCard from '../components/ClubCard';
-import Carousel from '../components/Carousel';
+import ClientCard from '../components/myclubs/ClientCard';
 import ReservPopup from '../components/reservation/ReservPopup';
-
-// Styled Components
-import { WhiteContainer } from '../stylesheets/index';
 
 const MyClubs = (props) => {
 
@@ -20,13 +16,13 @@ const MyClubs = (props) => {
   }, [])
 
   const clubs = useSelector(state => state.clubs)
-  const screenMode = useSelector(state => state.screenMode)
   const dispatch = useDispatch();
 
   return (
     <div>
       <Header/>
-      {(clubs.length !== 0) && <ReservPopup status={true} club={clubs[0]}/>}
+      {/* {(clubs.length !== 0) && <ReservPopup status={true} club={clubs[0]}/>} */}
+      <ClientCard/>
     </div>
   );
 }
