@@ -36,6 +36,9 @@ class Header extends Component {
             <li>
               <Link activeClassName={styles.siteNavigationActive} href='/clubs'><a>Клубы</a></Link>
             </li>
+            <li>
+              <Link activeClassName={styles.siteNavigationActive} href='/myclubs'><a>Мои клубы</a></Link>
+            </li>
             {/*<li>*/}
               {/*<Link activeClassName={styles.siteNavigationActive} href='/about'><a>О нас</a></Link>*/}
             {/*</li>*/}

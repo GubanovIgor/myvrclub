@@ -149,10 +149,10 @@ class Index extends Component {
   }
 }
 
-const mapStateToProps = (store) => ({
-  clubs: store.clubs,
-  games: store.games,
-  caruselIndex: store.caruselIndex,
+const mapStateToProps = ({ clubs, games, caruselIndex }) => ({
+  clubs,
+  games,
+  caruselIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({
