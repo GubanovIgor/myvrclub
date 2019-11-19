@@ -80,15 +80,46 @@ export const Confirm = styled.div`
 
   text-align:center;
   line-height: 30px;
+  color: #48962c;
 
-  border: 1px solid #505051;
+  cursor: pointer;
+  border: 1px solid #48962c;
   border-radius: 5px;
+
+  &:hover {
+    background-color: #48962c;
+    color: #FFF;
+  }
 `;
 
 export const Cancel = styled.div`
+  position: relative;
+  right: -5px;
   width: 30px;
   height: 30px;
 
-  border: 1px solid #505051;
+  opacity: 0.6;
+  cursor: pointer;
+
+  border: 1px solid #f54242;
   border-radius: 5px;
+
+  &:hover {
+    opacity: 1;
+  }
+  &:before, &:after {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    content: ' ';
+    height: 18px;
+    width: 2px;
+    background-color: #f54242;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
 `;
