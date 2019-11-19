@@ -250,8 +250,10 @@ class ReservPopup extends Component {
   render() {
     return (
       <ReservPopupWrapper status={this.props.status}>
+
         <Content>
           <CloseButton onClick={this.props.handleReservePopup} />
+
           <Header>
             <Title>
               Нереальное место
@@ -277,6 +279,7 @@ class ReservPopup extends Component {
               })}
             </PriceCategorys>
           </DateAndPriceInfo>
+          
           <TimeTable>
             {this.state.timeLapse.map((el, i) => {
               return <TimeItem
@@ -333,8 +336,8 @@ class ReservPopup extends Component {
             }}
             status={this.state.PersonalDataPopupStatus}
             handler={this.handlerPersonalDataPopup} />
-
         </Content>
+
         <FadeScreen onClick={this.props.handleReservePopup} />
       </ReservPopupWrapper>
     );

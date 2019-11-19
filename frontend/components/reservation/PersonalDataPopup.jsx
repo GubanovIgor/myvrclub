@@ -14,9 +14,18 @@ import {
 } from '../../stylesheets/reservation';
 
 const PersonalDataPopup = (props) => {
-  const [name, setName] = useState('');
-  const [mail, setMail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    mail: '',
+    phone: '',
+  });
+
+  const changeInput = (target) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    })
+  };
 
   return (
     <PersonalDataPopupWrapper status={props.status}>
@@ -26,9 +35,9 @@ const PersonalDataPopup = (props) => {
         <PersonalDataPopup__Title>
           Укажите Ваши данные
         </PersonalDataPopup__Title>
-        <input value={name} onChange={e => setName(e.target.value)}></input>
-        <input value={mail} onChange={e => setMail(e.target.value)}></input>
-        <input value={phone} onChange={e => setPhone(e.target.value)}></input>
+        <input name='name' value={formData.name} onChange={e => changeInput(e.target)}></input>
+        <input name='mail' value={formData.mail} onChange={e => changeInput(e.target)}></input>
+        <input name='phone' value={formData.phone} onChange={e => changeInput(e.target)}></input>
         <PersonalDataPopup__ButtonComplete onClick={() => addSession(props.reservPopupData)}>
           Готово
         </PersonalDataPopup__ButtonComplete>
