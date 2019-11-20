@@ -1,16 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useTest } from '../../hooks/useTest';
 
 import {
   ClientCardWrapper,
   Title,
   Content,
-  DateAndSum,
   Buttons,
   Confirm,
   Cancel,
 } from './styles/myclubs'
 
 const ClientCard = (props) => {
+
+  const value = useTest(9)
+  console.log(value)
 
   return (
     <ClientCardWrapper>
@@ -30,7 +33,7 @@ const ClientCard = (props) => {
       </Content>
 
       <Buttons>
-        <Confirm>
+        <Confirm onClick={() => useTest(6)}>
           Подтвердить
         </Confirm>
         <Cancel/>

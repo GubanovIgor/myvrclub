@@ -121,6 +121,7 @@ class ReservPopup extends Component {
     // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня
     timeLapse.pop()
     this.setState({ timeLapse: timeLapse })
+    console.log(timeLapse)
   }
 
   // Ручка выбора даты
@@ -191,6 +192,7 @@ class ReservPopup extends Component {
     })
 
     this.setState({ headsetsPack: headsetsPack })
+    console.log(headsetsPack);
   }
 
   // Ручка выбора очков
