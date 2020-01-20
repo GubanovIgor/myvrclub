@@ -2,7 +2,7 @@
 import fetch from 'isomorphic-unfetch';
 import { API_PREFIX } from '../../services/consts/consts';
 import {actionTypes} from "../types.js";
-import {InitState} from "../stateInit.js";
+import {InitState} from "../filters/reducers";
 
 
 export const requestGetGames = (data) => (

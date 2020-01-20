@@ -8,7 +8,7 @@ import AdminClubCard from './AdminClubCard.jsx';
 import AdminHeader from '../AdminHeader';
 
 // import AC
-import {getAllClubsAC} from "../../../redux/actions/clubs.js";
+import {getAllClubsAC} from "../../../redux/clubs/actions.js";
 
 //SASS
 import styles from '../../../stylesheets/cardsWrapper.module.scss';

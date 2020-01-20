@@ -14,8 +14,8 @@ import GameCard from '../components/GameCard';
 import GameFilter from '../components/GameFilter';
 
 // action creators
-import { showFilterToggleAC } from '../redux/actions/filters.js';
-import {getGamesAC} from "../redux/actions/games.js";
+import { showFilterToggleAC } from '../redux/filters/actions.js';
+import {getGamesAC} from "../redux/games/actions.js";
 import Loading from '../components/Loading';
 
 //SASS
@@ -74,14 +74,18 @@ class Games extends Component {
   }
 }
 
+Games.defaultProps = {
+  games: []
+};
+
 const mapStateToProps = (store) => {
   return {
-    showFilter: store.showFilter,
-    games: store.games,
+    showFilter: store.filter.showFilter,
+    games: store.games.games,
     SearchName: store.SearchName,
-    filterToggle: store.gamesFilterToggle,
+    filterToggle: store.filter.gamesFilterToggle,
     screenMode: store.screenMode,
-    paginationValue: store.paginationValue,
+    paginationValue: store.pagination.paginationValue,
     loadingGame: store.loadingGame,
     loading: store.loading
   };

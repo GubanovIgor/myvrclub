@@ -1,7 +1,7 @@
 // import types
-import { actionTypes } from './../types';
-import {getGamesAC} from "./games.js";
-import {getClubsAC} from "./clubs.js";
+import { actionTypes } from '../types';
+import {getGamesAC} from "../games/actions.js";
+import {getClubsAC} from "../clubs/actions.js";
 
 // Пагинация
 export const requestSwitchPaginationValue = (value) => (

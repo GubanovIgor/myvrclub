@@ -2,11 +2,8 @@
 import { actionTypes } from './types';
 import {InitState} from "./stateInit";
 
-export const reducer = (state=InitState, action) => {
-  // console.log('reducer initial state games', state.games);
-  // console.log('reducer initial state clubs', state.clubs);
+export default (state=InitState, action) => {
   switch (action.type) {
-
     case actionTypes.REQUEST_CLUBS:
       return ({ ...state, loadingClub: true, errorClub: false, loading: true });
     case actionTypes.REQUEST_GAMES:

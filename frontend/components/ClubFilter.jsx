@@ -8,8 +8,8 @@ import styles from '../stylesheets/filter.module.scss';
 
 //import AC
 import { changeMapAC, offChangeMapAC } from '../redux/actions/map';
-import { filterToggleClubsAC } from '../redux/actions/filters.js';
-import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
+import { filterToggleClubsAC } from '../redux/filters/actions.js';
+import { getClubsAC, getClubsForMapAC } from "../redux/clubs/actions.js";
 
 // import components
 import FilterSection from '../components/FilterSection';
@@ -79,8 +79,8 @@ class ClubFilter extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  clubsFilter: store.clubsFilter,
-  filterToggle: store.clubsFilterToggle,
+  clubsFilter: store.filter.clubsFilter,
+  filterToggle: store.filter.clubsFilterToggle,
   screenMode: store.screenMode,
   map: store.map,
   SearchName: store.SearchName

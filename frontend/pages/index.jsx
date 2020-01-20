@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 
 // import AC
-import {switchCaruselIndexAC } from '../redux/actions/carousel';
-import {getClubsAC} from "../redux/actions/clubs.js";
-import {getGamesAC} from "../redux/actions/games.js";
+import {switchCaruselIndexAC } from '../redux/carusel/actions';
+import {getClubsAC} from "../redux/clubs/actions.js";
+import {getGamesAC} from "../redux/games/actions.js";
 
 // SASS
 import styles from '../stylesheets/index.module.scss'
@@ -37,8 +37,8 @@ class Index extends Component {
     await reduxStore.dispatch(getClubsAC()); //рендер с сервера (первый раз)
     await reduxStore.dispatch(getGamesAC()); //рендер с сервера (первый раз)
     return {
-      games: reduxStore.getState().games,
-      clubs: reduxStore.getState().clubs
+      // games: reduxStore.getState().games.games,
+      // clubs: reduxStore.getState().clubs.clubs
     };
   }
 
@@ -122,10 +122,16 @@ class Index extends Component {
   }
 }
 
+Index.defaultProps = {
+  games: [],
+  clubs: [],
+  caruselIndex: 1,
+};
+
 const mapStateToProps = (store) => ({
-  clubs: store.clubs,
-  games: store.games,
-  caruselIndex: store.caruselIndex,
+  clubs: store.clubs.clubs,
+  games: store.games.games,
+  caruselIndex: store.carusel.caruselIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Loading from '../../../components/Loading';
 import Seo from '../../../components/Seo';
 import Head from 'next/head';
-import {getClubAC} from "../../../redux/actions/clubs.js";
+import {getClubAC} from "../../../redux/clubs/actions.js";
 import {withRouter} from 'next/router'
 
 class Clubs extends Component {
@@ -46,9 +46,9 @@ class Clubs extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    club: store.club,
-    loadingClub: store.loadingClub,
-    error: store.error,
+    club: store.clubs.club,
+    loadingClub: store.clubs.loadingClub,
+    error: store.clubs.error,
   };
 };
 

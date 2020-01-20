@@ -6,8 +6,8 @@ import styles from '../stylesheets/filter.module.scss';
 
 // import components
 import FilterSection from '../components/FilterSection';
-import { filterToggleGamesAC } from '../redux/actions/filters';
-import {getGamesAC} from "../redux/actions/games.js";
+import { filterToggleGamesAC } from '../redux/filters/actions';
+import {getGamesAC} from "../redux/games/actions.js";
 import Search from "./Search.jsx";
 
 class GameFilter extends Component {
@@ -39,8 +39,8 @@ class GameFilter extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  gamesFilter: store.gamesFilter,
-  filterToggle: store.gamesFilterToggle,
+  gamesFilter: store.filter.gamesFilter,
+  filterToggle: store.filter.gamesFilterToggle,
   SearchName: store.SearchName
 });
 

@@ -3,8 +3,8 @@ import React from 'react';
 import * as Rx from "rxjs";
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {connect} from "react-redux";
-import {getGamesAC} from "../redux/actions/games.js";
-import {getClubsAC} from "../redux/actions/clubs.js";
+import {getGamesAC} from "../redux/games/actions.js";
+import {getClubsAC} from "../redux/clubs/actions.js";
 import {setSearchNameAC} from "../redux/actions/search.js";
 
 
@@ -59,7 +59,7 @@ class Search extends React.Component {
 
 const mapStateToProps = (store) => {
   return {
-    filterToggle: store.gamesFilterToggle,
+    filterToggle: store.filter.gamesFilterToggle,
   };
 };
 

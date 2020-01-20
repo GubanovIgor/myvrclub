@@ -13,8 +13,8 @@ import Reviews from '../components/Reviews';
 // import Map from '../components/Map';
 
 // Action Creators
-import { showFilterToggleAC } from '../redux/actions/filters';
-import { getClubsAC, getClubsForMapAC } from "../redux/actions/clubs.js";
+import { showFilterToggleAC } from '../redux/filters/actions';
+import { getClubsAC, getClubsForMapAC } from "../redux/clubs/actions.js";
 
 class GamePage extends Component {
   state = {
@@ -82,10 +82,10 @@ class GamePage extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    showFilter: store.showFilter,
-    clubs: store.clubs,
+    showFilter: store.filter.showFilter,
+    clubs: store.clubs.clubs,
     screenMode: store.screenMode,
-    filterToggle: store.clubsFilterToggle,
+    filterToggle: store.filter.clubsFilterToggle,
   };
 };
 

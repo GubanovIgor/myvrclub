@@ -3,7 +3,7 @@ import AdminHeader from '../AdminHeader';
 import {connect} from 'react-redux';
 import AdminGameCard from './AdminGameCard';
 import Loading from "../../Loading.jsx";
-import {getAllGamesAC} from "../../../redux/actions/games.js";
+import {getAllGamesAC} from "../../../redux/games/actions.js";
 import styles from '../../../stylesheets/cardsWrapper.module.scss';
 
 class AdminGames extends Component {
@@ -66,9 +66,9 @@ const mapStateToProps = (store) => {
   return {
     // showFilter: store.showFilter,
     games: store.games,
-    // filterToggle: store.gamesFilterToggle,
+    // filterToggle: store.filter.gamesFilterToggle,
     // screenMode: store.screenMode,
-    // paginationValue: store.paginationValue,
+    // paginationValue: store.pagination.paginationValue,
     errorGame: store.errorGame,
     loadingGame: store.loadingGame,
     loading: store.loading,

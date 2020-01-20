@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../../../components/Header';
 import ClubPage from '../../../../components/ClubPage';
 import { connect } from 'react-redux';
-import { getClubsAC } from '../../../../redux/actions/clubs';
+import { getClubsAC } from '../../../../redux/clubs/actions';
 import Loading from '../../../../components/Loading';
 import Seo from '../../../../components/Seo';
 import AdminClubPageEdit from '../../../../components/admin/clubs/AdminClubPageEdit';

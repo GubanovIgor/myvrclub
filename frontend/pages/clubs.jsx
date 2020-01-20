@@ -13,9 +13,9 @@ import Loading from '../components/Loading';
 import ClubCards from '../components/ClubCards';
 
 // import AC
-import { showFilterToggleAC } from '../redux/actions/filters.js';
-import { switchPaginationValueAC} from '../redux/actions/pagination';
-import {getClubsAC} from "../redux/actions/clubs.js";
+import { showFilterToggleAC } from '../redux/filters/actions.js';
+import { switchPaginationValueAC} from '../redux/pagination/actions';
+import {getClubsAC} from "../redux/clubs/actions.js";
 
 //SASS
 import styles from '../stylesheets/cardsWrapper.module.scss';
@@ -72,10 +72,10 @@ Clubs.defaultProps = {
 };
 
 const mapStateToProps = (store) => ({
-  showFilter: store.showFilter,
-  clubs: store.clubs,
-  filterToggle: store.clubsFilterToggle,
-  paginationValue: store.paginationValue,
+  showFilter: store.filter.showFilter,
+  clubs: store.clubs.clubs,
+  filterToggle: store.filter.clubsFilterToggle,
+  paginationValue: store.pagination.paginationValue,
   loadingClub: store.loadingClub,
   loading: store.loading,
   screenMode: store.screenMode,

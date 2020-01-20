@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Loading from '../../../components/Loading';
 import Seo from '../../../components/Seo';
 import Head from 'next/head';
-import {getGameAC} from "../../../redux/actions/games.js";
+import {getGameAC} from "../../../redux/games/actions.js";
 import {withRouter} from 'next/router'
 import GamePage from "../../../components/GamePage.jsx";
 
@@ -48,9 +48,9 @@ class Games extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    game: store.game,
-    loadingClub: store.loadingClub,
-    error: store.error,
+    game: store.games.game,
+    loadingGame: store.games.loadingGame,
+    error: store.games.error,
   };
 };
 

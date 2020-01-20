@@ -14,9 +14,9 @@ import MapSection from '../components/MapSection';
 import Equipments from '../components/Equipments';
 
 // action creators
-import { showFilterToggleAC } from '../redux/actions/filters';
-import { getGamesAC } from "../redux/actions/games.js";
-import { getClubsForMapAC, getClubsAC, getClubForMapAC } from '../redux/actions/clubs';
+import { showFilterToggleAC } from '../redux/filters/actions';
+import { getGamesAC } from "../redux/games/actions.js";
+import { getClubsForMapAC, getClubsAC, getClubForMapAC } from '../redux/clubs/actions';
 
 class ClubPage extends Component {
   state = {
@@ -91,10 +91,10 @@ class ClubPage extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    showFilter: store.showFilter,
-    games: store.games,
+    showFilter: store.filter.showFilter,
+    games: store.games.games,
     screenMode: store.screenMode,
-    filterToggle: store.gamesFilterToggle,
+    filterToggle: store.filter.gamesFilterToggle,
   };
 };
 

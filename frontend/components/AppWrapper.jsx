@@ -10,8 +10,8 @@ import styles from '../stylesheets/appWrapper.module.scss';
 
 // import AC
 import { switchScreenModeAC } from '../redux/actions/screenmode';
-import { switchPaginationValueAC } from '../redux/actions/pagination';
-import { getClubsForMapAC } from "../redux/actions/clubs.js";
+import { switchPaginationValueAC } from '../redux/pagination/actions';
+import { getClubsForMapAC } from "../redux/clubs/actions.js";
 
 
 class AppWrapper extends Component {
@@ -77,9 +77,9 @@ class AppWrapper extends Component {
 const mapStateToProps = (store) => {
 	return {
 		screenMode: store.screenMode,
-		paginationValue: store.paginationValue,
-		gamesFilterToggle: store.gamesFilterToggle,
-		clubsFilterToggle: store.clubsFilterToggle,
+		paginationValue: store.pagination.paginationValue,
+		gamesFilterToggle: store.filter.gamesFilterToggle,
+		clubsFilterToggle: store.filter.clubsFilterToggle,
 		loading: store.loading,
     SearchName: store.SearchName,
 	};

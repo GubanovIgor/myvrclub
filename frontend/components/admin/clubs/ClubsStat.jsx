@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {getAllClubsAC} from "../../../redux/actions/clubs.js";
+import {getAllClubsAC} from "../../../redux/clubs/actions.js";
 import AdminHeader from "../AdminHeader.jsx";
 import Loading from "../../Loading.jsx";
 
@@ -28,8 +28,8 @@ class ClubsStat extends Component {
 }
 
 const mapStateToProps = (store) => ({
-  clubs: store.clubs,
-  loadingClub: store.loadingClub,
+  clubs: store.clubs.clubs,
+  loadingClub: store.clubs.loadingClub,
   loading: store.loading,
   isLogged: store.isLogged,
 });

@@ -59,7 +59,7 @@ export class GameCollections extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  games: state.games,
+  games: state.games.games,
   screenMode: state.screenMode,
 });
 

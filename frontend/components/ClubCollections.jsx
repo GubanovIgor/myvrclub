@@ -67,7 +67,7 @@ export class ClubCollections extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  clubs: state.clubs,
+  clubs: state.clubs.clubs,
   screenMode: state.screenMode,
 });
 
