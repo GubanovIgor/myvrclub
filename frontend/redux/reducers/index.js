@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
-import {reducer1} from './reducer.js'
+import auth from "./auth";
+import red1 from "./red1";
 
-console.log('reducer1', reducer1)
-
-export const reducer = combineReducers({
-  reducer1,
-})
+export const creducer = combineReducers(
+    {auth, red1}
+)

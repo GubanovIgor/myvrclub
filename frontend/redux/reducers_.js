@@ -1,7 +1,8 @@
 // REDUCERS
 import { actionTypes } from './types';
+import {InitState} from "./stateInit";
 
-export const reducer = (state, action) => {
+export const reducer = (state=InitState, action) => {
   // console.log('reducer initial state games', state.games);
   // console.log('reducer initial state clubs', state.clubs);
   switch (action.type) {

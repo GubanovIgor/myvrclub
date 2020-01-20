@@ -67,6 +67,10 @@ class Clubs extends Component {
   }
 }
 
+Clubs.defaultProps = {
+  clubs: []
+};
+
 const mapStateToProps = (store) => ({
   showFilter: store.showFilter,
   clubs: store.clubs,
