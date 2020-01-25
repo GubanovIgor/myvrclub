@@ -47,7 +47,10 @@ const clubSchema = new mongoose.Schema({
   comments: {
     type: [{ id: ObjectId, comment: String, date: String, like: Number, dislike: Number }],
     default: []
-  }
+  },
+  headsets: [
+    
+  ],
 });
 
 clubSchema.statics.getClubs = async function () {
