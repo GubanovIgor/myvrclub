@@ -1,6 +1,9 @@
 import {actionTypes} from "../types.js";
 import {API_PREFIX} from "../../services/consts/consts.js";
 import fetch from 'isomorphic-unfetch';
+import { Cookies } from 'react-cookie';
+
+const cookies = new Cookies();
 
 export const requestLoginAC = () => {
   return {type: actionTypes.REQUEST_LOGIN}
@@ -32,8 +35,6 @@ export const requestLogin = (values) => (
     else dispatch(loginRejectAC());
   }
 );
-
-
 //*******************END-LOGIN ADMIN********************
 
 //********SignUp**************
@@ -76,9 +77,12 @@ export const requestSignIn = (values) => (
       if (res.ok) {
         const data = await res.json();
         dispatch(loginSucsessAC(data.user._id));
-        localStorage.setItem('userId', data.user._id);
-        localStorage.setItem('token', data.token);
-        console.log('signup data >>>>>>>>>', data);
+        // localStorage.setItem('userId', data.user._id);
+        // localStorage.setItem('token', data.token);
+        console.log('signin data >>>>>>>>>', data);
+        console.log('signin data user id >>>>>>>>>', data.user._id);
+        cookies.set('token', data.token);
+        cookies.set('id', data.user._id);
       } else
         throw new Error(res.statusText);
     } catch (err) {
@@ -91,8 +95,8 @@ export const requestSignIn = (values) => (
 //*****************CheckSession*********************
 export const checkSession = () => (
   async (dispatch) => {
-    const userId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
+    const userId = cookies.get('id');
+    const token = cookies.get('token');
     console.log('values id>>>>>>>', userId);
     console.log('values token>>>>>>>', token);
     try {
@@ -123,8 +127,8 @@ export const requestSignOut = () => (
     const resp = await fetch(`${API_PREFIX}/auth/signout`);
     const data = await resp.json();
     //dispatch(requestSignOutAC());
-    localStorage.removeItem('userId');
-    localStorage.removeItem('token');
+      cookies.set('token', '');
+      cookies.set('id', '');
     console.log('SignOut>>>>>>>>>', data);
   }
 );

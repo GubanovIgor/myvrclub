@@ -8,6 +8,6 @@ export default function () {
   dispatch(requestSignOut());
   return (
     <div>
-      {window.location = '/'}
+      {/*{window.location = '/'}*/}
     </div>)
 }
