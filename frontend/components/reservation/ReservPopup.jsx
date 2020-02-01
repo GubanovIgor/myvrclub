@@ -58,7 +58,7 @@ class ReservPopup extends Component {
   headsetsCountStartValue = () => {
     let countOfChosenHeadsets = {};
     Object.keys(headsets2).forEach(
-      item => (countOfChosenHeadsets[`${item}`] = { current: 0 })
+      item => (countOfChosenHeadsets[`${item}`] = { current: 0, all: 0 })
     );
     this.setState({ countOfChosenHeadsets: countOfChosenHeadsets });
   };
@@ -184,7 +184,8 @@ class ReservPopup extends Component {
 
     this.setState({ timeValidation: false });
 
-    this.getGlasses();
+    this.cancelGlasses()
+    this.getGlasses2();
   };
 
   // Проверка есть ли совпадения в 2 массивах
@@ -225,8 +226,37 @@ class ReservPopup extends Component {
     this.setState({ headsetsPack: headsetsPack });
   };
 
+  getCountOfFreeGlasses = (array, selectedDate, selectedTime, model) => {
+    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
+    array.forEach(headset => {
+      if (!headset[selectedDate]) {
+        countOfChosenHeadsetsCopy[model].all += 1
+      } else {
+        let checkTime = false
+        selectedTime.forEach(time => {
+          if (headset[selectedDate].includes(time)) {
+            checkTime = true
+          }
+        })
+        if (!checkTime) {
+          countOfChosenHeadsetsCopy[model].all += 1
+        }
+      }
+    })
+    this.setState({countOfChosenHeadsets: countOfChosenHeadsetsCopy})
+  }
+
+  cancelGlasses = () => {
+    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
+    Object.keys(countOfChosenHeadsetsCopy).forEach(el => countOfChosenHeadsetsCopy[el].all = 0)
+    this.setState({ countOfChosenHeadsets: countOfChosenHeadsetsCopy })
+  }
+
   getGlasses2 = () => {
-    Object.keys(headsets2).forEach(model => {});
+    const { currentDate, selectedTime } = this.state
+    Object.keys(headsets2).forEach(model => {
+      this.getCountOfFreeGlasses(headsets2[model], currentDate, selectedTime, model)
+    });
   };
 
   // Ручка выбора очков

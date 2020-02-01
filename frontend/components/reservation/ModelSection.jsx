@@ -11,6 +11,7 @@ import {
 } from "../../stylesheets/reservation";
 
 const ModelSection = props => {
+  console.log(props.headsetsValue)
   return (
     <ModelSectionWrapper>
       <ModelSectionWrapper__Image
@@ -27,7 +28,7 @@ const ModelSection = props => {
         >
           -
         </ModelSectionWrapper__MinusBtn>
-        <div>{props.headsetsValue.current}</div>
+        <div>{props.headsetsValue.current}/{props.headsetsValue.all}</div>
         <ModelSectionWrapper__PlusBtn
           onClick={
             props.headsetsValue.current < 10
