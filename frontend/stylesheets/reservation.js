@@ -255,6 +255,19 @@ export const ModelSectionWrapper__Counter = styled.div`
   justify-content: space-around;
 `
 
+export const ModelSectionWrapper__MinusBtn = styled.div`
+  color: #3997F0;
+  font-size: 18px;
+  cursor: pointer;
+  ${props => props.count === 0 && 'color: gray; cursor: default'};
+`;
+
+export const ModelSectionWrapper__PlusBtn = styled.div`
+  color: #3997F0;
+  font-size: 14px;
+  cursor: pointer;
+`;
+
 export const ModelSection__Title = styled.div`
   font-size: 14px;
   color: #1f1f22;

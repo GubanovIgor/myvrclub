@@ -46,7 +46,7 @@ class ReservPopup extends Component {
     PersonalDataPopupStatus: false,
     timeValidation: false,
     headsetsValidation: false,
-    countOfChosenHeadsets: {}
+    countOfChosenHeadsets: null
   };
 
   componentDidMount = () => {
@@ -58,16 +58,19 @@ class ReservPopup extends Component {
   headsetsCountStartValue = () => {
     let countOfChosenHeadsets = {};
     Object.keys(headsets2).forEach(
-      item => (countOfChosenHeadsets[`${item}`] = 0)
+      item => (countOfChosenHeadsets[`${item}`] = { current: 0 })
     );
     this.setState({ countOfChosenHeadsets: countOfChosenHeadsets });
   };
 
+  // Рычаг переключения количества очков
   headsetsCountValueHandler = (model, action) => {
-    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
-    action === 'plus' ? countOfChosenHeadsetsCopy[model] += 1 : countOfChosenHeadsetsCopy[model] -= 1
+    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets;
+    action === "plus"
+      ? (countOfChosenHeadsetsCopy[model].current += 1)
+      : (countOfChosenHeadsetsCopy[model].current -= 1);
     this.setState({countOfChosenHeadsets: countOfChosenHeadsetsCopy})
-  }
+  };
 
   getTimeLapse = club => {
     //Данные которые придут из клуба
@@ -222,6 +225,10 @@ class ReservPopup extends Component {
     this.setState({ headsetsPack: headsetsPack });
   };
 
+  getGlasses2 = () => {
+    Object.keys(headsets2).forEach(model => {});
+  };
+
   // Ручка выбора очков
   handleSelectGlasses = (index, model) => {
     let headsetsPack = this.state.headsetsPack;
@@ -334,21 +341,22 @@ class ReservPopup extends Component {
                 </ValidationHint>
               </Paragraph>
             </HeadsetsInfo>
-
-            <HeadsetsTable>
-              {Object.keys(headsets2).map((section, i) => {
-                return (
-                  <ModelSection
-                    section={section}
-                    key={i}
-                    headsetsCurretValue={
-                      this.state.countOfChosenHeadsets[`${section}`]
-                    }
-                    headsetsCountValueHandler={this.headsetsCountValueHandler}
-                  />
-                );
-              })}
-            </HeadsetsTable>
+            {this.state.countOfChosenHeadsets && (
+              <HeadsetsTable>
+                {Object.keys(headsets2).map((section, i) => {
+                  return (
+                    <ModelSection
+                      section={section}
+                      key={i}
+                      headsetsValue={
+                        this.state.countOfChosenHeadsets[`${section}`]
+                      }
+                      headsetsCountValueHandler={this.headsetsCountValueHandler}
+                    />
+                  );
+                })}
+              </HeadsetsTable>
+            )}
           </HeadsetsSectionWrapper>
 
           <ToPersonalData>
