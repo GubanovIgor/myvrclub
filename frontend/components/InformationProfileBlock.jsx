@@ -32,7 +32,6 @@ class InformationProfileBlock extends Component {
 
   render() {
     const { club, game } = this.props;
-    {console.log(club)}
     if (!!club) {
       const clubTel = club.tel[0].replace(/ /g, '-');
       return (

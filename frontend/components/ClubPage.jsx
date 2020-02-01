@@ -56,8 +56,6 @@ class ClubPage extends Component {
       return <GameCard key={game._id} game={game} />;
     });
 
-    console.log(club);
-
     const menuItems = [
       'Игры клуба',
       'Отзывы',

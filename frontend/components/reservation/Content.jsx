@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 const Content = (props) => {
   return (
     <Content>
-      <Header>
+      {/* <Header>
         <Title>
           Нереальное место
         </Title>
         <TitleInfo>
           м. Курская
         </TitleInfo>
-      </Header>
+      </Header> */}
 
-      <DateAndPriceInfo>
+      {/* <DateAndPriceInfo>
         <Paragraph>
           Выберите дату и время
         <ValidationHint status={this.state.timeValidation}>
@@ -27,9 +27,9 @@ const Content = (props) => {
             return <PriceCategory price={el.price} key={i} color={el.color} />
           })}
         </PriceCategorys>
-      </DateAndPriceInfo>
+      </DateAndPriceInfo> */}
 
-      <TimeTable>
+      {/* <TimeTable>
         {this.state.timeLapse.map((el, i) => {
           return <TimeItem
             time={el.time}
@@ -38,9 +38,9 @@ const Content = (props) => {
             key={i}
             handleSelectSession={this.handleSelectSession} />
         })}
-      </TimeTable>
+      </TimeTable> */}
 
-      <HeadsetsSectionWrapper status={this.state.selectedTime.length}>
+      {/* <HeadsetsSectionWrapper status={this.state.selectedTime.length}>
         <HeadsetsInfo>
           <Paragraph>
             Выберите VR очки
@@ -55,9 +55,9 @@ const Content = (props) => {
             return <ModelSection section={section} key={i} handleSelectGlasses={this.handleSelectGlasses} />
           })}
         </HeadsetsTable>
-      </HeadsetsSectionWrapper>
+      </HeadsetsSectionWrapper> */}
 
-      <ToPersonalData>
+      {/* <ToPersonalData>
         <AddInfo>
           * При игре от 60 минут - скидка 10%<br />
           ** Скидка 30% в день рождения
@@ -73,9 +73,9 @@ const Content = (props) => {
         <ToPersonalDataButton onClick={this.handlerPersonalDataPopup}>
           Продолжить
         </ToPersonalDataButton>
-      </ToPersonalData>
+      </ToPersonalData> */}
 
-      <PersonalDataPopup
+      {/* <PersonalDataPopup
         reservPopupData={{
           clubId: this.props.club._id,
           date: this.state.currentDate,
@@ -84,7 +84,7 @@ const Content = (props) => {
           sum: this.state.sum,
         }}
         status={this.state.PersonalDataPopupStatus}
-        handler={this.handlerPersonalDataPopup} />
+        handler={this.handlerPersonalDataPopup} /> */}
     </Content>
   );
 }

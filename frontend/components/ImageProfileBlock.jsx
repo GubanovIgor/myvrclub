@@ -31,7 +31,6 @@ class ImageProfileBlock extends Component {
   }
 
   componentDidUpdate = () => {
-    console.log('window.innerWidth', window.innerWidth)
   }
 
   updateUrlImage = imageUrl => {

@@ -236,23 +236,24 @@ export const HeadsetsInfo = styled.div`
 
 export const HeadsetsTable = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;
 
 export const ModelSectionWrapper = styled.div`
-  width: 250px;
-
   margin-bottom: 20px;
-
-  &:nth-child(3n+3) {
-    border-left: 1px solid #bfbfbf;
-  }
-
-  &:nth-child(3n+2) {
-    border-left: 1px solid #bfbfbf;
-  }
+  margin-right: 20px;
 `;
+
+export const ModelSectionWrapper__Image = styled.img`
+  width: 150px;
+  border-radius: 20px;
+`;
+
+export const ModelSectionWrapper__Counter = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
 
 export const ModelSection__Title = styled.div`
   font-size: 14px;
