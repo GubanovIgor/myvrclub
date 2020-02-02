@@ -188,6 +188,7 @@ class ReservPopup extends Component {
 
     this.cancelGlasses()
     this.getGlasses2();
+    this.getSum()
   }
 
   getCountOfFreeGlasses = (array, selectedDate, selectedTime, model) => {
@@ -226,7 +227,7 @@ class ReservPopup extends Component {
   // Считаем общий счет
   getSum = () => {
     const { countOfChosenHeadsets, timeLapse } = this.state
-    
+
     // Находим количество выбранных очков
     let headsetsCount = 0
     Object.keys(countOfChosenHeadsets).forEach(model => {
@@ -361,7 +362,7 @@ class ReservPopup extends Component {
               clubId: this.props.club._id,
               date: this.state.currentDate,
               time: this.state.selectedTime,
-              headsets: this.state.headsetsPack,
+              countOfChosenHeadsets: this.state.countOfChosenHeadsets,
               sum: this.state.sum
             }}
             status={this.state.PersonalDataPopupStatus}

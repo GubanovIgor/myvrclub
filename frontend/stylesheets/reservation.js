@@ -389,6 +389,7 @@ export const PersonalDataPopup__Content = styled.div`
 export const PersonalDataPopup__Title = styled.div`
   font-size: 18px;
   color: #1f1f22;
+  margin-bottom: 20px;
 `;
 
 export const PersonalDataPopup__ButtonComplete = styled.div`

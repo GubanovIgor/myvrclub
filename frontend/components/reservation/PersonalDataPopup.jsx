@@ -14,6 +14,8 @@ import {
 } from '../../stylesheets/reservation';
 
 const PersonalDataPopup = (props) => {
+  const { reservPopupData } = props
+
   const [formData, setFormData] = useState({
     name: '',
     mail: '',
@@ -27,6 +29,28 @@ const PersonalDataPopup = (props) => {
     })
   };
 
+  const createOrder = (data) => {
+    // Собираем личные данные
+    const dataOrder = formData
+
+    // Добавляем id клуба
+    dataOrder.clubId = data.clubId
+
+    // Собираем данные заказа
+    const headsets = {}
+    Object.keys(data.countOfChosenHeadsets).forEach(model => {
+      if (data.countOfChosenHeadsets[model].current) {
+        headsets[model] = []
+        for (let i = 0; i < data.countOfChosenHeadsets[model].current; i++) {
+          headsets[model].push({ [data.date]: data.time })
+        }
+      }
+    })
+
+    dataOrder.headsets = headsets
+    addSession(dataOrder)
+  }
+
   return (
     <PersonalDataPopupWrapper status={props.status}>
       <PersonalDataPopup__FadeScreen status={props.status} onClick={props.handler}/>
@@ -35,10 +59,13 @@ const PersonalDataPopup = (props) => {
         <PersonalDataPopup__Title>
           Укажите Ваши данные
         </PersonalDataPopup__Title>
-        <input name='name' value={formData.name} onChange={e => changeInput(e.target)}></input>
-        <input name='mail' value={formData.mail} onChange={e => changeInput(e.target)}></input>
-        <input name='phone' value={formData.phone} onChange={e => changeInput(e.target)}></input>
-        <PersonalDataPopup__ButtonComplete onClick={() => addSession(props.reservPopupData)}>
+          <label htmlFor='name'>Имя</label>
+          <input name='name' id='name' value={formData.name} onChange={e => changeInput(e.target)}></input>
+          <label htmlFor='mail'>Email</label>
+          <input name='mail' id='mail' value={formData.mail} onChange={e => changeInput(e.target)}></input>
+          <label htmlFor='phone'>Телефон</label>
+          <input name='phone' id='phone' value={formData.phone} onChange={e => changeInput(e.target)}></input>
+        <PersonalDataPopup__ButtonComplete onClick={() => createOrder(reservPopupData)}>
           Готово
         </PersonalDataPopup__ButtonComplete>
       </PersonalDataPopup__Content>
