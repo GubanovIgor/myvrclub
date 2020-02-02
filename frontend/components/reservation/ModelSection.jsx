@@ -11,7 +11,6 @@ import {
 } from "../../stylesheets/reservation";
 
 const ModelSection = props => {
-  console.log(props.headsetsValue)
   return (
     <ModelSectionWrapper>
       <ModelSectionWrapper__Image

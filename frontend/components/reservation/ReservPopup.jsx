@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-const moment = require("moment");
+import React, { Component } from "react"
+const moment = require("moment")
 
 // Import Components
-import DateField from "./DateField";
-import PriceCategory from "./PriceCategory";
-import TimeItem from "./TimeItem";
-import ModelSection from "./ModelSection";
-import PersonalDataPopup from "./PersonalDataPopup";
+import DateField from "./DateField"
+import PriceCategory from "./PriceCategory"
+import TimeItem from "./TimeItem"
+import ModelSection from "./ModelSection"
+import PersonalDataPopup from "./PersonalDataPopup"
 
 // Styled Components
 import {
@@ -31,9 +31,9 @@ import {
   CloseButton,
   AddInfo,
   ValidationHint
-} from "../../stylesheets/reservation";
+} from "../../stylesheets/reservation"
 
-import { prices, headsets, headsets2 } from "./mok";
+import { prices, headsets, headsets2 } from "./mok"
 
 class ReservPopup extends Component {
   state = {
@@ -47,30 +47,31 @@ class ReservPopup extends Component {
     timeValidation: false,
     headsetsValidation: false,
     countOfChosenHeadsets: null
-  };
+  }
 
   componentDidMount = () => {
-    this.headsetsCountStartValue();
-    this.getTimeLapse(this.props.club);
-  };
+    this.headsetsCountStartValue()
+    this.getTimeLapse(this.props.club)
+  }
 
   // Задаем начальное значение при выборе очков
   headsetsCountStartValue = () => {
-    let countOfChosenHeadsets = {};
+    let countOfChosenHeadsets = {}
     Object.keys(headsets2).forEach(
       item => (countOfChosenHeadsets[`${item}`] = { current: 0, all: 0 })
     );
-    this.setState({ countOfChosenHeadsets: countOfChosenHeadsets });
-  };
+    this.setState({ countOfChosenHeadsets: countOfChosenHeadsets })
+  }
 
   // Рычаг переключения количества очков
   headsetsCountValueHandler = (model, action) => {
-    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets;
+    let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
     action === "plus"
       ? (countOfChosenHeadsetsCopy[model].current += 1)
-      : (countOfChosenHeadsetsCopy[model].current -= 1);
+      : (countOfChosenHeadsetsCopy[model].current -= 1)
     this.setState({countOfChosenHeadsets: countOfChosenHeadsetsCopy})
-  };
+    this.getSum()
+  }
 
   getTimeLapse = club => {
     //Данные которые придут из клуба
@@ -153,7 +154,7 @@ class ReservPopup extends Component {
     // Убираем последний сеанс, т.к. он выходит за рамки рабочего дня
     timeLapse.pop();
     this.setState({ timeLapse: timeLapse });
-  };
+  }
 
   // Ручка выбора даты
   handleChangeDate = async date => {
@@ -161,8 +162,9 @@ class ReservPopup extends Component {
     await this.setState({ currentDate: currentDate });
     this.setState({ selectedTime: [], sum: 0 });
     this.getTimeLapse();
-  };
+  }
 
+  // Ручка выбора времени
   handleSelectSession = async time => {
     // Меняем статус у сеансов для рендера
     let timeLapse = this.state.timeLapse;
@@ -186,45 +188,7 @@ class ReservPopup extends Component {
 
     this.cancelGlasses()
     this.getGlasses2();
-  };
-
-  // Проверка есть ли совпадения в 2 массивах
-  areArraysDifferent = massive => {
-    let check = false;
-
-    if (massive) {
-      massive.forEach(el => {
-        if (this.state.selectedTime.includes(el)) {
-          check = true;
-        }
-      });
-    }
-
-    return check;
-  };
-
-  // Делаем массив всех очков для рендера в выбранный сеанс выбранного дня
-  getGlasses = () => {
-    let headsetsPack = [];
-
-    headsets.forEach(modelPack => {
-      let modelSection = {};
-      modelSection.model = modelPack.model;
-
-      let glasses = [];
-      modelPack.glasses.forEach(el => {
-        if (this.areArraysDifferent(el["reserved"][this.state.currentDate])) {
-          glasses.push("reserved");
-        } else {
-          glasses.push(false);
-        }
-      });
-      modelSection.glasses = glasses;
-      headsetsPack.push(modelSection);
-    });
-
-    this.setState({ headsetsPack: headsetsPack });
-  };
+  }
 
   getCountOfFreeGlasses = (array, selectedDate, selectedTime, model) => {
     let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
@@ -248,7 +212,7 @@ class ReservPopup extends Component {
 
   cancelGlasses = () => {
     let countOfChosenHeadsetsCopy = this.state.countOfChosenHeadsets
-    Object.keys(countOfChosenHeadsetsCopy).forEach(el => countOfChosenHeadsetsCopy[el].all = 0)
+    Object.keys(countOfChosenHeadsetsCopy).forEach(el => countOfChosenHeadsetsCopy[el] = { current: 0, all: 0 })
     this.setState({ countOfChosenHeadsets: countOfChosenHeadsetsCopy })
   }
 
@@ -256,64 +220,52 @@ class ReservPopup extends Component {
     const { currentDate, selectedTime } = this.state
     Object.keys(headsets2).forEach(model => {
       this.getCountOfFreeGlasses(headsets2[model], currentDate, selectedTime, model)
-    });
-  };
-
-  // Ручка выбора очков
-  handleSelectGlasses = (index, model) => {
-    let headsetsPack = this.state.headsetsPack;
-    headsetsPack.forEach(el => {
-      if (el.model === model) {
-        el.glasses[index] = !el.glasses[index];
-      }
-    });
-
-    this.setState({ headsetsPack: headsetsPack, headsetsValidation: false });
-    this.getSum();
-  };
+    })
+  }
 
   // Считаем общий счет
   getSum = () => {
+    const { countOfChosenHeadsets, timeLapse } = this.state
+    
     // Находим количество выбранных очков
-    let headsetsCount = 0;
-    this.state.headsetsPack.forEach(model => {
-      let modelCount = model.glasses.filter(el => el === true).length;
-      headsetsCount += modelCount;
-    });
+    let headsetsCount = 0
+    Object.keys(countOfChosenHeadsets).forEach(model => {
+      headsetsCount += countOfChosenHeadsets[model].current
+    })
 
     // Цена выбранных сеансов за одни очки
     let priceForOne = 0;
-    this.state.timeLapse.forEach(el => {
+    timeLapse.forEach(el => {
       if (el.status) {
-        priceForOne += el.price;
+        priceForOne += el.price
       }
-    });
+    })
 
-    this.setState({ sum: priceForOne * headsetsCount });
-  };
+    this.setState({ sum: priceForOne * headsetsCount })
+  }
 
   // Показывает подсказки валидации
   toPersonalDataValidation = () => {
-    let check = true;
+    let check = true
 
     if (this.state.selectedTime.length === 0) {
-      this.setState({ timeValidation: true });
-      check = false;
+      this.setState({ timeValidation: true })
+      check = false
     } else if (this.state.sum === 0) {
-      this.setState({ headsetsValidation: true });
-      check = false;
+      this.setState({ headsetsValidation: true })
+      check = false
     }
 
-    return check;
-  };
+    return check
+  }
 
   // Показывает попап сбора личных данных
   handlerPersonalDataPopup = () => {
     if (this.toPersonalDataValidation())
       this.setState({
         PersonalDataPopupStatus: !this.state.PersonalDataPopupStatus
-      });
-  };
+      })
+  }
 
   render() {
     return (
@@ -383,7 +335,7 @@ class ReservPopup extends Component {
                       }
                       headsetsCountValueHandler={this.headsetsCountValueHandler}
                     />
-                  );
+                  )
                 })}
               </HeadsetsTable>
             )}
@@ -419,7 +371,7 @@ class ReservPopup extends Component {
 
         <FadeScreen onClick={this.props.handleReservePopup} />
       </ReservPopupWrapper>
-    );
+    )
   }
 }
 
