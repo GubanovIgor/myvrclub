@@ -27,11 +27,11 @@ const orderSchema = new mongoose.Schema({
     sum: {
       type: Number,
     },
-    club_id: {
+    clubId: {
       type: mongoose.Schema.Types.ObjectId,
     },
     headsets: {
-      type: { type: { type: [String] } }
+
     }
   },
   { strict: false }

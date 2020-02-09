@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // ActionCreators
-import { addSession } from '../../redux/actions/reservation';
+import { addSession, getFreeSession } from '../../redux/actions/reservation';
 
 // Styled Components
 import {

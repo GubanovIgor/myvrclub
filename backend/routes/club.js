@@ -105,8 +105,7 @@ router.post('/statistics', async (req, res) => {
 
 router.post('/reservation', (req, res) => {
   console.log(req.body)
-  const { date, name, time, email, phone, club_id, sum, headsets } = req.body
-
+  const { date, name, time, email, phone, clubId, sum, headsets } = req.body
   const order = new Order ({
     _id: new mongoose.Types.ObjectId(),
     date,
@@ -114,16 +113,21 @@ router.post('/reservation', (req, res) => {
     time,
     email,
     phone,
-    club_id,
+    clubId,
     sum,
-    headsets: {
-      'ps_vr': headsets['ps_vr'],
-      'htc_vive_pro': headsets['htc_vive_pro']
-    }
+    headsets
   })
   order.save()
 
   res.end()
+})
+
+router.get('/reservation', async (req, res) => {
+  const { clubId } = req.query
+
+  const club = await Club.findById(req.query.clubId)
+  const orders = await Order.find({clubId:clubId})
+  res.json(club)
 })
 
 // router.post('/adddescription', async (req, res) => {

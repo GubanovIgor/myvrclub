@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 const moment = require("moment")
 
+// ActionCreators
+import { getFreeSession } from '../../redux/actions/reservation';
+
 // Import Components
 import DateField from "./DateField"
 import PriceCategory from "./PriceCategory"
@@ -39,7 +42,7 @@ class ReservPopup extends Component {
   state = {
     step: "date and time",
     timeLapse: [],
-    currentDate: moment(new Date()).format("DD.MM.YY"),
+    currentDate: moment(new Date()).format("DD-MM-YY"),
     selectedTime: [],
     headsetsPack: [],
     sum: 0,
@@ -158,7 +161,7 @@ class ReservPopup extends Component {
 
   // Ручка выбора даты
   handleChangeDate = async date => {
-    const currentDate = moment(date).format("DD.MM.YY");
+    const currentDate = moment(date).format("DD-MM-YY");
     await this.setState({ currentDate: currentDate });
     this.setState({ selectedTime: [], sum: 0 });
     this.getTimeLapse();
@@ -219,6 +222,9 @@ class ReservPopup extends Component {
 
   getGlasses2 = () => {
     const { currentDate, selectedTime } = this.state
+
+    getFreeSession(this.props.club._id)
+
     Object.keys(headsets2).forEach(model => {
       this.getCountOfFreeGlasses(headsets2[model], currentDate, selectedTime, model)
     })

@@ -13,3 +13,17 @@ export const addSession = async (data) => {
     body: JSON.stringify(data),
   });
 };
+
+// Получаем данные о свободных сеансах
+export const getFreeSession = async (clubId) => {
+  console.log(clubId)
+  const resp = await fetch(`${API_PREFIX}/club/reservation/?clubId=${clubId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  const data = await resp.json();
+  console.log(data)
+}
