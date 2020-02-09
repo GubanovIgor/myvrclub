@@ -15,9 +15,9 @@ export const addSession = async (data) => {
 };
 
 // Получаем данные о свободных сеансах
-export const getFreeSession = async (clubId) => {
+export const getFreeSession = async (clubId, date) => {
   console.log(clubId)
-  const resp = await fetch(`${API_PREFIX}/club/reservation/?clubId=${clubId}`, {
+  const resp = await fetch(`${API_PREFIX}/club/reservation/?clubId=${clubId}&date=${date}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

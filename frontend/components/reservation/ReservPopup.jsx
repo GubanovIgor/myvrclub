@@ -223,7 +223,7 @@ class ReservPopup extends Component {
   getGlasses2 = () => {
     const { currentDate, selectedTime } = this.state
 
-    getFreeSession(this.props.club._id)
+    getFreeSession(this.props.club._id, currentDate)
 
     Object.keys(headsets2).forEach(model => {
       this.getCountOfFreeGlasses(headsets2[model], currentDate, selectedTime, model)

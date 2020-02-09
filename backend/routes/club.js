@@ -123,11 +123,50 @@ router.post('/reservation', (req, res) => {
 })
 
 router.get('/reservation', async (req, res) => {
-  const { clubId } = req.query
+  const { clubId, date } = req.query
 
+  // Получаем все заказы клуба на выбранный пользователем день
+  const orders = await Order.find({clubId:clubId, date:date})
+
+  // Делаем объект со всеми очками клуба
   const club = await Club.findById(req.query.clubId)
-  const orders = await Order.find({clubId:clubId})
-  res.json(club)
+  const headsets = {}
+  Object.keys(club.headsets).forEach(el => {
+    headsets[el] = []
+    for (let i = 0; i < club.headsets[el]; i++){
+      headsets[el].push({})
+    }
+  })
+
+  // Добавляет сеанс в поле модели
+  const setSessionToModel = (headsetsCount, model, time, date) => {
+    // console.log(headsetsCount, model, time, date)
+    const index = headsets[model].find((headset, i, array) => {
+      // console.log(headset, date)
+      // console.log(!headset.hasOwnProperty(date))
+      if (!headset.hasOwnProperty(date)) {
+        // console.log(date)
+        return headset
+      } else {
+        console.log(headset[date])
+      }
+    })
+    index[date] = time
+    // console.log(headsets)
+  }
+
+  // Заполняем объект с очками сеансами которые заняты
+  orders.forEach(order => {
+
+    Object.keys(order.headsets).forEach(model => {
+      const countHeadsetsOfModel = order.headsets[model].length
+      const freeHeadset = setSessionToModel(countHeadsetsOfModel, model, order.time, order.date)
+      // console.log('headsets', headsets)
+    })
+
+  })
+
+  res.json(orders)
 })
 
 // router.post('/adddescription', async (req, res) => {
