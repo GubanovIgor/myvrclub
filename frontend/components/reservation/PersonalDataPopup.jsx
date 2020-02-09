@@ -30,13 +30,22 @@ const PersonalDataPopup = (props) => {
   };
 
   const createOrder = (data) => {
-    // Собираем личные данные
+    // Добавляем данные пользователя
     const dataOrder = formData
 
     // Добавляем id клуба
     dataOrder.clubId = data.clubId
 
-    // Собираем данные заказа
+    // Добавляем выбранную дату
+    dataOrder.date = data.date
+
+    // Добавляем выбранное время
+    dataOrder.time = data.time
+
+    // Добавляем сумму заказа
+    dataOrder.sum = data.sum
+
+    // Добавляем информацию по выбранным очкам
     const headsets = {}
     Object.keys(data.countOfChosenHeadsets).forEach(model => {
       if (data.countOfChosenHeadsets[model].current) {
