@@ -27,6 +27,7 @@ export const InitState = {
   screenMode: 'desktop',
   isLogged: false,
   logging: false,
+  freeSessions: {},
   gamesFilter: [
     {
       title: 'Жанр',

@@ -1,8 +1,10 @@
 import React, { Component } from "react"
+import { connect } from 'react-redux';
+
 const moment = require("moment")
 
 // ActionCreators
-import { getFreeSession } from '../../redux/actions/reservation';
+import { getFreeSessionsThunk } from '../../redux/actions/reservation';
 
 // Import Components
 import DateField from "./DateField"
@@ -58,9 +60,11 @@ class ReservPopup extends Component {
   }
 
   // Задаем начальное значение при выборе очков
-  headsetsCountStartValue = () => {
+  headsetsCountStartValue = async () => {
+    await this.props.getFreeSessions(this.props.club._id, '1234')
     let countOfChosenHeadsets = {}
-    Object.keys(headsets2).forEach(
+    console.log('this.props.freeSessions', this.props.freeSessions)
+    Object.keys(this.props.freeSessions).forEach(
       item => (countOfChosenHeadsets[`${item}`] = { current: 0, all: 0 })
     );
     this.setState({ countOfChosenHeadsets: countOfChosenHeadsets })
@@ -223,10 +227,10 @@ class ReservPopup extends Component {
   getGlasses2 = () => {
     const { currentDate, selectedTime } = this.state
 
-    getFreeSession(this.props.club._id, currentDate)
+    this.props.getFreeSessions(this.props.club._id, currentDate)
 
-    Object.keys(headsets2).forEach(model => {
-      this.getCountOfFreeGlasses(headsets2[model], currentDate, selectedTime, model)
+    Object.keys(this.props.freeSessions).forEach(model => {
+      this.getCountOfFreeGlasses(this.props.freeSessions[model], currentDate, selectedTime, model)
     })
   }
 
@@ -332,7 +336,8 @@ class ReservPopup extends Component {
             </HeadsetsInfo>
             {this.state.countOfChosenHeadsets && (
               <HeadsetsTable>
-                {Object.keys(headsets2).map((section, i) => {
+                {Object.keys(this.props.freeSessions).map((section, i) => {
+                  console.log(this.props.freeSessions)
                   return (
                     <ModelSection
                       section={section}
@@ -382,4 +387,20 @@ class ReservPopup extends Component {
   }
 }
 
-export default ReservPopup;
+ReservPopup.defaultProps = {
+  freeSessions: {}
+};
+
+const mapStateToProps = (store) => {
+  return {
+    freeSessions: store.freeSessions
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFreeSessions: (clubId, currentDate) => dispatch(getFreeSessionsThunk(clubId, currentDate)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReservPopup);

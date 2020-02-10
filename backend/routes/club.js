@@ -143,7 +143,6 @@ router.get('/reservation', async (req, res) => {
     let check = true
     arr1.forEach(el => {
       if (arr2.includes(el)) {
-        console.log('im here')
         check = false
       }
     })
@@ -157,10 +156,7 @@ router.get('/reservation', async (req, res) => {
           return headset
         }
         if (areArrayIsDifferent(time, headset[date])) {
-          console.log(time, headset[date])
           return headset
-        } else {
-          console.log('hui')
         }
       })
 
@@ -181,7 +177,6 @@ router.get('/reservation', async (req, res) => {
       }
     })
   })
-  console.log(headsets)
   res.json(headsets)
 })
 

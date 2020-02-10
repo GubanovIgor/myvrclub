@@ -31,7 +31,7 @@ export const reducer = (state, action) => {
       stateCopy.clubsFilterToggle[action.category][action.item] = !stateCopy.clubsFilterToggle[action.category][action.item];
       return stateCopy;
     case actionTypes.REQUEST_FILTER_TOGGLE_GAMES:
-      const stateCopy1 = { ...state }; // ВОПРОС
+      const stateCopy1 = { ...state };
       stateCopy1.gamesFilterToggle[action.category][action.item] = !stateCopy1.gamesFilterToggle[action.category][action.item];
       return stateCopy1;
     case actionTypes.SWITCH_PAGINATION_VALUE:
@@ -58,6 +58,11 @@ export const reducer = (state, action) => {
       return ({ ...state, isLogged: false });
     //******************************
 
+    //****************Reservation**************
+    case actionTypes.REQUESTED_FREE_SESSIONS:
+      console.log('hui')
+      return ({...state, freeSessions: action.freeSessions})
+    //******************************
     default:
       return state;
   }
