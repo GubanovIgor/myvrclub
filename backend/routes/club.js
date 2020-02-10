@@ -138,35 +138,51 @@ router.get('/reservation', async (req, res) => {
     }
   })
 
-  // Добавляет сеанс в поле модели
-  const setSessionToModel = (headsetsCount, model, time, date) => {
-    // console.log(headsetsCount, model, time, date)
-    const index = headsets[model].find((headset, i, array) => {
-      // console.log(headset, date)
-      // console.log(!headset.hasOwnProperty(date))
-      if (!headset.hasOwnProperty(date)) {
-        // console.log(date)
-        return headset
-      } else {
-        console.log(headset[date])
+  // Ищем есть ли совпадения в 2 массивах
+  const areArrayIsDifferent = (arr1, arr2) => {
+    let check = true
+    arr1.forEach(el => {
+      if (arr2.includes(el)) {
+        console.log('im here')
+        check = false
       }
     })
-    index[date] = time
-    // console.log(headsets)
+    return check
+  }
+
+  // Добавляет сеанс в поле модели
+  const setSessionToModel = (model, time, date) => {
+      const index = headsets[model].find((headset) => {
+        if (!headset.hasOwnProperty(date)) {
+          return headset
+        }
+        if (areArrayIsDifferent(time, headset[date])) {
+          console.log(time, headset[date])
+          return headset
+        } else {
+          console.log('hui')
+        }
+      })
+
+      if (index) {
+        if (!index[date]) {
+          index[date] = []
+        }
+        time.forEach(time => index[date].push(time))
+      }
   }
 
   // Заполняем объект с очками сеансами которые заняты
   orders.forEach(order => {
-
     Object.keys(order.headsets).forEach(model => {
       const countHeadsetsOfModel = order.headsets[model].length
-      const freeHeadset = setSessionToModel(countHeadsetsOfModel, model, order.time, order.date)
-      // console.log('headsets', headsets)
+      for (let i = 0; i < countHeadsetsOfModel; i++) {
+        setSessionToModel(model, order.time, order.date)
+      }
     })
-
   })
-
-  res.json(orders)
+  console.log(headsets)
+  res.json(headsets)
 })
 
 // router.post('/adddescription', async (req, res) => {
