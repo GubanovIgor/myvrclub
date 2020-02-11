@@ -84,7 +84,6 @@ export const getClubsForMapAC = (
   filterToggleData,
   gameId = '') => (
     async (dispatch) => {
-      console.log('qweqwe')
       //console.log('InitState', InitState);
       // dispatch(requestClubs());
       // Оставляем в массиве checkedToggle только те тоглы, у которых значение true

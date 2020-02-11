@@ -60,8 +60,12 @@ export const reducer = (state, action) => {
 
     //****************Reservation**************
     case actionTypes.REQUESTED_FREE_SESSIONS:
-      console.log('hui')
       return ({...state, freeSessions: action.freeSessions})
+    //******************************
+
+    //****************Orders**************
+    case actionTypes.GET_CLUB_ORDERS:
+      return ({...state, clubOrders: action.clubOrders})
     //******************************
     default:
       return state;

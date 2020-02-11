@@ -13,7 +13,6 @@ import {
 const ClientCard = (props) => {
 
   const value = useTest(9)
-  console.log(value)
 
   return (
     <ClientCardWrapper>

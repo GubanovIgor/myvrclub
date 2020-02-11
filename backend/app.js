@@ -12,6 +12,7 @@ const gameRouter = require('./routes/game');
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const orderRouter = require('./routes/order');
 
 let app = express();
 app.use(logger('dev'));
@@ -61,5 +62,6 @@ app.use('/game', gameRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/order', orderRouter);
 
 module.exports = app;

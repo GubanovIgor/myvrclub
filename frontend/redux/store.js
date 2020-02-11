@@ -28,6 +28,7 @@ export const InitState = {
   isLogged: false,
   logging: false,
   freeSessions: {},
+  clubOrders: [],
   gamesFilter: [
     {
       title: 'Жанр',
