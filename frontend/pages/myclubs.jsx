@@ -14,7 +14,7 @@ import ru from "date-fns/locale/ru";
 registerLocale("ru", ru);
 
 // import thunks
-import { getClubOrdersThunk } from '../redux/actions/personalAccount'
+import { getClubOrdersThunk, deleteClubOrderThunk } from '../redux/actions/personalAccount'
 
 const MyClubs = (props) => {
 
@@ -37,14 +37,28 @@ const MyClubs = (props) => {
     props.getClubOrders('5d909d94d164e411abfa7a8a', currentDate)
   }
 
+  // Ручка удаления заказа
+  const handleDeleteOrder = (orderId) => {
+    props.deleteClubOrder(orderId)
+  }
+
   return (
     <div>
       <Header/>
       <DatePicker locale="ru" selected={startDate} onChange={(date) => handleChangeDate(date)}/>
-      {console.log(props.clubOrders)}
-      {props.clubOrders && props.clubOrders.Map(order => {
-        return <ClientCard/>
-      })}
+      <div>
+        {props.clubOrders.map(order => {
+          return <ClientCard
+          key={order._id}
+          time={order.time}
+          name={order.name}
+          phone={order.phone}
+          sum={order.sum}
+          headsets={order.headsets}
+          orderId={order._id}
+          handleDeleteOrder={handleDeleteOrder}/>
+        })}
+      </div>
     </div>
   );
 }
@@ -57,7 +71,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getClubOrders: (clubId, date) => dispatch(getClubOrdersThunk(clubId, date))
+    getClubOrders: (clubId, date) => dispatch(getClubOrdersThunk(clubId, date)),
+    deleteClubOrder: (orderId) => dispatch(deleteClubOrderThunk(orderId))
   };
 };
 

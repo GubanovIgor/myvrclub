@@ -66,6 +66,8 @@ export const reducer = (state, action) => {
     //****************Orders**************
     case actionTypes.GET_CLUB_ORDERS:
       return ({...state, clubOrders: action.clubOrders})
+    case actionTypes.DELETE_CLUB_ORDER:
+      return ({...state}, {clubOrders: state.clubOrders.filter(order => order._id !== action.orderId)})
     //******************************
     default:
       return state;

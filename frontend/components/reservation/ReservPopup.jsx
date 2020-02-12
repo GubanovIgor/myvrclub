@@ -80,7 +80,7 @@ class ReservPopup extends Component {
     this.getSum()
   }
 
-  getTimeLapse = club => {
+  getTimeLapse = clubSettings => {
     //Данные которые придут из клуба
     const start = "11:00";
     const end = "22:00";

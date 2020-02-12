@@ -11,4 +11,15 @@ router.get('/', async (req, res) => {
   res.json(orders)
 })
 
+router.delete('/', async (req, res) => {
+  await Order.findByIdAndDelete(req.body.orderId, (error) => {
+    if (error) {
+      return res.json(false)
+    } else {
+      console.log('im here')
+      res.json(true)
+    }
+  })
+})
+
 module.exports = router
