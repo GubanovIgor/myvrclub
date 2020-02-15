@@ -13,6 +13,15 @@ import {
 const ClientCard = (props) => {
 
   const value = useTest(9)
+  const { headsets } = props
+
+  
+
+  const headsetsTranslator = {
+    htc_vive_pro: 'HTC Vive Pro',
+    ps_vr: 'PS VR',
+    oculus_rift: 'Oculus Rift',
+  }
 
   return (
     <ClientCardWrapper>
@@ -25,11 +34,15 @@ const ClientCard = (props) => {
         <p className={'name'}>{props.name}</p>
         <p className={'mail'}>vasya@putin.ru</p>
         <p className={'phone'}>{props.phone}</p>
-        {Object.keys(props.headsets).map(headset => {
-          return <p className={'headset'}>Oculus Rift: 1 шт</p>
+        {Object.keys(headsets).map((headset, i) => {
+          return <p key={i} className={'headset'}>{headsetsTranslator[headset]}: {headsets[headset].length} шт</p>
         })}
-        <p className={'time'}>{props.time[0]} - {props.time[props.time.length-1]}</p>
-        <p className={'sum'}>{props.sum}</p>
+        <p className={'time'}>
+          {props.time.map(time => {
+            return `[${time}]`
+          })}
+        </p>
+        <p className={'sum'}>{props.sum} ₽</p>
       </Content>
 
       <Buttons>

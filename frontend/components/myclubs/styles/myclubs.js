@@ -3,16 +3,23 @@ const imgPath = "/static/images/icons";
 
 export const ClientCardWrapper = styled.div`
   width: 200px;
-  height: 322px;
 
   color: #505051;
 
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.16);
 
-  margin: 40px auto;
   padding: 30px;
+  margin-right: 20px;
+  margin-bottom: 40px;
 `;
+
+export const OrdersWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-top: 50px;
+`
 
 export const Title = styled.div`
   font-size: 18px;

@@ -5,6 +5,9 @@ const moment = require("moment")
 // import AC
 import { getClubsAC } from '../redux/actions/clubs'
 
+// StyledComponents
+import { OrdersWrapper } from '../components/myclubs/styles/myclubs'
+
 // import components
 import Header from '../components/Header'
 import ClientCard from '../components/myclubs/ClientCard'
@@ -34,7 +37,7 @@ const MyClubs = (props) => {
   const handleChangeDate = date => {
     const currentDate = moment(date).format("DD-MM-YY");
     setDate(date)
-    props.getClubOrders('5d909d94d164e411abfa7a8a', currentDate)
+    props.getClubOrders('5d909d94d164e411abfa7a76', currentDate)
   }
 
   // Ручка удаления заказа
@@ -46,7 +49,7 @@ const MyClubs = (props) => {
     <div>
       <Header/>
       <DatePicker locale="ru" selected={startDate} onChange={(date) => handleChangeDate(date)}/>
-      <div>
+      <OrdersWrapper>
         {props.clubOrders.map(order => {
           return <ClientCard
           key={order._id}
@@ -58,7 +61,7 @@ const MyClubs = (props) => {
           orderId={order._id}
           handleDeleteOrder={handleDeleteOrder}/>
         })}
-      </div>
+      </OrdersWrapper>
     </div>
   );
 }
