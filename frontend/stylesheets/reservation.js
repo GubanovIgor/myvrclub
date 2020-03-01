@@ -256,13 +256,31 @@ export const ModelSectionWrapper__Counter = styled.div`
 `
 
 export const ModelSectionWrapper__MinusBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+
+  border: 1px solid #3997F0;
+  border-radius: 5px;
   color: #3997F0;
-  font-size: 18px;
+
+  font-size: 14px;
   cursor: pointer;
-  ${props => props.count === 0 && 'color: gray; cursor: default'};
+  ${props => props.count === 0 && 'color: gray; cursor: default; border-color: gray'};
 `;
 
 export const ModelSectionWrapper__PlusBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+
+  border: 1px solid #3997F0;
+  border-radius: 5px;
+
   color: #3997F0;
   font-size: 14px;
   cursor: pointer;

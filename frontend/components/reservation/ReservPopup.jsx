@@ -84,7 +84,7 @@ class ReservPopup extends Component {
     //Данные которые придут из клуба
     const start = "11:00";
     const end = "22:00";
-    let interval = 60;
+    let interval = 45;
     const priceRange = [
       { category: "low", start: "11:00", end: "14:00", price: 400 },
       { category: "middle", start: "14:00", end: "20:00", price: 700 },
