@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,8 @@
     "node-fetch": "^2.6.0",
     "package": "^1.0.1",
     "transliterate-cyrillic-text-to-latin-url": "^1.1.1",
-    "uuid": "^3.3.3"
-  }
+    "uuid": "^3.3.3",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
