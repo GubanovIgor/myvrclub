@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 // import Link from 'next/link';
 import Link from './ActiveLink';
+import {connect} from "react-redux";
+import {checkSession} from "../redux/actions/submit.js";
 
 // SASS
 import '../stylesheets/body.module.scss';
 import styles from '../stylesheets/header.module.scss';
-import {connect} from "react-redux";
-import {changeMapAC} from "../redux/actions/map.js";
-import {filterToggleClubsAC} from "../redux/actions/filters.js";
-import {getClubsAC, getClubsForMapAC} from "../redux/actions/clubs.js";
-import {checkSession} from "../redux/actions/submit.js";
+// import {changeMapAC} from "../redux/actions/map.js";
+// import {filterToggleClubsAC} from "../redux/actions/filters.js";
+// import {getClubsAC, getClubsForMapAC} from "../redux/actions/clubs.js";
 
 class Header extends Component {
 

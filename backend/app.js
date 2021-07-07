@@ -41,6 +41,7 @@ process.on('SIGINT', function() {
 });
 //****************************** END MONGOOSE CONNECTION***********************
 
+
 const corsMiddleware = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept');
@@ -50,8 +51,8 @@ const corsMiddleware = (req, res, next) => {
 app.use(corsMiddleware);
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes use

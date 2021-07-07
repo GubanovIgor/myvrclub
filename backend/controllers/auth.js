@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken'); // generate token
 const expressJwt = require('express-jwt'); // autorization check
 
 exports.signup = (req, res) => {
-  // console.log(req.body)
+   //console.log('req.body', req.body);
   const user = new User(req.body);
   user.save((error, user) => {
     if (error) {
@@ -17,12 +17,12 @@ exports.signup = (req, res) => {
     res.json({
       user
     })
-  })
+  });
 }
 
 exports.signin = (req, res) => {
   // based on email address
-  const {email, password} = req.body
+  const {email, password} = req.body;
   User.findOne({email}, (error, user) => {
     if (error || !user) {
       return res.status(400).json({
@@ -35,14 +35,21 @@ exports.signin = (req, res) => {
       })
     }
     const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
-    res.cookie('t', token, {expire: new Date() + 9999});
+    //res.cookie('t', token, {expire: new Date() + 9999});
+    //   res.cookie('jwt', token, {
+    //       expires: new Date(
+    //           Date.now() + Number(process.env.JWT_COOKIE_EXPIRES_IN) * 24 * 60 * 60 * 1000,
+    //       ),
+    //       httpOnly: true,
+    //       secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    //   });
     const {_id, name, email, role} = user;
-    res.json({token, user: {_id, name, email, role}})
+    res.json({token, user: {_id, name, email, role}}) // шлем на фронт только токен. на фронте токен пихаем в куку
   })
 }
 
 exports.signout = (req, res) => {
-  res.clearCookie('t')
+  //res.clearCookie('t')
   res.json({message: 'Signing out successfully'})
 }
 
@@ -53,14 +60,13 @@ exports.requireSignin = expressJwt({
 
 exports.isAuth = (req, res, next) => {
   let user = req.profile && req.auth && req.profile._id == req.auth._id
-  console.log('request', req)
   if (!user) {
     return res.status(403).json({
       error: 'Access denied'
     });
   }
   next();
-}
+};
 
 exports.isAdmin = (req, res, next) => {
   if (req.profile.role === 0) {
