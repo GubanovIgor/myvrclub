@@ -18,7 +18,7 @@
     "formik": "^1.5.8",
     "isomorphic-unfetch": "^3.0.0",
     "jscs": "^3.0.7",
-    "next": "^9.1.1",
+    "next": "^11.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-redux-wrapper": "^3.0.0",
     "node-sass": "^4.12.0",
