@@ -23,7 +23,7 @@
     "mongoose": "^5.6.10",
     "morgan": "^1.9.1",
     "needle": "^2.4.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "package": "^1.0.1",
     "transliterate-cyrillic-text-to-latin-url": "^1.1.1",
     "uuid": "^3.3.3"
