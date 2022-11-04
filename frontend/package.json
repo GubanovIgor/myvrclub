@@ -18,7 +18,7 @@
     "formik": "^1.5.8",
     "isomorphic-unfetch": "^3.0.0",
     "jscs": "^3.0.7",
-    "next": "^9.1.1",
+    "next": "^12.0.9",
     "next-compose-plugins": "^2.2.0",
     "next-redux-wrapper": "^3.0.0",
     "node-sass": "^4.12.0",
@@ -31,10 +31,10 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.3",
-    "sass-loader": "^7.3.1",
-    "style-loader": "^1.0.0",
+    "sass-loader": "^9.0.0",
+    "style-loader": "^1.1.4",
     "styled-components": "^4.4.0",
-    "url-loader": "^2.2.0",
+    "url-loader": "^4.0.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {
