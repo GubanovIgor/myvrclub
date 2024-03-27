@@ -14,7 +14,7 @@
     "cookie-parser": "~1.4.4",
     "crypto": "^1.0.1",
     "dotenv": "^8.1.0",
-    "express": "^4.17.1",
+    "express": "^4.19.2",
     "express-jwt": "^5.3.1",
     "js-yaml": ">=3.13.1",
     "jscs": "^3.0.7",
