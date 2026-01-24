@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0",
     "convert-csv-to-json": "0.0.15",
     "cookie-parser": "~1.4.4",
     "crypto": "^1.0.1",
